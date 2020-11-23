@@ -1,0 +1,12 @@
+page {
+  background: #F5F7F7;
+  min-height: 100vh;
+}
+
+.goods-list {
+  padding: 20rpx;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-row-gap: 16rpx;
+  grid-column-gap:16rpx;
+}

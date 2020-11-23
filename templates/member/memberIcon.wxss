@@ -1,0 +1,53 @@
+.user-admin {
+  display: inline-block;
+  
+  padding: 0 6rpx;
+  border-radius: 4rpx;
+  font-size: 20rpx;
+  vertical-align: middle;
+  margin-left: 10rpx;
+  background-color: #2f80ed;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.vip {
+  background-color: #fd8f45 !important;
+
+}
+
+.user-star {
+  display: inline-block;
+  height: 30rpx;
+  line-height: 30rpx;
+  padding: 0 6rpx;
+  border-radius: 4rpx;
+  font-size: 20rpx;
+
+
+  background-color: #2f80ed;
+  vertical-align: middle;
+  margin-left: 10rpx;
+  color: #fff;
+
+  box-sizing: border-box;
+}
+
+.user-vip {
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  right: -4rpx;
+  bottom: -5rpx;
+  height: 30rpx;
+  width: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-vip .icon-user-vip {
+  font-size: 24rpx;
+  color: #f8c058;
+  line-height: 1;
+}

@@ -1,0 +1,13 @@
+{
+    "enablePullDownRefresh": false,
+    "backgroundTextStyle": "dark",
+    "navigationBarTitleText": "发布动态",
+    "usingComponents": {        
+        "txv-video": "plugin://tencentvideo/video",
+        "l-dialog": "../../vendor/LinUI/dialog/index",
+        "l-radio": "../../vendor/LinUI/radio/index",
+        "l-radio-group": "../../vendor/LinUI/radio-group/index"
+    
+    }
+    
+}

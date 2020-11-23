@@ -1,0 +1,396 @@
+/*
+ * 
+ * 微慕小程序
+ * author: jianbo
+ * organization:  微慕 www.minapper.com 
+ * 技术支持微信号：Jianbo
+ * Copyright (c) 2018 https://www.minapper.com All rights reserved.
+ */
+
+
+.text {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 32rpx;
+    color: #000;
+}
+
+.textarea {
+    color: #d5d5d5;
+}
+
+.play-out {
+    padding: 0 0 46rpx 30rpx;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: #f8f8f8;
+}
+
+.play-audio {
+    display: flex;
+    align-items: center;
+    float: left;
+    width: 440rpx;
+    height: 80rpx;
+    background-color: #5f7fee;
+    border-radius: 40rpx;
+    box-sizing: border-box;
+    position: relative;
+    margin-right: 46rpx;
+}
+
+.play-audio .image {
+    margin-left: 30rpx;
+    display: block;
+    width: 264rpx;
+    height: 30rpx;
+}
+
+.play-delete {
+    width: 40rpx;
+    height: 40rpx;
+    position: absolute;
+    top: -18rpx;
+    right: -6rpx;
+}
+
+.delete-audio {
+    width: 40rpx;
+    height: 40rpx;
+}
+
+.select {
+    display: flex;
+    width: 100%;
+    height: 120rpx;
+    line-height: 120rpx;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+.select-le,.select-middle,.select-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.select-le {
+    padding-left: 40rpx;
+}
+
+.select-right {
+    justify-content: flex-end;
+    padding-right: 40rpx;
+}
+
+.select-le image {
+    display: block;
+    width: 116rpx;
+    height: 60rpx;
+}
+
+.select-middle {
+    font-size: 28rpx;
+    color: #333c4f;
+}
+
+.select-middle .desc {
+    margin-left: 20rpx;
+}
+
+.not-name {
+    position: relative;
+    width: 60rpx;
+    height: 30rpx;
+    background-color: #e5e5e5;
+    border-radius: 40rpx;
+}
+
+.not-name image {
+    position: absolute;
+    left: -12rpx;
+    top: -6rpx;
+    display: block;
+    width: 50rpx;
+    height: 48rpx;
+}
+
+.use-name {
+    position: relative;
+    width: 60rpx;
+    height: 30rpx;
+    background-color: #5f7fee;
+    border-radius: 40rpx;
+}
+
+.use-name image {
+    position: absolute;
+    right: -12rpx;
+    top: -6rpx;
+    display: block;
+    width: 50rpx;
+    height: 48rpx;
+}
+
+.select-right image {
+    display: block;
+    width: 116rpx;
+    height: 60rpx;
+}
+
+.audio {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    height: 300rpx;
+    background-color: #fff;
+    /* padding-bottom: 150rpx; */
+    z-index: 9999
+}
+
+.audio-box {
+    display: flex
+    
+  }
+  
+.audio-box-hidden {
+    display: none !important;
+  }
+  
+
+.start {
+    text-align: center;
+    font-size: 32rpx;
+    color: #333c4f;
+}
+
+.record-start {
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 50%;
+    border: 2rpx solid #f8f8f8;
+    background-color: #5f7fee;
+    box-sizing: border-box;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+}
+
+.record-start image {
+    width: 48rpx;
+    height: 80rpx;
+}
+
+.confirm-audio {
+    margin-top: 28rpx;
+    margin-bottom: 28rpx;
+    width: 100%;
+    height: 150rpx;
+    overflow: hidden;
+}
+
+.record-delete,.play-record,.record-finish {
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.record-delete image,.play-record image,.record-finish image {
+    display: block;
+}
+
+.record-delete image {
+    width: 36rpx;
+    height: 40rpx;
+}
+
+.play-record image {
+    width: 100rpx;
+    height: 100rpx;
+}
+
+.record-finish image {
+    width: 46rpx;
+    height: 46rpx;
+}
+
+.record-delete {
+    width: 120rpx;
+    height: 120rpx;
+    background-color: #f7f7f7;
+}
+
+.play-record {
+    margin-left: 84rpx;
+    margin-right: 84rpx;
+    width: 136rpx;
+    height: 136rpx;
+    /* background-color: #5f7fee; */
+}
+
+.record-finish {
+    width: 120rpx;
+    height: 120rpx;
+    /* background-color: #5f7fee; */
+    background-color: #f7f7f7;
+}
+
+.bottom_box {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+}
+
+.wrapBox {
+    width: 136rpx;
+    height: 136rpx;
+    margin: 40rpx 0 28rpx;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.wrapBox_inner {
+    position: relative;
+    background: #1296db;
+    width: 136rpx;
+    height: 136rpx;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapBox .leftBox,.wrapBox .rightBox {
+    background: #f0f0f0;
+}
+
+.wrapBox .leftBox {
+    transform-origin: right center;
+    width: 68rpx;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.wrapBox .rightBox {
+    transform-origin: left center;
+    width: 68rpx;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.wrapBox .roundMask {
+    border-radius: 50%;
+    background-color: #fff;
+    width: 120rpx;
+    height: 120rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 11;
+}
+
+.wrapBox .roundMask .innerPlay {
+    width: 50rpx;
+    height: 50rpx;
+    position: absolute;
+    top: 11rpx;
+    left: 11rpx;
+}
+
+.wrapBox .roundMask .innerAudio {
+    background: #1296db;
+    width: 50rpx;
+    height: 50rpx;
+    border-radius: 50%;
+}
+
+
+.down_time {
+    color: #333c4f;
+}
+
+.audio_time {
+    font-weight: 500;
+    font-size: 32rpx;
+    color: #fff;
+    margin: 0rpx 34rpx;
+}
+
+.uploadImg {
+    display: flex;
+    width: 690rpx;
+    flex-wrap: wrap;
+    border-radius: 50%;
+    position: relative;
+}
+
+.image-item {
+    padding: 10rpx;
+    width: 80rpx;
+    height: 80rpx;
+    position: relative;
+}
+
+.uploadImg .image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.uploadImg .close {
+    width: 40rpx;
+    height: 40rpx;
+    position: absolute;
+    top: -18rpx;
+    right: -16rpx;
+}
+
+.out_box {
+    width: 136rpx;
+    height: 136rpx;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0 auto 28rpx;
+}
+
+.record-desc {
+    height: 54rpx;
+}
+
+.push-button {
+    position: absolute;
+    top: 0;
+    width: 240rpx;
+    height: 150rpx;
+    opacity: 0;
+}
+ 
+
+.modal-mask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #000;
+    opacity: 0.5;
+    overflow: hidden;
+    z-index: 9000;
+    color: #fff;
+  }

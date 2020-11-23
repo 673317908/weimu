@@ -1,0 +1,47 @@
+
+<!-- 选项卡 -->
+<view class="top-bar">
+  <block wx:for="{{topBarItems}}" wx:key="id">
+    <view class="top-bar-item {{item.selected ? 'top-bar-item-Selected': '' }}" catchtap="onTapTag" id="{{item.id}}" data-postype="{{item.posttype}}">{{item.name}}</view>
+  </block>
+</view>
+
+
+<!-- 列表 -->
+<view class="list-box">
+  <block wx:key="id" wx:for="{{userpostsList}}">
+    <view class="list-item" index="{{index}}">
+
+      <view class="content-left">
+        <!-- 标题 -->
+        <view class="content-title" data-poststatus="{{item.post_status}}" data-posttype="{{item.postType}}" id="{{item.id}}" data-weixinmptype="{{item.raw_weixinmp_type}}" data-weixinmpurl="{{item.raw_weixinmp_url}}" bindtap="redictDetail">
+          <text>{{item.title.rendered}}
+          </text>
+          <view class="content-popularity">
+            <text>浏览 {{item.pageviews}}</text>
+            <text>评论 {{item.total_comments}}</text>
+            <text>点赞 {{item.like_count}}</text>
+            <text><block wx:if="{{item.post_status=='pending'}}">
+          审核中</block></text>
+          </view>
+        </view>
+
+        <!-- 订阅消息 -->
+        <view class="btn-box">
+          <view class="btn" data-posttype="{{item.postType}}" data-subid="{{item.subscribemessagesid}}" id="{{item.id}}" catchtap="postsub">订阅</view>
+          <view class="tips">已订阅 {{item.subscribeCount}} 次评论消息</view>
+        </view>
+      </view>
+
+      <!-- 封面图 -->
+      <image src="{{item.post_medium_image}}" mode="aspectFill" data-posttype="{{item.postType}}" id="{{item.id}}" data-weixinmptype="{{item.raw_weixinmp_type}}" data-weixinmpurl="{{item.raw_weixinmp_url}}" bindtap="redictDetail"></image>
+
+    </view>
+  </block>
+</view>
+
+
+<!-- 版权信息 -->
+<view style="display:{{floatDisplay}}">
+  <copyright />
+</view>

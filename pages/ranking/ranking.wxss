@@ -1,0 +1,104 @@
+/*
+ * 
+ * 微慕小程序
+ * author: jianbo
+ * organization:  微慕 www.minapper.com 
+ * 技术支持微信号：Jianbo
+ * Copyright (c) 2018 https://www.minapper.com All rights reserved.
+ */
+
+ page {
+   background: #f5f7f7;
+ }
+ 
+ .rank-type {
+   height: 80rpx;
+   padding: 0 40rpx;
+   text-align: right;
+   color: #959595;
+   font-size: 15px;
+   line-height: 120rpx;
+ }
+
+ .container {
+   margin-top: 16rpx;
+   background: #fff;
+ }
+
+.rank-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40rpx;
+}
+
+.rank-left {
+  display: flex;
+  align-items: center;
+  height: 120rpx;
+}
+
+.rank-index {
+  width: 48rpx;
+  text-align: center;
+  color: #959595;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.container>view:nth-child(1) .rank-index text,
+.container>view:nth-child(2) .rank-index text,
+.container>view:nth-child(3) .rank-index text {
+  display: inline-block;
+  width: 48rpx;
+  height: 48rpx;
+  background: #c8b09f;
+  border-radius: 50%;
+  color: #fff;
+  line-height: 48rpx;
+}
+
+.container>view:nth-child(1) .rank-index text {
+   background: #fda565;
+}
+
+.container>view:nth-child(2) .rank-index text {
+   background: #c4c4c4;
+}
+
+.rank-portrait image {
+  margin: 0 12rpx 0 24rpx;
+  height: 80rpx;
+  width: 80rpx;
+  border-radius: 50%;
+}
+
+.rank-right {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  height: 120rpx;
+  line-height: 120rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.rank-username {
+  display: block;
+  color: #333;
+  font-size: 14px;
+  max-width: 300rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rank-points {
+  font-size: 18px;
+  font-weight: 500;
+  color: #fe645a;
+}
+
+.rank-points>text {
+  font-size: 12px;
+  font-weight: 400;
+}

@@ -1,0 +1,268 @@
+<import src="../../vendor/wxParse/wxParse.wxml" />
+<import src="../../templates/loading/threepoint.wxml" />
+<import src="../../templates/detail/iconbar.wxml" />
+<import src="../../templates/detail/toolbar.wxml" />
+<import src="../../templates/socials/replayTopicList.wxml" />
+<import src="../../templates/login-popup.wxml" />
+<import src="../../templates/modal-view/modal-view.wxml" />
+<import src="../../templates/member/memberIcon.wxml" />
+
+<!-- 自定义banner -->
+<view wx:if="{{banner.enable == 'yes'}}" class="custom-banner" data-type="{{banner.type}}" data-url="{{banner.url}}" data-appid="{{banner.appid}}" data-path="{{banner.path}}" bindtap="toDetail">
+  <image mode="aspectFill" src="{{banner.image}}" />
+</view>
+
+<view class="detail-container">
+  <view class="content-article-detail" style="display:{{display?'block':'none'}}">
+    <view class="topic-avatar-container">
+      <view class="topic-avatar">
+        <navigator url="../author/author?userid={{detail.author_id}}&postype=topic" open-type="navigate" hover-class="none">
+          <image src="{{detail.author_avatar}}"></image>
+          <template wx:if="{{detail.member === '01'}}" is="memberIcon" data="{{member:detail.member,isIcon: true}}" />
+        </navigator>
+      </view>
+
+      <view class="topic-author-container">
+        <navigator class="topic-authorname" url="../author/author?userid={{detail.author_id}}&postype=topic" open-type="navigate" hover-class="none">
+          <text class="topic-author-text">{{detail.author_name}}</text>
+          <template wx:if="{{detail.member !== '01'}}" is="memberIcon" data="{{member:detail.member,isIcon: true}}" />
+          <template wx:else is="memberIcon" data="{{member:detail.member,isIcon: false}}" />
+        </navigator>
+
+        <text class="topic-time-text">{{detail.post_date}}</text>
+      </view>
+    </view>
+
+    <!-- 音频播放动画 -->
+    <view class="audio-box" wx:if="{{detail.audioUrl !=''}}">
+      <!-- 暂停时 -->
+      <view class="btn-audio-play" data-audioUrl="{{detail.audioUrl}}" bindtap="playRemoteAudio" wx:if="{{isPlaying == 0}}"></view>
+      <view class='audio-stop-list' data-audioUrl="{{item.audioUrl}}" bindtap="playRemoteAudio" wx:if="{{isPlaying == 0}}">
+        <view class="item nine"></view>
+        <view class="item eight"></view>
+        <view class="item seven"></view>
+        <view class="item six"></view>
+        <view class="item five"></view>
+        <view class="item four"></view>
+        <view class="item three"></view>
+        <view class="item two"></view>
+        <view class="item one"></view>
+        <view class="item two"></view>
+        <view class="item three"></view>
+        <view class="item four"></view>
+        <view class="item five"></view>
+        <view class="item six"></view>
+        <view class="item seven"></view>
+        <view class="item eight"></view>
+        <view class="item nine"></view>
+      </view>
+      <!-- 播放时 -->
+      <view class="btn-audio-stop" bindtap="stopRemoteAudio" wx:if="{{isPlaying == 1}}">
+      </view>
+      <view class='audio-play-list' bindtap="stopRemoteAudio" wx:if="{{isPlaying == 1}}">
+        <view class="item ninth"></view>
+        <view class="item eighth"></view>
+        <view class="item seventh"></view>
+        <view class="item sixth"></view>
+        <view class="item fifth"></view>
+        <view class="item fourth"></view>
+        <view class="item third"></view>
+        <view class="item second"></view>
+        <view class="item first"></view>
+        <view class="item second"></view>
+        <view class="item third"></view>
+        <view class="item fourth"></view>
+        <view class="item fifth"></view>
+        <view class="item sixth"></view>
+        <view class="item seventh"></view>
+        <view class="item eighth"></view>
+        <view class="item ninth"></view>
+      </view>
+      <view class="audio-time">{{detail.audioPlayTime || 0}}"</view>
+    </view>
+
+
+    <view class="entry-summary">
+      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+    </view>
+    <!-- 地理位置 -->
+    <view wx:if="{{detail.address !=''}}" bindtap="openmap" data-lat="{{detail.latitude}}" data-address="{{detail.address}}" data-lng="{{detail.longitude}}" class="address">位置：{{detail.address}}</view>
+
+    <view class="wxParse-video" wx:if="{{vid !=''}}">
+      <txv-video vid="{{vid}}" playerid="id{{item.id}}" width="100%" height="100%" autoplay="{{false}}">
+      </txv-video>
+    </view>
+  </view>
+  <view class='tagsname-container'>
+    <block wx:key="id" wx:for="{{detail.tag_name}}">
+      <view class="tagsname">
+        <navigator url="../sociallist/sociallist?tag={{item.term_id}}&tagname={{item.name}}" open-type="navigate" hover-class="relatedNavigator">
+          <view class="tagsname-text">#{{item.name}}</view>
+        </navigator>
+      </view>
+    </block>
+  </view>
+
+
+  <view style="display:{{display?'block':'none'}}">
+    <view class="file-list">
+      <view catchtap="open_link_doc" class="file-list-item" wx:if="{{detail.fileLink !=''}}">
+        <view wx:if="{{detail.fileType=='pdf'}}">
+          <image src="../../images/pdf.png" />
+        </view>
+        <view wx:elif="{{detail.fileType=='doc'}}">
+          <image src="../../images/doc.png" />
+        </view>
+        <view wx:elif="{{detail.fileType=='docx'}}">
+          <image src="../../images/docx.png" />
+        </view>
+        <view wx:elif="{{detail.fileType=='ppt'}}">
+          <image src="../../images/ppt.png" />
+        </view>
+        <view wx:elif="{{detail.fileType=='pptx'}}">
+          <image src="../../images/pptx.png" />
+        </view>
+        <view wx:elif="{{detail.fileType=='xls'}}">
+          <image src="../../images/xls.png" />
+        </view>
+        <view wx:elif="{{detail.fileType=='xlsx'}}">
+          <image src="../../images/xlsx.png" />
+        </view>
+        <view class="file-list-right">
+          <view class="file-list-content">{{detail.fileName}}</view>
+          <view class="file-list-des">
+            <text catchtap="open_link_doc">打开</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+
+    <!-- 点赞 -->
+    <view class="likeBox" style="display:{{displayLike}}">
+      <view class="likeBtn" catchtap="postLike" id="liketop">
+        <image src="{{likeIcon}}" />
+        <text>点个赞</text>
+      </view>
+      <view class="likeNum">
+        <text>{{detail.like_count || 0}} 人已赞</text>
+      </view>
+      <!-- 点赞头像 -->
+      <view class="likeGravatar">
+        <block wx:key="id" wx:for="{{detail.avatarurls}}">
+          <view class="like-user-gravatar">
+            <image src="{{item}}" class="gravatarLikeImg"></image>
+          </view>
+        </block>
+      </view>
+    </view>
+
+
+    <view class="comment-container" wx:if="{{repliesList.length}}">
+      <view>
+        <template is="repliesList" data="{{repliesList:repliesList,memberUserInfo:memberUserInfo,detail:detail}}" />
+      </view>
+
+      <view style='display:{{isLoading?"block":"none"}}'>
+        <template is="threepoint" />
+      </view>
+      <view hidden="{{!isLastPage}}">
+        <view class="no-more" hidden="{{!isLastPage}}">- 到底啦-</view>
+      </view>
+    </view>
+
+    <copyright padding-bottom="140rpx" />
+
+    <!--评论区-->
+    <view class="menuBackground" catchtap="hiddenBar" style="display:{{menuBackgroup ? 'block' : 'none'}}"></view>
+
+
+    <modal title="{{dialog.title}}" hidden="{{dialog.hidden}}" no-cancel bindconfirm="confirm">{{dialog.content}}</modal>
+
+    <template is="login-popup" data="{{show:isLoginPopup,userInfo:userInfo}}"></template>
+
+    <template is="modalView" data="{{...__modalView__}}" />
+    <poster id="poster" hide-loading="{{false}}" preload="{{false}}" config="{{posterConfig}}" bind:success="onPosterSuccess" bind:fail="onPosterFail">
+    </poster>
+    <l-dialog />
+
+    <view class="comment-fixed">
+      <!-- 订阅按钮 -->
+      <view class="btn-subscribe" catchtap="showPupop" style="display:{{ isShowSubscribe ?'block' : 'none' }}">免费订阅</view>
+
+      <view class="comment-respond">
+        <template is="toolbar" data="{{toolbarShow:toolbarShow,commentCounts:total_replies,likeIcon:likeIcon,enableComment:detail.enableComment}}"></template>
+
+        <template is="iconbar" data="{{iconBarShow:iconBarShow,enterpriseMinapp:detail.enterpriseMinapp,raw_praise_word:detail.raw_praise_word,zan_display:detail.zan_display}}"></template>
+      </view>
+
+    </view>
+
+    <!-- 评论内容输入框 -->
+    <view class="comment-textarea-box {{commentInputDialogShow ? '' : 'commentinputdialog-box-hidden'}}">
+      <form catchsubmit="replySubmit" report-submit="true">
+        <view>
+          <text class="comment-button touch-active" bindtap="hiddenBar">取消</text>
+          <button class="comment-button touch-active" formType="submit">发送</button>
+        </view>
+        <textarea maxlength="140" name="inputComment" cursor-spacing="80" value="{{content}}" placeholder="{{placeholder}}" focus="{{focus}}" bindblur="onBindBlur" bindfocus="onBindFocus" bindconfirm="replySubmit" auto-height="{{false}}" fixed="{{true}}" show-confirm-bar="{{false}}"
+        />
+        <input name="inputTopicID" value="{{detail.id}}" style="display:none" />
+      </form>
+    </view>
+
+  </view>
+</view>
+
+<!-- 订阅弹出层 -->
+<l-popup show="{{popupShow}}" locked="{{true}}">
+  <view class='pupop-subscribe'>
+    <view class="header">
+      <text>话题订阅</text>
+      <view class='icon-close' bindtap='onHidePupopTap'></view>
+    </view>
+    <scroll-view scroll-y="{{true}}" class="pupop-scroll-view">
+      <view class="pupop-body">
+        <view class="item" wx:for="{{forums}}" wx:key="index">
+          <text>{{item.title}}</text>
+          <view class="btn-box">
+            <text>已订阅了{{item.categorySubscribeCount}}篇</text>
+            <view data-subid="{{item.subscribemessagesid}}" data-id="{{item.id}}" catchtap="postsub">订阅</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</l-popup>
+
+<!-- 嵌入公众号弹出层 -->
+<l-popup show="{{insertWxPopupShow}}" locked="{{true}}" content-align="bottom">
+  <view class='pupop-insert'>
+    <view class="header">
+      <text>嵌入公众号</text>
+      <view class='icon-close' catchtap='closeInsertWxPopup'></view>
+    </view>
+
+    <view class="pupop-body">
+      <view class="content">
+        <view>
+          <text>AppID：</text>{{appID}}</view>
+        <view>
+          <text>小程序路径：</text>{{pagePath}}</view>
+      </view>
+      <view class="btn-copy" catchtap="copyInsertInfo" data-id="{{appID}}" data-path="{{pagePath}}">复制</view>
+    </view>
+  </view>
+</l-popup>
+
+<!-- 授权手机号 -->
+<van-dialog
+  show="{{ showPopPhone }}"
+  title="提示"
+  message="发布内容需要授权绑定手机号"
+  showCancelButton="{{ true }}"
+  confirmButtonText="确认绑定"
+  confirm-button-color="#2f80ed"
+  confirm-button-open-type="getPhoneNumber"
+  bind:getphonenumber="getPhoneNumber"
+/>

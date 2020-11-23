@@ -1,0 +1,27 @@
+<!-- 遮罩 -->
+<view bindtap="onClose" class="weui-mask {{!show ? 'weui-mask_hidden' : '' }}" />
+
+<!-- 模态对话框 -->
+<view wx:if="{{show}}" bindtap="onClose" class="weui-dialog__wrp">
+  <view class="weui-dialog" catchtap="stopEvent">
+
+    <!-- 内容 -->
+    <view class="info">
+      <view class="phone">
+        <text class="iconfont icon-login-phone" />
+      </view>
+      <view class="title">- 授权体验更多功能 -</view>
+      <view class="tip"><text class="iconfont icon-login-like" />评论点赞，参与文章动态互动</view>
+      <view class="tip"><text class="iconfont icon-login-social" />发布动态，吸引粉丝关注好友</view>
+      <view class="tip"><text class="iconfont icon-login-buy" />购买商品，签到获取积分奖励</view>
+      <view class="tip">...</view>
+    </view>
+
+    <!-- 按钮 -->
+    <view class="footer">
+      <button class="btn-ok" open-type="getUserInfo" bindgetuserinfo="onConfirmTap">立即登录</button>
+      <view class="btn-cancel" catchtap="onCancelTap">取消</view>
+    </view>
+
+  </view>
+</view>

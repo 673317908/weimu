@@ -1,0 +1,60 @@
+page {
+  background: #f5f7f7;
+}
+
+.mymessage-container {
+  padding: 0 40rpx 40rpx;
+  font-size: 15px;
+  color: #333;
+  background: #fff;
+  margin: 20rpx;
+  border-radius: 16rpx;
+}
+
+.title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: #333;
+  margin-bottom: 20rpx;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+
+/* 查看回复按钮 */
+.reply {
+  width: 100%;
+  height: 60rpx;
+  margin-top: 20rpx;
+}
+
+.relay-see {
+  height: 60rpx;
+  width: 180rpx;
+  border: 1px solid #eee;
+  border-radius: 30rpx;
+  font-size: 13px;
+  color: #666;
+  text-align: center;
+  line-height: 56rpx;
+  float: right;
+  box-sizing: border-box;
+}
+
+/* 立即预约按钮 */
+.btn-appointment {
+  width: 240rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  line-height: 80rpx;
+  background: #2f80ed;
+  box-shadow: 4px 4px 8px #eee;
+  position: fixed;
+  bottom: 40rpx;
+  left: 50%;
+  margin-left: -120rpx;
+}

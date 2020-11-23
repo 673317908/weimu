@@ -1,0 +1,58 @@
+<!-- 微慕小程序
+ * author: jianbo
+ * organization:  微慕 www.minapper.com 
+ * 技术支持微信号：Jianbo
+ * Copyright (c) 2018 https://www.minapper.com All rights reserved.-->
+<import src="../../templates/login-popup.wxml" />
+<view class="cateBox">
+  <!-- 左边一级分类菜单 -->
+  <view class="cateLeft">
+    <view class="cateLeftBox">
+      <view wx:for="{{categoriesList}}" class="{{(activeIndex === index) ? 'active' : '' }}" bindtap="switchCate" data-cate="{{item.name}}" data-index="{{index}}" wx:key="index">{{item.name}}</view>
+    </view>
+  </view>
+
+  <!-- 右边二级分类列表 -->
+  <view class="cateRight-box">
+    <!-- 自定义banner -->
+    <view
+      wx:if="{{banner.enable == 'yes'}}"
+      class="custom-banner"
+      data-type="{{banner.type}}"
+      data-url="{{banner.url}}"
+      data-appid="{{banner.appid}}"
+      data-path="{{banner.path}}"
+      bindtap="toDetail"
+    >
+      <image mode="aspectFill" src="{{banner.image}}" />
+    </view>
+
+    <view class="cateRight">
+      <block wx:key="id" wx:for="{{cateSubList}}">
+        <view class="list-item">
+          <view>
+            <image src="{{item.category_thumbnail_image || '../../images/uploads/default_image.jpg'}}" class="cover" data-item="{{item.name}}" data-id="{{item.id}}" bindtap="redictIndex" mode="aspectFill"></image>
+          </view>
+
+          <!-- 分类名、描述 -->
+          <view class="content-title" data-item="{{item.name}}" data-id="{{item.id}}" bindtap="redictIndex">
+              <text class="{{ ((item.catYearIntegral || item.catyearprice) && system=='Android')? 'pay-tip' : ''}}">{{item.name}}</text>
+              <text class="count">{{item.count}}篇文章</text>
+          </view>
+          <view class="content-brief" data-item="{{item.name}}" data-id="{{item.id}}" bindtap="redictIndex">
+            <text>{{item.description}}</text>
+          </view>
+
+          <!-- 订阅 -->
+          <view class="content-subscribe">
+            <text>已订阅了 {{item.categorySubscribeCount || 0}} 篇</text>
+            <image src="../../images/topic-btn-subscribe.png" data-subid="{{item.subscribemessagesid}}" data-id="{{item.id}}" catchtap="postsub" mode="aspectFill"></image>
+          </view>
+
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
+
+<template is="login-popup" data="{{show:isLoginPopup,userInfo:userInfo}}"></template>

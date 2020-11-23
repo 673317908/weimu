@@ -1,0 +1,27 @@
+<import src="../../templates/header.wxml"/>
+
+<view class="readlog-container">
+  <view class="header">
+    <image src="{{appLogo}}" style="height:200rpx;width:200rpx;border-radius: 20rpx;"></image>
+    <view style='margin-top:40rpx'>
+    {{appDes}}
+    </view>
+  </view>
+
+  <view class='title'>请选择鼓励的金额</view>
+
+  <view class="price-list">
+    <view class="item" wx:for="{{praiseMoney}}" wx:key="item" data-item="{{item}}" bindtap="selectItem">
+      <view class="price-box {{selected==item?'active':''}}">
+        <em><text class="price">{{item}}</text>  元</em> 
+      </view>
+    </view>
+  </view>
+
+ <view style="text-align: center">
+  <button class="cancel-button" formType="submit" bindtap="cancel">取消</button>
+ </view>
+
+ <copyright padding-bottom="140rpx" />
+
+</view>

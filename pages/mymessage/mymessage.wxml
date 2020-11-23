@@ -1,0 +1,30 @@
+<import src="../../templates/login-popup.wxml" />
+
+
+<block wx:key="index" wx:for="{{messages}}">
+  <view class='mymessage-container'>
+
+    <!-- 预约留言 -->
+    <view class='message'>
+      <view class='title-container'>
+        <text class='title'>预约留言</text>
+        <text>{{item.creatdate}}</text>
+      </view>
+      <text>{{item.content}}</text>
+    </view>
+
+    <!-- 查看回复按钮 -->
+    <view class='reply' wx:if="{{item.excerpt}}">
+      <view class="relay-see" bindtap="getReplyContent" data-id="{{item.ID}}">查看回复</view>
+    </view>
+
+  </view>
+</block>
+
+<view class="btn-appointment" bindtap="toAppointment">立即预约</view>
+
+<!-- ”查看回复“提示框 -->
+<l-dialog show="{{isShowDialog}}" type="alert" title="管理员回复" content="{{replyContent}}" />
+
+<!-- 版权信息 -->
+<copyright />

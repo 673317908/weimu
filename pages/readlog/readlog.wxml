@@ -1,0 +1,44 @@
+<import src="../../templates/loading/threepoint.wxml" />
+
+<view wx:if="{{mytype === 'mycomments'}}" class="mycomment">
+  <view class="comment-item" wx:key="id" index="{{index}}" wx:for="{{commentsReplays}}">
+    <view class="user">
+      <image src="{{userInfo.avatarUrl}}"></image>
+      <view class="user-right">
+        <text>{{userInfo.nickName}}</text>
+        <text>{{item.date}}</text>
+      </view>
+    </view>
+    <view class="content" id="{{item.postid}}" data-posttype="{{item.posttype}}" catchtap="redictDetail">
+      <text>{{item.content}}
+      </text>
+    </view>
+
+    <view class="title" data-subid="{{item.subscribemessagesid}}" id="{{item.postid}}" data-posttype="{{item.posttype}}" catchtap="redictDetail">
+      <text>{{item.postContent}}
+      </text>
+    </view>
+
+    <!-- 订阅消息 -->
+    <view class="btn-box">
+      <view class="tips">已订阅{{item.subscribeCount}}次评论回复通知</view>
+      <view class="btn" data-posttype="{{item.posttype}}" data-subid="{{item.subscribemessagesid}}" id="{{item.id}}" catchtap="postsub">订阅</view>
+    </view>
+
+  </view>
+
+
+</view>
+
+<view wx:else class="container">
+  <article-item list="{{ articlesList }}" />
+</view>
+
+<view style='display:{{isLoading?"block":"none"}}'>
+  <template is="threepoint" />
+</view>
+
+<view class="no-more" style="display:{{isLastPage?'block':'none'}}">-到底啦-</view>
+
+<!-- 版权信息 -->
+<copyright />

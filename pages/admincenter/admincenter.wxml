@@ -1,0 +1,89 @@
+<!--
+/*
+ * 
+ * 微慕小程序
+ * author: jianbo
+ * organization:  微慕 www.minapper.com 
+ * 技术支持微信号：Jianbo
+ * Copyright (c) 2018 https://www.minapper.com All rights reserved.
+ *
+ */-->
+<!-- 评论 -->
+<view class="list-box comment">
+  <view class="item">
+    <text>开启评论</text>
+    <switch id="raw_enable_comment_option" checked="{{Settings.enableComment =='1'?true:false}}" bindchange="changeSettings" />
+  </view>
+  <view class="item">
+    <text>开启评论审核</text>
+    <switch id="raw_enable_comment_check" checked="{{Settings.raw_enable_comment_check =='1'?true:false}}" bindchange="changeSettings"  />
+  </view>
+</view>
+
+<!-- 动态 -->
+<view class="list-box social">
+  <view class="item">
+    <text>开启发布话题</text>
+    <switch id="raw_enable_newtopic_option" checked="{{Settings.raw_enable_newtopic_option =='1'?true:false}}" bindchange="changeSettings"  />
+  </view>
+  <view class="item">
+    <text>开启话题审核</text>
+    <switch id="raw_enable_topic_check"checked="{{Settings.raw_enable_topic_check =='1'?true:false}}" bindchange="changeSettings" />
+  </view>
+  <view class="item">
+    <text>开启上传视频</text>
+    <switch id="raw_enable_topic_video" checked="{{Settings.raw_enable_topic_video =='1'?true:false}}" bindchange="changeSettings"/>
+  </view>
+  <view class="item">
+    <text>开启上传音频</text>
+    <switch id="raw_enable_topic_audio" checked="{{Settings.raw_enable_topic_audio =='1'?true:false}}" bindchange="changeSettings"/>
+  </view>
+</view>
+
+<!-- 媒体中心 -->
+<view class="list-box media">
+  <view class="item">
+    <text>首页显示媒体中心</text>
+    <switch id="raw_homepage_media_display" checked="{{Settings.raw_homepage_media_display =='1'?true:false}}" bindchange="changeSettings"/>
+  </view>
+</view>
+
+<!-- 企业主体 -->
+<view class="list-box company">
+  <view class="item">
+    <text>是否企业主体</text>
+    <switch id="raw_enterprise_minapp" checked="{{Settings.enterpriseMinapp =='1'?true:false}}" bindchange="changeSettings" />
+  </view>
+</view>
+
+
+<view class="list-box">
+  <view class="item">
+    <text>是否开启{{Settings.raw_praise_word}}</text>
+    <switch id="raw_zan_display" checked="{{Settings.zan_display =='1'?true:false}}" bindchange="changeSettings" />
+  </view>
+  <view class="item">
+    <text>是否H5页面打开小程序</text>
+    <switch id="raw_h5_to_minapp" checked="{{Settings.raw_h5_to_minapp =='1'?true:false}}" bindchange="changeSettings" />
+  </view>
+
+  <view class="item">
+    <text>互动交流需要提供手机号</text>
+    <switch id="raw_enable_exchange_phone" checked="{{Settings.raw_enable_exchange_phone =='1'?true:false}}" bindchange="changeSettings" />
+  </view>
+
+  <view class="item">
+    <text>文章列表显示付费标识</text>
+    <switch id="raw_post_pay_falg" checked="{{Settings.raw_post_pay_falg =='1'?true:false}}" bindchange="changeSettings" />
+  </view>
+
+</view>
+
+<!-- 直播 -->
+<view class="list-box live">
+
+  <view class="item">
+    <text>更新直播数据</text>
+        <button class='head-sort-btn' bindtap='updateLive'>更新</button>
+  </view>
+</view>

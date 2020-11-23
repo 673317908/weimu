@@ -1,0 +1,88 @@
+<import src="../../vendor/wxParse/wxParse.wxml" />
+<import src="../../templates/socials/socials.wxml" />
+<import src="../../templates/searchFrom.wxml" />
+<import src="../../templates/login-popup.wxml" />
+
+
+<!-- 动态-分类列表 -->
+<view class="topic-common-list" style="display:{{isCategory?'block':'none'}}">
+	<view class="topic-list-item">
+		<image mode="aspectFill" src="{{categoryImage}}" class="cover">
+		</image>
+		<view class='topic-item-content'>
+			<view class="topic-content-brief">
+				<text>{{category.name}}</text>
+				<text class="topic-content-num">({{category.count}}条动态)</text>
+			</view>
+
+			<view class="topic-content-btn">
+				<text class="btn-subscribe" data-subid="{{category.subscribemessagesid}}" data-id="{{category.id}}" catchtap="postsub">订阅</text>
+				<text>已订阅了 {{category.categorySubscribeCount || 0}} 篇</text>
+			</view>
+		</view>
+	</view>
+</view>
+
+<!-- 动态-标签列表 -->
+<view class="topic-common-list" style="display:{{isTag?'block':'none'}}">
+	<view class="topic-list-item">
+		<image mode="aspectFill" src="{{categoryImage}}" class="cover">
+		</image>
+		<view class='topic-item-content'>
+			<view class="topic-content-brief">
+				<text>{{tagname}}</text>
+			</view>
+			<view class="topic-content-num">
+				<text>共有 {{topicsList.length}} 条动态</text>
+			</view>
+
+
+		</view>
+	</view>
+</view>
+
+<!-- 动态-标签列表 -->
+<view class="topic-common-list" style="display:{{isSearch?'block':'none'}}">
+	<view class="topic-list-item">
+		<image mode="aspectFill" src="{{categoryImage}}" class="cover">
+		</image>
+		<view class='topic-item-content'>
+			<view class="topic-content-brief">
+				<text>搜索“{{searchKey}}”的结果</text>
+			</view>
+			<view class="topic-content-num">
+				<text>共有 {{topicsList.length }} 条动态</text>
+			</view>
+
+
+		</view>
+	</view>
+</view>
+
+
+<!-- 自定义banner -->
+<view
+  wx:if="{{banner.enable == 'yes'}}"
+  class="custom-banner"
+  data-type="{{banner.type}}"
+  data-url="{{banner.url}}"
+  data-appid="{{banner.appid}}"
+  data-path="{{banner.path}}"
+  bindtap="toDetail"
+>
+  <image mode="aspectFill" src="{{banner.image}}" />
+</view>
+
+<van-empty wx:if="{{topicsList.length==0&&isSearch==true }}" description="没有搜索到相关内容哟！" />
+<block wx:else>
+	<template is="socials" data="{{topicsList:topicsList,isPlaying:isPlaying,dataId:dataId,userSession:userSession,memberUserInfo:memberUserInfo,topiclistAdId:topiclistAdId,topiclistAd:topiclistAd,topiclistAdEvery:topiclistAdEvery,topicListAdsuccess:topicListAdsuccess,listType:'topicList'}}" />
+	<template is="login-popup" data="{{show:isLoginPopup,userInfo:userInfo}}"></template>
+
+	<!-- 发布按钮 -->
+	<view style="display:{{showAddbtn?'block':'none'}}">
+		<view class="posts" bindtap="sendPost">
+			<image class="addpost" src="../../images/write-post.png"></image>
+		</view>
+	</view>
+</block>
+<l-dialog />

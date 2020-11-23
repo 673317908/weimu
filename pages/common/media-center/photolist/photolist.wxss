@@ -1,0 +1,19 @@
+/* pages/photolist/photolist.wxss */
+
+.container {
+  margin-left: -6rpx;
+}
+
+.img-box {
+  width: 246rpx;
+  height: 246rpx;
+  margin-bottom: 6rpx;
+  margin-left: 6rpx;
+  float: left;
+  overflow: hidden;
+}
+
+.img-box image {
+  width: 246rpx;
+  height: 400rpx;
+}

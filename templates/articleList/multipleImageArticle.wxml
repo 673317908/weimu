@@ -1,0 +1,98 @@
+<!--
+/*
+ * 
+ * 微慕小程序
+ * author: jianbo
+ * organization:  微慕 www.minapper.com 
+ * 技术支持微信号：Jianbo
+ * Copyright (c) 2018 https://www.minapper.com All rights reserved.
+ *
+ */-->
+
+ <template name="multipleImageArticle">
+  <view class="multipleImageArticle-common-list">
+    <block wx:key="id" wx:for="{{articlesList}}">
+      <!-- 小程序广告组件 -->
+      <view class="list-item-ad" index="{{index}}" wx:if="{{index%item.listAdEvery ==0  && index!=0 && item.listAd =='1' && item.listAdId !=''&& listAdsuccess}}">
+        <block wx:if="{{(index/item.listAdEvery)%2==0}}">
+					<ad unit-id="{{item.videoAdId}}" ad-type="video" ad-theme="white" binderror="adbinderror"></ad>
+				</block>
+				<block wx:else>
+					<ad unit-id="{{item.listAdId}}" ad-intervals="30" binderror="adbinderror"></ad>
+				</block>
+      </view>
+      <!-- 一张大图列表（序号index是5的倍数时为大图模式）-->
+      <view wx:if="{{index%10==5}}">
+        <view class="list-item1 has-img" index="{{index}}" id="{{item.id}}" data-posttype="{{item.postType}}" data-weixinmptype="{{item.raw_weixinmp_type}}" data-weixinmpurl="{{item.raw_weixinmp_url}}"  bindtap="redictDetail">
+          <view class="content-title">
+            <text>{{item.title.rendered}}</text>
+          </view>
+          <image src="{{item.post_medium_image}}" mode="aspectFill" class="cover"></image>
+          <view class='muit_bottom'>
+            <view>
+              <text>ئاۋاتلىقى {{item.pageviews}}</text>
+              <text>ئىنكاس {{item.total_comments}}</text>
+              <text>ياقتۇرغانلار {{item.like_count}}</text>
+            </view>
+            <view>
+              <text>{{item.post_date}}</text>
+            </view>
+          </view>
+
+        </view>
+      </view>
+
+      <view wx:else>
+        <view class="list-item has-img" index="{{index}}" id="{{item.id}}" bindtap="redictDetail">
+
+          <!-- 三张图片列表 -->
+          <view wx:if="{{item.post_all_images.length>=3 && (index==2 || (index%10==0 &&index !== 0))}}" class='content-threeImg-box'>
+            <view class="muit-title">
+              <text>{{item.title.rendered}}</text>
+            </view>
+            <view class="image_list">
+              <block wx:for="{{item.post_all_images}}" wx:key="id" wx:for-item="image" wx:for-index="idx">
+                <view class="image_item" wx:if="{{idx < 3}}">
+                  <image src="{{image.imagesurl}}" mode="aspectFill"></image>
+                </view>
+              </block>
+            </view>
+            <view class='muit_bottom'>
+              <view>
+              <text>ئاۋاتلىقى {{item.pageviews}}</text>
+              <text>ئىنكاس {{item.total_comments}}</text>
+              <text>ياقتۇرغانلار {{item.like_count}}</text>
+              </view>
+              <view>
+                <text>{{item.post_date}}</text>
+              </view>
+            </view>
+          </view>
+
+          <!-- 单张图片列表 -->
+          <view wx:else class='content-oneImg-box'>
+            <view class="content-article">
+              <view class="content-title">
+                <text>{{item.title.rendered}}</text>
+              </view>
+              <view class="content-bottom">
+                <!-- <view class="content-date">
+                  <text>{{item.post_date}}</text>
+                </view> -->
+                <view class="content-popularity">
+                <text>ئاۋاتلىقى {{item.pageviews}}</text>
+                <text>ئىنكاس {{item.total_comments}}</text>
+                <text>ياقتۇرغانلار {{item.like_count}}</text>
+                </view>
+              </view>
+            </view>
+            <view class="content-cover">
+              <image src="{{item.post_medium_image}}" mode="aspectFill" class="cover"></image>
+            </view>
+          </view>
+
+        </view>
+      </view>
+    </block>
+  </view>
+</template>

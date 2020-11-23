@@ -1,0 +1,51 @@
+/*
+ * 微慕小程序
+ * author: jianbo
+ * organization:  微慕 www.minapper.com 
+ * 技术支持微信号：Jianbo
+ * Copyright (c) 2018 https://www.minapper.com All rights reserved.
+ */
+
+.item-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1rpx solid #eee;
+  font-size: 30rpx;
+  color: #495056;
+  padding: 32rpx 40rpx;
+}
+
+.item-left {
+  width: 70%;
+  overflow: hidden;
+}
+
+.item-left>view:nth-child(1) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 15px;
+  color: #333;
+}
+
+.item-left>view:nth-child(2),
+.item-left>view:nth-child(3) {
+  font-size: 12px;
+  color: #959595;
+  line-height: 1.6;
+}
+
+.item-right {
+  color: #fe645a;
+}
+
+.item-right>text:nth-child(1) {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.item-right>text:nth-child(2) {
+  font-size: 12px;
+  margin-left: 4rpx;
+}

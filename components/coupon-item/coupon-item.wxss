@@ -1,0 +1,90 @@
+
+.coupon-item {
+  border-radius: 12rpx;
+  background: #FFF;
+  overflow: hidden;
+  display: flex;
+  position: relative;
+  box-shadow: 2rpx 4rpx 16rpx #eee;
+}
+
+/* .coupon-item::before {
+  content: '';
+  position: absolute;
+  left: 190rpx;
+  top: -12rpx;
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.coupon-item::after {
+  content: '';
+  position: absolute;
+  left: 190rpx;
+  bottom: -12rpx;
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  background: #fff;
+} */
+
+.coupon-item .left {
+  width: 210rpx;
+  background: linear-gradient(to right,#FE9162, #FE6963);
+  color: #FFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30rpx 0;
+}
+
+.coupon-item .left .num {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.coupon-item .left .des {
+  font-size: 12px;
+}
+
+.coupon-item .right {
+  padding: 24rpx;
+  background: border-box radial-gradient(transparent 0, transparent 8rpx, #FFF 8rpx), padding-box #FFF;
+  background-size: 30rpx 30rpx;
+  background-position: 12rpx 4rpx;
+  border-left: 10rpx solid transparent;
+  position: relative;
+  margin-left: -10rpx;
+}
+
+.coupon-item .right .title {
+  font-size: 12px;
+  font-weight: 500;
+  color: #333;
+}
+
+.coupon-item .right .range,
+.coupon-item .right .date {
+  font-size: 12px;
+  color: #999;
+}
+
+.coupon-item .right .btn-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 420rpx;
+}
+
+.coupon-item .right .btn-box .btn {
+  display: inline-block;
+  font-size: 12px;
+  color: #fe645a;
+  border: 1rpx solid #fe645a;
+  padding: 4rpx 20rpx;
+  border-radius: 40rpx;
+  margin-left: 20rpx;
+}

@@ -1,0 +1,23 @@
+<!--
+/*
+ * 
+ * 微慕小程序
+ * author: jianbo
+ * organization:  微慕 www.minapper.com 
+ * 技术支持微信号：Jianbo
+ * Copyright (c) 2018 https://www.minapper.com All rights reserved.
+ *
+ */-->
+ <view class="carmera-container">
+   <camera device-position="back" flash="off" binderror="error" style="width: 100vw; height: 100vh;">
+   <cover-view class="controls">
+    <cover-view class="play" bindtap="play">
+     <button type="primary" bindtap="startRecord">开始录像</button>
+    </cover-view>
+    <cover-view class="pause" bindtap="pause">
+     <button type="primary" bindtap="stopRecord">结束录像</button>
+    </cover-view>
+    <cover-view class="time">00:00</cover-view>
+  </cover-view>
+   </camera>
+ </view>

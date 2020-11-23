@@ -1,0 +1,49 @@
+@import "../../templates/loading/threepoint.wxss";
+
+.common-list {
+  margin-top: 100rpx;
+}
+
+.list-container {
+  height: 100%;
+  margin-top: 88rpx;
+}
+
+.top-bar {
+  height: 88rpx;
+  background: #fff;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0px 4px 8px #f7f7f7;
+}
+
+.top-bar-item {
+  display: inline-block;
+  background: #fff;
+  width: 25%;
+  text-align: center;
+  line-height: 88rpx;
+  font-size: 30rpx;
+  background-color: #fff;
+}
+
+.top-bar-item-Selected {
+  color: #2f80ed;
+  font-weight: 600;
+  position: relative;
+}
+
+.top-bar-item-Selected:after {
+  display: block;
+  height: 4rpx;
+  width: 28rpx;
+  content: '';
+  background: #2f80ed;
+  border-radius: 2rpx;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 0);
+}

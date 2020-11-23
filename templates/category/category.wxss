@@ -1,0 +1,103 @@
+/*
+ * 微慕小程序
+ * author: jianbo
+ * organization:  微慕 www.minapper.com 
+ * 技术支持微信号：Jianbo
+ * Copyright (c) 2018 https://www.minapper.com All rights reserved.
+ */
+/*
+ * 维语字体文件
+ font-family: NUR Tor;
+ */
+ @import "/images/uyghurfont.wxss";
+
+/*顶部*/
+.header {
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 40rpx 40rpx 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+}
+
+.subtitle {
+  font-size: 30rpx;
+  line-height: 80rpx;
+  color: #959595;
+  white-space: nowrap;
+}
+
+.btn-submit {
+  width: 200rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  color: #fff;
+  background: #2f80ed;
+  border-radius: 40rpx;
+  font-size: 30rpx;
+  margin: 0;
+  padding: 0;
+}
+
+.btn-submit::after {
+  border: none;
+}
+
+.columnPannel {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  background: #fff;
+  z-index: 9998;
+  overflow: auto;
+}
+
+.selected-pannel, .unselected-pannel {
+  padding: 0 0 0 30rpx;
+  font-size: 30rpx;
+}
+
+.column-item-selected, .column-item-unselected {
+  display: inline-block;
+  position: relative;
+  width: 180rpx !important;
+  margin: 36rpx 0 15rpx 0;
+  border: 1rpx solid #c4c4c4;
+  text-align: center;
+  border-radius: 15rpx;
+  font-size: 28rpx;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.column-item-selected2 {
+  display: inline-block;
+  position: relative; 
+  width: 150rpx;
+  margin: 0 15rpx 15rpx 0;
+  border: 1rpx solid #c4c4c4;
+  text-align: center;
+  border-radius: 15rpx;
+  font-size: 26rpx;
+  white-space: nowrap;
+}
+
+.column-item-selected-first {
+  color: #999;
+}
+
+.column-item-moving {
+  border: 1rpx solid #2f80ed;
+  color: #2f80ed;
+}
+
+
+.column-item-selected-text {
+  max-width: 100%;
+  overflow: hidden;
+}

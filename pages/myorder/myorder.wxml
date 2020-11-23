@@ -1,0 +1,21 @@
+<import src="../../templates/login-popup.wxml" />
+
+<view class="list-box">
+  <block wx:key="id" wx:for="{{orders}}">
+    <view class="item-box" data-ordertype="{{item.ordertype}}" data-extid="{{item.extid}}" bindtap="redictDetail">
+      <view class="item-left">
+        <view>{{item.extname}}</view>
+        <view>{{item.ordertypename}}</view>
+        <view>{{item.updatedate}}</view>
+      </view>
+      <view class="item-right">
+        <text>-{{item.totalfee}}</text>
+        <text wx:if="{{item.ordertype == 'catsubscribeIntegral' || item.ordertype == 'postIntegral'}}">积分</text>
+        <text wx:else>元</text>
+      </view>
+    </view>
+  </block>
+</view>
+
+<!-- 版权信息 -->
+<copyright />

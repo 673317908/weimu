@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "l-dialog": "../../vendor/LinUI/dialog/index"
+  },
+  "navigationBarTitleText": "我的预约"
+}

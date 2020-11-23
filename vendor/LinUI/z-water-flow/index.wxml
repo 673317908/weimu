@@ -1,0 +1,35 @@
+<!-- <view class='life-product-contianer' index="{{index}}" data-posttype="{{data.postType}}" id="{{data.id}}" bindtap="redictDetail">
+  <image src="{{data.post_medium_image}}" class="life-img"></image>
+  <view>
+    <view class="water-flow-top">
+      <text>{{data.title.rendered}}</text>
+    </view>
+
+    <view class="water-flow-bottom">
+      <text>评论 {{data.total_comments}}</text>
+      <text>点赞 {{data.like_count}}</text>
+    </view>
+
+  </view>
+</view> -->
+
+
+<view class="water-flow-item" index="{{index}}" data-posttype="{{data.postType}}" id="{{data.id}}" bindtap="redictDetail">
+  <image src="{{data.post_medium_image}}" class="water-flow-img" mode="aspectFill"></image>
+  <view class="water-flow-content">
+    <view class="water-flow-top">
+      <text>{{data.title.rendered}}</text>
+    </view>
+
+    <view class="water-flow-middle">
+      <text>点赞 {{data.like_count}}</text>
+      <text>评论 {{data.total_comments}}</text>
+    </view>
+
+    <view class='water-flow-bottom'>
+      <text>{{data.category_name}}</text>·
+      <text>{{data.post_date}}</text>
+    </view>
+
+  </view>
+</view>

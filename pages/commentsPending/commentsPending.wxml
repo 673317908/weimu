@@ -1,0 +1,32 @@
+<import src="../../templates/commentsPending.wxml" />
+<import src="../../templates/replaiesPending.wxml" />
+<import src="../../templates/loading/threepoint.wxml" />
+
+  
+
+<view class="container">
+    <!-- <view class="showerror" style="display:{{showerror}}">
+      <image src="../../images/cry80.png" style="height:100rpx;width:100rpx"></image>
+      <view class="errortext">
+        暂时无法访问网络
+        <view class="">
+          <button class="more-button" bindtap="reload" size="mini" bindtap="reload">重新加载</button>
+        </view>
+      </view>
+    </view> -->
+
+    <block wx:if="{{posttype=='post'}}">
+    <template is="commentsPending" data="{{commentsList}}"></template>
+    </block>
+    <block wx:else>
+     <template is="replaiesPending" data="{{commentsList}}"></template>
+    </block>
+
+    <view style='display:{{isLoading?"block":"none"}}'>
+      <template is="threepoint" />
+    </view>
+
+    <copyright />
+    <l-dialog />
+</view>
+ 

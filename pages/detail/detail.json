@@ -1,0 +1,11 @@
+{
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle": "dark",
+    
+    "usingComponents": {
+        "poster": "../../templates/components/wxa-plugin-canvas-poster/poster/index",
+        "txv-video": "plugin://tencentvideo/video",
+        "l-dialog": "../../vendor/LinUI/dialog/index",
+        "l-popup": "../../vendor/LinUI/popup/index"
+    }
+}

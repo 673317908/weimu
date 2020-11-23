@@ -1,0 +1,7 @@
+<!-- 图片合集 -->
+
+<view class="container">
+  <view class="img-box" wx:for="{{photoList}}" wx:key="index">
+    <image mode="aspectFill" src="{{item.guid}}"  bindtap='previewImage' lazy-load="true" data-imgallsrc="{{allImgSrc}}" data-imgsrc="{{item.guid}}"></image>
+  </view>
+</view>

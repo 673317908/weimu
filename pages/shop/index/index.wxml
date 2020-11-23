@@ -1,0 +1,96 @@
+<van-tabs
+  active="{{ activeTab }}"
+  color="#2f80ed"
+  line-width="20"
+  border
+  animated
+  swipeable
+  sticky
+  tab-class="vant-tab-item"
+  nav-class="vant-tab-nav"
+  bind:change="onTabChange"
+>
+  <van-tab
+    title="最新"
+  >
+    <!-- 轮播图 -->
+    <swiper
+      class="swiper-box"
+      interval="10000"
+      autoplay
+      circular
+      indicator-dots
+      indicator-color="rgba(255, 255, 255, .3)"
+      indicator-active-color="rgba(255, 255, 255, 1)"
+    >
+      <swiper-item
+        wx:for="{{swiperList}}"
+        wx:key="id"
+        class="swiper-item"
+        data-type="{{item.type}}"
+        data-appid="{{item.appid}}"
+        data-url="{{item.url}}"
+        data-path="{{item.path}}"
+        bindtap="toDetail"
+      >
+        <image mode="aspectFill" src="{{item.image}}" />
+      </swiper-item>
+    </swiper>
+
+    <!-- 热销商品 -->
+    <hot-goods wx:if="{{selectedList.length}}" goods-list="{{selectedList}}" padding="0 20rpx"  />
+
+    <!-- 领取优惠券 -->
+    <view class="selected-nav selected-nav-coupon" wx:if="{{couponList.length}}">
+      <view class='common-subtitle'>
+        <view class='common-subtitle-left'>优惠券</view>
+        <view class='common-subtitle-right'>滑动查看</view>
+      </view>
+
+      <scroll-view scroll-x>
+        <view class="selected-nav-list">
+            <view
+              wx:for="{{couponList}}"
+              wx:key="index"
+              class="coupon-item"
+            >
+              <coupon-item item="{{item}}" bind:login="onLogin" btn-text="立即领取" />
+            </view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <!-- 商品列表 -->
+    <view class="goods-list">
+      <view class="item"  wx:for="{{productList}}" wx:key='index'>
+        <goods-item item="{{item}}" />
+      </view>
+    </view>
+  </van-tab>
+
+  <van-tab
+    title="分类"
+  >
+    <view class="tab-content">
+      <goods-cate listData="{{cateList}}" />
+    </view>
+  </van-tab>
+
+</van-tabs>
+
+
+<!-- 悬浮按钮 -->
+<view class="float-box">
+  <view class="btn">
+    <button class='item' open-type='contact' hover-class='none'>
+      <text class="iconfont icon-shop-service" />
+    </button>
+  </view>
+  
+  <view class="btn" bindtap="openMyCart">
+    <text class="iconfont icon-shop-cart" />
+  </view>
+</view>
+
+<!-- 登录弹窗 -->
+<z-login />

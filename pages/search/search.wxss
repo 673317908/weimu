@@ -1,0 +1,84 @@
+@import "../../templates/loading/threepoint.wxss";
+
+/* 搜索框样式 */
+
+.search {
+  padding: 16rpx 40rpx 0;
+  background-color: #fff;
+}
+
+.search-pancel {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: #f5f6f7;
+  padding: 0;
+}
+
+.search-input {
+  background: #f5f6f7;
+  min-height: 1rem;
+  font-size: 30rpx;
+  height: 48rpx;
+  width: 80%;
+  text-align: left;
+}
+
+.search-button {
+  border: none !important;
+  margin: 0 !important;
+}
+
+.search-button icon {
+  vertical-align: middle;
+  margin-top: -4rpx;
+}
+
+/* 搜索历史 */
+.search-history {
+  line-height: 100rpx;
+  color: #999;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 60rpx 40rpx 0;
+}
+
+.subtitle{
+  font-size: 14px;
+}
+
+.history-content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 40rpx 0 16rpx;
+  padding-bottom: 16rpx;
+}
+
+.history-item {
+  height: 72rpx;
+  border-radius: 36rpx;
+  background: #f5f7f7;
+  padding: 0 36rpx;
+  margin-left: 24rpx;
+  margin-bottom: 24rpx;
+  display: inline-block;
+  max-width: 400rpx;
+  color: #4c4c4c;
+  font-size: 26rpx;
+  line-height: 72rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* 列表 */
+.list-container {
+  height: 100%;
+  margin-top:20rpx;
+}

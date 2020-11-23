@@ -1,0 +1,71 @@
+{
+    "rules": [
+        {
+            "action": "allow",
+            "page": "pages/detail/detail",
+            "params": ["id"],
+            "matching": "inclusive"
+        },
+        {
+            "action": "allow",
+            "page": "pages/list/list",
+            "params": ["categoryIds"],
+            "matching": "inclusive"
+        },
+        {
+            "action": "allow",
+            "page": "pages/index/index"
+        },
+        {
+            "action": "allow",
+            "page": "pages/social/social"
+        },
+        {
+            "action": "allow",
+            "page": "pages/socialdetail/socialdetail",
+            "params": ["id"],
+            "matching": "inclusive"
+        },
+        {
+            "action": "allow",
+            "page": "pages/hot/hot"
+        },
+        {
+            "action": "allow",
+            "page": "pages/topic/topic"
+        },
+        {
+            "action": "allow",
+            "page": "pages/comments/comments"
+        },
+        {
+            "action": "allow",
+            "page": "pages/rand/rand"
+        }
+        ,
+        {
+            "action": "allow",
+            "page":  "pages/common/media-center/media-list/media-list"
+        }
+        ,
+        {
+            "action": "allow",
+            "page":   "pages/common/media-center/photolist/photolist"
+        }
+        ,
+        {
+            "action": "allow",
+            "page": "pages/common/media-center/audiolist/audiolist"
+        },
+        {
+            "action": "allow",
+            "page": "pages/common/media-center/filelist/filelist"
+        }
+
+
+       
+  
+    
+    
+    ]
+}

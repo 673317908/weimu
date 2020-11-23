@@ -1,0 +1,73 @@
+/*
+ * 
+ * 微慕小程序
+ * author: jianbo
+ * organization:  微慕 www.minapper.com 
+ * 技术支持微信号：Jianbo
+ * Copyright (c) 2018 https://www.minapper.com All rights reserved.
+ */
+
+
+.settings-container {
+  margin: 32rpx;
+}
+
+.section-choice {
+  margin-bottom: 72rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.section__title {
+  font-size: 26rpx;
+  color: #959595;
+}
+
+.section-choice label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100rpx;
+  font-size: 30rpx;
+  color: #333;
+  margin-left: 24rpx;
+}
+
+.me-item-gap {
+  width: 638rpx;
+  height: 1rpx;
+  background-color: #eee;
+  margin-left: 24rpx;
+}
+
+.btn-submit::after {
+  display: none;
+}
+
+.btn-submit {
+  width: 638rpx;
+  height: 88rpx;
+  border-radius: 0;
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #fff;
+  background-color: #118fff;
+  margin-bottom: 24rpx;
+  line-height: 88rpx;
+}
+
+.btn-cancel::after {
+  display: none;
+}
+
+.btn-cancel {
+  width: 638rpx;
+  height: 88rpx;
+  border-radius: 0;
+  border: 2rpx solid #eee;
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #959595;
+  background-color: #fff;
+  line-height: 88rpx;
+}

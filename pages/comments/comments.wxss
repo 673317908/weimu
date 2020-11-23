@@ -1,0 +1,129 @@
+/*
+ * 
+ * 微慕小程序
+ * author: jianbo
+ * organization:  微慕 www.minapper.com 
+ * 技术支持微信号：Jianbo
+ * Copyright (c) 2018 https://www.minapper.com All rights reserved.
+ */
+
+ page {
+   overflow-x: hidden;
+ }
+
+ .container {
+   margin-top: 24rpx;
+ }
+
+.log-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.log-items {
+  margin-top: 20rpx;
+}
+
+.log-text {
+  margin: 32rpx 0;
+  font-size: 30rpx;
+  color: #757575;
+  text-align: left;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+/* 评论 */
+.comment {
+ padding: 32rpx;
+ margin: 0 40rpx 32rpx;
+ background: #fff;
+ border-radius: 12rpx;
+ box-shadow: 0 16rpx 48rpx -16rpx rgba(100, 100, 100, 0.2);
+}
+
+.comment-user {
+ display: flex;
+ align-items: center;
+ font-size: 28rpx;
+ outline: none;
+ color: #959595;
+ margin: 0 0 24rpx;
+}
+
+.comment-user-information {
+ margin-left: 16rpx;
+ display: flex;
+ flex-direction: row;
+ justify-content: space-between;
+ align-items: center;
+ flex: 1;
+}
+
+.comment-user-name {
+ font-size: 28rpx;
+ color: #959595;
+}
+
+.comment-user-date {
+ font-size: 24rpx;
+ color: #959595;
+}
+
+.comment-summary {
+ color: #333;
+ font-size: 30rpx;
+ line-height: 1.6;
+ overflow-wrap: break-word;
+}
+
+.comment-style-line {
+ width: 4rpx;
+ height: 22rpx;
+ border-radius: 4rpx;
+ background-color: #959595;
+ margin-right: 8rpx;
+}
+
+.comment-reply-name {
+ display: flex;
+ flex-wrap: wrap;
+ align-items: center;
+ color: #959595;
+}
+
+.replay-user:last-child {
+ border-bottom: none;
+}
+
+.replay-user {
+ display: flex;
+ flex-direction: column;
+ font-size: 28rpx;
+ line-height: 1.4rem;
+ font-weight: normal;
+ outline: none;
+ color: #333;
+ margin-top: 12rpx;
+}
+
+/* 评论用户头像 */
+.comment-user-gravatar {
+  position: relative;
+}
+
+.gravatarImg {
+  border-radius: 16rpx;
+  height: 64rpx;
+  width: 64rpx;
+}
+
+.comment-user-gravatar>image:last-child {
+  width: 30rpx;
+  height: 30rpx;
+  position: absolute;
+  right: -5rpx;
+  bottom: 3rpx;
+  border-radius: 50%;
+  border: 1px solid #fff;
+}

@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "l-toast": "../../vendor/LinUI/toast/index",
+    "l-popup": "../../vendor/LinUI/popup/index",
+    "l-dialog": "../../vendor/LinUI/dialog/index",
+    "txv-video": "plugin://tencentvideo/video"
+  },
+  "navigationBarTitleText": "发表文章"
+}

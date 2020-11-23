@@ -1,0 +1,3 @@
+<view class="container">
+  <article-item list="{{articlesList}}" is-wppage="{{true}}" type="{{2}}" bind:click="goto" />
+</view>

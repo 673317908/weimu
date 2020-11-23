@@ -1,0 +1,72 @@
+<!--
+/*
+ * 
+ * 微慕小程序
+ * author: jianbo
+ * organization:  微慕 www.minapper.com 
+ * 技术支持微信号：Jianbo
+ * Copyright (c) 2018 https://www.minapper.com All rights reserved.
+ *
+ */-->
+<import src="../../templates/login-popup.wxml" />
+
+
+<view class="readlog-container">
+  <!-- <image class="userinfo-bg" src="{{userInfo.avatarurl}}" mode="aspectFill"></image> -->
+
+  <view class="userinfo">
+    <view class="userinfo-top">
+      <image class="userinfo-avatar" src="{{userInfo.avatarurl}}" mode="aspectFill"></image>
+      <view class="user-data">
+        <view class="user-data-item">
+          <text>{{userInfo.postcount}}</text>
+          <view class="title">文章</view>
+        </view>
+        <view class="user-data-item">
+          <text>{{userInfo.topiccount}}</text>
+          <view class="title">帖子</view>
+        </view>
+        <view class="user-data-item">
+          <text>{{userInfo.followmecount}}</text>
+          <view class="title">粉丝</view>
+        </view>
+        <view class="user-data-item">
+          <text>{{userInfo.myfollowcount}}</text>
+          <view class="title">关注</view>
+        </view>
+      </view>
+    </view>
+    <view class="userinfo-bottom">
+      <view class="userinfo-profile">
+        <text class="userinfo-nickname">{{userInfo.user_nicename}}</text>
+        <view class="userinfo-role">
+          <text>{{userInfo.membername}}</text>
+          <text>ID:{{userId}}</text>
+          <text>积分 {{userInfo.integral || 0}}</text>
+        </view>
+      </view>
+      <view wx:if="{{userInfo.id !=userSession.userId}}" class="btn-author-follow" data-follow="{{userInfo.follow}}" data-listType="author" data-authorid="{{userInfo.id}}" catchtap="followAuthor">
+        <block wx:if="{{!userInfo.follow}}">
+          <text>关注</text>
+        </block>
+        <block wx:else>
+          <text>{{ (userInfo.followeachoher === 'true') ? '相互关注' : '已关注' }}</text>
+        </block>
+      </view>
+    </view>
+  </view>
+
+</view>
+
+<view class="top-bar">
+  <block wx:for="{{topBarItems}}" wx:key="id">
+    <view class="top-bar-item {{item.selected ? 'top-bar-item-Selected': '' }}" catchtap="onTapTag" id="{{item.id}}" data-postype="{{item.posttype}}">{{item.name}}</view>
+  </block>
+</view>
+
+<template is="login-popup" data="{{show:isLoginPopup,userInfo:userInfo}}"></template>
+
+<view class="list-container">
+  <article-item list="{{userpostsList}}" />
+  <copyright />
+</view>

@@ -1,0 +1,115 @@
+<!-- 动态评论列表模板 -->
+
+<template name="repliesList">
+  <block wx:key="id" wx:for-items="{{repliesList}}">
+    <view class="comment">
+
+      <!-- 楼主信息 -->
+      <view class="comment-user">
+        <image src="{{item.author_avatar}}" class="comment-user-gravatar" catchtap="goUserDetail" data-id="{{item.author_id}}" />
+
+        <view class="comment-user-information">
+          <view class="comment-user-name" catchtap="replay" data-id="{{item.id}}" data-name="{{item.author_name}}" data-userid="{{item.author_id}}" data-commentdate="{{item.post_date}}">
+            <text>{{item.author_name}}</text>
+            <text wx:if="{{detail.author_id == item.author_id}}" class="comment-author-tag">作者</text>
+            <!-- 管理员 -->
+            <block wx:if="{{item.member=='00'}}">
+              <text class="comment-author-tag">管理员</text>
+            </block>
+
+            <!-- vip用户昵称后标识 -->
+            <block wx:if="{{item.member=='01'}}">
+              <text class="comment-author-tag">VIP</text>
+            </block>
+
+            <!-- 星级会员 -->
+            <block wx:if="{{item.member=='10'}}">
+              <text class="comment-author-tag">新手</text>
+            </block>
+            <block wx:if="{{item.member=='11'}}">
+              <text class="comment-author-tag">一星会员</text>
+            </block>
+            <block wx:if="{{item.member=='12'}}">
+              <text class="comment-author-tag">二星会员</text>
+            </block>
+            <block wx:if="{{item.member=='13'}}">
+              <text class="comment-author-tag">三星会员</text>
+            </block>
+            <block wx:if="{{item.member=='14'}}">
+              <text class="comment-author-tag">四星会员</text>
+            </block>
+            <block wx:if="{{item.member=='15'}}">
+              <text class="comment-author-tag">五星会员</text>
+            </block>
+          </view>
+
+          <!-- 评论点赞 -->
+          <view class="comment-user-like" catchtap="postCommentLike" data-id="{{item.id}}" data-likeon="{{item.likeon}}">
+            <block wx:if="{{item.likeon === '1'}}">
+              <text class="iconfont icon-comment-like-active font-color" />
+              <text wx:if="{{item.likecount}}" class="like-num font-color">{{item.likecount }}</text>
+            </block>
+
+            <block wx:if="{{item.likeon === '0'}}">
+              <text class="iconfont icon-comment-like" />
+              <text wx:if="{{item.likecount}}" class="like-num">{{item.likecount}}</text>
+            </block>
+          </view>
+
+        </view>
+      </view>
+
+      <!-- 评论内容 -->
+      <view class="comment-summary" catchtap="replay" data-id="{{item.id}}" data-name="{{item.author_name}}" data-userid="{{item.author_id}}" data-commentdate="{{item.post_date}}">{{item.content}}
+
+        <!-- 一级回复-->
+        <view wx:for="{{item.child}}" wx:key="itemid1" wx:for-index="idx" wx:for-item="item1" class='replay-box'>
+          <view class="replay-user" catchtap="replay" data-id="{{item1.id}}" data-name="{{item1.author_name}}" data-userid="{{item1.author_id}}" data-commentdate="{{item1.post_date}}">
+            <view class='comment-reply-name'>
+              <image class="reply-gravatar" src="{{item1.author_avatar}}" catchtap="goUserDetail" data-id="{{item1.author_id}}" />
+              <text class="reply-author-name">{{item1.author_name}}</text>
+              <text wx:if="{{detail.author_id==item1.author_id}}" class="reply-author-tag">作者</text> 回复 {{item.author_name}}</view>{{item1.content}}</view>
+
+
+          <!-- 二级回复-->
+          <view wx:for="{{item1.child}}" wx:key="itemid2" wx:for-index="idx" wx:for-item="item2">
+            <view class="replay-user" catchtap="replay" data-id="{{item2.id}}" data-name="{{item2.author_name}}" data-userid="{{item2.author_id}}" data-commentdate="{{item2.post_date}}">
+              <view class='comment-reply-name'>
+                <image class="reply-gravatar" src="{{item2.author_avatar}}" catchtap="goUserDetail" data-id="{{item2.author_id}}" />
+                <text class="reply-author-name">{{item2.author_name}}</text>
+                <text wx:if="{{detail.author_id==item2.author_id}}" class="reply-author-tag">作者</text> 回复 {{item1.author_name}}</view>{{item2.content}}</view>
+
+            <!-- 三级回复-->
+            <view wx:for="{{item2.child}}" wx:key="itemid3" wx:for-index="idx" wx:for-item="item3">
+              <view class="replay-user" catchtap="replay" data-id="{{item3.id}}" data-name="{{item3.author_name}}" data-userId="{{item3.author_id}}" data-commentdate="{{item3.post_date}}">
+                <view class='comment-reply-name'>
+                  <image class="reply-gravatar" src="{{item3.author_avatar}}" catchtap="goUserDetail" data-id="{{item3.author_id}}" />
+                  <text class="reply-author-name">{{item3.author_name}}</text>
+                  <text wx:if="{{detail.author_id==item3.author_id}}" class="reply-author-tag">作者</text> 回复 {{item2.author_name}}</view>{{item3.content}}
+              </view>
+
+              <!-- 四级回复-->
+              <view wx:for="{{item3.child}}" wx:key="itemid4" wx:for-index="idx" wx:for-item="item4">
+                <view class="replay-user">
+                  <view class='comment-reply-name'>
+                    <image class="reply-gravatar" src="{{item4.author_avatar}}" catchtap="goUserDetail" data-id="{{item4.author_id}}" />
+                    <text class="reply-author-name">{{item4.author_name}}</text>
+                    <text wx:if="{{detail.author_id==item4.author_id}}" class="reply-author-tag">作者</text> 回复 {{item3.author_name}}</view>{{item4.content}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+
+      <!-- 时间 -->
+      <view class="comment-footer">
+        <view class="date">{{item.post_date}}</view>
+
+        <!-- 删除评论 -->
+        <view wx:if="{{memberUserInfo.member =='00'}}" class="btn-del" catchtap="deleteComment" data-id="{{item.id}}">删除</view>
+      </view>
+
+    </view>
+  </block>
+</template>

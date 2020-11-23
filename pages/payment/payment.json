@@ -1,0 +1,8 @@
+{
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle": "dark",
+    "usingComponents": {        
+        "l-dialog": "../../vendor/LinUI/dialog/index",
+        "l-toast": "../../vendor/LinUI/toast/index"
+    }
+}

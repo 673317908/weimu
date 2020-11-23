@@ -1,0 +1,10 @@
+{
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#ffffff",
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "l-dialog": "../../vendor/LinUI/dialog/index"
+  }
+   
+
+}

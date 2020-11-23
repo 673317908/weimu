@@ -1,0 +1,201 @@
+<!-- 加载图文列表 -->
+<!-- <import src="../../templates/member/memberIcon.wxml" /> -->
+
+<block wx:key="id" wx:for="{{list}}">
+  <!-- 小程序广告 -->
+  <view
+    class="ad-box"
+    style="margin-bottom: 28rpx;"
+    wx:if="{{index%topiclistAdEvery ==0  && index!=0 && topiclistAd =='1' && topiclistAdId !=''  && listAdsuccess}}"
+  >
+    <block wx:if="{{(index/topiclistAdEvery)%2==0}}">
+      <ad unit-id="{{videoAdId}}" ad-type="video" ad-theme="white" binderror="adbinderror"></ad>
+    </block>
+    <block wx:else>
+      <ad unit-id="{{topiclistAdId}}" ad-intervals="30" binderror="adbinderror"></ad>
+    </block>
+  </view>
+
+  <view class="content" wx:for-index="id" index="{{index}}">
+
+    <!-- 用户头像昵称 -->
+    <view class='social-top'>
+      <view class='social-avatar-container'>
+        <navigator url="../author/author?userid={{item.author_id}}&postype=topic" open-type="navigate" hover-class="none">
+          <view class="head">
+            <!--如果是用微信发贴，则显示微信头像-->
+            <block wx:if="{{item.author_avatar}}">
+              <image src="{{item.author_avatar}}" lazy-load="true" class="baseimg"></image>
+            </block>
+            <!-- <template wx:if="{{item.member === '01'}}" is="memberIcon" data="{{member:item.member,isIcon: true}}" /> -->
+          </view>
+        </navigator>
+
+        <view class='social-author-container'>
+          <navigator url="../author/author?userid={{item.author_id}}&postype=topic" open-type="navigate" hover-class="none">
+            <view class="social-author-name">
+              <text>{{item.author_name}}</text>
+              <!-- <template wx:if="{{item.member !== '01'}}" is="memberIcon" data="{{member:item.member}}" />
+              <template wx:else is="memberIcon" data="{{member:item.member, isIcon: false}}" /> -->
+            </view>
+          </navigator>
+          <text class="social-author-time">{{item.post_date}}</text>
+        </view>
+      </view>
+
+      <!-- <view wx:if="{{item.author_id != userSession.userId && listType !='authorTopicsList'}}" class="social-author-follow" data-listType="{{listType}}" data-authorid="{{item.author_id}}" data-follow="{{item.follow}}" catchtap="followAuthor">
+        <text wx:if="{{!item.follow}}" class="btn-follow">关注</text>
+        <text wx:if="{{item.follow}}" class="btn-followed">已关注</text>
+      </view> -->
+    </view>
+
+    <!-- 帖子文本内容 -->
+    <rich-text class="desc" id="{{item.id}}" nodes="{{item.excerpt}}" bindtap="TopicDetail"></rich-text>
+
+    <!-- 当帖子里有图片时 -->
+    <view wx:if="{{(item.allimg.length !=0) && (item.videoList.length + item.qqvideoList.length == 0)}}">
+      <!-- 只有一张图片 -->
+      <view wx:if="{{item.allimg.length==1}}" id="{{item.id}}" nodes="{{item.excerpt}}" class="oneImgBox">
+        <image class="firstimg" bindtap='previewImage' lazy-load="true" mode="widthFix" src="{{item.allimg[0].imagesurl}}" data-imgallsrc="{{item.allimgsrc}}" data-imgsrc="{{item.allimg[0].imagesurl}}">
+        </image>
+      </view>
+      <!-- 多于一张图片 -->
+      <view wx:if="{{item.allimg.length>1}}" class="imageList" id="{{item.id}}" nodes="{{item.excerpt}}">
+        <block wx:for="{{item.allimg}}" wx:key="id" wx:for-index="idx" wx:for-item="itemimage">
+          <image bindtap='previewImage' lazy-load="true" data-imgallsrc="{{item.allimgsrc}}" data-imgsrc="{{itemimage.imagesurl}}" data-idx="{{idx}}" class="item-image" mode="aspectFill" src="{{itemimage.imagesurl}}"></image>
+        </block>
+      </view>
+    </view>
+    <!-- 视频封面 -->
+    <view wx:if="{{item.videoList.length || item.qqvideoList.length}}" class="videoBox" bindtap="toFullVideo" id="{{item.id}}" data-src="{{item.videoList[0].src}}">
+      <image src='../../images/play.png' class='icon-play' />
+      <block wx:if="{{item.videoList.length ==0}}">
+        <image src='{{item.raw_default_videoposter_image}}' class='cover' mode="aspectFill" />
+      </block>
+      <block wx:else>
+        <block wx:if="{{item.videoList[0].poster !=''}}">
+          <image src='{{item.videoList[0].poster}}' class='cover' mode="aspectFill" />
+        </block>
+        <block wx:else>
+          <image src='{{item.raw_default_videoposter_image}}' class='cover' mode="aspectFill" />
+        </block>
+
+      </block>
+
+    </view>
+    <!-- 音频播放动画 -->
+    <view class="audio-box" wx:if="{{item.audioUrl !='' && (item.videoList.length==0) && (item.qqvideoList.length==0)}}">
+      <!-- 暂停时 -->
+      <view class="btn-audio-play" data-id="{{item.id}}" data-audioUrl="{{item.audioUrl}}" bindtap="playRemoteAudio" wx:if="{{isPlaying == 0}}"></view>
+      <view class='audio-stop-list' data-audioUrl="{{item.audioUrl}}" bindtap="playRemoteAudio" wx:if="{{isPlaying == 0}}">
+        <view class="item nine"></view>
+        <view class="item eight"></view>
+        <view class="item seven"></view>
+        <view class="item six"></view>
+        <view class="item five"></view>
+        <view class="item four"></view>
+        <view class="item three"></view>
+        <view class="item two"></view>
+        <view class="item one"></view>
+        <view class="item two"></view>
+        <view class="item three"></view>
+        <view class="item four"></view>
+        <view class="item five"></view>
+        <view class="item six"></view>
+        <view class="item seven"></view>
+        <view class="item eight"></view>
+        <view class="item nine"></view>
+      </view>
+      <!-- 播放时 -->
+      <view class="btn-audio-stop" data-id="{{item.id}}" bindtap="stopRemoteAudio" wx:if="{{isPlaying == 1}}">
+      </view>
+      <view class='audio-play-list' data-id="{{item.id}}" bindtap="stopRemoteAudio" wx:if="{{dataId == item.id && isPlaying == 1}}">
+        <view class="item ninth"></view>
+        <view class="item eighth"></view>
+        <view class="item seventh"></view>
+        <view class="item sixth"></view>
+        <view class="item fifth"></view>
+        <view class="item fourth"></view>
+        <view class="item third"></view>
+        <view class="item second"></view>
+        <view class="item first"></view>
+        <view class="item second"></view>
+        <view class="item third"></view>
+        <view class="item fourth"></view>
+        <view class="item fifth"></view>
+        <view class="item sixth"></view>
+        <view class="item seventh"></view>
+        <view class="item eighth"></view>
+        <view class="item ninth"></view>
+      </view>
+      <view class="audio-time">{{item.audioPlayTime || 0}}"</view>
+    </view>
+    <!-- 文件 -->
+    <view class="file-list">
+      <view catchtap="open_link_doc" data-filelink="{{item.fileLink}}" data-filetype="{{item.fileType}}" class="file-list-item" wx:if="{{item.fileLink !=''}}">
+        <image wx:if="{{item.fileType=='pdf'}}" src="../../images/pdf.png" />
+        <image wx:elif="{{item.fileType=='doc'}}" src="../../images/doc.png" />
+        <image wx:elif="{{item.fileType=='docx'}}" src="../../images/docx.png" />
+        <image wx:elif="{{item.fileType=='ppt'}}" src="../../images/ppt.png" />
+        <image wx:elif="{{item.fileType=='pptx'}}" src="../../images/pptx.png" />
+        <image wx:elif="{{item.fileType=='xls'}}" src="../../images/xls.png" />
+        <image wx:elif="{{item.fileType=='xlsx'}}" src="../../images/xlsx.png" />
+        <text class="file-list-content" data-filelink="{{item.fileLink}}" data-filetype="{{item.fileType}}" catchtap="open_link_doc">{{item.fileName}}</text>
+      </view>
+    </view>
+    <!-- 地理位置 -->
+    <view wx:if="{{item.address !=''}}" bindtap="openmap" data-lat="{{item.latitude}}" data-address="{{item.address}}" data-lng="{{item.longitude}}" class="address">位置：{{item.address}}</view>
+
+    <!-- 底部帖子互动数据 -->
+    <view class="content-bottom">
+      <view class="content-bottom-item" id="{{item.id}}" data-listType="{{listType}}" bindtap="postLike">
+        <image src="../../images/social_icon_like.png"></image>
+        <text class="comment-num">点赞 {{item.like_count}}</text>
+      </view>
+
+      <view class="content-bottom-item" id="{{item.id}}" bindtap="TopicDetail">
+        <image src="../../images/social_icon_comment.png"></image>
+        <text class="comment-num">评论 {{item.total_replies}}</text>
+      </view>
+
+      <view wx:if="{{item.author_zan_image !='' && item.zan_display==='1' }}" class="content-bottom-item" data-zanimage="{{item.author_zan_image}}" catchtap="zanAuthor">
+        <image src="../../images/social_icon_zan.png"></image>
+        <text>{{item.raw_praise_word}}</text>
+      </view>
+    </view>
+
+    <view class="content-bottom" wx:if="{{memberUserInfo.member =='00'}}">
+
+      <view id="{{item.id}}" class="content-bottom-item" catchtap="deleteTopic">
+        <text>删除</text>
+      </view>
+
+      <view id="{{item.id}}" data-title="{{item.excerpt}}" data-author="{{item.author_name}}" class="content-bottom-item" catchtap="sendSubscribeMessage">
+        <text>更新提醒</text>
+      </view>
+
+      <view wx:if="{{listType=='topicList'}}" id="{{item.id}}" data-title="{{item.excerpt}}" data-author="{{item.author_name}}" class="content-bottom-item" catchtap="submitPage">
+        <text>提交搜索({{item.searhDataPostCount}})</text>
+      </view>
+
+    </view>
+
+    <!-- 点赞和评论 -->
+    <view class="like-comment-box" wx:if="{{item.avatarurls.length || item.replayTopics.length}}">
+      <!-- 点赞头像 -->
+      <view class="like-portrait" wx:if="{{item.avatarurls.length}}">
+        <image wx:for="{{item.avatarurls}}" wx:key="idx" wx:for-index="idx" wx:for-item="itm" src="{{itm}}"></image>
+      </view>
+      <!-- 分割线 -->
+      <view class="split-line" wx:if="{{item.avatarurls.length && item.replayTopics.length}}"></view>
+      <!-- 评论列表 -->
+      <view class="comment-list" wx:if="{{item.replayTopics.length}}">
+        <view wx:for="{{item.replayTopics}}" wx:key="idxcom" wx:for-index="idxcom" wx:for-item="itmcom" class="comment-list-item" bindtap="TopicDetail" id="{{item.id}}">
+          <text class="comment-username">{{itmcom.author_name}}：</text>
+          <text>{{itmcom.content}}</text>
+        </view>
+      </view>
+    </view>
+
+  </view>
+</block>

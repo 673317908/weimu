@@ -1,0 +1,7 @@
+{
+    "enablePullDownRefresh": true,
+    "usingComponents": {
+        "l-dialog": "../../vendor/LinUI/dialog/index"
+       
+    }
+}

@@ -1,0 +1,574 @@
+@import "/images/main.wxss";
+@import "/images/icon.wxss";
+
+.user .header {
+  padding: 0 30rpx 30rpx 30rpx;
+  height: 250rpx;
+  position: relative;
+  margin-bottom: 30rpx;
+}
+
+
+/* 赚取积分 */
+
+.btn-signin {
+  height: 60rpx;
+  padding: 0 40rpx 0 60rpx;
+  font-size: 24rpx;
+  color: #fff;
+  line-height: 60rpx;
+  border-top-left-radius: 30rpx;
+  border-bottom-left-radius: 30rpx;
+  background-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  right: 0;
+  top: 80rpx;
+}
+
+.lg {
+  font-size: 25px;
+}
+
+.icon-signin {
+  width: 26rpx;
+  height: 26rpx;
+  position: absolute;
+  top: 17rpx;
+  left: 24rpx;
+}
+
+.userinfo-rights {
+  display: flex;
+  flex-direction: row;
+  font-size: 13px;
+  color: #fff;
+  margin-top: 8rpx;
+}
+
+.userinfo-member {
+  margin-right: 40rpx;
+  font-size: 24rpx;
+
+}
+
+.user .header:after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -110rpx;
+  z-index: -1;
+  content: '';
+  height: 120rpx;
+  width: 100%;
+  border-radius: 0 0 20% 20%;
+  background-color: #2f80ed;
+}
+
+.user .header .picTxt .pictrue {
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.user .header .picTxt .pictrue image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  /* border: 2px solid #f5f5f5; */
+}
+
+.user .header .picTxt .text {
+
+  color: rgba(255, 255, 255, 1);
+  margin-left: 35rpx;
+
+}
+
+.user .header .picTxt .text .name {
+  font-size: 36rpx;
+  max-width: 400rpx;
+  font-weight: 500;
+}
+
+.user .header .picTxt .text .member {
+  padding: 0 10rpx;
+  height: 36rpx;
+  background-color: rgba(0, 0, 0, 0.2);
+  font-size: 20rpx;
+  border-radius: 30rpx;
+  margin-left: 17rpx;
+}
+
+.user .header .picTxt .text .member image {
+  width: 28rpx;
+  height: 28rpx;
+  font-size: 20rpx;
+  margin-right: 8rpx;
+}
+
+.user .header .picTxt .text .id {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 26rpx;
+}
+
+.user .header .picTxt .text .id .iconfont {
+  font-size: 30rpx;
+  margin-left: 12rpx;
+}
+
+.user .header .icon-shezhi {
+  font-size: 36rpx;
+  color: #fff;
+  margin-top: 0;
+}
+
+
+
+.user .wrapper .nav {
+  background-color: #fff;
+  height: 140rpx;
+  border-bottom: 20rpx solid #f5f7f7;
+  margin-bottom: 10px;
+
+}
+
+.user .wrapper .nav .item {
+  flex: 1;
+  text-align: center;
+  font-size: 26rpx;
+  color: #aaa;
+}
+
+.user .wrapper .nav .item~.item {
+  border-left: 1px solid #eee;
+}
+
+.user .wrapper .nav .item .num {
+  margin-top: 10rpx;
+  font-size: 36rpx;
+  color: #282828;
+}
+
+.user .wrapper .myOrder {
+  background-color: #fff;
+  margin-top: 120rpx;
+  border-bottom: 20rpx solid #f5f7f7;
+  margin-bottom: 10px;
+}
+
+.user .wrapper .myOrder .title,
+.user .wrapper .myService .title {
+  height: 88rpx;
+  padding: 0 30rpx;
+  border-bottom: 1px dashed #ddd;
+  font-size: 30rpx;
+  color: #282828;
+  /* font-weight: 600; */
+}
+
+.myServicetitle {
+  height: 88rpx;
+  padding: 0 30rpx;
+  border-bottom: 1px dashed #ddd;
+  font-size: 30rpx;
+  color: #282828;
+  /* font-weight: 600; */
+}
+
+.user .wrapper .myOrder .title .allOrder {
+  font-size: 24rpx;
+  color: #666;
+  font-weight: 300;
+}
+
+.user .wrapper .myOrder .title .allOrder .iconfont {
+  font-size: 30rpx;
+  margin-left: 7rpx;
+}
+
+.user .wrapper .myOrder .orderState {
+  height: 200rpx;
+}
+
+.user .wrapper .myOrder .orderState .item {
+  font-size: 26rpx;
+  color: #454545;
+  flex: 1;
+  text-align: center;
+  line-height: 50rpx;
+}
+
+.user .wrapper .myOrder .acea-row-notice .item {
+  font-size: 26rpx;
+  color: #454545;
+  width: 20%;
+  text-align: center;
+  line-height: 50rpx;
+  padding-bottom: 20rpx;
+}
+
+.acea-row-notice .item .picture {
+  position: relative;
+}
+
+.acea-row-notice .picture .tag {
+  position: absolute;
+  top: 0;
+  right: -2rpx;
+  height: 32rpx;
+  border-radius: 16rpx;
+  padding: 0 16rpx;
+  background: #fe645a;
+  font-size: 10px;
+  color: #fff;
+  line-height: 32rpx;
+}
+
+.myinfo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  height: 150rpx;
+  position: absolute;
+  top: 210rpx;
+  margin: 0 20rpx;
+  width: 710rpx;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 20rpx 20rpx 15% 15%;
+}
+
+.myinfo .item {
+  font-size: 26rpx;
+  width: 142rpx;
+  color: #454545;
+  flex: 1;
+  text-align: center;
+}
+
+.myinfo .item .picture {
+
+  height: 42rpx;
+  margin: 0 0;
+  position: relative;
+  color: #ffffff;
+  font-size: 24rpx;
+
+
+}
+
+.myinfo .item .num {
+  color: #ffffff;
+  font-size: 28rpx;
+  font-weight: 500;
+  height: 42rpx;
+  margin-bottom: 10rpx;
+  position: relative;
+}
+
+.user .wrapper .myOrder .orderState .item .pictrue {
+  width: 60rpx;
+  height: 60rpx;
+  margin: 0 auto 20rpx auto;
+  position: relative;
+}
+
+.user .wrapper .myOrder .orderState .item .pictrue image {
+  width: 100%;
+  height: 100%;
+}
+
+.user .wrapper .myService {
+  background-color: #fff;
+  margin-top: 15rpx;
+  border-bottom: 20rpx solid #f5f7f7;
+  margin-bottom: 10px;
+
+}
+
+.user .wrapper .myService .serviceList {
+  padding: 8rpx 0 27rpx 0;
+}
+
+.user .wrapper .myService .serviceList .item {
+  width: 25%;
+  text-align: center;
+  font-size: 26rpx;
+  color: #333;
+  margin: 15px 0 15rpx 0;line-height: 50rpx;
+}
+
+.cuIcon {
+  font-size: 40rpx;
+  color: #666;
+}
+
+.user .wrapper .myService .serviceList .item .pictrue {
+  width: 60rpx;
+  height: 60rpx;
+  margin: 0 auto 20rpx auto;
+  position: relative;
+}
+
+.pictrue .tag {
+  position: absolute;
+  top: 0;
+  right: -24rpx;
+  height: 32rpx;
+  border-radius: 16rpx;
+  padding: 0 16rpx;
+  background: #fe645a;
+  font-size: 10px;
+  color: #fff;
+  line-height: 32rpx;
+}
+
+.user .wrapper .myService .serviceList .item .pictrue image {
+  width: 100%;
+  height: 100%;
+}
+
+.user .support {
+  width: 219rpx;
+  height: 74rpx;
+  margin: 54rpx auto;
+  display: block;
+}
+
+.switchWindow {
+  width: 560rpx;
+  border-radius: 20rpx;
+  background-color: #fff;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-left: -280rpx;
+  margin-top: -300rpx;
+  z-index: 99;
+  padding: 50rpx 30rpx 40rpx 30rpx;
+  text-align: center;
+  box-sizing: border-box;
+  transition: all 0.3s ease-in-out 0s;
+  opacity: 0;
+  transform: scale(0);
+}
+
+.switchWindow.on {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.switchWindow .pictrue {
+  width: 236rpx;
+  height: 236rpx;
+  margin: 0 auto;
+}
+
+.switchWindow .pictrue image {
+  width: 100%;
+  height: 100%;
+}
+
+.switchWindow .info {
+  font-size: 32rpx;
+  color: #282828;
+  margin-top: 44rpx;
+  font-weight: bold;
+}
+
+.switchWindow .switchBnt {
+  font-size: 32rpx;
+  color: #fff;
+  width: 360rpx;
+  height: 82rpx;
+  border-radius: 41rpx;
+  margin: 57rpx auto 0 auto;
+  background-image: linear-gradient(to right, #f67a38 0%, #f11b09 100%);
+  line-height: 82rpx;
+}
+
+.switchWindow .switchBnt.cancelBnt {
+  background-color: #fff;
+  color: #999;
+  background-image: none;
+  margin-top: 10rpx;
+}
+
+.order-status-num {
+  min-width: 23rpx;
+  background-color: #fff;
+  color: #2f80ed;
+  border-radius: 50px;
+  position: absolute;
+  right: -5rpx;
+  top: -16rpx;
+  font-size: 23rpx;
+  padding: 0 5rpx;
+  border: 1rpx solid #2f80ed;
+}
+
+.user .binding {
+  padding: 2rpx 18rpx;
+  background-color: #fff;
+  border-radius: 50px;
+  font-size: 22rpx;
+  color: #2f80ed;
+}
+
+/* 订阅消息列表 */
+
+.listItem-subscribe {
+  height: 120rpx;
+  line-height: 120rpx;
+  font-size: 15px;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+}
+
+.subscribe::before {
+  content: " ";
+  position: absolute;
+  top: -50rpx;
+  color: #959595;
+  font-size: 13px;
+}
+
+.subscribe::after {
+  content: "* 订阅1次可收到1条消息推送";
+  position: absolute;
+  bottom: -4rpx;
+  color: #999;
+  font-size: 13px;
+}
+
+.listItem-subscribe.news {
+  line-height: 1;
+}
+
+.subscribe-news-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.subscribe-news-box>view {
+  font-size: 13px;
+  font-weight: 400;
+  color: #959595;
+  margin-top: 8rpx;
+}
+
+.subscribe-tip {
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  font-size: 13px;
+  color: #959595;
+}
+
+.subscribe-tip>view {
+  height: 48rpx;
+  padding: 0 30rpx;
+  margin-left: 20rpx;
+  font-size: 13px;
+  font-weight: 500;
+  color: #959595;
+  text-align: center;
+  line-height: 40rpx;
+  border: 4rpx solid #ddd;
+  border-radius: 30rpx;
+}
+
+.listBox {
+  background-color: #fff;
+  margin-bottom: 40px;
+}
+
+.listSubBox {
+  padding: 0 40rpx;
+  margin-bottom: 20px;
+  background: #fff;
+  position: relative;
+}
+
+view {
+  box-sizing: border-box;
+}
+.user{
+  position: relative;
+}
+.acea-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.acea-row.row-top {
+  align-items: flex-start;
+}
+
+.acea-row.row-middle {
+  align-items: center;
+}
+
+.acea-row.row-bottom {
+  align-items: flex-end;
+}
+
+.acea-row.row-left {
+  justify-content: flex-start;
+}
+
+.acea-row.row-center {
+  justify-content: center;
+}
+
+.acea-row.row-right {
+  justify-content: flex-end;
+}
+
+.acea-row.row-between {
+  justify-content: space-between;
+}
+
+.acea-row.row-around {
+  justify-content: space-around;
+}
+
+.acea-row.row-column {
+  flex-direction: column;
+}
+
+.acea-row.row-column-between {
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.acea-row.row-column-around {
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.acea-row.row-center-wrapper {
+  align-items: center;
+  justify-content: center;
+}
+
+.acea-row.row-between-wrapper {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bg-color {
+  background-color: #2f80ed !important;
+}
+
+button {
+  padding: 0;
+  margin: 0;
+  line-height: normal;
+  background-color: #fff;
+  
+}
+
+button::after {
+  border: 0;
+}

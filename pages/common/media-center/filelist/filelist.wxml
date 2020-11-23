@@ -1,0 +1,10 @@
+<view class="listBox">
+  <view class="listItem" wx:for="{{fileList}}" wx:key="index">
+    <view class="listItem-filename">
+      <text>{{index + 1}}. {{item.post_title}}</text>
+    </view>
+    <view class="listItem-btn">
+      <button class="share-button" plain="true" data-filelink="{{item.guid}}" data-filetype="{{item.post_mime_type}}" catchtap="openDoc">打开</button>
+    </view>
+  </view>
+</view>

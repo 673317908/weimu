@@ -1,0 +1,16 @@
+<view
+  class="coupon-item"
+>
+  <view class="left">
+    <view class="num">{{ item.coupon_info.name }} </view>
+    <!-- <text class='des'>{{ item.coupon_info.name }}</text> -->
+  </view>
+  <view class="right">
+    <view class="title">{{ item.type_name }}</view>
+    <view class="range">剩余：{{item.stock_info.issued_num}}</view>
+    <view class="btn-box">
+      <!-- <view class="date">有效期至：{{ item.coupon_info.valid_info.end_time }}</view> -->
+      <text class="btn" data-couponid="{{item.coupon_id}}" bindtap="onClick">{{ btnText }}</text>
+    </view>
+  </view>
+</view>

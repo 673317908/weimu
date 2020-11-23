@@ -1,0 +1,39 @@
+<view class="cate">
+
+  <!-- 一级分类 -->
+  <view class="menu">
+    <view class="menu-content">
+      <view
+        wx:for="{{ listData }}"
+        class="{{ (activeIndex === index) ? 'active menu-item' : ' menu-item' }}"
+        bindtap="changeCate"
+        data-cate="{{ item.shopcat_name }}"
+        data-index="{{ index }}"
+        wx:key="index"
+      >
+        {{ item.shopcat_name }}
+      </view>
+    </view>
+  </view>
+
+
+  <!-- 二级分类列表 -->
+  <view class="list">
+    <view class="list-content">
+      <block wx:key="id" wx:for="{{ listData[activeIndex].children }}">
+        <view class="list-item">
+          <image
+            src="{{ item.category_thumbnail_image || '../../images/uploads/default_image.jpg' }}"
+            class="img"
+            data-id="{{ item.shopcat_id }}"
+             data-catename="{{ item.shopcat_name }}"
+            mode="aspectFill"
+            bindtap="gotoProductList"
+          />  
+          <text class="cate-name">{{ item.shopcat_name }}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+
+</view>

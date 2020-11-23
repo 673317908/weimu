@@ -1,0 +1,32 @@
+<!--
+/*
+ * 
+ * 微慕小程序
+ * author: jianbo
+ * organization:  微慕 www.minapper.com 
+ * 技术支持微信号：Jianbo
+ * Copyright (c) 2018 https://www.minapper.com All rights reserved.
+ *
+ */-->
+<template name="replaiesPending">
+<block wx:if="{{commentsList.length>0}}">
+  <block wx:key="id" wx:for-items="{{commentsList}}">
+    <view class="comment">
+      <view class="comment-user">
+        <image src="{{item.author_url}}" class="gravatarImg"></image>
+        <view class="comment-user-information">
+          <view class="comment-user-name"  data-id="{{item.id}}" data-postid="{{item.topic_id}}" data-name="{{item.author_name}}" data-userid="{{item.author_id}}"  data-commentdate="{{item.date}}">{{item.author_name}}</view>
+          <view class="comment-user-date"  data-id="{{item.id}}" data-postid="{{item.topic_id}}"  data-name="{{item.author_name}}" data-userid="{{item.author_id}}" data-commentdate="{{item.date}}">{{item.date}}</view>
+        </view>
+      </view>
+      <view class="comment-summary"  data-postid="{{item.topic_id}}" data-id="{{item.id}}" data-name="{{item.author_name}}" data-userid="{{item.author_id}}"  data-commentdate="{{item.date}}">评论内容：<rich-text nodes="{{item.content}}"></rich-text></view>
+       <view class="comment-summary"  data-postid="{{item.topic_id}}" data-id="{{item.id}}" data-name="{{item.author_name}}" data-userid="{{item.author_id}}"  data-commentdate="{{item.date}}">话题标题：<rich-text nodes="{{item.topic_title}}"></rich-text></view>
+      <view>
+      <text class="pendingtext" catchtap="approveComment" data-postid="{{item.topic_id}}"  data-author="{{item.author_name}}" data-title="{{item.nohtmlcontent}}" data-id="{{item.id}}" data-posttype="{{item.posttype}}">审核通过</text>
+        <text class="pendingtext" catchtap="deleteComment" data-postid="{{item.topic_id}}" data-id="{{item.id}}" data-posttype="{{item.posttype}}">删除</text>
+      </view>
+    </view>
+  </block>
+  </block>
+
+</template>

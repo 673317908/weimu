@@ -1,0 +1,1433 @@
+<!--**
+ * author: Di (微信小程序开发工程师)
+ * organization: WeAppDev(微信小程序开发)(http://weappdev.com)
+ * github地址: https://github.com/icindy/wxParse
+ * for: 微信小程序富文本解析-->
+
+<!--基础元素-->
+<template name="wxParseVideo">
+  <!--增加video标签支持，并循环添加-->
+  <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+    <video class="{{item.classStr}} wxParse-{{item.tag}}-video" src="{{item.attr.src}}" poster="{{item.attr.poster}}"></video>
+  </view>
+</template>
+<template name="wxParseAudio">
+  <!--增加audio标签支持，并循环添加-->
+  <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+    <audio poster="{{item.attr.poster}}" name="{{item.attr.name}}" author="{{item.attr.author}}" src="{{item.attr.src}}" id="myAudio" controls loop></audio>
+  </view>
+</template>
+<template name="wxParseImg">
+  <image class="{{item.classStr}} wxParse-{{item.tag}}" show-menu-by-longpress="true" lazy-load="true" data-from="{{item.from}}" data-src="{{item.attr.src}}" data-idx="{{item.imgIndex}}" src="{{item.attr.src}}" bindload="wxParseImgLoad" bindtap="wxParseImgTap"
+    mode="widthFix" style="width:100%;" />
+</template>
+<!--33行加入text组件，用于复制文字-->
+<template name="WxEmojiView">
+  <view class="WxEmojiView wxParse-inline" style="{{item.styleStr}}">
+    <block wx:for="{{item.textArray}}" wx:key="index">
+      <block class="{{item.text == '\\n' ? 'wxParse-hide':''}}" wx:if="{{item.node == 'text'}}">
+        <text>{{item.text}}</text>
+      </block>
+      <block wx:elif="{{item.node == 'element'}}">
+        <image class="wxEmoji" src="{{item.baseSrc}}{{item.text}}" />
+      </block>
+    </block>
+  </view>
+</template>
+
+<!--跳转短代码-->
+<template name="wxParseMinapperShortcode">
+  <view class="wmcode-view" data-appid="{{item.attr.appid}}" data-redirectype="{{item.attr.redirectype}}" data-url="{{item.attr.url}}" data-path="{{item.attr.path}}" bindtap="wxParseToRedict">
+    <view class="wmcode-inner">
+      <view class="wmcode-img">
+        <image mode="aspectFill" src="{{item.attr.poster}}" />
+      </view>
+
+      <view class="wmcode-content">
+        <view class="wmcode-text-box">
+          <view class="wmcode-text-title">{{item.attr.title}}</view>
+          <view class="wmcode-text-des" wx:if="{{item.attr.description !=''}}">{{item.attr.description}}</view>
+        </view>
+
+        <view class="wmcode-btn-box">
+          <view class="wmcode-price" wx:if="{{item.attr.codetype=='goods'}}">{{item.attr.price ? '￥' + item.attr.price : ''}}</view>
+          <view class="wmcode-price" wx:else />
+
+          <view class="wmcode-btn-goods" wx:if="{{item.attr.codetype=='goods'}}">{{item.attr.buttontext}}</view>
+          <view class="wmcode-btn" wx:if="{{item.attr.codetype !='goods'}}">{{item.attr.buttontext}}</view>
+        </view>
+      </view>
+
+    </view>
+  </view>
+</template>
+
+<!--广告短代码 -->
+<template name="wxParseMinapperad">
+  <view class="minapper-ad">
+    <ad unit-id="{{item.attr.unitid}}" ad-type="{{item.attr.adtype}}" ad-theme="{{item.attr.adtheme}}" ad-intervals="{{item.attr.adintervals}}" binderror="adbinderror" bindload="adbindload" bindload="adbindload" bindclose="bindclose"> </ad>
+  </view>
+</template>
+
+<!--地图短代码 -->
+<template name="wxParseMinappermap">
+  <view class="minapper-ad" bindtap="openmap" data-lat="{{item.attr.latitude}}" data-address="{{item.attr.title}}" data-lng="{{item.attr.longitude}}">
+    <map id="myMap" style="width: 100%; height: 420rpx;" latitude="{{item.attr.latitude}}" longitude="{{item.attr.longitude}}" markers="{{item.attr.markers}}" show-location></map>
+  </view>
+   <view wx:if="{{item.attr.title !=''}}" bindtap="openmap" data-lat="{{item.attr.latitude}}" data-address="{{item.attr.title}}" data-lng="{{item.attr.longitude}}" class="address">位置：{{item.attr.title}}</view>
+</template>
+
+<!--腾讯视频短代码 -->
+<template name="wxParseMinapperQQvideo">
+  <view class="wxParse-video" wx:if="{{item.attr.vid !=''}}">
+    <txv-video vid="{{item.attr.vid}}" playerid="id{{item.attr.vid}}" width="100%" height="100%" autoplay="{{false}}">
+    </txv-video>
+  </view>
+</template>
+
+
+<!--相册滑动短代码 -->
+<template name="wxParseMinapperGallery">
+  <swiper indicator-dots indicator-color="rgba(255, 255, 255, .3)" indicator-active-color="rgba(255, 255, 255, .8)" interval="10000" autoplay="true" circular="true" style="height: 600rpx">
+    <block wx:key="id" wx:for="{{item.attr.images}}" wx:index="{{index}}">
+      <swiper-item id="{{item.id}}" index="{{index}}" data-imgallsrc="{{item.allimages}}" data-imgsrc="{{item.imageurl}}" data-imgsrc="{{item.imageurl}}" bindtap="previewImage">
+        <image mode="aspectFill" style="height: 600rpx" src="{{item.imageurl}}" />
+      </swiper-item>
+    </block>
+  </swiper>
+</template>
+
+
+<template name="WxParseBr">
+  <text>\n</text>
+</template>
+
+<template name="wxParseStyle">
+  <text></text>
+</template>
+<!--入口模版-->
+
+<template name="wxParseNocopy">
+  <block wx:for="{{wxParseData}}" wx:key="index">
+    <template is="wxParse0" data="{{item}}" />
+  </block>
+</template>
+
+
+<!--循环模版-->
+<template name="wxParse0">
+  <!--<template is="wxParse1" data="{{item}}" />-->
+  <!--判断是否是标签节点-->
+  <block wx:if="{{item.node == 'element'}}">
+    <block wx:if="{{item.tag == 'button'}}">
+      <button type="default" size="mini">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse1" data="{{item}}" />
+        </block>
+      </button>
+    </block>
+    <!--li类型-->
+    <block wx:elif="{{item.tag == 'li'}}">
+      <view class="{{item.classStr}} wxParse-li" style="{{item.styleStr}}">
+        <view class="{{item.classStr}} wxParse-li-inner">
+          <view class="{{item.classStr}} wxParse-li-text">
+            <view class="{{item.classStr}} wxParse-li-circle"></view>
+          </view>
+          <view class="{{item.classStr}} wxParse-li-text">
+            <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+              <template is="wxParse1" data="{{item}}" />
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!--video类型-->
+    <block wx:elif="{{item.tag == 'video'}}">
+      <template is="wxParseVideo" data="{{item}}" />
+    </block>
+
+    <!--audio类型-->
+    <!-- <block wx:elif="{{item.tag == 'audio'}}">
+      <template is="wxParseAudio" data="{{item}}" />
+    </block> -->
+
+    <!--img类型-->
+    <block wx:elif="{{item.tag == 'img'}}">
+      <template is="wxParseImg" data="{{item}}" />
+    </block>
+
+    <!--style类型-->
+    <block wx:elif="{{item.tag == 'style'}}">
+      <template is="wxParseStyle" data="{{item}}" />
+    </block>
+
+    <!--a类型-->
+    <block wx:elif="{{item.tag == 'a'}}">
+      <view bindtap="wxParseTagATap" data-appid="{{item.attr.appid}}" data-redirectype="{{item.attr.redirectype}}" data-path="{{item.attr.path}}" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse1" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+    <block wx:elif="{{item.tag == 'table'}}">
+      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse1" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
+    <!-- 112至127行加入pre code支持 -->
+    <!-- pre 类型 -->
+    <block wx:elif="{{item.tag == 'pre'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse1" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+    <!-- code 类型 -->
+    <block wx:elif="{{item.tag == 'code'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse1" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+    <!-- 112至127行加入pre code支持 -->
+    <block wx:elif="{{item.tag == 'br'}}">
+      <template is="WxParseBr"></template>
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappershortcode'}}">
+      <template is="wxParseMinapperShortcode" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minapperad'}}">
+      <template is="wxParseMinapperad" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappermap'}}">
+      <template is="wxParseMinappermap" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minapperqqvideo'}}">
+      <template is="wxParseMinapperQQvideo" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappergallery'}}">
+      <template is="wxParseMinapperGallery" data="{{item}}" />
+    </block>
+
+    <!--其他块级标签-->
+    <block wx:elif="{{item.tagType == 'block'}}">
+      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse1" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
+    <!--内联标签-->
+    <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+      <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+        <template is="wxParse1" data="{{item}}" />
+      </block>
+    </view>
+
+  </block>
+
+  <!--判断是否是文本节点-->
+  <block wx:elif="{{item.node == 'text'}}">
+    <!--如果是，直接进行-->
+    <template is="WxEmojiView" data="{{item}}" />
+  </block>
+
+</template>
+
+
+
+<!--循环模版-->
+<template name="wxParse1">
+  <!--<template is="wxParse2" data="{{item}}" />-->
+  <!--判断是否是标签节点-->
+  <block wx:if="{{item.node == 'element'}}">
+    <block wx:if="{{item.tag == 'button'}}">
+      <button type="default" size="mini">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse2" data="{{item}}" />
+        </block>
+      </button>
+    </block>
+    <!--li类型-->
+    <block wx:elif="{{item.tag == 'li'}}">
+      <view class="{{item.classStr}} wxParse-li" style="{{item.styleStr}}">
+        <view class="{{item.classStr}} wxParse-li-inner">
+          <view class="{{item.classStr}} wxParse-li-text">
+            <view class="{{item.classStr}} wxParse-li-circle"></view>
+          </view>
+          <view class="{{item.classStr}} wxParse-li-text">
+            <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+              <template is="wxParse2" data="{{item}}" />
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!--video类型-->
+    <block wx:elif="{{item.tag == 'video'}}">
+      <template is="wxParseVideo" data="{{item}}" />
+    </block>
+
+    <!--audio类型-->
+    <!-- <block wx:elif="{{item.tag == 'audio'}}">
+      <template is="wxParseAudio" data="{{item}}" />
+    </block> -->
+
+    <!--img类型-->
+    <block wx:elif="{{item.tag == 'img'}}">
+      <template is="wxParseImg" data="{{item}}" />
+    </block>
+
+    <!--style类型-->
+    <block wx:elif="{{item.tag == 'style'}}">
+      <template is="wxParseStyle" data="{{item}}" />
+    </block>
+
+    <!--a类型-->
+    <block wx:elif="{{item.tag == 'a'}}">
+      <view bindtap="wxParseTagATap" data-appid="{{item.attr.appid}}" data-redirectype="{{item.attr.redirectype}}" data-path="{{item.attr.path}}" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+        <text wx:if="{{item.attr.redirectype === 'miniapp'   || item.attr.redirectype === 'apppage'}}" class="iconfont icon-miniapp-logo" />
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse2" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
+    <block wx:elif="{{item.tag == 'br'}}">
+      <template is="WxParseBr"></template>
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappershortcode'}}">
+      <template is="wxParseMinapperShortcode" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minapperad'}}">
+      <template is="wxParseMinapperad" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappermap'}}">
+      <template is="wxParseMinappermap" data="{{item}}" />
+    </block>
+
+
+    <block wx:elif="{{item.tag == 'minapperqqvideo'}}">
+      <template is="wxParseMinapperQQvideo" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappergallery'}}">
+      <template is="wxParseMinapperGallery" data="{{item}}" />
+    </block>
+
+
+    <!--其他块级标签-->
+    <block wx:elif="{{item.tagType == 'block'}}">
+      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse2" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
+    <!--内联标签-->
+    <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+      <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+        <template is="wxParse2" data="{{item}}" />
+      </block>
+    </view>
+
+  </block>
+
+  <!--判断是否是文本节点-->
+  <block wx:elif="{{item.node == 'text'}}">
+    <!--如果是，直接进行-->
+    <template is="WxEmojiView" data="{{item}}" />
+  </block>
+
+</template>
+
+
+<!--循环模版-->
+<template name="wxParse2">
+  <!--<template is="wxParse3" data="{{item}}" />-->
+  <!--判断是否是标签节点-->
+  <block wx:if="{{item.node == 'element'}}">
+    <block wx:if="{{item.tag == 'button'}}">
+      <button type="default" size="mini">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse3" data="{{item}}" />
+        </block>
+      </button>
+    </block>
+    <!--li类型-->
+    <block wx:elif="{{item.tag == 'li'}}">
+      <view class="{{item.classStr}} wxParse-li" style="{{item.styleStr}}">
+        <view class="{{item.classStr}} wxParse-li-inner">
+          <view class="{{item.classStr}} wxParse-li-text">
+            <view class="{{item.classStr}} wxParse-li-circle"></view>
+          </view>
+          <view class="{{item.classStr}} wxParse-li-text">
+            <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+              <template is="wxParse3" data="{{item}}" />
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!--video类型-->
+    <block wx:elif="{{item.tag == 'video'}}">
+      <template is="wxParseVideo" data="{{item}}" />
+    </block>
+
+    <!--audio类型-->
+    <!-- <block wx:elif="{{item.tag == 'audio'}}">
+      <template is="wxParseAudio" data="{{item}}" />
+    </block> -->
+
+    <!--img类型-->
+    <block wx:elif="{{item.tag == 'img'}}">
+      <template is="wxParseImg" data="{{item}}" />
+    </block>
+
+    <!--style类型-->
+    <block wx:elif="{{item.tag == 'style'}}">
+      <template is="wxParseStyle" data="{{item}}" />
+    </block>
+
+    <!--a类型-->
+    <block wx:elif="{{item.tag == 'a'}}">
+      <view bindtap="wxParseTagATap" data-appid="{{item.attr.appid}}" data-redirectype="{{item.attr.redirectype}}" data-path="{{item.attr.path}}" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+        <text wx:if="{{item.attr.redirectype === 'miniapp'   || item.attr.redirectype === 'apppage'}}" class="iconfont icon-miniapp-logo" />
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse3" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
+    <block wx:elif="{{item.tag == 'br'}}">
+      <template is="WxParseBr"></template>
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappershortcode'}}">
+      <template is="wxParseMinapperShortcode" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minapperad'}}">
+      <template is="wxParseMinapperad" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappermap'}}">
+      <template is="wxParseMinappermap" data="{{item}}" />
+    </block>
+
+
+    <block wx:elif="{{item.tag == 'minapperqqvideo'}}">
+      <template is="wxParseMinapperQQvideo" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappergallery'}}">
+      <template is="wxParseMinapperGallery" data="{{item}}" />
+    </block>
+
+
+    <!--其他块级标签-->
+    <block wx:elif="{{item.tagType == 'block'}}">
+      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse3" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
+    <!--内联标签-->
+    <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+      <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+        <template is="wxParse3" data="{{item}}" />
+      </block>
+    </view>
+
+  </block>
+
+  <!--判断是否是文本节点-->
+  <block wx:elif="{{item.node == 'text'}}">
+    <!--如果是，直接进行-->
+    <template is="WxEmojiView" data="{{item}}" />
+  </block>
+
+</template>
+
+<!--循环模版-->
+<template name="wxParse3">
+  <!--<template is="wxParse4" data="{{item}}" />-->
+  <!--判断是否是标签节点-->
+  <block wx:if="{{item.node == 'element'}}">
+    <block wx:if="{{item.tag == 'button'}}">
+      <button type="default" size="mini">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse4" data="{{item}}" />
+        </block>
+      </button>
+    </block>
+    <!--li类型-->
+    <block wx:elif="{{item.tag == 'li'}}">
+      <view class="{{item.classStr}} wxParse-li" style="{{item.styleStr}}">
+        <view class="{{item.classStr}} wxParse-li-inner">
+          <view class="{{item.classStr}} wxParse-li-text">
+            <view class="{{item.classStr}} wxParse-li-circle"></view>
+          </view>
+          <view class="{{item.classStr}} wxParse-li-text">
+            <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+              <template is="wxParse4" data="{{item}}" />
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!--video类型-->
+    <block wx:elif="{{item.tag == 'video'}}">
+      <template is="wxParseVideo" data="{{item}}" />
+    </block>
+
+    <!--audio类型-->
+    <!-- <block wx:elif="{{item.tag == 'audio'}}">
+      <template is="wxParseAudio" data="{{item}}" />
+    </block> -->
+
+    <!--img类型-->
+    <block wx:elif="{{item.tag == 'img'}}">
+      <template is="wxParseImg" data="{{item}}" />
+    </block>
+
+    <!--style类型-->
+    <block wx:elif="{{item.tag == 'style'}}">
+      <template is="wxParseStyle" data="{{item}}" />
+    </block>
+
+    <!--a类型-->
+    <block wx:elif="{{item.tag == 'a'}}">
+      <view bindtap="wxParseTagATap" data-appid="{{item.attr.appid}}" data-redirectype="{{item.attr.redirectype}}" data-path="{{item.attr.path}}" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+        <text wx:if="{{item.attr.redirectype === 'miniapp'   || item.attr.redirectype === 'apppage'}}" class="iconfont icon-miniapp-logo" />
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse4" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
+    <block wx:elif="{{item.tag == 'br'}}">
+      <template is="WxParseBr"></template>
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappershortcode'}}">
+      <template is="wxParseMinapperShortcode" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minapperad'}}">
+      <template is="wxParseMinapperad" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappermap'}}">
+      <template is="wxParseMinappermap" data="{{item}}" />
+    </block>
+
+
+    <block wx:elif="{{item.tag == 'minapperqqvideo'}}">
+      <template is="wxParseMinapperQQvideo" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappergallery'}}">
+      <template is="wxParseMinapperGallery" data="{{item}}" />
+    </block>
+
+    <!--其他块级标签-->
+    <block wx:elif="{{item.tagType == 'block'}}">
+      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse4" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
+    <!--内联标签-->
+    <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+      <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+        <template is="wxParse4" data="{{item}}" />
+      </block>
+    </view>
+
+  </block>
+
+  <!--判断是否是文本节点-->
+  <block wx:elif="{{item.node == 'text'}}">
+    <!--如果是，直接进行-->
+    <template is="WxEmojiView" data="{{item}}" />
+  </block>
+
+</template>
+
+<!--循环模版-->
+<template name="wxParse4">
+  <!--<template is="wxParse5" data="{{item}}" />-->
+  <!--判断是否是标签节点-->
+  <block wx:if="{{item.node == 'element'}}">
+    <block wx:if="{{item.tag == 'button'}}">
+      <button type="default" size="mini">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse5" data="{{item}}" />
+        </block>
+      </button>
+    </block>
+    <!--li类型-->
+    <block wx:elif="{{item.tag == 'li'}}">
+      <view class="{{item.classStr}} wxParse-li" style="{{item.styleStr}}">
+        <view class="{{item.classStr}} wxParse-li-inner">
+          <view class="{{item.classStr}} wxParse-li-text">
+            <view class="{{item.classStr}} wxParse-li-circle"></view>
+          </view>
+          <view class="{{item.classStr}} wxParse-li-text">
+            <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+              <template is="wxParse5" data="{{item}}" />
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!--video类型-->
+    <block wx:elif="{{item.tag == 'video'}}">
+      <template is="wxParseVideo" data="{{item}}" />
+    </block>
+
+    <!--audio类型-->
+    <!-- <block wx:elif="{{item.tag == 'audio'}}">
+      <template is="wxParseAudio" data="{{item}}" />
+    </block> -->
+
+    <!--img类型-->
+    <block wx:elif="{{item.tag == 'img'}}">
+      <template is="wxParseImg" data="{{item}}" />
+    </block>
+
+    <!--style类型-->
+    <block wx:elif="{{item.tag == 'style'}}">
+      <template is="wxParseStyle" data="{{item}}" />
+    </block>
+
+    <!--a类型-->
+    <block wx:elif="{{item.tag == 'a'}}">
+      <view bindtap="wxParseTagATap" data-appid="{{item.attr.appid}}" data-redirectype="{{item.attr.redirectype}}" data-path="{{item.attr.path}}" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+        <text wx:if="{{item.attr.redirectype === 'miniapp'   || item.attr.redirectype === 'apppage'}}" class="iconfont icon-miniapp-logo" />
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse5" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
+    <block wx:elif="{{item.tag == 'br'}}">
+      <template is="WxParseBr"></template>
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappershortcode'}}">
+      <template is="wxParseMinapperShortcode" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minapperad'}}">
+      <template is="wxParseMinapperad" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappermap'}}">
+      <template is="wxParseMinappermap" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minapperqqvideo'}}">
+      <template is="wxParseMinapperQQvideo" data="{{item}}" />
+    </block>
+
+    <!--其他块级标签-->
+    <block wx:elif="{{item.tagType == 'block'}}">
+      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse5" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
+    <!--内联标签-->
+    <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+      <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+        <template is="wxParse5" data="{{item}}" />
+      </block>
+    </view>
+
+  </block>
+
+  <!--判断是否是文本节点-->
+  <block wx:elif="{{item.node == 'text'}}">
+    <!--如果是，直接进行-->
+    <template is="WxEmojiView" data="{{item}}" />
+  </block>
+
+</template>
+
+<!--循环模版-->
+<template name="wxParse5">
+  <!--<template is="wxParse6" data="{{item}}" />-->
+  <!--判断是否是标签节点-->
+  <block wx:if="{{item.node == 'element'}}">
+    <block wx:if="{{item.tag == 'button'}}">
+      <button type="default" size="mini">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse6" data="{{item}}" />
+        </block>
+      </button>
+    </block>
+    <!--li类型-->
+    <block wx:elif="{{item.tag == 'li'}}">
+      <view class="{{item.classStr}} wxParse-li" style="{{item.styleStr}}">
+        <view class="{{item.classStr}} wxParse-li-inner">
+          <view class="{{item.classStr}} wxParse-li-text">
+            <view class="{{item.classStr}} wxParse-li-circle"></view>
+          </view>
+          <view class="{{item.classStr}} wxParse-li-text">
+            <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+              <template is="wxParse6" data="{{item}}" />
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!--video类型-->
+    <block wx:elif="{{item.tag == 'video'}}">
+      <template is="wxParseVideo" data="{{item}}" />
+    </block>
+
+    <!--audio类型-->
+    <!-- <block wx:elif="{{item.tag == 'audio'}}">
+      <template is="wxParseAudio" data="{{item}}" />
+    </block> -->
+
+    <!--img类型-->
+    <block wx:elif="{{item.tag == 'img'}}">
+      <template is="wxParseImg" data="{{item}}" />
+    </block>
+
+    <!--style类型-->
+    <block wx:elif="{{item.tag == 'style'}}">
+      <template is="wxParseStyle" data="{{item}}" />
+    </block>
+
+    <!--a类型-->
+    <block wx:elif="{{item.tag == 'a'}}">
+      <view bindtap="wxParseTagATap" data-appid="{{item.attr.appid}}" data-redirectype="{{item.attr.redirectype}}" data-path="{{item.attr.path}}" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+        <text wx:if="{{item.attr.redirectype === 'miniapp'   || item.attr.redirectype === 'apppage'}}" class="iconfont icon-miniapp-logo" />
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse6" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
+    <block wx:elif="{{item.tag == 'br'}}">
+      <template is="WxParseBr"></template>
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappershortcode'}}">
+      <template is="wxParseMinapperShortcode" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minapperad'}}">
+      <template is="wxParseMinapperad" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappermap'}}">
+      <template is="wxParseMinappermap" data="{{item}}" />
+    </block>
+
+
+    <block wx:elif="{{item.tag == 'minapperqqvideo'}}">
+      <template is="wxParseMinapperQQvideo" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappergallery'}}">
+      <template is="wxParseMinapperGallery" data="{{item}}" />
+    </block>
+
+    <!--其他块级标签-->
+    <block wx:elif="{{item.tagType == 'block'}}">
+      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse6" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
+    <!--内联标签-->
+    <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+      <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+        <template is="wxParse6" data="{{item}}" />
+      </block>
+    </view>
+
+  </block>
+
+  <!--判断是否是文本节点-->
+  <block wx:elif="{{item.node == 'text'}}">
+    <!--如果是，直接进行-->
+    <template is="WxEmojiView" data="{{item}}" />
+  </block>
+
+</template>
+
+<!--循环模版-->
+<template name="wxParse6">
+  <!--<template is="wxParse7" data="{{item}}" />-->
+  <!--判断是否是标签节点-->
+  <block wx:if="{{item.node == 'element'}}">
+    <block wx:if="{{item.tag == 'button'}}">
+      <button type="default" size="mini">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse7" data="{{item}}" />
+        </block>
+      </button>
+    </block>
+    <!--li类型-->
+    <block wx:elif="{{item.tag == 'li'}}">
+      <view class="{{item.classStr}} wxParse-li" style="{{item.styleStr}}">
+        <view class="{{item.classStr}} wxParse-li-inner">
+          <view class="{{item.classStr}} wxParse-li-text">
+            <view class="{{item.classStr}} wxParse-li-circle"></view>
+          </view>
+          <view class="{{item.classStr}} wxParse-li-text">
+            <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+              <template is="wxParse7" data="{{item}}" />
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!--video类型-->
+    <block wx:elif="{{item.tag == 'video'}}">
+      <template is="wxParseVideo" data="{{item}}" />
+    </block>
+
+    <!--audio类型-->
+    <!-- <block wx:elif="{{item.tag == 'audio'}}">
+      <template is="wxParseAudio" data="{{item}}" />
+    </block> -->
+
+    <!--img类型-->
+    <block wx:elif="{{item.tag == 'img'}}">
+      <template is="wxParseImg" data="{{item}}" />
+    </block>
+
+    <!--style类型-->
+    <block wx:elif="{{item.tag == 'style'}}">
+      <template is="wxParseStyle" data="{{item}}" />
+    </block>
+
+    <!--a类型-->
+    <block wx:elif="{{item.tag == 'a'}}">
+      <view bindtap="wxParseTagATap" data-appid="{{item.attr.appid}}" data-redirectype="{{item.attr.redirectype}}" data-path="{{item.attr.path}}" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+        <text wx:if="{{item.attr.redirectype === 'miniapp'   || item.attr.redirectype === 'apppage'}}" class="iconfont icon-miniapp-logo" />
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse7" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
+    <block wx:elif="{{item.tag == 'br'}}">
+      <template is="WxParseBr"></template>
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappershortcode'}}">
+      <template is="wxParseMinapperShortcode" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minapperad'}}">
+      <template is="wxParseMinapperad" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappermap'}}">
+      <template is="wxParseMinappermap" data="{{item}}" />
+    </block>
+
+
+    <block wx:elif="{{item.tag == 'minapperqqvideo'}}">
+      <template is="wxParseMinapperQQvideo" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappergallery'}}">
+      <template is="wxParseMinapperGallery" data="{{item}}" />
+    </block>
+
+    <!--其他块级标签-->
+    <block wx:elif="{{item.tagType == 'block'}}">
+      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse7" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
+    <!--内联标签-->
+    <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+      <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+        <template is="wxParse7" data="{{item}}" />
+      </block>
+    </view>
+
+  </block>
+
+  <!--判断是否是文本节点-->
+  <block wx:elif="{{item.node == 'text'}}">
+    <!--如果是，直接进行-->
+    <template is="WxEmojiView" data="{{item}}" />
+  </block>
+
+</template>
+<!--循环模版-->
+<template name="wxParse7">
+  <!--<template is="wxParse8" data="{{item}}" />-->
+  <!--判断是否是标签节点-->
+  <block wx:if="{{item.node == 'element'}}">
+    <block wx:if="{{item.tag == 'button'}}">
+      <button type="default" size="mini">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse8" data="{{item}}" />
+        </block>
+      </button>
+    </block>
+    <!--li类型-->
+    <block wx:elif="{{item.tag == 'li'}}">
+      <view class="{{item.classStr}} wxParse-li" style="{{item.styleStr}}">
+        <view class="{{item.classStr}} wxParse-li-inner">
+          <view class="{{item.classStr}} wxParse-li-text">
+            <view class="{{item.classStr}} wxParse-li-circle"></view>
+          </view>
+          <view class="{{item.classStr}} wxParse-li-text">
+            <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+              <template is="wxParse8" data="{{item}}" />
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!--video类型-->
+    <block wx:elif="{{item.tag == 'video'}}">
+      <template is="wxParseVideo" data="{{item}}" />
+    </block>
+
+    <!--audio类型-->
+    <!-- <block wx:elif="{{item.tag == 'audio'}}">
+      <template is="wxParseAudio" data="{{item}}" />
+    </block> -->
+
+    <!--img类型-->
+    <block wx:elif="{{item.tag == 'img'}}">
+      <template is="wxParseImg" data="{{item}}" />
+    </block>
+
+    <!--style类型-->
+    <block wx:elif="{{item.tag == 'style'}}">
+      <template is="wxParseStyle" data="{{item}}" />
+    </block>
+
+    <!--a类型-->
+    <block wx:elif="{{item.tag == 'a'}}">
+      <view bindtap="wxParseTagATap" data-appid="{{item.attr.appid}}" data-redirectype="{{item.attr.redirectype}}" data-path="{{item.attr.path}}" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+        <text wx:if="{{item.attr.redirectype === 'miniapp'   || item.attr.redirectype === 'apppage'}}" class="iconfont icon-miniapp-logo" />
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse8" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
+    <block wx:elif="{{item.tag == 'br'}}">
+      <template is="WxParseBr"></template>
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappershortcode'}}">
+      <template is="wxParseMinapperShortcode" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minapperad'}}">
+      <template is="wxParseMinapperad" data="{{item}}" />
+    </block>
+
+
+    <!--其他块级标签-->
+    <block wx:elif="{{item.tagType == 'block'}}">
+      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse8" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
+    <!--内联标签-->
+    <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+      <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+        <template is="wxParse8" data="{{item}}" />
+      </block>
+    </view>
+
+  </block>
+
+  <!--判断是否是文本节点-->
+  <block wx:elif="{{item.node == 'text'}}">
+    <!--如果是，直接进行-->
+    <template is="WxEmojiView" data="{{item}}" />
+  </block>
+
+</template>
+
+<!--循环模版-->
+<template name="wxParse8">
+  <!--<template is="wxParse9" data="{{item}}" />-->
+  <!--判断是否是标签节点-->
+  <block wx:if="{{item.node == 'element'}}">
+    <block wx:if="{{item.tag == 'button'}}">
+      <button type="default" size="mini">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse9" data="{{item}}" />
+        </block>
+      </button>
+    </block>
+    <!--li类型-->
+    <block wx:elif="{{item.tag == 'li'}}">
+      <view class="{{item.classStr}} wxParse-li" style="{{item.styleStr}}">
+        <view class="{{item.classStr}} wxParse-li-inner">
+          <view class="{{item.classStr}} wxParse-li-text">
+            <view class="{{item.classStr}} wxParse-li-circle"></view>
+          </view>
+          <view class="{{item.classStr}} wxParse-li-text">
+            <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+              <template is="wxParse9" data="{{item}}" />
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!--video类型-->
+    <block wx:elif="{{item.tag == 'video'}}">
+      <template is="wxParseVideo" data="{{item}}" />
+    </block>
+
+    <!--audio类型-->
+    <!-- <block wx:elif="{{item.tag == 'audio'}}">
+      <template is="wxParseAudio" data="{{item}}" />
+    </block> -->
+
+    <!--img类型-->
+    <block wx:elif="{{item.tag == 'img'}}">
+      <template is="wxParseImg" data="{{item}}" />
+    </block>
+
+    <!--style类型-->
+    <block wx:elif="{{item.tag == 'style'}}">
+      <template is="wxParseStyle" data="{{item}}" />
+    </block>
+
+    <!--a类型-->
+    <block wx:elif="{{item.tag == 'a'}}">
+      <view bindtap="wxParseTagATap" data-appid="{{item.attr.appid}}" data-redirectype="{{item.attr.redirectype}}" data-path="{{item.attr.path}}" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+        <text wx:if="{{item.attr.redirectype === 'miniapp'   || item.attr.redirectype === 'apppage'}}" class="iconfont icon-miniapp-logo" />
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse9" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
+    <block wx:elif="{{item.tag == 'br'}}">
+      <template is="WxParseBr"></template>
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappershortcode'}}">
+      <template is="wxParseMinapperShortcode" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minapperad'}}">
+      <template is="wxParseMinapperad" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappermap'}}">
+      <template is="wxParseMinappermap" data="{{item}}" />
+    </block>
+
+
+    <block wx:elif="{{item.tag == 'minapperqqvideo'}}">
+      <template is="wxParseMinapperQQvideo" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappergallery'}}">
+      <template is="wxParseMinapperGallery" data="{{item}}" />
+    </block>
+
+    <!--其他块级标签-->
+    <block wx:elif="{{item.tagType == 'block'}}">
+      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse9" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
+    <!--内联标签-->
+    <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+      <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+        <template is="wxParse9" data="{{item}}" />
+      </block>
+    </view>
+
+  </block>
+
+  <!--判断是否是文本节点-->
+  <block wx:elif="{{item.node == 'text'}}">
+    <!--如果是，直接进行-->
+    <template is="WxEmojiView" data="{{item}}" />
+  </block>
+
+</template>
+
+<!--循环模版-->
+<template name="wxParse9">
+  <!--<template is="wxParse10" data="{{item}}" />-->
+  <!--判断是否是标签节点-->
+  <block wx:if="{{item.node == 'element'}}">
+    <block wx:if="{{item.tag == 'button'}}">
+      <button type="default" size="mini">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse10" data="{{item}}" />
+        </block>
+      </button>
+    </block>
+    <!--li类型-->
+    <block wx:elif="{{item.tag == 'li'}}">
+      <view class="{{item.classStr}} wxParse-li" style="{{item.styleStr}}">
+        <view class="{{item.classStr}} wxParse-li-inner">
+          <view class="{{item.classStr}} wxParse-li-text">
+            <view class="{{item.classStr}} wxParse-li-circle"></view>
+          </view>
+          <view class="{{item.classStr}} wxParse-li-text">
+            <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+              <template is="wxParse10" data="{{item}}" />
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!--video类型-->
+    <block wx:elif="{{item.tag == 'video'}}">
+      <template is="wxParseVideo" data="{{item}}" />
+    </block>
+
+    <!--audio类型-->
+    <!-- <block wx:elif="{{item.tag == 'audio'}}">
+      <template is="wxParseAudio" data="{{item}}" />
+    </block> -->
+
+    <!--img类型-->
+    <block wx:elif="{{item.tag == 'img'}}">
+      <template is="wxParseImg" data="{{item}}" />
+    </block>
+
+    <!--style类型-->
+    <block wx:elif="{{item.tag == 'style'}}">
+      <template is="wxParseStyle" data="{{item}}" />
+    </block>
+
+    <!--a类型-->
+    <block wx:elif="{{item.tag == 'a'}}">
+      <view bindtap="wxParseTagATap" data-appid="{{item.attr.appid}}" data-redirectype="{{item.attr.redirectype}}" data-path="{{item.attr.path}}" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+        <text wx:if="{{item.attr.redirectype === 'miniapp'   || item.attr.redirectype === 'apppage'}}" class="iconfont icon-miniapp-logo" />
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse10" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
+    <block wx:elif="{{item.tag == 'br'}}">
+      <template is="WxParseBr"></template>
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappershortcode'}}">
+      <template is="wxParseMinapperShortcode" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minapperad'}}">
+      <template is="wxParseMinapperad" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappermap'}}">
+      <template is="wxParseMinappermap" data="{{item}}" />
+    </block>
+
+
+    <block wx:elif="{{item.tag == 'minapperqqvideo'}}">
+      <template is="wxParseMinapperQQvideo" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappergallery'}}">
+      <template is="wxParseMinapperGallery" data="{{item}}" />
+    </block>
+
+    <!--其他块级标签-->
+    <block wx:elif="{{item.tagType == 'block'}}">
+      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse10" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
+    <!--内联标签-->
+    <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+      <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+        <template is="wxParse10" data="{{item}}" />
+      </block>
+    </view>
+
+  </block>
+
+  <!--判断是否是文本节点-->
+  <block wx:elif="{{item.node == 'text'}}">
+    <!--如果是，直接进行-->
+    <template is="WxEmojiView" data="{{item}}" />
+  </block>
+
+</template>
+
+<!--循环模版-->
+<template name="wxParse10">
+  <!--<template is="wxParse11" data="{{item}}" />-->
+  <!--判断是否是标签节点-->
+  <block wx:if="{{item.node == 'element'}}">
+    <block wx:if="{{item.tag == 'button'}}">
+      <button type="default" size="mini">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse11" data="{{item}}" />
+        </block>
+      </button>
+    </block>
+    <!--li类型-->
+    <block wx:elif="{{item.tag == 'li'}}">
+      <view class="{{item.classStr}} wxParse-li" style="{{item.styleStr}}">
+        <view class="{{item.classStr}} wxParse-li-inner">
+          <view class="{{item.classStr}} wxParse-li-text">
+            <view class="{{item.classStr}} wxParse-li-circle"></view>
+          </view>
+          <view class="{{item.classStr}} wxParse-li-text">
+            <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+              <template is="wxParse11" data="{{item}}" />
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!--video类型-->
+    <block wx:elif="{{item.tag == 'video'}}">
+      <template is="wxParseVideo" data="{{item}}" />
+    </block>
+
+    <!--audio类型-->
+    <!-- <block wx:elif="{{item.tag == 'audio'}}">
+      <template is="wxParseAudio" data="{{item}}" />
+    </block> -->
+
+    <!--img类型-->
+    <block wx:elif="{{item.tag == 'img'}}">
+      <template is="wxParseImg" data="{{item}}" />
+    </block>
+
+    <!--style类型-->
+    <block wx:elif="{{item.tag == 'style'}}">
+      <template is="wxParseStyle" data="{{item}}" />
+    </block>
+
+    <!--a类型-->
+    <block wx:elif="{{item.tag == 'a'}}">
+      <view bindtap="wxParseTagATap" data-appid="{{item.attr.appid}}" data-redirectype="{{item.attr.redirectype}}" data-path="{{item.attr.path}}" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+        <text wx:if="{{item.attr.redirectype === 'miniapp'   || item.attr.redirectype === 'apppage'}}" class="iconfont icon-miniapp-logo" />
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse11" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
+    <block wx:elif="{{item.tag == 'br'}}">
+      <template is="WxParseBr"></template>
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappershortcode'}}">
+      <template is="wxParseMinapperShortcode" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minapperad'}}">
+      <template is="wxParseMinapperad" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappermap'}}">
+      <template is="wxParseMinappermap" data="{{item}}" />
+    </block>
+
+
+    <block wx:elif="{{item.tag == 'minapperqqvideo'}}">
+      <template is="wxParseMinapperQQvideo" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappergallery'}}">
+      <template is="wxParseMinapperGallery" data="{{item}}" />
+    </block>
+
+    <!--其他块级标签-->
+    <block wx:elif="{{item.tagType == 'block'}}">
+      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse11" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
+    <!--内联标签-->
+    <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+      <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+        <template is="wxParse11" data="{{item}}" />
+      </block>
+    </view>
+
+  </block>
+
+  <!--判断是否是文本节点-->
+  <block wx:elif="{{item.node == 'text'}}">
+    <!--如果是，直接进行-->
+    <template is="WxEmojiView" data="{{item}}" />
+  </block>
+
+</template>
+
+<!--循环模版-->
+<template name="wxParse11">
+  <!--<template is="wxParse12" data="{{item}}" />-->
+  <!--判断是否是标签节点-->
+  <block wx:if="{{item.node == 'element'}}">
+    <block wx:if="{{item.tag == 'button'}}">
+      <button type="default" size="mini">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse12" data="{{item}}" />
+        </block>
+      </button>
+    </block>
+    <!--li类型-->
+    <block wx:elif="{{item.tag == 'li'}}">
+      <view class="{{item.classStr}} wxParse-li" style="{{item.styleStr}}">
+        <view class="{{item.classStr}} wxParse-li-inner">
+          <view class="{{item.classStr}} wxParse-li-text">
+            <view class="{{item.classStr}} wxParse-li-circle"></view>
+          </view>
+          <view class="{{item.classStr}} wxParse-li-text">
+            <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+              <template is="wxParse12" data="{{item}}" />
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!--video类型-->
+    <block wx:elif="{{item.tag == 'video'}}">
+      <template is="wxParseVideo" data="{{item}}" />
+    </block>
+
+    <!--audio类型-->
+    <!-- <block wx:elif="{{item.tag == 'audio'}}">
+      <template is="wxParseAudio" data="{{item}}" />
+    </block> -->
+
+    <!--img类型-->
+    <block wx:elif="{{item.tag == 'img'}}">
+      <template is="wxParseImg" data="{{item}}" />
+    </block>
+
+    <!--style类型-->
+    <block wx:elif="{{item.tag == 'style'}}">
+      <template is="wxParseStyle" data="{{item}}" />
+    </block>
+
+    <!--a类型-->
+    <block wx:elif="{{item.tag == 'a'}}">
+      <view bindtap="wxParseTagATap" data-appid="{{item.attr.appid}}" data-redirectype="{{item.attr.redirectype}}" data-path="{{item.attr.path}}" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+        <text wx:if="{{item.attr.redirectype === 'miniapp'   || item.attr.redirectype === 'apppage'}}" class="iconfont icon-miniapp-logo" />
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse12" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
+    <block wx:elif="{{item.tag == 'br'}}">
+      <template is="WxParseBr"></template>
+    </block>
+    <block wx:elif="{{item.tag == 'minappershortcode'}}">
+      <template is="wxParseMinapperShortcode" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minapperad'}}">
+      <template is="wxParseMinapperad" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappermap'}}">
+      <template is="wxParseMinappermap" data="{{item}}" />
+    </block>
+
+
+    <block wx:elif="{{item.tag == 'minapperqqvideo'}}">
+      <template is="wxParseMinapperQQvideo" data="{{item}}" />
+    </block>
+
+    <block wx:elif="{{item.tag == 'minappergallery'}}">
+      <template is="wxParseMinapperGallery" data="{{item}}" />
+    </block>
+
+
+    <!--其他块级标签-->
+    <block wx:elif="{{item.tagType == 'block'}}">
+      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+          <template is="wxParse12" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
+    <!--内联标签-->
+    <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+      <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
+        <template is="wxParse12" data="{{item}}" />
+      </block>
+    </view>
+
+  </block>
+
+  <!--判断是否是文本节点-->
+  <block wx:elif="{{item.node == 'text'}}">
+    <!--如果是，直接进行-->
+    <template is="WxEmojiView" data="{{item}}" />
+  </block>
+
+</template>

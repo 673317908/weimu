@@ -1,0 +1,85 @@
+
+page {
+  height: 100%;
+  background: #f5f7f7;
+  /* padding-top: 100rpx; */
+  overflow: hidden;
+}
+
+.container-rand {
+  margin-top: 100rpx;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* 轮播图 */
+.swiper-box {
+  position: relative;
+  height: 900rpx;
+  /* background: tomato; */
+}
+
+swiper image {
+  display: block;
+  width: 100%;
+  height: 660rpx;
+  border-top-left-radius: 32rpx;
+  border-top-right-radius: 32rpx;
+  background: #f5f7f7;
+}
+
+swiper-item {
+  height: 900rpx;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}
+
+.swiper-desc {
+  width: 100%;
+  height: 240rpx;
+  border-bottom-left-radius: 32rpx;
+  border-bottom-right-radius: 32rpx;
+  box-sizing: border-box;
+  padding: 40rpx;
+  background: #fff;
+  margin: 0 auto;
+}
+
+.swiper-desc>text {
+  color: #4c4c4c;
+  font-size: 15px;
+  font-weight: 500;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.swiper-desc-data {
+  color: #4c4c4c;
+  font-size: 12px;
+  margin-bottom: 8rpx;
+}
+
+.swiper-desc-data text:not(:last-child) {
+  margin-right: 40rpx;
+}
+
+/* “换一波”刷新按钮 */
+.btn-change {
+  width: 200rpx;
+  height: 88rpx;
+  border-radius: 50rpx;
+  color: #333;
+  font-size: 14px;
+  text-align: center;
+  line-height: 88rpx;
+  position: fixed;
+  bottom: 4%;
+  left: 50%;
+  margin-left: -103rpx;
+  background: #fff;
+  box-shadow: 0 16rpx 40rpx -16rpx rgba(100, 100, 100, 0.2);
+}

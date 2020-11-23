@@ -1,0 +1,177 @@
+<!--pages/earn.wxml-->
+
+
+<view class="mypoints">
+  <view class="mypoints-num" wx:if="{{memberUserInfo.integral  && !taskError}}">{{memberUserInfo.integral}}</view>
+  <view class="mypoints-title">
+    <text>我的积分</text>
+    <text class="icon-question" bindtap="toIntegralDes">?</text>
+  </view>
+</view>
+
+<view class="listBox">
+
+  <view class="listItem">
+    <view class="listItem-left">
+      <text>每日最高可获取积分</text>
+    </view >
+    <view class="listItem-text" >
+      <text wx:if="{{settings.raw_user_max_integral !='0'}}" >{{settings.raw_user_max_integral}}分</text>
+       <text wx:if="{{settings.raw_user_max_integral =='0'}}">不限</text>
+    </view>    
+  </view>
+
+  <view class="listItem">
+    <view class="listItem-left">
+      <text>手机号 </text>{{memberUserInfo.phone}}，+{{settings.raw_phone_integral}}分
+    </view>
+     <view class="listItem-btn" wx:if="{{memberUserInfo.phone==''}}">
+      <button class="share-button" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" plain="true">绑定</button>
+    </view>
+    <view wx:if="{{memberUserInfo.phone !=''}}" class="listItem-btn">
+    <button class="share-button" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" plain="true">更新号码</button>
+    </view>   
+  </view>
+
+  <view class="listItem">
+    <view class="listItem-left">
+      <text>每日签到</text>+{{settings.raw_sign_integral}}分，今日剩余
+      <block wx:if="{{!task.signined && !taskError}}">1</block>
+      <block wx:if="{{task.signined && !taskError}}">0</block>次
+    </view>
+
+    <view wx:if="{{!task.signined && !taskError}}" class="listItem-btn" catchtap="signin">
+      <text>去完成</text>
+    </view>
+    <view wx:if="{{task.signined && !taskError}}" class="listItem-btn">
+      <text>已完成</text>
+    </view>
+  </view>
+
+  <view class="listItem">
+    <view class="listItem-left">
+      <text>分享小程序</text>+{{settings.raw_share_integral}}分，今日分享
+      {{task.shareappedCount}}次
+    </view>
+    <view class="listItem-btn" wx:if="{{task.canShareApp==true && !taskError}}">
+      <button class="share-button" open-type="share" plain="true">去完成</button>
+    </view>
+    <view wx:if="{{task.canShareApp==false && !taskError}}" class="listItem-btn">
+      <text>已完成</text>
+    </view>
+    
+  </view>
+
+  <view class="listItem">
+    <view class="listItem-left">
+      <text>观看激励视频</text>+{{settings.raw_openAd_integral}}分，今日观看
+      {{task.openAdVideoedCount}}次</view>
+
+    <view class="listItem-btn" wx:if="{{task.canOpenAdVideo==true && !taskError}}" catchtap="openAdVideo">
+      <text>去完成</text>
+    </view>
+      <view class="listItem-btn" wx:if="{{task.canOpenAdVideo==false && !taskError}}">
+      <text>已完成</text>
+    </view>
+   
+  </view>
+
+  <view class="listItem">
+    <view class="listItem-left">
+      <text>发表文章</text>
+    </view >
+    <view class="listItem-text" >
+      <text>+{{settings.raw_newpost_integral}}/次</text>
+    </view>    
+  </view>
+
+  <view class="listItem">
+    <view class="listItem-left">
+      <text>文章评论</text>
+    </view >
+    <view class="listItem-text" >
+      <text>+{{settings.raw_comment_integral}}/次</text>
+    </view>    
+  </view>
+
+
+  <view class="listItem">
+    <view class="listItem-left">
+      <text>文章点赞</text>
+    </view >
+    <view class="listItem-text" >
+      <text>+{{settings.raw_like_integral}}/次</text>
+    </view>    
+  </view>
+
+   <view class="listItem">
+    <view class="listItem-left">
+      <text>发表话题</text>
+    </view >
+    <view class="listItem-text" >
+      <text>+{{settings.raw_newtopic_integral}}/次</text>
+    </view>    
+  </view>
+
+  <view class="listItem">
+    <view class="listItem-left">
+      <text>话题开启位置</text>
+    </view >
+    <view class="listItem-text" >
+      <text>+{{settings.raw_newtopic_location_integral}}/次</text>
+    </view>    
+  </view>
+
+  <view class="listItem">
+    <view class="listItem-left">
+      <text>回复话题</text>
+    </view >
+    <view class="listItem-text" >
+      <text>+{{settings.raw_replaytopic_integral}}/次</text>
+    </view>    
+  </view>
+
+   <!-- <view class="listItem">
+    <view class="listItem-left">
+      <text>回复话题</text>
+    </view >
+    <view class="listItem-text" >
+      <text>+{{settings.raw_replaytopic_integral}}/次</text>
+    </view>    
+  </view> -->
+
+  <view class="listItem">
+    <view class="listItem-left">
+      <text>阅读文章</text>
+    </view >
+    <view class="listItem-text" >
+      <text>+{{settings.raw_readpost_integral}}/次</text>
+    </view>    
+  </view>
+
+  <view class="listItem">
+    <view class="listItem-left">
+      <text>付费阅读</text>
+    </view >
+    <view class="listItem-text" >
+      <text>+{{settings.raw_payment_integral}}/次</text>
+    </view>    
+  </view>
+
+  <view class="listItem">
+    <view class="listItem-left">
+      <text>赞-赏</text>
+    </view >
+    <view class="listItem-text" >
+      <text>+{{settings.raw_praise_integral}}/次</text>
+    </view>    
+  </view>
+
+  
+  
+  <!-- <view class="me-item-detail">
+<view class="me-item-left"><text>阅读付费文章</text></view>
+   <view  class="social-author-follow"><text>去完成</text></view>
+</view> -->
+
+</view>

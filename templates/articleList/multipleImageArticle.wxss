@@ -1,0 +1,167 @@
+/*
+ * 
+ * WordPres版微信小程序Pro
+ * author: jianbo
+ * organization:  微慕 www.minapper.com 
+ * 技术支持微信号：Jianbo
+ * Copyright (c) 2018 https://www.minapper.com All rights reserved.
+ */
+ /*
+ * 维语字体文件
+ font-family: NUR Tor;
+ */
+ @import "/images/uyghurfont.wxss";
+/*common list  for  index  list page */
+
+.multipleImageArticle-common-list {
+  background: #f5f7f7;
+}
+
+.multipleImageArticle-common-list .list-item {
+  background: #fff;
+  width: 100%;
+  margin-bottom: 16rpx;
+}
+
+/* 一张小图列表样式 */
+
+.content-oneImg-box {
+  display: flex;
+  padding: 40rpx;
+}
+
+.content-article {
+  text-align: justify;
+  direction: rtl;
+  font-family: NUR Tor;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 32rpx;
+  float: left;
+}
+
+.content-title text {
+  
+  direction: rtl;
+  font-family: NUR Tor;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: 30rpx;
+  line-height: 1.5;
+  font-weight: 500;
+  color: #333;
+}
+
+.content-date {
+  font-size: 25rpx;
+  color: #959595;
+  margin-bottom: 8rpx;
+}
+
+.content-popularity {
+  color: #959595;
+  font-size: 25rpx;
+  direction: rtl;
+  font-family: NUR Tor;
+}
+
+.content-popularity text:not(:last-child) {
+  margin-left: 32rpx;
+}
+
+.content-date {
+  display: flex;
+  vertical-align: middle;
+}
+
+.content-cover {
+  width: 240rpx;
+  height: 180rpx;
+  background: #f9f7f7;
+  margin-right: auto;
+}
+
+.content-cover image {
+  width: 240rpx;
+  height: 180rpx;
+}
+
+/* 三张图列表样式 */
+
+.content-threeImg-box {
+  padding: 40rpx;
+}
+
+.image_list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 16rpx 0;
+}
+
+.image_item {
+  flex: 1;
+  height: 180rpx;
+}
+
+.image_list .image_item:not(:last-child) {
+  margin-right: 8rpx;
+}
+
+.image_item image {
+  width: 100%;
+  height: 100%;
+  background: #f5f7f7;
+}
+
+.muit_bottom {
+  display: flex;
+  justify-content: space-between;
+  color: #959595;
+  font-size: 24rpx;
+}
+
+.muit_bottom view:first-child>text {
+  margin-right: 32rpx;
+}
+
+.muit-title {
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: 32rpx;
+  line-height: 1.5;
+  font-weight: 500;
+  color: #333;
+}
+
+
+/* 一张大图列表样式 */
+
+.list-item1 {
+  background: #fff;
+  padding: 40rpx;
+  background-color: #fff;
+  margin-bottom: 16rpx;
+}
+
+.list-item1 image.cover {
+  width: 100%;
+  height: 360rpx;
+  display: block;
+  margin: 16rpx 0;
+  background: #f5f7f7;
+}
+
+/* 广告组件 */
+.list-item-ad {
+  margin-bottom: 16rpx;
+}

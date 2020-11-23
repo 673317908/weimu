@@ -1,0 +1,40 @@
+<!-- 热销商品 -->
+<view class="selected-nav">
+  <!-- <view class='common-subtitle'>
+    <view class='common-subtitle-left'>{{ title }}</view>
+    <view class='common-subtitle-right'>滑动查看</view>
+  </view> -->
+  <view class="swiper-box" >
+    <swiper class="swiper" bind:change="swiperChange">
+        <swiper-item
+          wx:for="{{list}}"
+          wx:key="index"
+          class="swiper-item"
+        >
+          <view
+            wx:for="{{item}}"
+            wx:key="idx"
+            wx:for-index="idx"
+            wx:for-item="itm"
+            class="selected-nav-item"
+            data-type="{{itm.type}}"
+            data-url="{{itm.url}}"
+            data-appid="{{itm.appid}}"
+            data-path="{{itm.path}}"
+            bindtap="toDetail"
+          >
+            <view>
+              <image mode="aspectFill" src="{{itm.image}}" />
+            </view>
+            <view>
+              <text>{{itm.title}}</text>
+            </view>
+          </view>
+        </swiper-item>
+    </swiper>
+
+    <view class="dot-box">
+      <view wx:for="{{ list }}" wx:key="index" class="{{ swiperIndex === index ? 'active dot' : 'dot' }}" />
+    </view>
+  </view>
+</view>

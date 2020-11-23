@@ -1,0 +1,221 @@
+<import src="../../templates/socials/record.wxml" />
+
+<view>
+  <form class="page__bd" report-submit="true" catchsubmit="formSubmit" catchreset="formReset">
+    <!-- 提交按钮 -->
+    <view class='btn-container'>
+      <view class="tips">
+        <!-- <navigator url="/pages/social/social" open-type="switchTab" hover-class="none">
+          <button class="return-button" hover-class="none">取消</button>
+        </navigator> -->
+        <text>* 请勿发布违法、违规、敏感内容</text>
+      </view>
+      <view class="btn-area">
+        <button hover-class="appointment-button-hover" class="appointment-button" formType="submit">发布</button>
+      </view>
+      <!-- <modal title="{{dialog.title}}" hidden="{{dialog.hidden}}" no-cancel bindconfirm="confirm">{{dialog.content}}</modal> -->
+    </view>
+
+    <view class='top-container'>
+      <view class="section">
+        <textarea name="inputContent" value="{{content}}" auto-height bindfocus="textAreaFocus" maxlength="3000" bindblur="textAreaBlur" placeholder-style="color:#959595;" placeholder="请输入内容..." />
+      </view>
+
+      <!--显示图标-->
+      <view class="add-content-bottom">
+        <view class="content-bottom-item" id="images" data-type="images" bindtap="addMedia">
+          <text class="{{(activeType === 'images') ? 'iconfont icon-picture activeType' : 'iconfont icon-picture'}}"></text>
+        </view>
+
+        <block wx:if="{{settings.raw_enable_topic_video =='1'}}">
+          <view class="add-content-bottom-item" id="video" bindtap="addMedia" data-type="video">
+            <text class="{{(activeType === 'video') ? 'iconfont icon-video activeType' : 'iconfont icon-video'}}"></text>
+          </view>
+        </block>
+
+        <block wx:if="{{settings.raw_enable_topic_audio =='1'}}">
+          <view class="add-content-bottom-item" id="audio" bindtap="addMedia" data-type="audio">
+            <text class="{{(activeType === 'audio') ? 'iconfont icon-audio activeType' : 'iconfont icon-audio'}}"></text>
+          </view>
+        </block>
+
+        <view class="add-content-bottom-item" id="link" bindtap="addMedia" data-type="link">
+          <text class="{{(activeType === 'link' ) ? 'iconfont icon-link activeType' : 'iconfont icon-link'}}"></text>
+        </view>
+
+
+        <view class="add-content-bottom-item" id="file" bindtap="addMedia" data-type="file">
+          <text class="{{(activeType === 'file') ? 'iconfont icon-file activeType' : 'iconfont icon-file' }}"></text>
+        </view>
+      </view>
+
+      <view class=" pics" wx:if="{{activeType === 'images'}}">
+
+        <view class="add-pic" wx:for="{{pics_array}}" wx:for-index="idx" wx:key="idx">
+          <image src="{{item.path}}" data-id="{{item.imagePostId}}" data-src="{{item.path}}" class="add-pic-img" mode="aspectFill" bindtouchstart="mytouchstart" bindtouchend="mytouchend" catchtap="del_pic" wx:if="{{item.path}}"></image>
+        </view>
+
+        <view class="add-pic-btn" wx:if="{{pics_array.length<9}}" bindtap="add_pic">
+          <view class="pics-tip" wx:if="{{pics_array.length>0}}"> 图片最大2M
+            <view>长按即可删除</view>
+          </view>
+        </view>
+      </view>
+      <view class="clear"></view>
+
+      <block wx:if="{{settings.raw_enable_topic_video=='1'}}">
+        <view class="pics" wx:if="{{activeType === 'video'}}">
+          <view wx:if="{{activeType === 'video' && videoSrc ==''}}">
+            <button hover-class="appointment-button-hover" class="btn-file" bindtap="add_video">点击上传视频</button>
+          </view>
+          <view class="add-pic-btn" wx:if="{{activeType === 'video' && videoSrc !='' && video_poster ==''}}" bindtap="add_video_poster">
+            <view class="pics-tip">
+              <view>添加视频封面</view>
+            </view>
+          </view>
+          <view class="add-pic-btn" wx:if="{{activeType === 'video' && videoSrc !='' && video_poster !=''}}">
+            <image src="{{video_poster}}" class="add-pic-img" mode="aspectFill" bindtouchstart="myVideotouchstart" bindtouchend="myVideotouchend" catchtap="del_video_poster"></image>
+          </view>
+
+          <view class='tags'>
+            <video id="video" wx:if="{{videoSrc !=''}}" width="100%" show-mute-btn="false" controls="true" class="video" poster="{{poster}}" src="{{videoSrc}}" bindtouchstart="vtouchstart" bindtouchend="vtouchend" catchtap="del_video"></video>
+            <view class="video-tip" wx:if="{{videoSrc !='' }}">长按删除视频</view>
+            <view class="clear"></view>
+          </view>
+        </view>
+      </block>
+
+      <block wx:if="{{settings.raw_enable_topic_audio=='1'}}">
+        <view class="pics" wx:if="{{activeType === 'audio'}}">
+          <view class="modal-mask" wx:if="{{showMask}}"></view>
+          <template is="record" data="{{audioShow:audioShow,recordStatus:recordStatus,deg:deg,showAudioTime:showAudioTime,playStatus:playStatus}}"></template>
+          <view wx:if="{{audioUrl==''}}" bindtap="add_audio">
+            <button hover-class="appointment-button-hover" class="btn-file" bindtap="add_audio" style="display:{{audioShow?'none':'block'}}">点击上传录音</button>
+          </view>
+
+          <view wx:else>
+            <view class="play-out">
+              <view class="play-audio">
+                <view bindtap="playRemoteAudio" wx:if="{{isPlaying==0}}">
+                  <image class="image" src="../../images/audio.png"></image>
+                </view>
+                <view bindtap="stopRemoteAudio" wx:else>
+                  <image class="image" src="../../images/audio.gif"></image>
+                </view>
+                <view class="audio_time">{{audioDuration}}s</view>
+                <view class="file-list-des">
+                  <text catchtap="del_audio">...</text>
+                </view>
+              </view>
+            </view>
+          </view>
+
+          <view class="clear"></view>
+        </view>
+      </block>
+
+
+      <view class="pics" wx:if="{{activeType === 'link'}}">
+        <view class='tags' wx:if="{{linkVideoSrc =='' &&  vid ==''}}">
+          <textarea name="inputLink" value="{{linkInfo}}" bindblur="onBindBlur" maxlength="200" placeholder-style="color:#959595;" placeholder="请从app上复制腾讯视频、抖音、微博等链接，粘贴到此处..." styel="width: 100%;" />
+          <view class="video-tip" data-pastelink="{{pastelink}}" wx:if="{{pastelink !=''}}" bindtap="pastelink">链接已经复制，轻触填入:{{pastelink}}</view>
+          <button hover-class="none"  class="btn-parserLink" bindtap="parserLink">解析链接</button>
+        </view>
+        <view class="add-pic" wx:for="{{link_pics_array}}" wx:for-index="idx" wx:key="idx">
+          <image src="{{item.path}}" data-src="{{item.path}}" class="add-pic-img" mode="aspectFill" bindtouchstart="linkPictouchstart" bindtouchend="linkPictouchend" catchtap="del_link_pic"></image>
+        </view>
+        <video id="linkvideo" wx:if="{{linkVideoSrc !=''}}" width="100%" height="80%" show-mute-btn="false" controls="true" class="video" poster="{{linkPoster}}" src="{{linkVideoSrc}}" bindtouchstart="vlinktouchstart" bindtouchend="vlinktouchend" catchtap="del_link_video"></video>
+        <view class="qqvideo" wx:if="{{vid!=''}}">
+          <txv-video id="qqvideo" vid="{{vid}}" playerid="playerid" width="80%" height="80%" autoplay="{{false}}" bindtouchstart="vlinktouchstart" bindtouchend="vlinktouchend" catchtap="del_link_video">
+          </txv-video>
+        </view>
+        <view class="video-tip" wx:if="{{linkVideoSrc!='' ||  vid !='' }}">长按删除视频</view>
+
+        <view class="clear"></view>
+        <view class="clear"></view>
+      </view>
+
+
+      <view class="pics" wx:if="{{activeType === 'file'}}">
+        <!-- 上传文件按钮 -->
+        <view wx:if="{{fileLink ==''}}">
+          <button hover-class="none" class="btn-file" bindtap="chooseMessageFile">点击上传文件</button>
+        </view>
+        <!-- 文件列表 -->
+        <view class="file-list">
+          <view class="file-list-item" wx:if="{{fileLink !=''}}">
+            <view>
+              <image src="../../images/{{fileType}}.png" />
+            </view>
+            <view class="file-list-right">
+              <view class="file-list-content">{{messageFile.name}}
+                <text class="file-list-des" catchtap="del_link_doc">删除</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 选择话题 -->
+    <view class='section-topic'>
+      <picker bindchange="bindPickerChange" value="{{topicIndex}}" range="{{forums}}" range-key="title">
+        <view class="picker">
+          <view>话题分类</view>
+          <view class="topic-name">{{forums[topicIndex].title}}</view>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 添加标签 -->
+    <view class="add-tags" wx:if="{{tags.length}}">
+      <text class="section-tags-title">推荐标签</text>
+      <view>
+        <checkbox-group bindchange="checkboxChange">
+          <label class="checkbox" wx:for="{{tags}}" wx:key="term_id">
+            <checkbox value="{{item.name}}" checked="{{false}}" />{{item.name}}
+          </label>
+        </checkbox-group>
+      </view>
+      <!-- <input name="tags" placeholder='请输入标签（用英文逗号分隔）' maxlength="100" placeholder-style="color:#959595"></input> -->
+    </view>
+
+    <!-- 开关：开启位置、广告 -->
+    <view class="switch-box">
+      <view class="switch-item">
+        <view>
+          开启位置
+          <view class="address-tips">
+            <view wx:if="{{location ==''}}">可获取积分奖励</view>
+            <view wx:if="{{location!='' && isOPenlocation}}">
+              <image class="icon-address" src="../../images/icon-address.png"></image>{{location}}</view>
+          </view>
+        </view>
+
+        <view wx:if="{{scopeUserLocation=='undefined' || scopeUserLocation=='true'}}">
+          <switch checked="{{isOPenlocation}}" bindchange="openUserLocation" />
+        </view>
+        <view wx:else>
+          <button hover-class="none" bindtap="openUserLocationBtn">立即开启</button>
+        </view>
+      </view>
+      <!-- <view class="switch-item">
+        <view>开启广告</view>
+        <view>
+          <switch bindchange="openAd" />
+        </view>
+      </view> -->
+      <view class="switch-item">
+        <view>开启{{settings.raw_praise_word}}
+          <view class="address-tips">
+            <view>开启{{settings.raw_praise_word}}，将有机会获得朋友给你的惊喜哟</view>
+          </view>
+        </view>
+        <view>
+          <switch checked="{{isOpenZan}}" bindchange="openZan" />
+        </view>
+      </view>
+    </view>
+  </form>
+  <z-dialog />
+</view>

@@ -1,0 +1,80 @@
+<import src="../../../../templates/member/memberIcon.wxml" />
+<import src="../../../../templates/login-popup.wxml" />
+
+
+<view class="item" wx:for="{{mediaList}}" wx:key="index">
+
+  <!-- 用户 -->
+  <view class="userbox">
+    <view class="user" data-id="{{item.post_author}}" bindtap="toAuthor">
+      <view>
+        <image src="{{item.author_avatar}}" class="portrait"></image>
+        <template wx:if="{{item.member === '01'}}" is="memberIcon" data="{{member:item.member,isIcon: true}}" />
+      </view>
+
+      <view>
+        <text class="user-name">{{item.username}}</text>
+        <template wx:if="{{item.member !== '01'}}" is="memberIcon" data="{{member:item.member,isIcon: true}}" />
+        <template wx:else is="memberIcon" data="{{member:item.member,isIcon: false}}" />
+      </view>
+    </view>
+
+    <view class="date">{{item.post_parent_date}}</view>
+  </view>
+
+
+  <!-- 视频 -->
+  <view class="video-box" wx:if="{{item.media_type === 'video'}}">
+    <video-auto-play prop-item="{{item}}" />
+  </view>
+
+  <!-- 图片 -->
+  <view class="image-box" wx:if="{{item.media_type === 'image'}}">
+    <swiper indicator-dots="{{true}}" indicator-color="rgba(255, 255, 255, .3)" indicator-active-color="rgba(255, 255, 255, .6)">
+      <block wx:for="{{item.media}}" wx:for-item="itm" wx:for-index="idx" wx:key="idx">
+        <swiper-item bindtap="previewImage" data-imglist="{{item.media}}" data-imgsrc="{{itm}}">
+          <image src="{{itm}}" mode="aspectFill" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+
+  <!-- 标题 -->
+  <view class="footer">
+    <text class="title" data-id="{{item.post_parent_id}}" data-type="{{item.post_parent_type}}" catchtap="toDetail">{{item.post_parent_title}}</text>
+
+    <view class="icon-box">
+      <view class="left">
+        <!-- 评论 -->
+        <view
+          data-id="{{item.post_parent_id}}"
+          data-type="{{item.post_parent_type}}"
+          catchtap="toDetail"
+        >
+          <text class="iconfont icon-media-comment" />
+          <text>{{item.total_comments || 0}}</text>
+        </view>
+
+        <!-- 点赞 -->
+        <view
+          catchtap="postLike"
+          data-id="{{item.post_parent_id}}"
+          data-postparenttype="{{item.post_parent_type}}"
+        >
+          <text wx:if="{{item.mylike=='0'}}" class="iconfont icon-media-like" />
+          <text wx:elif="{{item.mylike=='1'}}" class="iconfont icon-media-like-on font-color" />
+          <text>{{item.like_count || 0}}</text>
+        </view>
+      </view>
+
+      <!-- 分享 -->
+      <button open-type="share" data-id="{{item.post_parent_id}}" data-type="{{item.post_parent_type}}" data-title="{{item.post_parent_title}}" data-img="{{ item.post_full_image}}" class="btn-share">
+        <text class="iconfont icon-media-more" />
+      </button>
+    </view>
+
+  </view>
+</view>
+
+<!-- 登录弹窗 -->
+<template is="login-popup" data="{{show:isLoginPopup,userInfo:userInfo,avatar:'../../../../images/gravatar.png'}}"></template>

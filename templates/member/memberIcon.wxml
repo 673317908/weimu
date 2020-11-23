@@ -1,0 +1,40 @@
+<template name="memberIcon">
+
+  <!-- 管理员 -->
+  <block wx:if="{{member=='00'}}">
+    <text class="user-admin">管理员</text>
+  </block>
+
+  <!-- vip用户头像角标 -->
+  <block wx:if="{{member == '01' && isIcon}}">
+    <view class="user-vip">
+      <text class="iconfont icon-user-vip" />
+    </view>
+  </block>
+
+  <!-- vip用户昵称后标识 -->
+  <block wx:if="{{member=='01' && !isIcon}}">
+    <text class="user-star vip">VIP</text>
+  </block>
+
+  <!-- 星级会员 -->
+  <block wx:if="{{member=='10'}}">
+    <text class="user-star">新手</text>
+  </block>
+  <block wx:if="{{member=='11'}}">
+    <text class="user-star">一星会员</text>
+  </block>
+  <block wx:if="{{member=='12'}}">
+    <text class="user-star">二星会员</text>
+  </block>
+  <block wx:if="{{member=='13'}}">
+    <text class="user-star">三星会员</text>
+  </block>
+  <block wx:if="{{member=='14'}}">
+    <text class="user-star">四星会员</text>
+  </block>
+  <block wx:if="{{member=='15'}}">
+    <text class="user-star">五星会员</text>
+  </block>
+
+</template>

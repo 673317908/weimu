@@ -1,0 +1,45 @@
+/* pages/socialtags/socialtags.wxss */
+
+.item-container {
+  display: flex;
+  flex-direction: row;
+  padding: 24rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.word-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 24rpx;
+}
+
+.tags-img image {
+  width: 132rpx;
+  height: 132rpx;
+  border-radius: 8rpx;
+  display: block;
+}
+
+.tags-title {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.tags-introduce {
+  font-size: 28rpx;
+  font-weight: 300;
+  color: #959595;
+  word-break: break-all;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.tags-num {
+  font-size: 24rpx;
+  font-weight: 300;
+  color: #959595;
+}

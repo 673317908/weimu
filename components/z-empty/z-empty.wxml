@@ -1,0 +1,6 @@
+<!-- 空态页 -->
+
+<view class="z-empty">
+  <text class="iconfont icon-no-data" />
+  <view class="des">{{ tipText || 'ۋاقتىنچە سانلىق مەلۇمات يوق' }}</view>
+</view>

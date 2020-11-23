@@ -1,0 +1,34 @@
+ /*
+ * 维语字体及从右到左
+ font-family: NUR Tor;
+ */
+ @import "/images/uyghurfont.wxss";
+ view,text,input{
+  font-family: NUR Tor;
+  direction: rtl;
+ }
+.uyghurche{
+direction: rtl;
+text-align: justify;
+font-family: NUR Tor;
+}
+.pinglunziti{
+font-size: 8px;
+}
+.fenxiang{
+  font-size: 25rpx;
+  color: rgb(133, 133, 133);
+  width: auto;
+  margin: auto 10rpx;
+  padding: 0 10rpx;
+  margin-top: -10rpx;
+  }
+.fxrasim{
+  margin-right: 30%;
+  margin-bottom: -10rpx;
+  margin-top: 10rpx;
+}
+
+
+
+

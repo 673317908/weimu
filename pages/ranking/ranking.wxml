@@ -1,0 +1,31 @@
+<import src="../../templates/login-popup.wxml" />
+
+<view class="rank-type" wx:if="{{ranking.length}}">
+  <text wx:if="{{rankingType == 'follow'}}">粉丝</text>
+  <text wx:if="{{rankingType == 'integral'}}">积分</text>
+</view>
+<!-- 排行列表 -->
+<view class="container">
+  <block wx:key="id" wx:for="{{ranking}}">
+    <view class="rank-item">
+      <view class="rank-left">
+        <view class="rank-index">
+          <text>{{index + 1}}</text>
+        </view>
+        <navigator url="../author/author?userid={{item.userid}}&postype=post" open-type="navigate" hover-class="none">
+          <view class="rank-portrait">
+            <image src="{{item.avatarurl}}"></image>
+          </view>
+        </navigator>
+      </view>
+      <view class="rank-right">
+        <navigator url="../author/author?userid={{item.userid}}&postype=post" open-type="navigate" hover-class="none">
+          <text class="rank-username">{{item.username}}</text>
+        </navigator>
+        <view class="rank-points">{{item.count}}<text wx:if="{{rankingType == 'integral'}}">分</text></view>
+      </view>
+    </view>
+  </block>
+</view>
+
+<copyright wx:if="{{ranking.length}}" />

@@ -1,0 +1,526 @@
+<import src="../../vendor/wxParse/wxParse.wxml" />
+<import src="../../vendor/wxParse/wxParse2.wxml" />
+<import src="../../templates/loading/threepoint.wxml" />
+<import src="../../templates/detail/iconbar.wxml" />
+<import src="../../templates/detail/toolbar.wxml" />
+<import src="../../templates/detail/commentsList.wxml" />
+<import src="../../templates/login-popup.wxml" />
+<import src="../../templates/modal-view/modal-view.wxml" />
+<import src="../../templates/member/memberIcon.wxml" />
+
+
+<!-- 小程序广告 -->
+<view class="ad-box" wx:if="{{detail.detailAdId && detail.detailAd=='1' && detailTopAdsuccess && banner.enable !== 'yes' }}">
+  <ad unit-id="{{detail.detailAdId}}" binderror="adTopbinderror"></ad>
+</view>
+
+<!-- 自定义banner -->
+<view
+  wx:if="{{banner.enable == 'yes'}}"
+  class="custom-banner"
+  data-type="{{banner.type}}"
+  data-url="{{banner.url}}"
+  data-appid="{{banner.appid}}"
+  data-path="{{banner.path}}"
+  bindtap="toDetail"
+>
+  <image mode="aspectFill" src="{{banner.image}}" />
+</view>
+
+<view class="detail-container" wx:if="{{display}}">
+  <view wx:if="{{onlyVideo}}" class="video-style">
+    <!-- 正文内容 -->
+    <view class="entry-summary entry-summary-video" id="entry-summary" style="height:{{detailSummaryHeight}}">
+
+      <!-- 文章解析内容 -->
+      <template wx:if="{{wxAd.isShowExcitation && detailSummaryHeight}}" is="wxParseNocopy" data="{{wxParseData:article.nodes}}" />
+      <template wx:else is="wxParse" data="{{wxParseData:article.nodes}}" />
+
+      <!-- 阅读更多 -->
+      <view class="detail-read-more" wx:if="{{detailSummaryHeight !=''}}">
+        <view class="detail-readmore-mask">
+          <view class="detail-readmore-btn" bindtap="readMore">观看视频，阅读更多...</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 腾讯视频 -->
+    <block wx:for="{{detail.videoList}}" wx:key="id">
+      <view class="wxParse-video">
+        <txv-video vid="{{item.vid}}" playerid="{{item.videokey}}" width="100%" height="100%" autoplay="{{false}}">
+        </txv-video>
+      </view>
+    </block>
+
+    <!-- 上传视频 -->
+    <block wx:if="{{detail.videoUrl}}">
+      <view class="wxParse-video">
+        <video id="video" width="100%" show-mute-btn="false" controls="true" class="video" poster="{{detail.video_poster}}" src="{{detail.videoUrl}}"></video>
+      </view>
+    </block>
+    <view class="content-article-detail">
+      <!-- 标题 -->
+      <view style="padding: 0" class="entry-title">{{detail.title.rendered}}</view>
+      
+      <!-- 文章作者 -->
+      <view style="padding: 0;" class="entry-author" wx:if="{{detail.author_avatar}}">
+        <navigator url="../author/author?userid={{detail.author}}&postype=post" open-type="navigate" class="entry-author-info" hover-class="none">
+          <view class="entry-author-img">
+            <image src="{{detail.author_avatar}}" class="author-portrait"></image>
+            <template wx:if="{{detail.member === '01'}}" is="memberIcon" data="{{member:detail.member,isIcon: true}}" />
+          </view>
+          <view class="entry-author-name">
+            <text>{{detail.author_name}}</text>
+            <template wx:if="{{detail.member !== '01'}}" is="memberIcon" data="{{member:detail.member}}" />
+            <template wx:else is="memberIcon" data="{{member:detail.member,isIcon: false}}" />
+            <view class="date">{{detail.post_date}}</view>
+          </view>
+        </navigator>
+
+        <!-- 分类、浏览数 -->
+        <view class="entry-category-info">
+          <navigator url="../list/list?categoryIds={{detail.category_id}}" open-type="navigate" hover-class="none">
+            <view class="entry-category">{{detail.category_name}}</view>
+          </navigator>
+          <view>浏览 {{detail.pageviews}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 商品卡片 -->
+    <view wx:if="{{displaygoods}}">
+      <view class='goods-container' style="display:{{detail.raw_goods_name  && detail.raw_goods_name !=''?'block':'none'}}">
+        <navigator path="{{detail.raw_goods_path}}" app-id="{{detail.raw_googs_appid}}" open-type="navigate" hover-class="relatedNavigator" target="miniProgram">
+          <view class="goods">
+            <view class='goods-img'>
+              <image mode="aspectFill" src="{{detail.raw_goods_pic}}" />
+            </view>
+
+            <view class='goods-word'>
+
+
+              <view class='goods-name-container'>
+                <view class='goods-name'>{{detail.raw_goods_name}}</view>
+                <!-- <view class='goods-description'>{{detail.raw_goods_description}}</view> -->
+              </view>
+
+              <view class='goods-price-container'>
+                <view class='goods-price'>{{detail.raw_goods_price}}</view>
+                <view class='goods-btn'>{{detail.raw_goods_navtext}}</view>
+              </view>
+            </view>
+          </view>
+        </navigator>
+      </view>
+    </view>
+
+    <!-- 公众号 -->
+    <view class='goods-container' wx:if="{{displaymp}}">
+      <navigator url="../webview/webview?url={{detail.raw_weixinmp_url}}" open-type="navigate" hover-class="relatedNavigator">
+        <view class='wechatmp'>
+          <image src='{{detail.raw_weixinmp_poster==""?detail.post_thumbnail_image:detail.raw_weixinmp_poster}}'></image>
+          <view class='title'>{{detail.raw_weixinmp_title}}</view>
+        </view>
+      </navigator>
+    </view>
+
+    <!-- 付费、积分阅读 -->
+    <view class="payPost" wx:if="{{ detail.paypequired == '1' }}">
+      <view wx:if="{{system=='Android'}}">
+        <button class='payPost-btn' bindtap="payment">
+          <text class="paypost_title">购买或使用积分观看完整内容</text>
+        </button>
+      </view>
+      <view wx:if="{{system=='iOS'}}">
+        <block wx:if="{{detail.originalprice =='' && detail.catYearIntegral==''}}">
+          <!-- <view class="paypost_price">
+            <text>付费内容,需购买观看完整内容.</text>
+          </view> -->
+          <view class="paypost_price">
+            <text>由于相关规范，iOS功能暂不可用</text>
+          </view>
+        </block>
+        <block wx:else>
+
+          <block wx:if="{{detail.originalprice !='' && detail.originalprice !='0' && detail.catYearIntegral==''}}">
+            <button class='payPost-btn' bindtap="postIntegral">
+              <text class="paypost_title">使用积分看完整内容</text>
+            </button>
+            <view class="paypost_price" wx:if="{{detail.originalprice !='' && detail.originalprice !='0'}}">
+              <text>* 单篇使用积分{{detail.originalprice}}</text>
+            </view>
+          </block>
+          <block wx:if="{{detail.catYearIntegral !=''}}">
+            <button class='payPost-btn' bindtap="payment">
+              <text class="paypost_title">使用积分观看完整内容</text>
+            </button>
+          </block>
+        </block>
+      </view>
+    </view>
+  </view>
+  
+  <view wx:else>
+    <view class="content-article-detail">
+      <!-- 标题 -->
+      <view class="entry-title">{{detail.title.rendered}}</view>
+      <!-- 文章作者 -->
+      <view class="entry-author" wx:if="{{detail.author_avatar}}">
+        <navigator url="../author/author?userid={{detail.author}}&postype=post" open-type="navigate" class="entry-author-info" hover-class="none">
+          <view class="entry-author-img">
+            <image src="{{detail.author_avatar}}" class="author-portrait"></image>
+            <template wx:if="{{detail.member === '01'}}" is="memberIcon" data="{{member:detail.member,isIcon: true}}" />
+          </view>
+          <view class="entry-author-name">
+            <text>{{detail.author_name}}</text>
+            <template wx:if="{{detail.member !== '01'}}" is="memberIcon" data="{{member:detail.member}}" />
+            <template wx:else is="memberIcon" data="{{member:detail.member,isIcon: false}}" />
+            <view class="date">{{detail.post_date}}</view>
+          </view>
+        </navigator>
+
+        <!-- 分类、浏览数 -->
+        <view class="entry-category-info">
+          <navigator url="../list/list?categoryIds={{detail.category_id}}" open-type="navigate" hover-class="none">
+            <view class="entry-category">{{detail.category_name}}</view>
+          </navigator>
+          <view>浏览 {{detail.pageviews}}</view>
+        </view>
+      </view>
+
+      <!-- 正文内容 -->
+      <view class="entry-summary" id="entry-summary" style="height:{{detailSummaryHeight}}">
+
+        <!-- 音频 -->
+        <view class='audioPlayer' wx:if="{{displayAudio === 'block'}}">
+          <view class='player'>
+            <view class='audioControls'>
+              <view class='flex'>
+                <view class='audio_left'>
+                  <image src='{{detail.post_medium_image}}' class='audio_img' mode="aspectFill"></image>
+                  <view class='audio_btn' catchtap='playAudio'>
+                    <!-- 按钮 -->
+                    <view wx:if="{{isPlayAudio}}">
+                      <image src='../../images/pause.png' class='audio_btn_icon' />
+                    </view>
+                    <view wx:else>
+                      <image src='../../images/play.png' class='audio_btn_icon' />
+                    </view>
+                  </view>
+                </view>
+
+                <view class='audio_right'>
+                  <view class='audio_title'>{{detail.audios[0].title}}</view>
+                  <view class='audio_singer'>{{detail.audios[0].singer}}</view>
+                  <view class='slider'>
+                    <slider bindchange='sliderChange' activeColor='red' block-size="12" value='{{audioTime}}' />
+                  </view>
+                  <view class='time_box'>
+                    <view class='time'>
+                      {{showTime1}}
+                    </view>
+                    <view class='time'>
+                      {{showTime2}}
+                    </view>
+                  </view>
+                </view>
+
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <!-- 文章解析内容 -->
+        <template wx:if="{{wxAd.isShowExcitation && detailSummaryHeight}}" is="wxParseNocopy" data="{{wxParseData:article.nodes}}" />
+        <template wx:else is="wxParse" data="{{wxParseData:article.nodes}}" />
+        <!-- <parser class="highlight-view" html="{{ detail.content.rendered }}" /> -->
+
+        <!-- 阅读更多 -->
+        <view class="detail-read-more" wx:if="{{detailSummaryHeight !=''}}">
+          <view class="detail-readmore-mask">
+            <view class="detail-readmore-btn" bindtap="readMore">观看视频，阅读更多...</view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 腾讯视频 -->
+      <block wx:for="{{detail.videoList}}" wx:key="id">
+        <view class="wxParse-video">
+          <txv-video vid="{{item.vid}}" playerid="{{item.videokey}}" width="100%" height="100%" autoplay="{{false}}">
+          </txv-video>
+        </view>
+      </block>
+
+      <!-- 上传视频 -->
+      <block wx:if="{{detail.videoUrl}}">
+        <view class="wxParse-video">
+          <video id="video" width="100%" show-mute-btn="false" controls="true" class="video" poster="{{detail.video_poster}}" src="{{detail.videoUrl}}"></video>
+        </view>
+      </block>
+    </view>
+
+    <!-- 商品卡片 -->
+    <view wx:if="{{displaygoods}}">
+      <view class='goods-container' style="display:{{detail.raw_goods_name  && detail.raw_goods_name !=''?'block':'none'}}">
+        <navigator path="{{detail.raw_goods_path}}" app-id="{{detail.raw_googs_appid}}" open-type="navigate" hover-class="relatedNavigator" target="miniProgram">
+          <view class="goods">
+            <view class='goods-img'>
+              <image mode="aspectFill" src="{{detail.raw_goods_pic}}" />
+            </view>
+
+            <view class='goods-word'>
+
+
+              <view class='goods-name-container'>
+                <view class='goods-name'>{{detail.raw_goods_name}}</view>
+                <!-- <view class='goods-description'>{{detail.raw_goods_description}}</view> -->
+              </view>
+
+              <view class='goods-price-container'>
+                <view class='goods-price'>{{detail.raw_goods_price}}</view>
+                <view class='goods-btn'>{{detail.raw_goods_navtext}}</view>
+              </view>
+            </view>
+          </view>
+        </navigator>
+      </view>
+    </view>
+
+    <!-- 公众号 -->
+    <view class='goods-container' wx:if="{{displaymp}}">
+      <navigator url="../webview/webview?url={{detail.raw_weixinmp_url}}" open-type="navigate" hover-class="relatedNavigator">
+        <view class='wechatmp'>
+          <image src='{{detail.raw_weixinmp_poster==""?detail.post_thumbnail_image:detail.raw_weixinmp_poster}}'></image>
+          <view class='title'>{{detail.raw_weixinmp_title}}</view>
+        </view>
+      </navigator>
+    </view>
+
+    <!-- 付费、积分阅读 -->
+    <view class="payPost" wx:if="{{ detail.paypequired == '1' }}">
+      <view wx:if="{{system=='Android'}}">
+        <button class='payPost-btn' bindtap="payment">
+          <text class="paypost_title">购买或使用积分观看完整内容</text>
+        </button>
+      </view>
+      <view wx:if="{{system=='iOS'}}">
+        <block wx:if="{{detail.originalprice =='' && detail.catYearIntegral==''}}">
+          <!-- <view class="paypost_price">
+            <text>付费内容,需购买观看完整内容.</text>
+          </view> -->
+          <view class="paypost_price">
+            <text>由于相关规范，iOS功能暂不可用</text>
+          </view>
+        </block>
+        <block wx:else>
+
+          <block wx:if="{{detail.originalprice !='' && detail.originalprice !='0' && detail.catYearIntegral==''}}">
+            <button class='payPost-btn' bindtap="postIntegral">
+              <text class="paypost_title">使用积分看完整内容</text>
+            </button>
+            <view class="paypost_price" wx:if="{{detail.originalprice !='' && detail.originalprice !='0'}}">
+              <text>* 单篇使用积分{{detail.originalprice}}</text>
+            </view>
+          </block>
+          <block wx:if="{{detail.catYearIntegral !=''}}">
+            <button class='payPost-btn' bindtap="payment">
+              <text class="paypost_title">使用积分观看完整内容</text>
+            </button>
+          </block>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <view>
+    <!-- 点赞 -->
+    <view class="likeBox">
+      <view class="likeBtn" catchtap="postLike" id="liketop">
+        <image src="{{likeIcon}}" />
+        <text>点个赞</text>
+      </view>
+      <view class="likeNum">
+        <text>{{detail.like_count || 0}} 人已赞</text>
+      </view>
+      <!-- 点赞头像 -->
+      <view class="likeGravatar">
+        <block wx:key="id" wx:for="{{detail.avatarurls}}">
+          <view class="like-user-gravatar">
+            <image src="{{item}}" class="gravatarLikeImg"></image>
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <!-- 文章标签 -->
+    <view class='tagsname-container' wx:if="{{detail.tag_name.length>0}}">
+      <block wx:key="id" wx:for="{{detail.tag_name}}">
+        <view class="tagsname">
+          <navigator url="../list/list?tag={{item.term_id}}&tagname={{item.name}}&tagPostsCount={{item.count}}" open-type="navigate" hover-class="relatedNavigator">
+            <view class="tagsname-text">#{{item.name}}</view>
+          </navigator>
+        </view>
+      </block>
+    </view>
+
+    <!--  上一篇，下一篇  -->
+    <view wx:if="{{display}}" class="pre-next-post">
+      <view wx:if="{{detail.previous_post_id}}" class="pre-post">
+        <navigator url="../detail/detail?id={{detail.previous_post_id}}" open-type="redirect" hover-class="relatedNavigator">
+          <view class="pre-post-title">
+            <text>上一篇</text>
+            <view>{{detail.previous_post_title}}</view>
+          </view>
+          <image src="{{detail.previous_post_thumbnail_image || '../../images/uploads/default_image.jpg'}}" mode="aspectFill"></image>
+        </navigator>
+      </view>
+
+      <view wx:if="{{detail.next_post_id}}" class="next-post">
+        <navigator url="../detail/detail?id={{detail.next_post_id}}" open-type="redirect" hover-class="relatedNavigator">
+          <view class="next-post-title">
+            <text>下一篇</text>
+            <view>{{detail.next_post_title}}</view>
+          </view>
+          <image src="{{detail.next_post_thumbnail_image || '../../images/uploads/default_image.jpg'}}" mode="aspectFill"></image>
+        </navigator>
+      </view>
+
+    </view>
+
+    <!-- 小程序广告 -->
+    <view class="ad-box-video" wx:if="{{detail.videoAdId !='' && detail.detailAd=='1' && detailAdsuccess}}">
+      <ad unit-id="{{detail.videoAdId}}" ad-intervals="30" ad-type="video" binderror="adbinderror"></ad>
+    </view>
+
+
+    <!-- 猜你喜欢 -->
+    <view wx:if="{{detail.related_posts.length}}" class="relatedPost">
+      <view class="subTitle">
+        猜你喜欢
+      </view>
+      <block wx:key="id" wx:for="{{detail.related_posts}}">
+        <navigator url="../detail/detail?id={{item.ID}}" open-type="redirect" hover-class="relatedNavigator">
+          <view class="relatedText">
+            <view>{{index+1}}. {{item.post_title}}</view>
+            <image src="{{item.post_medium_image || '../../images/uploads/default_image.jpg'}}" mode="aspectFill"></image>
+          </view>
+        </navigator>
+      </block>
+    </view>
+
+    <!-- 评论列表 -->
+    <view class="comment-container" wx:if="{{commentCounts}}">
+      <view class="subTitle">
+        评论交流
+      </view>
+      <template is="commentsList" data="{{commentsList:commentsList,memberUserInfo:memberUserInfo,detail:detail}}"></template>
+      <view style='display:{{isLoading?"block":"none"}}'>
+        <template is="threepoint" />
+      </view>
+      <view hidden="{{!isLastPage}}">
+        <view class="no-more" hidden="{{!isLastPage}}">- 到底啦-</view>
+      </view>
+    </view>
+
+    <copyright padding-bottom="{{ commentCounts ? '140rpx' : '300rpx'}}" />
+
+    <view class="menuBackground" catchtap="hiddenBar" style="display:{{menuBackgroup ? 'block' : 'none'}}"></view>
+    <modal title="{{dialog.title}}" hidden="{{dialog.hidden}}" no-cancel bindconfirm="confirm">{{dialog.content}}</modal>
+    <template is="login-popup" data="{{show:isLoginPopup,userInfo:userInfo}}"></template>
+    <template is="modalView" data="{{...__modalView__}}" />
+    <poster id="poster" hide-loading="{{false}}" preload="{{false}}" config="{{posterConfig}}" bind:success="onPosterSuccess" bind:fail="onPosterFail">
+    </poster>
+    <l-dialog />
+
+    <!-- 底部固定tab -->
+    <view class="comment-fixed">
+      <!-- 订阅按钮 -->
+      <view class="btn-subscribe" catchtap="showPupop" style="display:{{ isShowSubscribe ?'block' : 'none' }}">订阅</view>
+
+      <!-- 获取积分弹窗 -->
+      <view wx:if="{{ showPopPoints }}" class="popup-read-points" style="top:{{isShowSubscribe ? -300 : -180}}rpx">
+        <text class="iconfont icon-points" />
+        <van-count-down
+          time="{{ 30000 }}"
+          format="mm:ss"
+          id="count-down"
+          bind:finish="getReadPoints"
+        />
+        阅读积分
+      </view>
+
+      <view class="comment-respond">
+        <template is="toolbar" data="{{toolbarShow:toolbarShow,commentCounts:commentCounts,likeIcon:likeIcon,enableComment:detail.enableComment}}"></template>
+
+        <template is="iconbar" data="{{iconBarShow:iconBarShow,enterpriseMinapp:detail.enterpriseMinapp,raw_praise_word:detail.raw_praise_word,zan_display:detail.zan_display}}"></template>
+      </view>
+    </view>
+
+    <!-- 评论内容输入框 -->
+    <view class="comment-textarea-box {{commentInputDialogShow ? '' : 'commentinputdialog-box-hidden'}}">
+      <form catchsubmit="formSubmitComment" report-submit="true">
+        <view>
+          <text class="comment-button touch-active" bindtap="hiddenBar">取消</text>
+          <button class="comment-button touch-active" formType="submit">发送</button>
+        </view>
+        <textarea maxlength="140" name="inputComment" cursor-spacing="80" value="{{content}}" placeholder="{{placeholder}}" focus="{{focus}}" bindblur="onBindBlur" bindfocus="onBindFocus" bindconfirm="formSubmitComment" auto-height="{{false}}" fixed="{{true}}"
+          show-confirm-bar="{{false}}" />
+        <input class="comment-input" maxlength="200" name="inputPostID" value="{{detail.id}}" style="display:none" />
+      </form>
+    </view>
+
+  </view>
+</view>
+
+<!-- 订阅弹出层 -->
+<l-popup show="{{popupShow}}" locked="{{true}}">
+  <view class='pupop-subscribe'>
+    <view class="header">
+      <text>新内容订阅</text>
+      <view class='icon-close' bindtap='onHidePupopTap'></view>
+    </view>
+    <scroll-view scroll-y="{{true}}" class="pupop-scroll-view">
+      <view class="pupop-body">
+        <view class="item" wx:for="{{columns}}" wx:key="index">
+          <text>{{item.name}}</text>
+          <view class="btn-box">
+            <text>已订阅了{{item.categorySubscribeCount}}篇</text>
+            <view data-subid="{{item.subscribemessagesid}}" data-id="{{item.id}}" catchtap="postsub">订阅</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</l-popup>
+
+<!-- 嵌入公众号弹出层 -->
+<l-popup show="{{insertWxPopupShow}}" locked="{{true}}" content-align="bottom">
+  <view class='pupop-insert'>
+    <view class="header">
+      <text>嵌入公众号</text>
+      <view class='icon-close' catchtap='closeInsertWxPopup'></view>
+    </view>
+
+    <view class="pupop-body">
+      <view class="content">
+        <view>
+          <text>AppID：</text>{{appID}}</view>
+        <view>
+          <text>小程序路径：</text>{{pagePath}}</view>
+      </view>
+      <view class="btn-copy" catchtap="copyInsertInfo" data-id="{{appID}}" data-path="{{pagePath}}">复制</view>
+    </view>
+  </view>
+</l-popup>
+
+<!-- 授权手机号 -->
+<van-dialog
+  show="{{ showPopPhone }}"
+  title="提示"
+  message="发布内容需要授权绑定手机号"
+  showCancelButton="{{ true }}"
+  confirmButtonText="确认绑定"
+  confirm-button-color="#2f80ed"
+  confirm-button-open-type="getPhoneNumber"
+  bind:getphonenumber="getPhoneNumber"
+/>

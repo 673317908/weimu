@@ -1,0 +1,18 @@
+.full-video {
+  width: 100vw;
+  height: 100vh;
+}
+
+.icon-close {
+  position: fixed;
+  top: 60rpx;
+  left: 30rpx;
+  color: #FFF;
+  font-size: 48rpx;
+  z-index: 999;
+}
+
+.full-video video {
+  width: 100vw;
+  height: 100vh;
+}

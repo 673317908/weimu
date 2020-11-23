@@ -1,0 +1,4 @@
+.order-item {
+  background: #FFF;
+  margin-top: 20rpx;
+}

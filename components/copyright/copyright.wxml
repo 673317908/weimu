@@ -1,0 +1,6 @@
+<view
+  class="copyright"
+  style="padding-bottom: {{ paddingBottom }}"
+>
+  {{ copyright }}
+</view>

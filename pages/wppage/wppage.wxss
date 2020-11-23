@@ -1,0 +1,256 @@
+/*
+ * 
+ * 微慕小程序
+ * author: jianbo
+ * organization:  微慕 www.minapper.com 
+ * 技术支持微信号：Jianbo
+ * Copyright (c) 2018 https://www.minapper.com All rights reserved.
+ */
+
+/*
+ * 
+ * 微慕小程序
+ * author: jianbo
+ * organization:  微慕 www.minapper.com 
+ * 技术支持微信号：Jianbo
+ * Copyright (c) 2018 https://www.minapper.com All rights reserved.
+ */
+
+
+ .wrapper{
+  margin: 40rpx;
+}
+
+.excerpt{
+  color:#626262; 
+  font-size:32rpx;
+  line-height:64rpx;
+  text-align: left;
+}
+
+.h2{
+  clear:both;
+  border-width:1px 0;
+  color:#666;
+  text-align: center; 
+  font-size:28rpx;
+  line-height:64rpx;
+  font-weight: bold;
+}
+
+.clearfix{
+  margin:5px 15px;
+  display:inline-block;
+}
+
+.wxParse-a{
+    color: #21759b
+}
+
+.wxParse-p{
+    margin-top: 0.8em;
+    margin-bottom: 0.8em
+}
+
+.wxParse-p image{
+    margin: 0 auto;
+    width: 100% !important;
+    box-shadow: 2rpx 4rpx 16rpx #666
+}
+
+
+.WxEmojiView {
+  /* padding: 0 60rpx; */
+  text-align: justify;
+}
+
+.wxParse-inline {
+  /* display: inline-block; */
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+.nexcontactbd {
+  width: 100%;
+  margin-top: 140px;
+  height: 150px;
+  background: url(http://47.100.112.22/demo/qiye/template/nex_mqiye_180109/neoconex/index/ft_bg.jpg) center no-repeat;
+  position: relative;
+  padding: 40px 15px;
+}
+
+.nexcontgh {
+  width: 690rpx;
+  position: absolute;
+  left: 30rpx;
+  top: 0;
+}
+
+.nexconpic {
+  width: 300rpx;
+  float: left;
+  position: relative;
+  top: -36px;
+}
+
+.bottom-contact-container {
+  padding-left: 50%;
+  margin-top: 20px;
+}
+
+.bottom-contact-item {
+  height: 30px;
+  line-height: 30px;
+  overflow: hidden;
+  font-size: 14px;
+  color: #fff;
+  font-weight: 400;
+  margin-bottom: 5px;
+}
+
+.nexindex_name {
+  -webkit-line-clamp: 1;
+  height: 30px;
+  line-height: 30px;
+  overflow: hidden;
+  font-size: 16px;
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.li1 {
+  height: 25px;
+  line-height: 25px;
+  font-size: 12px;
+  color: #fff;
+  padding-left: 22px;
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+}
+
+.nexindex_adds {
+  background: url(http://47.100.112.22/demo/qiye/template/nex_mqiye_180109/neoconex/index/add.png) left center no-repeat;
+  background-size: 18px;
+}
+
+.nexindex_tel {
+  background: url(http://47.100.112.22/demo/qiye/template/nex_mqiye_180109/neoconex/index/tel.png) left center no-repeat;
+  background-size: 18px;
+}
+
+.nexindex_email {
+  background: url(http://47.100.112.22/demo/qiye/template/nex_mqiye_180109/neoconex/index/email.png) left center no-repeat;
+  background-size: 18px;
+}
+
+.bottom-contact-title {
+  font-size: 28rpx;
+  color: #999;
+}
+
+.more-cases-wrap {
+ 
+  width: 100%;
+  height: 80rpx;
+
+}
+
+.more-cases-wrap .more-cases {
+  display: block;
+  margin: 0 auto;
+  width: 170rpx;
+  height: 60rpx;
+  border: 1px solid #39363c;
+  border-radius:30rpx;
+  text-align: center;
+  line-height: 60rpx;
+  font-size: 24rpx;
+  /*background-color: #39363c;*/
+  color: #39363c;
+  margin-top: 10rpx;
+}.top-contact-container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  border-top: 20rpx solid #f5f7f7;
+  border-bottom: 20rpx solid #f5f7f7;
+  padding: 24rpx;
+}
+
+.name-container {
+  width: 400rpx;
+  margin-left: 80rpx;
+  font-size: 30rpx;
+  color: #4d4b4b;
+  height: 60rpx;
+}
+
+.address-container {
+  position: absolute;
+  top: 80rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 400rpx;
+  font-size: 28rpx;
+  color: #999;
+  line-height: 60rpx;
+}
+
+.address-container image {
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 16rpx;
+}
+
+.contact-container {
+  position: relative;
+  display: flex;
+  width: 345rpx;
+  flex-direction: row;
+  font-size: 28rpx;
+  color: #4c4c4c;
+}
+
+.contact-container image {
+  width: 65rpx;
+  height: 65rpx;
+  margin: 20rpx 0;
+}
+
+.contact-item {
+  display: flex;
+  flex-direction: column;
+  margin: 0 25rpx;
+}
+
+.share-button {
+  opacity: 0;
+  position: absolute;
+  width: 65rpx;
+  height: 65rpx;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+}
+
+ .content-article-detail {
+    /* border-bottom: 1px solid #eee; */
+    margin: 40rpx 32rpx;
+  }
+  .entry-title {
+    font-size: 48rpx;
+    line-height: 1.6;
+    font-weight: bold;
+    outline: none;
+    color: #3a4040;
+    margin-bottom: 24rpx;
+  }
+  .entry-summary {
+    font-size: 32rpx;
+    line-height: 64rpx;
+    letter-spacing: 1px;
+  }  

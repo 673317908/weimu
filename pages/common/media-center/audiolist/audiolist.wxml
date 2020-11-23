@@ -1,0 +1,10 @@
+<view class="container">
+  <view class="audio-item" wx:for="{{audioList}}" wx:key="index">
+    <view class="audio-name">{{item.post_parent_title}}</view>
+    <!-- 暂停按钮 -->
+    <view class="btn-audio-play" data-id="{{item.id}}" data-audioUrl="{{item.guid}}" bindtap="playRemoteAudio" wx:if="{{!item.isPlay}}"></view>
+    <!-- 播放按钮 -->
+    <view class="btn-audio-stop" data-id="{{item.id}}" bindtap="stopRemoteAudio" wx:if="{{item.isPlay}}">
+    </view>
+  </view>
+</view>

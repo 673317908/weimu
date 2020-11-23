@@ -1,0 +1,92 @@
+/*
+ * 
+ * 微慕小程序
+ * author: jianbo
+ * organization:  微慕 www.minapper.com 
+ * 技术支持微信号：Jianbo
+ * Copyright (c) 2018 https://www.minapper.com All rights reserved.
+ */
+
+/* 我的积分 */
+.mypoints {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 240rpx;
+}
+
+.mypoints .mypoints-num {
+  font-size: 30px;
+  font-weight: 600;
+  color: #2f80ed;
+}
+
+.mypoints-title {
+  font-size: 12px;
+  font-weight: 400;
+  color: #333;
+}
+
+.mypoints-title > .text {
+  font-size: 24rpx;
+  font-weight: 400;
+  color: #333;
+}
+
+.mypoints-title .icon-question {
+  display: inline-block;
+  height:24rpx;
+  width: 24rpx;
+  border-radius: 50%;
+  border: 1px solid #999;
+  text-align: center;
+  line-height: 1;
+  margin-left: 10rpx;
+}
+
+/* 列表样式 */
+
+.listBox {
+  padding: 0 40rpx;
+  background: #fff;
+  border-top: 16rpx solid #f5f7f7;
+}
+
+.listItem {
+  /* height: 120rpx; */
+  padding: 40rpx 0;
+  font-size: 14px;
+  color: #333;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.listBox>view:not(:last-child) {
+  border-bottom: 1rpx solid #eee;
+}
+
+.left {
+  width: 520rpx;
+  text-align: justify;
+}
+
+.time {
+  font-size: 13px;
+}
+
+.right {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.add-points {
+  color: #fe645a;
+}
+
+.deduct-points {
+  color: #666;
+}

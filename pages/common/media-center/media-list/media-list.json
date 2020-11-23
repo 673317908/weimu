@@ -1,0 +1,6 @@
+{
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "video-auto-play": "../../../../components/video-auto-play/video-auto-play"
+  }
+}

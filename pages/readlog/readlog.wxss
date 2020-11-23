@@ -1,0 +1,99 @@
+
+page {
+  background: #f5f7f7;
+}
+
+/* 我的评论 */
+.comment-item {
+  padding: 40rpx;
+  background: #fff;
+}
+
+.mycomment > .comment-item:not(:last-child) {
+  margin-bottom: 16rpx;
+}
+
+.comment-item > .user {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  outline: none;
+  color: #959595;
+  margin: 0 0 24rpx;
+}
+
+.user > image {
+  border-radius: 50%;
+  height: 48rpx;
+  width: 48rpx;
+}
+
+.user-right {
+  margin-left: 16rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+}
+
+.user-right > text:first-child {
+  font-size: 15px;
+  color: #333;
+  display: inline-block;
+  width: 280rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-right > text:last-child {
+  font-size: 13px;
+  color: #999;
+}
+
+.content {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+.title {
+  padding: 20rpx;
+  background-color: #f9f9f9;
+  margin-top: 10rpx;
+}
+
+.title > text {
+  font-size: 14px;
+  color: #999;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+/* 订阅消息 */
+.btn-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40rpx;
+}
+
+.btn-box .tips {
+  font-size: 14px;
+  color: #999;
+}
+
+.btn-box .btn {
+  font-size: 14px;
+  color: #666;
+  height: 60rpx;
+  line-height: 60rpx;
+  padding: 0 40rpx;
+  border-radius: 30rpx;
+  border: 1px solid #eee;
+  /* background: #2f80ed; */
+}

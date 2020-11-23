@@ -1,0 +1,39 @@
+<!--
+/*
+ * 
+ * 微慕小程序
+ * author: jianbo
+ * organization:  微慕 www.minapper.com 
+ * 技术支持微信号：Jianbo
+ * Copyright (c) 2018 https://www.minapper.com All rights reserved.
+ *
+ */-->
+<import src="../../templates/loading/threepoint.wxml" />
+
+<block wx:key="id" wx:for="{{tagsList}}">
+  <view class='item-container' bindtap="redictTaglist" id="{{item.id}}" data-name="{{item.name}}" data-count="{{item.count}}">
+    <view class='tags-img'>
+      <image mode="aspectFill" src='{{item.tag_thumbnail_image}}'></image>
+    </view>
+    <view class='word-container'>
+      <view class='tags-title'>
+        <text>#{{item.name}}</text>
+      </view>
+      <view class='tags-introduce'>
+        <text>{{item.description}}</text>
+      </view>
+      <view class='tags-num'>
+        <text>{{item.count}}篇文章</text>
+      </view>
+    </view>
+  </view>
+</block>
+
+
+
+<view style='display:{{isLoading?"block":"none"}}'>
+  <template is="threepoint" />
+</view>
+<view class="no-more" style="display:{{isLastPage?'block':'none'}}">- 到底啦 -</view>
+
+<copyright />

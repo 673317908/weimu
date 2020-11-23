@@ -1,0 +1,393 @@
+/* @import "../../templates/category/category.wxss"; */
+@import "./style/weui.wxss";
+@import "./style/iconfont.wxss";
+
+
+.view-box .form-top,
+.view-box .form-bottom {
+  padding: 0 30rpx;
+}
+
+.view-box .form-bottom {
+  border-top: 16rpx solid #f5f7f7;
+}
+
+/* 文章标题 */
+.view-box .form-top .title {
+  padding: 0 0 16rpx;
+  border-bottom: 1px solid #eee;
+}
+
+.view-box .form-top .title > input {
+  font-size: 24px;
+  font-weight: 500;
+  color: #666;
+  line-height: 1;
+  width: 100%;
+}
+
+/* 富文本编辑器 */
+.editor-box {
+  width: 100%;
+}
+
+.editor {
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  min-height: 400rpx;
+  font-size: 16px;
+  line-height: 1.5;
+  overflow: auto;
+  padding: 10px 0;
+}
+
+.ql-editor.ql-blank:before {
+  color: #AAA;
+  font-style: normal;
+}
+
+.ql-active {
+  color: #2f80ed;
+}
+
+.iconfont {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.toolbar {
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 40rpx;
+}
+
+.toolbar-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 32px;
+}
+
+
+/* 分类 */
+.category {
+  font-size: 15px;
+  color: #333;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40rpx 0;
+}
+
+.category > view {
+  flex: 1;
+}
+
+.category > view:nth-child(2) {
+  text-align: center;
+}
+
+.category .cate {
+  position: relative;
+}
+
+.category .cate::after {
+  content: "";
+  display: inline-block;
+  border: solid #c4c4c4;
+  border-width: 0 2px 2px 0;
+  padding: 3px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) rotate(-45deg);
+  -webkit-transform: translateY(-50%) rotate(-45deg);
+}
+
+.category .btn-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 提交按钮 */
+.category .btn-submit,
+.category .btn-cancel {
+  background: transparent;
+  font-size: 15px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.category .btn-submit {
+  height: 80rpx;
+  width: 160rpx;
+  background: #2f80ed; 
+  border-radius: 40rpx;
+  line-height: 80rpx;
+  margin: 0;
+  margin-left: auto;
+}
+
+.category .btn-cancel {
+  color: #666;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.category .btn-submit::after,
+.category .btn-cancel::after {
+  border: none;
+}
+
+/* 摘要 */
+.excerpt {
+  padding: 40rpx 0 20rpx;
+  border-bottom: 1px solid #eee;
+}
+
+.excerpt textarea {
+  width: 100%;
+  height: 140rpx;
+  font-size: 15px;
+  color: #666;
+  line-height: 1;
+  display: inline-block;
+}
+
+/* 标签 */
+.tags {
+  display: flex;
+  align-items: center;
+  height: 120rpx;
+  line-height: 120rpx;
+  font-size: 15px;
+}
+
+.tags .input {
+  flex: 1;
+  height: 100%;
+  margin-left: 16rpx;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.tags input {
+  width: 100%;
+}
+
+/* 付费阅读 */
+.paid-read {
+  margin-top: 16rpx;
+  font-size: 15px;
+  color: #666;
+}
+
+.paid-read-switch {
+  height: 120rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.paid-read-input {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40rpx;
+}
+
+.paid-input-item {
+  width: 36%;
+  display: flex;
+  align-items: center;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 15px;
+}
+
+.paid-input-item .input {
+  flex: 1;
+  height: 100%;
+  margin-left: 16rpx;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* 控制折叠按钮 */
+.btn-more {
+  font-size: 14px;
+  color: #999;
+  text-align: center;
+  padding: 40rpx 0 400rpx;
+}
+
+.btn-more > .down,
+.btn-more > .up {
+  position: relative;
+} 
+
+.btn-more > .down::after {
+  content: "";
+  display: inline-block;
+  border: solid #c4c4c4;
+  border-width: 0 0 2px 2px;
+  padding: 3px;
+  position: absolute;
+  right: -24rpx;
+  top: 50%;
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+.btn-more > .up::after {
+  content: "";
+  display: inline-block;
+  border: solid #c4c4c4;
+  border-width: 2px 2px 0 0;
+  padding: 3px;
+  position: absolute;
+  right: -24rpx;
+  top: 50%;
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+/* 选择分类弹窗 */
+.category-popup {
+  background: #fff;
+  width: 420rpx;
+  height: 100%;
+  overflow: auto;
+}
+
+.category-popup-header {
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+  text-align: center;
+  margin: 40rpx 0;
+}
+
+.category-popup-content {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.content-item > .item-one,
+.content-item > .item-two {
+  height: 88rpx !important;
+  line-height: 88rpx !important;
+  padding: 0 40rpx;
+  font-size: 15px;
+  color: #333;
+}
+
+.content-item > .item-one {
+  font-weight: 500;
+  background: #f5f7f7;
+}
+
+.content-item > .item-two:not(:last-child) {
+  border-bottom: 1px solid #eee;
+}
+
+
+/* 视频相关 */
+.video video {
+  width: 100%;
+}
+
+.video-label {
+  width: 100%;
+  margin: 20rpx 0;
+  position: relative;
+  overflow: hidden;
+  color: #333;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.video-label::after {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  content: '';
+  border-bottom: 1px dashed #ddd;
+  margin-left: 20rpx;
+}
+
+.btn-upload-video {
+  background: #f5f7f7;
+  border-radius: 50rpx;
+  width: 240rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #4c4c4c;
+  margin: 40rpx 0;
+}
+
+.video-tip {
+  font-size: 12px;
+  line-height: 2;
+  color: #999;
+  text-align: center;
+}
+
+.btn-video-pic {
+  font-size: 40rpx;
+  border: 1px dashed #e0e0e0;
+  border-radius: 6rpx;
+  width: 211rpx;
+  height: 211rpx;
+  margin: 20rpx auto 0;
+  color: #aaa;
+  position: relative;
+}
+
+.btn-video-pic::before {
+  content: "";
+  position: absolute;
+  top: 75rpx;
+  left: 104rpx;
+  height: 60rpx;
+  width: 4rpx;
+  border-radius: 2rpx;
+  background: #aaa;
+}
+
+.btn-video-pic::after {
+  content: "";
+  position: absolute;
+  top: 104rpx;
+  left: 75rpx;
+  height: 4rpx;
+  width: 60rpx;
+  border-radius: 2rpx;
+  background: #aaa;
+}
+
+.video-pic {
+  border-radius: 6rpx;
+  width: 211rpx;
+  height: 211rpx;
+  margin: 20rpx auto 0;
+  overflow: hidden;
+}
+
+.video-pic image {
+  width: 211rpx;
+  height: 211rpx;
+}
+
+.video-resolve-tip {
+  font-size: 12px;
+  color: #999;
+}

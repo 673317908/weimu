@@ -1,0 +1,70 @@
+
+
+.audio-item {
+  padding: 30rpx 40rpx;
+  border-bottom: 1rpx solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.audio-name {
+  width: 520rpx;
+  text-align: justify;
+  font-size: 15px;
+  color: #333;
+}
+
+/* 音波动画 */
+
+.btn-audio-play {
+  height: 80rpx;
+  width: 80rpx;
+  border-radius: 50%;
+  background: #eee;
+  position: relative;
+}
+
+.btn-audio-play::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 16rpx solid #fff;
+  border-top: 16rpx solid transparent;
+  border-right: 16rpx solid transparent;
+  border-bottom: 16rpx solid transparent;
+  position: absolute;
+  top: 50%;
+  left: 35rpx;
+  transform: translateY(-50%);
+}
+
+.btn-audio-stop {
+  height: 80rpx;
+  width: 80rpx;
+  border-radius: 50%;
+  background: #eee;
+  position: relative;
+}
+
+.btn-audio-stop::before {
+  content: "";
+  width: 8rpx;
+  height: 32rpx;
+  background: #fff;
+  position: absolute;
+  top: 50%;
+  left: 28rpx;
+  transform: translateY(-50%);
+}
+
+.btn-audio-stop::after {
+  content: "";
+  width: 8rpx;
+  height: 32rpx;
+  background: #fff;
+  position: absolute;
+  top: 50%;
+  right: 28rpx;
+  transform: translateY(-50%);
+}

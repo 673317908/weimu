@@ -1,0 +1,95 @@
+/* 上传图片 */
+
+.btn-add-pic {
+  border: 1px dashed #e0e0e0;
+  border-radius: 6rpx;
+  width: 400rpx;
+  height: 400rpx;
+  color: #aaa;
+  position: relative;
+  margin: 100rpx auto 40rpx;
+}
+
+.btn-add-pic::before {
+  content: "";
+  position: absolute;
+  top: 160rpx;
+  left: 198rpx;
+  height: 80rpx;
+  width: 4rpx;
+  border-radius: 2rpx;
+  background: #aaa;
+}
+
+.btn-add-pic::after {
+  content: "";
+  position: absolute;
+  top: 198rpx;
+  left: 160rpx;
+  height: 4rpx;
+  width: 80rpx;
+  border-radius: 2rpx;
+  background: #aaa;
+}
+
+/* 按钮：更换和确认上传 */
+
+.btn-box {
+  /* display: flex; */
+  width: 400rpx;
+  margin: 0 auto;
+}
+
+.btn-box button {
+  width: 220rpx;
+  font-size: 14px;
+  height: 70rpx;
+  line-height: 68rpx;
+  border-radius: 40rpx;
+  border: 1px solid #2f80ed;
+  background: none;
+}
+
+.btn-box button:nth-child(1) {
+  color: #2f80ed;
+}
+
+.btn-box button:nth-child(2) {
+  color: #fe645a;
+  border: 1px solid #fe645a;
+}
+
+.btn-box button::after {
+  border: none;
+}
+
+/* 上传的图片 */
+.zanimage {
+  width: 400rpx;
+  height: 400rpx;
+  display: block;
+  margin: 100rpx auto 40rpx;
+}
+
+/* 说明提示 */
+
+.tips-box {
+  width: 540rpx;
+  margin: 200rpx auto 0;
+}
+
+.tips-box>view:nth-child(1) {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: #666;
+  margin-bottom: 60rpx;
+}
+
+.tips-box>view:nth-child(2), .tips-box>view:nth-child(3) {
+  font-size: 15px;
+  text-align: justify;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 24rpx;
+}

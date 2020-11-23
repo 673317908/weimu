@@ -1,0 +1,86 @@
+
+.readlog-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #2f80ed;
+  height: 280rpx;
+  width: 100%;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 0 0 24rpx;
+  border-radius: 50%;
+  border-width: 4px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dec {
+  margin-top: 50rpx;
+}
+
+.dec-text {
+  font-size: 25rpx;
+  color: #757575;
+}
+
+.userinfo-nickname {
+  color: #fff;
+  font-size: 32rpx;
+}
+
+.log-list {
+  display: flex;
+  flex-direction: column;
+  padding: 32rpx 0;
+}
+
+.log-items {
+  margin-top: 20rpx;
+}
+
+.log-text {
+  margin: 32rpx 0;
+  font-size: 30rpx;
+  color: #333;
+  text-align: left;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.top-bar {
+  height: 100rpx;
+  background: #fff;
+  width: 100%;
+  /*position: fixed;*/
+  top: 0;
+  z-index: 1;
+}
+
+.top-bar-item {
+  display: inline-block;
+  background: #fff;
+  width: 16%;
+  color: #9babba;
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 30rpx;
+}
+
+.top-bar-item-Selected {
+  border-bottom: 1px solid #495056;
+  color: #495056;
+}

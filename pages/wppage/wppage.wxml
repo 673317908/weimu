@@ -1,0 +1,51 @@
+<import src="../../vendor/wxParse/wxParse.wxml" />
+
+<view class="detail-container">
+
+  <view class="content-article-detail">
+    <view class="entry-title">
+      {{detail.title.rendered}}
+    </view>
+
+    <view class="entry-summary">
+      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+    </view>
+
+  </view>
+  <view class="nexcontactbd" wx:if="{{detail.raw_qyname}}">
+    <view class="nexcontgh">
+      <!--联系我们调用插口-->
+      <view class="nexconpic" bindtap='openMap'>
+        <map id="myMap" style="width: 100%; height: 420rpx;" latitude="{{detail.raw_latitude}}" longitude="{{detail.raw_longitude}}" markers="{{markers}}" show-location></map>
+      </view>
+      <view class='bottom-contact-container'>
+
+
+        <text class='nexindex_name '>{{detail.raw_qyname}}</text>
+
+        <view class="nexindex_adds li1" bindtap='openMap'>地址：{{detail.raw_address}}</view>
+        <view class="nexindex_tel li1" bindtap='phoneCall'>电话：{{detail.raw_tel}}</view>
+        <view class="nexindex_email li1">邮箱：{{detail.raw_email}}</view>
+
+        <view class='contact-container'>
+          <view class='contact-item'>
+            <image src='../../images/icon-wechat.png'></image>
+
+            <button class="share-button" open-type="contact">
+            </button>
+          </view>
+          <view class='contact-item' bindtap='phoneCall'>
+            <image src='../../images/icon-phone.png'></image>
+
+          </view>
+          <view class='contact-item' bindtap='openMap'>
+            <image src='../../images/Map.png'></image>
+
+          </view>
+        </view>
+
+      </view>
+      <view class="clear"></view>
+    </view>
+  </view>
+</view>

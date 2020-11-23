@@ -1,0 +1,186 @@
+/*
+ * 
+ * 微慕小程序
+ * author: jianbo
+ * organization:  微慕 www.minapper.com 
+ * 技术支持微信号：Jianbo
+ * Copyright (c) 2018 https://www.minapper.com All rights reserved.
+ */
+
+page {
+  display: block;
+  min-height: 100%;
+  background-color: #f5f7f7;
+}
+
+.container {
+  width: 100%;
+}
+
+.payment-container {
+  padding: 0 40rpx;
+  background-color: #fff;
+  padding-bottom: 80rpx;
+}
+
+.products-items {
+  padding: 32rpx 0 80rpx;
+  display: flex;
+  /* flex-wrap: wrap; */
+  justify-content: space-between;
+}
+
+.products-items .product-item {
+  /* position: relative; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 160rpx;
+  width: 333rpx;
+  padding: 8rpx 16rpx;
+  color: #959595;
+  border: 1rpx #c4c4c4 solid;
+  border-radius: 6rpx;
+  font-size: 30rpx;
+}
+
+.products-items .item-selected {
+  color: #118fff;
+  font-weight: 600;
+  border: 4rpx #118fff solid;
+}
+
+.subheading {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* .products-items .items1 {
+  width: 630rpx;
+}
+
+.products-items .items2 {
+  width: 300rpx;
+} */
+
+.page-name {
+  font-size: 28rpx;
+  /* width: 600rpx; */
+  line-height: 42rpx;
+  text-align: left;
+  color: #959595;
+  margin-top: 60rpx;
+  font-weight: 200;
+}
+
+.page-name-detail {
+  /* border-bottom: 1rpx solid #eee; */
+  padding-bottom: 32rpx;
+}
+
+.page-name-detail .name {
+  display: inline-block;
+  font-size: 30rpx;
+  font-weight: 500;
+  /* width: 600rpx; */
+  line-height: 48rpx;
+  text-align: left;
+}
+
+.page-name-detail .meta {
+  font-size: 24rpx;
+  width: 600rpx;
+  line-height: 32rpx;
+  text-align: left;
+}
+
+.order-items {
+  /* margin: 20px 60rpx; */
+  margin-bottom: 32rpx;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-item:last-of-type {
+  margin-bottom: 0;
+}
+
+.order-item .action, .order-item .name, .order-item .price {
+  display: inline-block;
+  font-size: 30rpx;
+  font-weight: 500;
+}
+
+.order-item .name {
+  flex-grow: 1;
+  max-height: 40px;
+}
+
+.order-item .action {
+  font-weight: 300;
+  border-bottom: 1px dotted #000;
+}
+
+.order-item .caption {
+  padding: 5px 5px 5px 0;
+}
+
+.order-item .preview {
+  max-height: 75px;
+  overflow: hidden;
+}
+
+.pay-ctn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 0 6px rgba(30, 20, 20, 0.1);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.pay-ctn-order-item {
+  margin-left: 40rpx;
+}
+
+.pay-ctn .order-item {
+  flex-grow: 1;
+  padding: 0 10px 0 60rpx;
+}
+
+.pay-ctn .button {
+  height: 100rpx;
+  width: 280rpx;
+  line-height: 100rpx;
+  color: #fff;
+  font-size: 32rpx;
+  background-color: #118fff;
+  border-radius: 0;
+}
+
+.pay-ctn .button::after {
+  display: none;
+}
+
+/* 使用积分开关 */
+.switch-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100rpx;
+  background: #fff;
+  padding: 0 40rpx;
+  margin-top: 16rpx;
+}

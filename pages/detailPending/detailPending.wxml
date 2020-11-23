@@ -1,0 +1,25 @@
+<!--
+/*
+ * 
+ * 微慕小程序
+ * author: jianbo
+ * organization:  微慕 www.minapper.com 
+ * 技术支持微信号：Jianbo
+ * Copyright (c) 2018 https://www.minapper.com All rights reserved.
+ *
+ */-->
+<import src="../../vendor/wxParse/wxParse.wxml"/>
+<import src="../../templates/header.wxml"/> 
+<view class="detail-container">
+  
+    <view class="content-article-detail">
+        <view class="entry-title">
+            {{detail.title.rendered}}
+        </view>
+        
+        <view class="entry-summary">
+            <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+        </view>
+        
+    </view>   
+</view>

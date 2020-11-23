@@ -1,0 +1,65 @@
+<!--
+/*
+ * 
+ * 微慕小程序
+ * author: jianbo
+ * organization:  微慕 www.minapper.com 
+ * 技术支持微信号：Jianbo
+ * Copyright (c) 2018 https://www.minapper.com All rights reserved.
+ *
+ */-->
+
+<template name="login">
+  <!-- <block wx:if="{{!userInfo.isLogin}}">
+    <view class="login-inner">
+      <button class="login-btn" open-type="getUserInfo" bindgetuserinfo="agreeGetUser">
+        <image class="avatar" src="{{avatar?avatar:'../../images/gravatar.png'}}"></image>
+        <view class="username">
+          <text>点击授权登录</text>
+        </view>
+      </button>
+      <view class="tips">
+        <text>如果无法登录，请点击我的页面"清除缓存"后再次登录</text>
+      </view>
+      <view class="login-btn-box">
+        <button class="login-btn" bindtap="closeLoginPopup">取消</button>
+        <button class="login-btn" open-type="getUserInfo" bindgetuserinfo="agreeGetUser">确定</button>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="login-inner">
+      <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+      <view class="username">
+        <text>{{userInfo.nickName}}</text>
+      </view>
+    </view>
+  </block> -->
+
+
+  <!-- 内容 -->
+  <view class="login-info">
+    <view class="login-phone">
+      <text class="iconfont icon-login-phone" />
+    </view>
+    <view class="login-title">- 授权体验更多功能 -</view>
+    <view class="login-tip">
+      <text class="iconfont icon-login-like" />评论点赞，参与文章动态互动</view>
+    <view class="login-tip">
+      <text class="iconfont icon-login-social" />发布动态，吸引粉丝关注好友</view>
+    <view class="login-tip">
+      <text class="iconfont icon-login-buy" />购买商品，签到获取积分奖励</view>
+    <view class="login-tip">...</view>
+
+
+    <!-- 按钮 -->
+    <view class="login-footer">
+      <button class="login-btn-ok" open-type="getUserInfo" bindgetuserinfo="agreeGetUser">立即登录</button>
+      <view class="login-btn-box">
+        <view class="login-btn-cancel" catchtap="closeLoginPopup">暂不登录</view>
+        <view class="login-btn-cancel" catchtap="logoutTap">清除缓存</view>
+      </view>
+    
+    </view>
+  </view>
+</template>

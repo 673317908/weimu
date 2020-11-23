@@ -1,0 +1,43 @@
+<!--
+/*
+ * 
+ * 微慕小程序
+ * author: jianbo
+ * organization:  微慕 www.minapper.com 
+ * 技术支持微信号：Jianbo
+ * Copyright (c) 2018 https://www.minapper.com All rights reserved.
+ *
+ */-->
+<import src="../../templates/login-popup.wxml" />
+<!-- <image class='lybanner' src='../../images/liuyanbanner.png'></image> -->
+<view class='container'>
+  <form bindsubmit="bindFormSubmit" report-submit="true" catchsubmit="publishArticle">
+    <block wx:key="id" wx:for="{{fields}}">
+      <view class='profile-item'>
+        <view class='profile-title'>
+          <text>{{item.fieldname}}</text>
+        </view>
+        <view class='profile-content'>
+          <input placeholder="请输入{{item.fieldname}}" name="{{item.fieldkey}}" id="{{item.fieldkey}}" maxlength="40" type="{{item.datatype}}">
+          </input>
+        </view>
+      </view>
+    </block>
+
+    <view class='container-title'>
+      <text>留言</text>
+    </view>
+    <view class="messeges">
+      <textarea auto-height="{{true}}" placeholder="请输入您的留言内容（200字以内）" placeholder-style="color:#959595;" maxlength="2000" name="content" id="message"></textarea>
+    </view>
+
+    <view class='button-container'>
+      <button disabled="{{pubDisabled}}" formType="submit">立即提交</button>
+    </view>
+
+
+  </form>
+
+  <template is="login-popup" data="{{show:isLoginPopup,userInfo:userInfo}}"></template>
+
+</view>

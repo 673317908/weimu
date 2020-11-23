@@ -1,0 +1,34 @@
+<!-- 热销商品 -->
+<view class="selected-nav">
+  <view class='common-subtitle' style="padding: {{ padding }}">
+    <view class='common-subtitle-left'>{{ title }}</view>
+    <view class='common-subtitle-right'>滑动查看</view>
+  </view>
+
+  <scroll-view scroll-x>
+    <view class="selected-nav-list" style="padding: {{ padding }}">
+        <view
+          wx:for="{{goodsList}}"
+          wx:key="id"
+          class="selected-nav-item"
+          data-type="{{item.type}}"
+          data-url="{{item.url}}"
+          data-appid="{{item.appid}}"
+          data-path="{{item.path}}"
+          bindtap="toDetail"
+        >
+          <view>
+            <image mode="aspectFill" src="{{item.image}}" />
+          </view>
+          <view class="info">
+            <view class="title">{{item.title}}</view>
+            <view class="price">
+              <text class="unit">￥</text>
+              <text class="sale-price">{{item.price}}</text>
+              <text class="cost-price">{{item.costprice}}</text>
+            </view>
+          </view>
+        </view>
+    </view>
+  </scroll-view>
+</view>

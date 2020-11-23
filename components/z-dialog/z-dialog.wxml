@@ -1,0 +1,58 @@
+<block wx:if="{{!isCoverView}}">
+  <!-- 遮罩 -->
+  <view bindtap="onClose" class="weui-mask {{!show ? 'weui-mask_hidden' : '' }}" wx:if="{{showMask}}" />
+
+  <!-- 模态对话框 -->
+  <view wx:if="{{show}}" bindtap="onClose" class="weui-dialog__wrp">
+    <view class="weui-dialog" catchtap="stopEvent">
+      <!-- 标题 -->
+      <view class="weui-dialog__hd" wx:if="{{showTitle}}">
+        <view class="weui-dialog__title">
+          {{title}}  
+          <slot name="title"></slot>
+        </view>
+      </view>
+
+      <!-- 内容 -->
+      <view class="weui-dialog__bd">{{content}}<slot name="content"></slot></view>
+
+      <!-- 按钮 -->
+      <view class="weui-dialog__ft" wx:if="{{type === 'confirm'}}">
+        <view class="weui-dialog__btn weui-dialog__btn_default" catchtap="onCancelTap">{{cancelText}}</view>
+        <view class="weui-dialog__btn" catchtap="onConfirmTap">{{confirmText}}</view>
+      </view>
+
+    </view>
+  </view>
+</block>
+
+<block wx:else>
+  <!-- 遮罩 -->
+  <cover-view bindtap="onClose" class="weui-mask {{!show ? 'weui-mask_hidden' : '' }}" wx:if="{{showMask}}" />
+
+  <!-- 模态对话框 -->
+  <cover-view wx:if="{{show}}" bindtap="onClose" class="weui-dialog__wrp">
+    <cover-view class="weui-dialog" catchtap="stopEvent">
+      <!-- 标题 -->
+      <cover-view class="weui-dialog__hd" wx:if="{{showTitle}}">
+        <cover-view class="weui-dialog__title">
+          {{title}}
+          <slot name="title"></slot>
+        </cover-view>
+      </cover-view>
+
+      <!-- 内容 -->
+      <cover-view class="weui-dialog__bd">{{content}}<slot name="content"></slot></cover-view>
+
+      <cover-view class="line-row" /><!-- 横线 -->
+
+      <!-- 按钮 -->
+      <cover-view class="weui-dialog__ft" wx:if="{{type === 'confirm'}}">
+        <cover-view class="weui-dialog__btn weui-dialog__btn_default" catchtap="onCancelTap">{{cancelText}}</cover-view>
+        <cover-view class="line-col" /> <!-- 竖线 -->
+        <cover-view class="weui-dialog__btn" catchtap="onConfirmTap">{{confirmText}}</cover-view>
+      </cover-view>
+
+    </cover-view>
+  </cover-view>
+</block>

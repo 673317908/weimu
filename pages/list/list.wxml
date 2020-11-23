@@ -1,0 +1,109 @@
+<import src="../../templates/searchFrom.wxml" />
+<import src="../../templates/login-popup.wxml" />
+
+<!-- 分类列表 -->
+<view class="topic-common-list" wx:if="{{isCategory}}">
+	<view class="topic-list-item">
+		<image mode="aspectFill" src="{{categoryImage}}" class="cover"></image>
+		<view class='topic-item-content'>
+			<view class="topic-content-brief">
+				<text>{{category.description}}</text>
+				<text class="topic-content-num">({{category.count}}篇)</text>
+			</view>
+
+			<view class="topic-content-btn">
+				<text class="btn-subscribe" data-subid="{{category.subscribemessagesid}}" data-id="{{category.id}}" catchtap="postsub">订阅</text>
+				<text>已订阅了 {{category.categorySubscribeCount || 0}} 篇</text>
+			</view>
+		</view>
+	</view>
+</view>
+
+<!-- 标签列表 -->
+<view class="topic-common-list" wx:if="{{isTag}}">
+	<view class="topic-list-item">
+		<image mode="aspectFill" src="{{categoryImage}}" class="cover"></image>
+		<view class='topic-item-content'>
+			<view class="topic-content-brief">
+				<text>{{tagname}}</text>
+			</view>
+			<view class="topic-content-num">
+				<text>共收录 {{tagPostsCount}} 篇文章</text>
+			</view>
+
+		</view>
+	</view>
+</view>
+
+<!-- 自定义banner -->
+<view
+  wx:if="{{banner.enable == 'yes'}}"
+  class="custom-banner"
+  data-type="{{banner.type}}"
+  data-url="{{banner.url}}"
+  data-appid="{{banner.appid}}"
+  data-path="{{banner.path}}"
+  bindtap="toDetail"
+>
+  <image mode="aspectFill" src="{{banner.image}}" />
+</view>
+
+<!-- 置顶文章 -->
+<view class="sticky-post" wx:if="{{category.stickyPost}}" id="{{category.stickyPost.ID}}" bindtap="redictDetail">
+
+	<view class='left'>
+		<view class="title">
+			<text>{{category.stickyPost.post_title}}</text>
+		</view>
+	</view>
+</view>
+
+<!-- 文章列表 -->
+<view wx:if="{{isArticlesList}}">
+	<view style="display:{{isSearch?'block':'none'}}">
+		<template is="tempSearchFrom" />
+	</view>
+	<view class="container">
+    <article-item list="{{articlesList}}" />
+		<view class="no-more" style="display:{{isLastPage?'block':'none'}}">- 到底啦 -</view>
+		<copyright />
+	</view>
+</view>
+
+<!-- 付费专栏： -->
+<block wx:if="{{ category.paypequired == '1' }}">
+  <!-- 安卓 -->
+  <view class="tab-box" wx:if="{{ system === 'Android' && (category.integral || category.price) }}">
+    <view bindtap="postIntegral" class="btn-integral" wx:if="{{ category.integral }}">
+      <text>积分购买</text>
+      <view>需 {{category.integral}} 积分</view>
+    </view>
+    <view bindtap="payment" class="btn-money" wx:if="{{ category.price }}">
+      <text>直接购买</text>
+      <view>需支付 {{category.price}} 元</view>
+    </view>
+  </view>
+
+  <!-- 苹果 -->
+  <view class="tab-box" wx:elif="{{ system === 'iOS' && category.integral }}">
+    <view bindtap="postIntegral" class="btn-money">
+      <text>积分购买</text>
+      <view>需 {{category.integral}} 积分</view>
+    </view>
+  </view>
+</block>
+
+
+<!-- 无网络时 -->
+<view class="showerror" style="display:{{isError?'block':'none'}}">
+	<image src="../../images/cry80.png" style="height:100rpx;width:100rpx"></image>
+	<view class="errortext">
+		暂时无法访问网络,下拉重试...
+	</view>
+</view>
+
+
+<template is="login-popup" data="{{show:isLoginPopup,userInfo:userInfo}}"></template>
+
+<l-dialog />
+<l-toast />

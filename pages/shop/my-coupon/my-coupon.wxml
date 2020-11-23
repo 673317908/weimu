@@ -1,0 +1,50 @@
+<van-tabs
+  active="{{active}}"
+  color="#666"
+  line-width="20"
+  border
+  animated
+  swipeable
+  bind:change="onChange"
+>
+  <van-tab
+    wx:for="{{tabList}}"
+    wx:key="idx"
+    wx:for-index="idx"
+    wx:for-item="tab"
+    title="{{tab.title}}"
+    name="{{tab.status}}"
+  >
+     <view class="coupon-list">
+        <view
+          wx:for="{{couponList}}"
+          wx:key="index"
+          class="coupon-item"
+        >
+          <coupon-item item="{{item}}" btn-text="立即使用" />
+        </view>
+    </view>
+
+    <!-- 空态 -->
+    <van-empty wx:if="{{empty}}" description="暂无优惠券" />
+  </van-tab>
+</van-tabs>
+
+<!-- 选择快递公司弹窗 -->
+<!-- <van-popup
+  show="{{ show }}"
+  position="bottom"
+  round
+  safe-area-inset-bottom
+  bind:close="onClose"
+>
+  <van-picker
+    show-toolbar
+    title="选择快递公司"
+    columns="{{ expressList }}"
+    value-key="delivery_name"
+    loading="{{loading}}"
+    bind:cancel="onClose"
+    bind:confirm="onConfirm"
+  />
+</van-popup> -->

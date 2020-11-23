@@ -1,0 +1,8 @@
+<view class="goods-list">
+  <view wx:for="{{goodsList}}" wx:key='index'>
+    <goods-item item="{{item}}" />
+  </view>
+</view>
+
+<!-- 空态 -->
+<van-empty wx:if="{{empty}}" description="暂无商品" />

@@ -1,0 +1,32 @@
+<!--
+/*
+ * 
+ * 微慕小程序
+ * author: jianbo
+ * organization:  微慕 www.minapper.com 
+ * 技术支持微信号：Jianbo
+ * Copyright (c) 2018 https://www.minapper.com All rights reserved.
+ *
+ */-->
+<template name="tempCommonList">
+  <view class="common-list">
+    <block wx:key="id" wx:for="{{articlesList}}">
+      <view class="list-item has-img" index="{{index}}" id="{{item.id}}" bindtap="redictDetail">
+        <view class="content-title">
+          <text>{{item.title.rendered}}</text>
+        </view>
+        <view class="content-date">
+          <image src="../../images/calendar.png"></image>
+          <text>{{item.date}}</text>
+          <image src="../../images/comments.png"></image>
+            <text class="">{{item.total_comments}}</text>
+            <image src="../../images/pageviews.png"></image>
+            <text class="">{{item.pageviews}}</text>
+            <image src="../../images/home-like.png"></image>
+            <text class="">{{item.like_count}}</text>        
+        </view>
+        <image src="{{item.post_thumbnail_image}}" mode="aspectFill" class="cover"></image>
+      </view>
+    </block>
+  </view>  
+</template>

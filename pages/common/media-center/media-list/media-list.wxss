@@ -1,0 +1,126 @@
+page {
+  background-color: #f5f7f7;
+}
+
+.item {
+  margin-top: 16rpx;
+  background: #fff;
+}
+
+.video-box,
+.video-box video {
+  width: 100%;
+}
+
+.icon-play {
+  width: 100rpx;
+  height: 100rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.image-box swiper,
+.image-box image {
+  width: 100%;
+  height: 562rpx;
+}
+
+.footer {
+  padding: 20rpx 40rpx 40rpx;
+  color: #333;
+}
+
+.title {
+  font-size: 16px;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.icon-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16rpx;
+  font-size: 16px;
+  color: #333;
+}
+
+.icon-box .iconfont {
+  font-size: 48rpx;
+}
+
+.icon-box .left {
+  display: flex;
+  margin-top: 16rpx;
+  line-height: 48rpx;
+}
+
+.icon-box .left > view {
+  display: flex;
+  align-items: center;
+}
+
+.icon-box .left > view:last-child {
+  margin-left: 100rpx;
+}
+
+.btn-share {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: #fff;
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.btn-share::after {
+  border: none;
+}
+
+.like-num {
+  font-size: 12px;
+  color: #999;
+}
+
+/* 用户信息 */
+.userbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 40rpx;
+}
+
+.user {
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  color: #333;
+}
+
+.user image {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  display: block;
+}
+
+.user .user-name {
+  font-size: 14px;
+  margin-left: 16rpx;
+}
+
+.userbox .date {
+  font-size: 12px;
+  color: #333;
+  display: flex;
+  align-items: center;
+}

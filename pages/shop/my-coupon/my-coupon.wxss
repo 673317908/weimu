@@ -1,0 +1,7 @@
+.coupon-list {
+  padding: 20rpx;
+}
+
+.coupon-item {
+  margin-bottom: 20rpx;
+}

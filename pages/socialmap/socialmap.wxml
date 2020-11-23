@@ -1,0 +1,35 @@
+<view class="tab-content">
+  <view class="mapcontainer">
+    <map show-location style="width: 100%; height:800rpx;" bindmarkertap="markertap" bindregionchange="mapRegionChange" class="map" id="discoveryMap" includePoints="{{includePoints}}" latitude="{{center[1]}}" longitude="{{center[0]}}" markers="{{markers}}"
+      scale="15"></map>
+    
+
+    <swiper bindchange="swiperChange" class="bottombox" current="{{curDiscovery}}">
+      <block wx:key="id" wx:for="{{userList}}" wx:index="{{index}}">
+        <swiper-item id="{{item.id}}" index="{{index}}" catchtap="TopicDetail" class="bottombox-item">
+          <view class="bottombox-user">
+            <image mode="aspectFill" src="{{item.avatarurl}}" />
+            <text>{{item.username}}</text>
+
+          </view>
+          <view class="bottombox-content">
+            <text>{{item.post_title}}</text>
+            <view wx:if="{{item.firstimg}}">
+              <image src="{{item.firstimg}}" mode="aspectFill"></image>
+            </view>
+            <view>
+              <image class="icon-address" src="../../images/icon-address.png"></image>{{item.address}}
+              <block wx:if="{{item.distance !=null}}"> 距离:{{item.distance}}km</block>
+            </view>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+
+  </view>
+</view>
+
+<block wx:if="{{scopeUserLocation =='false'}}">
+      <button class="btn-open-location" hover-class="none" bindtap="openUserLocationBtn">授权开启用位置信息</button>
+    </block>
+<canvas canvasId="myCanvas" style="position:fixed;top:0;left:999rpx;width:120px;height:160px;"></canvas>

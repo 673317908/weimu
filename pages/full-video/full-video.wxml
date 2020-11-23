@@ -1,0 +1,11 @@
+<view class="full-video">
+  <text
+    class="iconfont icon-close"
+    style="top: {{ top }}"
+    bind:tap="onBack"
+  />
+  <video
+    src="{{ src }}"
+    autoplay
+  />
+</view>

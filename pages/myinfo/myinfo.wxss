@@ -1,0 +1,163 @@
+@import "/images/main.wxss";
+@import "/images/icon.wxss";
+
+
+.user {
+  padding: 80rpx 0 40rpx;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.top .avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-right: 24rpx;
+}
+
+.bottom {
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  margin-top: 40rpx;
+}
+
+.bottom text:last-child {
+  margin-left: 40rpx;
+}
+
+/* 积分进度条 */
+.integral {
+  text-align: center;
+  margin-top: 80rpx;
+  height: 800rpx;
+}
+
+.integral .title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin-left: 4rpx;
+}
+
+.ul {
+  position: relative;
+  margin: 40rpx 0;
+  margin-left: 230rpx;
+  line-height: 1;
+  text-align: left;
+}
+
+.ul .slider {
+  position: absolute;
+  top: 0;
+  left: 140rpx;
+  content: '';
+  height: 700rpx;
+  width: 12rpx;
+  background: #eee;
+  border-radius: 10rpx;
+}
+
+.ul .current-slider {
+  position: absolute;
+  top: 0;
+  left: 140rpx;
+  content: '';
+  height: 614rpx;
+  width: 12rpx;
+  border-radius: 10rpx;
+}
+
+.ul .li {
+  position: absolute;
+}
+
+.ul .li:nth-child(2) {
+  top: 80rpx;
+}
+
+.ul .li:nth-child(3) {
+  top: 180rpx;
+}
+
+.ul .li:nth-child(4) {
+  top: 300rpx;
+}
+
+.ul .li:nth-child(5) {
+  top: 440rpx;
+}
+
+.ul .li:nth-child(6) {
+  top: 600rpx;
+}
+
+.li .label {
+  font-size: 12px;
+  line-height: 15px;
+  color: #666;
+  display: inline-block;
+  width: 120rpx;
+}
+
+.li .val {
+  font-size: 15px;
+  /* font-weight: 500; */
+  color: #666;
+  margin-left: 80rpx;
+  position: relative;
+  display: inline-block;
+  width: 300rpx;
+}
+
+.li .val::before {
+  content: '';
+  width: 32rpx;
+  height: 1px;
+  background: #ccc;
+  position: absolute;
+  top: 7px;
+  left: -60rpx;
+}
+
+/* 等级权益 */
+.grade {
+  margin: 40rpx;
+  padding-bottom: 100rpx;
+}
+
+.grade .title {
+  display: block;
+  background: #f5f7f7;
+  text-align: center;
+  color: #333;
+  line-height: 3;
+  font-size: 16px;
+  font-weight: 500;
+  box-sizing: border-box;
+  border: 1px solid #eee;
+}
+
+.grade .grade-list {
+  box-sizing: border-box;
+  border-left: 1px solid #eee;
+}
+
+.grade .grade-list .grade-item {
+  text-align: center;
+}
+
+.grade .grade-list .grade-item text {
+  display: inline-block;
+  width: 50%;
+  line-height: 3;
+  box-sizing: border-box;
+  border-bottom: 1px solid #eee;
+  border-right: 1px solid #eee;
+}

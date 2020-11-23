@@ -1,0 +1,47 @@
+<view class="search}">
+  <form catchsubmit="formSubmit" catchreset="formReset" id="search-form">
+    <view class="search-pancel">
+      <input value="{{searchKey}}" class="search-input" placeholder="搜索你感兴趣的内容..." confirm-type="search" bindinput="handleInput" bindconfirm="formSubmit" />
+      <button class="search-button" form-type="submit" size="mini" plain="true">
+        <icon type="search" color="#959595" size="16" />
+      </button>
+    </view>
+  </form>
+</view>
+
+
+<!-- 搜索历史 -->
+<view class="search-history" wx:if="{{isShowHistory && searchHistory.length && !isShowList}}">
+  <view class="history-header">
+    <text class='subtitle'>· 搜索历史</text>
+    <text class="iconfont icon-clear-search" bindtap="clearSearch" />
+  </view>
+
+  <view class='history-content'>
+    <block wx:for="{{searchHistory}}" wx:key="index">
+      <view class="history-item" bindtap="onSearch" data-search="{{item}}">
+        {{ item }}
+      </view>
+    </block>
+  </view>
+</view>
+
+
+<view class="list-container" wx:if="{{isShowList}}">
+  <!-- 文章列表 -->
+  <article-item list="{{articlesList}}" type="{{2}}" />
+
+  <!-- 动态列表 -->
+  <topic-list list="{{topicList}}" />
+
+  <!-- 加载动画/到底和版权信息 -->
+  <!-- <template wx:if="{{isLoading}}" is="threepoint" /> -->
+  <view class="no-more" wx:if="{{isLastPage}}">- 到底啦 -</view>
+  <copyright />
+</view>
+
+<van-empty wx:if="{{isEmpty && !isShowList}}" description="没有搜索到相关内容哟！" />
+
+
+<!-- 删除确认弹窗 -->
+<z-dialog />

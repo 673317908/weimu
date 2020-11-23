@@ -1,0 +1,12 @@
+<view
+  class="goods-item"
+  data-id="{{item.product_id}}"
+  bindtap="toDetail"
+>
+  <image class="img" mode="aspectFill" src="{{item.head_img[0]}}" />
+  <view class='info'>
+    <view class="title">{{item.title}}</view>
+    <text class='price'>￥{{item.min_price/100}}</text>
+     
+  </view>
+</view>

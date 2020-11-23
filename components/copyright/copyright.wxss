@@ -1,0 +1,8 @@
+.copyright {
+  font-size: 26rpx;
+  line-height: 1.6;
+  font-weight: 400;
+  text-align: center;
+  color: #c4c4c4;
+  padding-bottom: 20rpx;
+}

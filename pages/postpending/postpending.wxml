@@ -1,0 +1,26 @@
+<view class="container">
+  <view class="left-common-list">
+		<block wx:key="id" wx:for="{{articlesList}}">
+			<view class="left-list-item" index="{{index}}" data-posttype="{{detailposttype}}" id="{{item.id}}" data-weixinmptype="{{item.raw_weixinmp_type}}" data-weixinmpurl="{{item.raw_weixinmp_url}}" data-goodspath="{{item.raw_goods_path}}" catchtap="redictDetail">
+				<image src="{{item.post_medium_image}}" mode="aspectFill" class="cover"></image>
+
+				<view class="left-content-right">
+					<view class="left-content-title">
+						<text>{{item.title.rendered}}</text>
+						<text>作者：{{item.author_name}}</text>
+					</view>
+
+					<view class='left-content-popularity'>
+
+						<text catchtap="approvePost" id="{{item.id}}">审核通过</text>
+						<text catchtap="deletePost" id="{{item.id}}">删除</text>
+
+					</view>
+				</view>
+			</view>
+		</block>
+	</view>
+
+  <copyright />
+  <l-dialog />
+</view>

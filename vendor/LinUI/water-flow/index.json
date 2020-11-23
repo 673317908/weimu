@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "z-water-flow": "../z-water-flow/index"
+  },
+  "componentGenerics": {
+    "l-water-flow-item": true
+  }
+}

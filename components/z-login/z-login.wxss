@@ -1,0 +1,153 @@
+.info {
+  text-align: center;
+}
+
+.phone {
+  padding-top: 48rpx;
+  background: #2f80ed;
+}
+
+.icon-login-phone {
+  font-size: 160rpx;
+  color: #FFF;
+  line-height: 1;
+}
+
+.avatar {
+  width: 148rpx;
+  height: 148rpx;
+  margin-top: -74rpx;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin: 40rpx 0;
+}
+
+.tip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  color: #333;
+  line-height: 1.6;
+}
+
+.tip .iconfont {
+  color: #999;
+  margin-right: 10rpx;
+}
+
+.weui-mask {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.weui-mask_transparent {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.weui-dialog__wrp {
+  position: fixed;
+  z-index: 5000;
+  top: 40rpx;
+  bottom: 40rpx;
+  left: 80rpx;
+  right: 80rpx;
+  text-align: center;
+  font-size: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.weui-dialog__wrp .weui-dialog {
+  max-height: 100%;
+}
+
+.weui-dialog {
+  background-color: #fff;
+  text-align: center;
+  border-radius: 12rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  max-height: 90%;
+  overflow: hidden;
+}
+
+.weui-dialog__btn_default {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+@media screen and (min-width:352px) {
+  .weui-dialog {
+    width: 320px;
+    margin: 0 auto;
+  }
+}
+
+.weui-dialog.weui-dialog_hidden {
+  opacity: 0;
+  transform: scale3d(1, 1, 0);
+}
+
+.weui-dialog {
+  opacity: 1;
+  -webkit-transform: scale3d(1, 1, 1);
+  transform: scale3d(1, 1, 1);
+  transition: all 0.3s ease-in;
+}
+
+.weui-mask.weui-mask_hidden {
+  opacity: 0;
+  transform: scale3d(1, 1, 0);
+}
+
+.weui-mask {
+  opacity: 1;
+  transform: scale3d(1, 1, 1);
+  transition: all 0.3s ease-in;
+}
+
+.footer {
+  padding: 60rpx 80rpx 40rpx;
+}
+
+.btn-ok {
+  background: #2f80ed;
+  height: 88rpx;
+  border-radius: 44rpx;
+  box-shadow: 4rpx 8rpx 24rpx rgba(48, 128, 237, 0.4);
+  font-size: 16px;
+  color: #FFF;
+  line-height: 88rpx;
+}
+
+.btn-ok::after {
+  border: none;
+}
+
+.btn-cancel {
+  font-size: 14px;
+  color: #999;
+  margin-top: 24rpx;
+}

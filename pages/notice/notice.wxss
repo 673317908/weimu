@@ -1,0 +1,61 @@
+page {
+  background: #f5f7f7;
+}
+
+.list-box {
+  background: #fff;
+  position: relative;
+}
+
+.item {
+  height: 148rpx;
+  line-height: 148rpx;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  display: flex;
+  align-items: center;
+  padding: 0 0 0 40rpx;
+}
+
+.iconfont {
+  font-size: 88rpx;
+  margin-right: 24rpx;
+}
+
+.icon-notice-system {
+  color: #f2ad45;
+}
+.icon-notice-comment {
+  color: #73d5ac;
+}
+.icon-notice-like {
+  color: #fc6d6d;
+}
+.icon-notice-fans {
+  color: #5093f7;
+}
+
+.item .content {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 40rpx;
+}
+
+.content .badge {
+  height: 40rpx;
+  min-width: 40rpx;
+  border-radius: 20rpx;
+  font-size: 12px;
+  font-weight: 400;
+  color: #fff;
+  text-align: center;
+  line-height: 40rpx;
+  background: #fe645a;
+}
+
+.list-box .item:not(:last-child) .content {
+  border-bottom: 1px solid #eee;
+}

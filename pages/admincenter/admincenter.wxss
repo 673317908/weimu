@@ -1,0 +1,76 @@
+page {
+  background: #f5f7f7;
+}
+
+.list-box {
+  margin-top: 80rpx;
+  background: #fff;
+  position: relative;
+}
+
+.list-box::before {
+  position: absolute;
+  top: -50rpx;
+  left: 40rpx;
+  color: #959595;
+  font-size: 13px;
+}
+
+.comment::before {
+  content: "文章和动态评论";
+}
+
+.social::before {
+  content: "动态";
+}
+
+.media::before {
+  content: "首页媒体中心";
+}
+
+.company::before {
+  content: "企业主体";
+}
+
+.live::before {
+  content: "直播";
+}
+
+.item {
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 14px;
+  color: #333;
+  padding: 0 20rpx 0 40rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+.list-box .item:not(:last-child) {
+  border-bottom: 1rpx solid #eee;
+}
+
+
+
+/* 企业主体 */
+ 
+
+.radio-company {
+  margin-left: 80rpx;
+}
+
+.head-sort-btn {
+  width: 55px;
+  height: 30px;
+  line-height: 30px;
+  background: #39f;
+  border: 1px solid #39f;
+  box-shadow: 0 3px 5px 0 rgba(51, 153, 255, 0.10);
+  border-radius: 100px;
+  font-size: 14px;
+  color: #fff;
+  margin:auto 10rpx;
+  padding: 0;
+}

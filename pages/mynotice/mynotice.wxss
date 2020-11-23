@@ -1,0 +1,64 @@
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 40rpx;
+}
+
+.item .avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+  margin-right: 24rpx;
+}
+
+.item .content {
+  flex: 1;
+  border-bottom: 1px solid #eee;
+  padding: 30rpx 40rpx 30rpx 0;
+}
+
+.content .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.content .top .user-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+  flex: 1;
+  margin-right: 40rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.content .top .date {
+  font-size: 12px;
+  color: #999;
+}
+
+.content .value {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.4;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  width: 566rpx;
+}
+
+.readed {
+  color: #999;
+}
+
+.readed::before {
+  content: '[已读] ';
+}
+

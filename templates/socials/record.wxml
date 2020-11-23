@@ -1,0 +1,62 @@
+<template name="record">
+  <view class="audio-box  {{audioShow ?'' :'audio-box-hidden'}}">
+    <view class="bottom_box">
+      <view class="audio">
+        <view class="start">
+          <view class="down_time" wx:if="{{recordStatus=='recording'||recordStatus=='recordStop'}}">{{showAudioTime}}</view>
+          <view class="confirm-audio" wx:if="{{recordStatus=='recordStop'}}">
+            <view catchtap="returnRecord" class="record-delete" wx:if="{{playStatus=='ready'}}">
+              <image src="../../images/return.png"></image>
+            </view>
+            <view class="play-record">
+              <view class="wrapBox">
+                <view class="wrapBox_inner">
+                  <view class="leftBox" style="transform:rotateZ({{deg>180?deg-180:0}}deg)"></view>
+                  <view class="rightBox" style="background-color:{{deg>180?'#1296db':''}};transform: rotateZ({{deg>180?0:deg}}deg)"></view>
+                  <view class="roundMask">
+                    <view class="innerPlay" bindtap="audioPlay" wx:if="{{playStatus=='ready'}}">
+                      <image src="../../images/play-on.png"></image>
+                    </view>
+                    <view class="innerPlay" bindtap="stopPlay" wx:else>
+                      <image src="../../images/pause-on.png"></image>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+
+            <view bindtap="selectAudio" class="record-finish" wx:if="{{playStatus=='ready'}}">
+              <image src="../../images/select.png"></image>
+            </view>
+          </view>
+          <view bindtap="recordStop" class="wrapBox" wx:if="{{recordStatus=='recording'}}">
+            <view class="wrapBox_inner">
+              <view class="leftBox" style="transform:rotateZ({{deg>180?deg-180:0}}deg)"></view>
+              <view class="rightBox" style="background-color:{{deg>180?'#1296db':''}};transform: rotateZ({{deg>180?0:deg}}deg)"></view>
+              <view class="roundMask">
+                <view class="innerAudio"></view>
+              </view>
+            </view>
+          </view>
+          <view class="confirm-audio" wx:if="{{recordStatus=='recordReady'}}">
+            <view catchtap="cancelRecord" class="record-delete">
+              <image src="../../images/down.png"></image>
+            </view>
+            <view bindtap="recordStart" class="play-record">
+              <image src="../../images/record.png"></image>
+            </view>
+
+          </view>
+          <!-- <view bindtap="toRecordStart" class="out_box">                 
+                        <view class="record-start">
+                            <image src="../../images/topic/record.png"></image>
+                        </view>
+                    </view> -->
+          <view class="record-desc" wx:if="{{recordStatus=='recordReady'}}">点击录音</view>
+          <view class="record-desc" wx:if="{{recordStatus=='recording'}}">录制中</view>
+          <!-- <view class="record-desc" wx:if="{{playStatus=='pause'}}">播放中</view> -->
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

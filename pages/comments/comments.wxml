@@ -1,0 +1,31 @@
+<!--
+/*
+ * 
+ * 微慕小程序
+ * author: jianbo
+ * organization:  微慕 www.minapper.com 
+ * 技术支持微信号：Jianbo
+ * Copyright (c) 2018 https://www.minapper.com All rights reserved.
+ *
+ */-->
+<import src="../../templates/common-list.wxml" />
+<import src="../../templates/new_commentsList.wxml" />
+
+
+<view class="container">
+  <template is="commentsList" data="{{commentsList}}"></template>
+  
+  <!-- 版权信息 -->
+  <copyright />
+
+  <!-- 无网络时 -->
+  <view class="showerror" style="display:{{showerror}}">
+    <image src="../../images/cry80.png" style="height:100rpx;width:100rpx"></image>
+    <view class="errortext">
+      暂时无法访问网络
+      <view class="">
+        <button class="more-button" bindtap="reload" size="mini" bindtap="reload">重新加载</button>
+      </view>
+    </view>
+  </view>
+</view>

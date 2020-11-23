@@ -1,0 +1,5 @@
+/* components/video-auto-play.wxss */
+
+.video-auto-play video {
+  height: 562rpx;
+}

@@ -1,0 +1,13 @@
+<!-- 视频进入视图自动播放 -->
+
+<view class="video-auto-play">
+  <video
+    src="{{propItem.media[0]}}"
+    id="{{'z' + propItem.IDs}}"
+    data-id="{{propItem.IDs}}"
+    showCenterPlayBtn="{{false}}"
+    controls="{{false}}"
+    loop
+    poster="{{propItem.video_poster}}"
+  />
+</view>

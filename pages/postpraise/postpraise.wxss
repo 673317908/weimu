@@ -1,0 +1,99 @@
+/*
+ * 
+ * 微慕小程序
+ * author: jianbo
+ * organization:  微慕 www.minapper.com 
+ * 技术支持微信号：Jianbo
+ * Copyright (c) 2018 https://www.minapper.com All rights reserved.
+ */
+
+
+.container {
+  width: 100%;
+  margin-bottom: 10rpx;
+  padding:0 0rpx
+}
+
+
+.title
+{
+  text-align: center;
+  color: #333;
+  margin: 32rpx 0 50rpx;
+}
+
+.price-list {
+  padding: 0 15rpx;
+  text-align: center;
+  flex-direction: row;
+}
+
+.price-list .item {
+  float: left;
+  margin-right: 10rpx;
+  margin-left: 10rpx;
+  margin-bottom: 20rpx;
+  width: 220rpx;
+}
+
+.price-list .price-box {
+  width: 100%;
+  height: 100rpx;
+  border-radius: 6rpx;
+  border: 4rpx solid #f44e4e;
+  text-align: center;
+}
+
+.price-list .price-box em {
+  line-height: 100rpx;
+  color: #f44e4e;
+  font-size: 30rpx;
+}
+
+.price-list .price-box .price {
+  font-size: 50rpx;
+  font-weight: 700;
+  display: inline-block;
+}
+
+.price-list .price-box.active {
+  background-color: #3366CC;
+}
+
+.price-list .price-box.active em {
+  color: #fff;
+  background-color: #3366CC;
+}
+
+
+.cancel-button {
+  position: absolute;
+  left: 200rpx;
+  bottom: 48rpx;
+  font-size:30rpx;
+  font-weight: normal;
+  color:  #2f80ed;
+  background-color: #fff;
+  background-repeat: repeat-x;
+  margin-top: 320rpx;
+  width: 350rpx;
+  height: 72rpx;
+  border-radius: 72rpx;
+  /* border: 1rpx solid #959595; */
+}
+
+.cancel-button::after {
+  display: none;
+}
+
+.header {
+  padding: 50rpx 0;
+  text-align: center;
+  font-weight: normal;
+  font-size: 30rpx;
+  line-height: 45rpx;
+  color: #757575;
+  /* border-bottom: 2rpx solid #ededed;
+  margin-bottom: 8rpx; */
+  
+}

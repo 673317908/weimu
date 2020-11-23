@@ -1,0 +1,58 @@
+<!--
+/*
+ * 
+ * 微慕小程序
+ * author: jianbo
+ * organization:  微慕 www.minapper.com 
+ * 技术支持微信号：Jianbo
+ * Copyright (c) 2018 https://www.minapper.com All rights reserved.
+ *
+ */-->
+
+ <template name="noImageArticle">
+  <view class="no-common-list">
+    <block wx:key="id" wx:for="{{articlesList}}">
+      <view class="list-item-ad" index="{{index}}" wx:if="{{index%item.listAdEvery ==0  && index!=0  && item.listAd =='1' && item.listAdId !='' && listAdsuccess}}">
+       <block wx:if="{{(index/item.listAdEvery)%2==0}}">
+					<ad unit-id="{{item.videoAdId}}" ad-type="video" ad-theme="white" binderror="adbinderror"></ad>
+				</block>
+				<block wx:else>
+					<ad unit-id="{{item.listAdId}}" ad-intervals="30" binderror="adbinderror"></ad>
+				</block>
+      </view>
+      <view class="no-list-item" index="{{index}}" id="{{item.id}}" data-posttype="{{item.postType}}"  data-weixinmptype="{{item.raw_weixinmp_type}}" data-weixinmpurl="{{item.raw_weixinmp_url}}" bindtap="redictDetail">
+
+        <view class="no-content-title">
+          <text>{{item.title.rendered}}</text>
+        </view>
+
+        <view class="no-content-excerpt">
+          <rich-text nodes="{{item.excerpt.rendered}}"></rich-text>
+        </view>
+
+        <view class="no-content-bottom">
+          <view>
+              <text>ئاۋاتلىقى {{item.pageviews}}</text>
+              <text>ئىنكاس {{item.total_comments}}</text>
+              <text>ياقتۇرغانلار {{item.like_count}}</text>
+           
+            
+          </view>
+          <view>
+            <text>{{item.post_date}}</text>
+          </view>
+        </view>
+
+        <view class="no-content-bottom"  style="margin-top: 20rpx;">
+        <view>
+         <text wx:if="{{memberUserInfo.member =='00'}}" id="{{item.id}}" catchtap="deleteTopic">ئۆچۈرۈش</text>
+        <text wx:if="{{memberUserInfo.member =='00'}}" data-title="{{item.title.rendered}}"  data-author="{{item.author_name}}" id="{{item.id}}" catchtap="submitPage">ئىزدەش({{item.searhDataPostCount}})</text>
+              <text wx:if="{{memberUserInfo.member =='00'}}" data-title="{{item.title.rendered}}"  data-author="{{item.author_name}}" id="{{item.id}}" catchtap="sendSubscribeMessage">يېڭىلاش ئەسكەرىتمىسى</text>
+               </view>
+         </view>
+
+      </view>
+    </block>
+  </view>
+
+</template>

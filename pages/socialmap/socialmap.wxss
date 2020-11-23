@@ -1,0 +1,82 @@
+/* 
+ * 微慕小程序
+ * author: jianbo
+ * organization:  微慕 www.minapper.com 
+ * 技术支持微信号：Jianbo
+ * Copyright (c) 2018 https://www.minapper.com All rights reserved.
+ */
+@import "../../templates/loading/threepoint.wxss";
+@import "../../templates/socials/socials.wxss";
+@import '../../images/iconfont.wxss';
+
+.mapcontainer {
+  height: 80%;
+}
+
+.bottombox {
+  height: 400rpx;
+  padding: 40rpx 40rpx 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.bottombox-user {
+  color: #333;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+
+.bottombox-user image {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  margin-right: 8rpx;
+}
+
+.bottombox-content {
+  width: 100%;
+}
+
+.bottombox-content image {
+  height: 150rpx;
+  margin: 12rpx 0;
+  width: 200rpx;
+}
+
+.bottombox-content text {
+  color: #333;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.bottombox-content view {
+  color: #959595;
+  font-size: 12px;
+}
+
+.bottombox-content .icon-address {
+  width: 24rpx;
+  height: 24rpx;
+  margin: 0 6rpx 0 0;
+}
+
+.btn-open-location {
+  border: none;
+  width: 360rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+  background: #2f80ed;
+  font-size: 14px;
+  color: #fff;
+  line-height: 80rpx;
+  position: fixed;
+  bottom: 40rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.btn-open-location::after {
+  border: none;
+}

@@ -1,0 +1,51 @@
+/* 列表样式 */
+
+.listBox {
+  background: #fff;
+}
+
+.listItem {
+  padding: 30rpx 40rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.listBox>view:not(:last-child) {
+  border-bottom: 1rpx solid #eee;
+}
+
+.listItem-filename {
+  font-size: 14px;
+  color: #333;
+  width: 480rpx;
+  text-align: justify;
+}
+
+.listItem-btn {
+  width: 120rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+  border: 1px solid #2f80ed;
+  background: #fff;
+  line-height: 60rpx;
+  font-size: 12px;
+  text-align: center;
+  color: #fff;
+}
+
+.listItem-btn button {
+  height: 120rpx;
+  line-height: 60rpx;
+  font-size: 12px;
+  text-align: center;
+  color: #2f80ed;
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+
+.listItem-btn button::after {
+  border: none;
+}

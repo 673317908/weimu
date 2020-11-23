@@ -1,0 +1,498 @@
+/*
+ * 
+ * 微慕小程序
+ * author: jianbo
+ * organization:  微慕 www.minapper.com 
+ * 技术支持微信号：Jianbo
+ * Copyright (c) 2018 https://www.minapper.com All rights reserved.
+ */
+
+.content {
+  border-bottom: 16rpx solid #f5f7f7;
+  display: flex;
+  flex-direction: column;
+  padding: 40rpx 40rpx 32rpx;
+}
+
+.ad-box {
+  border-bottom: 16rpx solid #f5f7f7;
+}
+
+.head {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  position: relative;
+}
+
+.baseimg {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  display: block;
+}
+
+.memberimg1 {
+  width: 64rpx;
+  height: 32rpx;
+  border-radius: 50%;
+  display: block;
+}
+
+.memberimg2 {
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 50%;
+  display: block;
+}
+
+.social-top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.social-avatar-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.social-author-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 24rpx;
+  width: 420rpx;
+}
+
+.social-author-name {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.social-author-time {
+  font-size: 26rpx;
+  color: #959595;
+}
+
+/* 关注按钮 */
+
+.social-author-follow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.address {
+  margin-top: 20rpx;
+  font-size: 12px;
+  color: #576b95;
+  margin-left: 100rpx;
+  width: 570rpx;
+}
+
+.desc {
+  margin-top: 24rpx;
+  margin-left: 100rpx;
+  font-size: 32rpx;
+  line-height: 1.5;
+  color: #333;  
+}
+
+.desc-img-container {
+  margin-left: 104rpx;
+  margin-right: 72rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.desc-img {
+  height: 170rpx;
+  width: 170rpx;
+  margin-top: 10rpx;
+  margin-right: 10rpx;
+  border-radius: 4rpx;
+}
+
+.oneImgBox {
+  max-height: 600rpx;
+  overflow: hidden;
+}
+
+.firstimg {
+  margin-top: 20rpx;
+  margin-left: 104rpx;
+  width: 374rpx;
+  border-radius: 4rpx;
+  background-color: #f5f7f7;
+  vertical-align: middle;
+}
+
+.imageList {
+  display: flex;
+  flex-direction: row;
+  margin-left: 104rpx;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.imageList .item-image {
+  height: 182rpx;
+  width: 182rpx;
+  margin-top: 10rpx;
+  margin-right: 10rpx;
+  border-radius: 4rpx;
+  background-color: #f5f7f7;
+}
+
+.imageList .item-image:nth-child(3n) {
+  margin-right: 0;
+}
+
+/* 视频封面样式 */
+
+.videoBox {
+  height: 320rpx;
+  margin-top: 10rpx;
+  margin-left: 104rpx;
+  position: relative;
+  
+}
+.video {
+  width: 400rpx;
+ height: 300rpx;
+ margin-top: 20rpx;
+
+}  
+.icon-play {
+  width: 100rpx;
+  height: 100rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cover {
+  width: 100%;
+  height: 320rpx;
+}
+
+/* 底部帖子互动数据 */
+
+.content-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 104rpx;
+  margin-top: 32rpx;
+}
+
+.content-bottom image {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 4rpx;
+  vertical-align: middle;
+}
+
+.content-bottom text {
+  color: #959595;
+  font-size: 26rpx;
+  font-weight: 500;
+  line-height: 36rpx;
+}
+
+/* 帖子底部的点赞头像和评论 */
+
+.like-comment-box {
+  background: #f5f7f7;
+  margin-top: 40rpx;
+  margin-left: 104rpx;
+  border-radius: 16rpx;
+  position: relative;
+}
+
+.like-comment-box::before {
+  content: "";
+  width: 20rpx;
+  height: 20rpx;
+  background: #f5f7f7;
+  transform: rotate(45deg);
+  position: absolute;
+  top: -10rpx;
+  left: 40rpx;
+}
+
+.like-portrait {
+  padding: 16rpx 16rpx 8rpx;
+  overflow: hidden;
+}
+
+.like-portrait image {
+  width: 55rpx;
+  height: 55rpx;
+  border-radius: 50%;
+  border: 4rpx solid #fff;
+}
+
+.like-portrait image:not(:first-child) {
+  margin-left: -20rpx;
+}
+
+.split-line {
+  width: 100%;
+  height: 1rpx;
+  background: #eee;
+}
+
+.comment-list {
+  font-size: 14px;
+  color: #333;
+  padding: 16rpx;
+}
+
+.comment-username {
+  color: #355783;
+  font-size: 14px;
+}
+
+/* 音波动画 */
+
+.audio-box {
+  width: 540rpx;
+  height: 120rpx;
+  border-radius: 60px;
+  background-color: #eee;
+  position: relative;
+  margin-top: 20rpx;
+  margin-left: 104rpx;
+  display: flex;
+}
+
+/* 暂定时 */
+
+.audio-stop-list {
+  height: 60rpx;
+  margin: 30rpx 0 30rpx 30rpx;
+  display: flex;
+  align-items: center;
+}
+
+.audio-stop-list .item {
+  width: 4px;
+  border-radius: 0;
+  margin: 0 2px;
+}
+
+.one {
+  height: 20rpx;
+  background: #feac5e;
+}
+
+.two {
+  height: 30rpx;
+  background: #fda565;
+}
+
+.three {
+  height: 40rpx;
+  background: #f99477;
+}
+
+.four {
+  height: 48rpx;
+  background: #f47894;
+}
+
+.five {
+  height: 60rpx;
+  background: #f2709c;
+}
+
+.six {
+  height: 48rpx;
+  background: #f37498;
+}
+
+.seven {
+  height: 40rpx;
+  background: #f98485;
+}
+
+.eight {
+  height: 30rpx;
+  background: #ff9373;
+}
+
+.nine {
+  height: 20rpx;
+  background: #ff9472;
+}
+
+/* 播放时 */
+
+.audio-play-list {
+  height: 60rpx;
+  margin: 30rpx 0 30rpx 30rpx;
+  display: flex;
+  align-items: center;
+}
+
+.audio-play-list .item {
+  background: #f99477;
+  width: 4px;
+  height: 60rpx;
+  border-radius: 0;
+  margin: 0 2px;
+  transform: scale(1, 0.2);
+}
+
+.first {
+  animation: scale 0.8s linear infinite alternate;
+}
+
+.second {
+  animation: scale 0.8s 0.1s linear infinite alternate;
+}
+
+.third {
+  animation: scale 0.8s 0.3s linear infinite alternate;
+}
+
+.fourth {
+  animation: scale 0.8s 0.5s linear infinite alternate;
+}
+
+.fifth {
+  animation: scale 0.8s 0.7s linear infinite alternate;
+}
+
+.sixth {
+  animation: scale 0.8s 0.9s linear infinite alternate;
+}
+
+.seventh {
+  animation: scale 0.8s 1.1s linear infinite alternate;
+}
+
+.eighth {
+  animation: scale 0.8s 1.3s linear infinite alternate;
+}
+
+.ninth {
+  animation: scale 0.8s 1.5s linear infinite alternate;
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1, 0.2);
+    background: #feac5e;
+  }
+
+  50% {
+    transform: scale(1, 0.6);
+    background: #f2709c;
+  }
+
+  100% {
+    transform: scale(1, 1);
+    background: #ff9472;
+  }
+}
+
+.btn-audio-play {
+  height: 80rpx;
+  width: 80rpx;
+  border-radius: 50%;
+  background: #fff;
+  position: relative;
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+}
+
+.btn-audio-play::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 16rpx solid #eee;
+  border-top: 16rpx solid transparent;
+  border-right: 16rpx solid transparent;
+  border-bottom: 16rpx solid transparent;
+  position: absolute;
+  top: 50%;
+  left: 35rpx;
+  transform: translateY(-50%);
+}
+
+.btn-audio-stop {
+  height: 80rpx;
+  width: 80rpx;
+  border-radius: 50%;
+  background: #fff;
+  position: relative;
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+}
+
+.btn-audio-stop::before {
+  content: "";
+  width: 8rpx;
+  height: 32rpx;
+  background: #eee;
+  position: absolute;
+  top: 50%;
+  left: 28rpx;
+  transform: translateY(-50%);
+}
+
+.btn-audio-stop::after {
+  content: "";
+  width: 8rpx;
+  height: 32rpx;
+  background: #eee;
+  position: absolute;
+  top: 50%;
+  right: 28rpx;
+  transform: translateY(-50%);
+}
+
+.audio-time {
+  color: #ff9472;
+  line-height: 120rpx;
+  margin: 0 20rpx;
+}
+
+/*  文档  */
+
+.file-list {
+  margin-left: 104rpx;
+  margin-top: 24rpx;
+}
+
+.file-list-item {
+  background: #fff;
+}
+
+.file-list-item image {
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: top;
+  margin-right: 8rpx;
+}
+
+.file-list-item text {
+  font-size: 14px;
+  line-height: 1.4;
+  color: #355783;
+}
+
+/* 文档 */

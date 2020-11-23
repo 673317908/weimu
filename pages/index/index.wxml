@@ -1,0 +1,251 @@
+<!-- * 微慕小程序
+* author: jianbo
+* organization:  微慕 www.minapper.com 
+* 技术支持微信号：Jianbo
+* Copyright (c) 2018 https://www.minapper.com All rights reserved. -->
+<import src="../../templates/loading/threepoint.wxml" />
+<import src="../../templates/login-popup.wxml" />
+
+<!-- 首次进入引导添加到“我的小程序” -->
+<view class="addMyMiniapp" wx:if="{{isFirst}}" catchtap="shutAddMyMiniapp">
+  <view>点击加入我的小程序 ↑</view>
+  <text>了解{{shareTitle}}小程序最新功能</text>
+</view>
+
+<!-- 顶部Tab菜单 -->
+<view class='tab-box' wx:if="{{columns.length != 0}}">
+  <scroll-view class="tab-menu" scroll-into-view="tab-{{currentColumn-2>0?currentColumn-2:0}}" scroll-x="true">
+    <view bindtap="switchColumn" class="tab-menu-item {{currentColumn==idx?'active':''}}" data-idx="{{idx}}" id="tab-{{idx}}" wx:for="{{columns}}" data-categoryid="{{item.id}}" data-categoryids="{{item.ids}}" data-categoryNames="{{item.names}}" wx:for-index="idx"
+      wx:key="id" data-cover="{{item.category_thumbnail_image}}" data-categoryname="{{item.name}}">
+      <text class="{{ (item.catYearIntegral || item.catyearprice) ? 'pay-tip' : ''}}">{{item.name}}</text>
+    </view>
+  </scroll-view>
+  <!-- 搜索和下拉设置图标 -->
+  <image bindtap="openSearch" class="tab-search-btn" src="../../images/tab-search-btn.png"></image>
+  <image bindtap="openCustomPannel" catchtouchmove="consumeTouchmove" class="tab-custom-btn {{isColumnPannelOpen?'tab-custom-btn-open':''}}" src="../../images/tab-custom-btn.png"></image>
+</view>
+<!-- 点击下拉图标展示出的设置项 -->
+<view class="columnPannelHeader" wx:if="{{isColumnPannelOpen}}">
+  <text class="columnPannelTitle">所有栏目 </text>
+</view>
+<view catchtouchmove="consumeTouchmove" class="columnPannel full-height" style="height:{{windowHeight}}px;" wx:if="{{isColumnPannelOpen}}">
+  <view class="selected-pannel">
+    <view bindtap="selectColumn" bindtouchend="columnItemTouchEnd" bindtouchstart="columnItemTouchStart" catchtouchmove="columnItemMoving" class="column-item-selected {{columnSelectedIndex==moveToIndex?'column-item-moving':''}}" data-index="{{columnSelectedIndex}}"
+      disableScroll="true" style="height: {{columnItemHeight}}rpx;line-height: {{columnItemHeight}}rpx;" wx:for="{{columns}}" wx:for-index="columnSelectedIndex" wx:key="id" data-categoryid="{{item.id}}" data-categoryids="{{item.ids}}" data-categorynames="{{item.names}}"
+      data-categoryname="{{item.name}}" data-cover="{{item.category_thumbnail_image}}">
+      <text class="column-item-selected-text {{columnSelectedIndex==0?'column-item-selected-first':''}}">{{item.name}}</text>
+    </view>
+  </view>
+  <view class="me-item-gap"></view>
+  <!-- 列表展示方式 -->
+  <text class="columnPannelTitle">列表展示方式
+  </text>
+  <view class="unselected-pannel">
+    <view class='settings-container'>
+      <view class="section-choice">
+        <radio-group name="radioGroup" bindchange="changeListStyle">
+          <label>
+            <radio value="1" checked="{{articleStyle == 1}}" />
+            左图右文
+          </label>
+          <label>
+            <radio value="2" checked="{{articleStyle == 2}}" />
+            右图左文
+          </label>
+          <label>
+            <radio value="3" checked="{{articleStyle == 3}}" />
+            大图列表
+          </label>
+          <label>
+            <radio value="4" checked="{{articleStyle == 4}}" />
+            多图列表
+          </label>
+          <label>
+            <radio value="5" checked="{{articleStyle == 5}}" />
+            瀑布流列表
+          </label>
+          <label>
+            <radio value="6" checked="{{articleStyle == 6}}" />
+            无图列表
+          </label>
+        </radio-group>
+      </view>
+
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{!isColumnPannelOpen}}" class='index-container'>
+
+<!--  以下内容只在首页查看-->
+<view wx:if="{{currentColumn ==0}}">
+
+  <!-- 轮播图 -->
+  <swiper
+    wx:if="{{swiperArticles.length}}"
+    class="swiper-box"
+    interval="10000"
+    autoplay="true"
+    previous-margin="32rpx"
+    next-margin="32rpx"
+    circular="true"
+  >
+    <swiper-item
+      wx:for="{{swiperArticles}}"
+      wx:key="id"
+      class="swiper-item"
+      id="{{item.id}}"
+      index="{{index}}"
+      data-type="{{item.type}}"
+      data-appid="{{item.appid}}"
+      data-url="{{item.url}}"
+      data-path="{{item.path}}"
+      bindtap="toDetail"
+    >
+      <image mode="aspectFill" src="{{item.image}}" class="swiper-image {{swiperIndex == index ? 'active' : ''}}" />
+      <view class="swiper-desc">
+        <text>{{item.title}}</text>
+      </view>
+    </swiper-item>
+  </swiper>
+
+  <!-- 公告 -->
+  <view class="notice">
+    <text class="iconfont icon-home-news"></text>
+    <swiper vertical="true" autoplay='true' interval="5000" class="notice-swiper">
+      <block wx:for="{{billboardList}}" wx:key="id">
+        <swiper-item class="notice-swiper-item" bindtap="redictDetail" id="{{item.id}}" index="{{index}}">
+          <text>{{item.title.rendered}}</text>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+
+  <!-- 精选栏目 -->
+  <view class="selected-nav" wx:if="{{topNav.length}}">
+    <nice-column list="{{topNav}}" />
+  </view>
+
+  <!-- 精选商品 -->
+  <!-- <hot-goods wx:if="{{productsNav.length}}" goods-list="{{productsNav}}" title="精选商品" /> -->
+
+  <!-- 媒体中心 -->
+  <view class="media-center" wx:if="{{homepageMediaDisplay}}">
+    <view class='common-subtitle'>
+      <view class='common-subtitle-left'>媒体中心</view>
+      <view class='common-subtitle-right'>MEDIA</view>
+    </view>
+
+    <view class="media-content">
+
+      <view class="media-item video" bindtap="govideo">
+        <text class="iconfont icon-media-video" />
+        <view>视频</view>
+      </view>
+
+      <view class="media-item img-text" bindtap="goimage">
+        <text class="iconfont icon-media-img-text" />
+        <view>图文</view>
+      </view>
+
+      <view class="media-item album" bindtap="goalbum">
+        <text class="iconfont icon-media-album" />
+        <view>相册</view>
+      </view>
+
+      <view class="media-item audio" bindtap="goaudio">
+        <text class="iconfont icon-media-audio" />
+        <view>音频</view>
+      </view>
+
+      <view class="media-item file" bindtap="gofile">
+        <text class="iconfont icon-media-file" />
+        <view>文件</view>
+      </view>
+
+    </view>
+
+  </view>
+
+  <!-- 自定义banner -->
+  <view
+    wx:if="{{banner.enable == 'yes'}}"
+    class="custom-banner"
+    data-type="{{banner.type}}"
+    data-url="{{banner.url}}"
+    data-appid="{{banner.appid}}"
+    data-path="{{banner.path}}"
+    bindtap="toDetail"
+  >
+    <image mode="aspectFill" src="{{banner.image}}" />
+  </view>
+
+  <!-- 公众号关注组件 -->
+  <view class="official-account" wx:if="{{showAfficialAccount}}">
+    <official-account bindload="officialSucc" binderror="officialFail"></official-account>
+  </view>
+
+  <!-- 无法访问网络 -->
+  <view class="showerror" style="display:{{isError?'block':'none'}}">
+    <image src="../../images/cry80.png" style="height:100rpx;width:100rpx;margin-top:200rpx;"></image>
+    <view class="errortext">
+      无法访问网络，请下拉刷新...
+    </view>
+  </view>
+
+  <l-dialog />
+
+  <!-- 订阅 -->
+  <view class="subscribe" wx:if="{{currentColumn !=0}}">
+    <text>已订阅了 {{columns[currentColumn].categorySubscribeCount}} 篇</text>
+    <view data-subid="{{columns[currentColumn].subscribemessagesid}}" data-id="{{columns[currentColumn].id}}" catchtap="postsub">订阅</view>
+  </view>
+  </view>
+  <!-- 以上内容只在首页显示 -->
+
+  <!-- 上拉加载动画、到底了和版权信息 -->
+  <view style="display:{{isArticlesList?'block':'none'}}">
+    <view class="list-container">
+      <!-- 瀑布流组件 -->
+      <!-- <water-flow wx:if="{{listStyle === 'waterFlowArticle'}}" generic:l-water-flow-item="z-water-flow" /> -->
+      <!-- 其他文章列表样式模板 -->
+      <!-- <template wx:if="{{listStyle !== 'waterFlowArticle'}}" is="{{listStyle}}" data="{{articlesList:articlesList,listAdsuccess:listAdsuccess,memberUserInfo:memberUserInfo}}" /> -->
+      <article-item
+        list="{{articlesList}}"
+        type="{{articleStyle}}"
+        show-action="{{memberUserInfo.member == '00'}}"
+        bind:submitPage="submitPage"
+        bind:deleteTopic="deleteTopic"
+        bind:sendSubscribeMessage="sendSubscribeMessage"
+      />
+
+      <view style='display:{{isLoading?"block":"none"}}'>
+        <template is="threepoint" />
+      </view>
+      <view class="no-more" style="display:{{isLastPage?'block':'none'}}">- 到底啦 -</view>
+
+      <copyright />
+    </view>
+  </view>
+</view>
+
+<!-- 发布文章按钮 -->
+<view style="display:{{showAddbtn?'block':'none'}}">
+  <view class="posts" bindtap="addArticle">
+    <image class="addarticle" src="../../images/write-article.png"></image>
+  </view>
+</view>
+
+<!-- 授权手机号 -->
+<van-dialog
+  show="{{ showPopPhone }}"
+  title="提示"
+  message="发布内容需要授权绑定手机号"
+  showCancelButton="{{ true }}"
+  confirmButtonText="确认绑定"
+  confirm-button-color="#2f80ed"
+  confirm-button-open-type="getPhoneNumber"
+  bind:getphonenumber="getPhoneNumber"
+/>
+
+<template is="login-popup" data="{{show:isLoginPopup,userInfo:userInfo}}"></template>

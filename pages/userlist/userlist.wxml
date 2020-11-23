@@ -1,0 +1,40 @@
+<import src="../../templates/member/memberIcon.wxml" />
+
+
+<view class="userlist">
+	<view wx:for="{{authorList}}" wx:key="index" class="userlist-item">
+		<view catchtap="redictAuthorDetail" class="userlist-item-name" id="{{item.post_author}}">
+			<image src="{{item.avatarurl}}" />
+			<template wx:if="{{item.member === '01'}}" is="memberIcon" data="{{member:item.member,isIcon: true}}" />
+		</view>
+		<view class="userlist-right" catchtap="redictAuthorDetail" id="{{item.post_author}}">
+			<view class="userlist-name">
+				<view>
+					<text>{{item.nickname}}</text>
+					<template wx:if="{{item.member !== '01'}}" is="memberIcon" data="{{member:item.member,isIcon: true}}" />
+					<template wx:else is="memberIcon" data="{{member:item.member,isIcon: false}}" />
+				</view>
+				<view class="userlist-data">
+					<text>文章{{item.postcount}}</text>
+					<text>话题{{item.topiccount}}</text>
+					<text>粉丝{{item.followmecount}}</text>
+					<text>关注{{item.myfollowcount}}</text>
+				</view>
+			</view>
+
+			<view class="userlist-btn" data-listType="authorList" data-follow="{{item.follow}}" data-authorid="{{item.post_author}}" catchtap="followAuthor">
+				<block wx:if="{{item.follow=='false'}}">
+					<text class="btn-follow">关注</text>
+				</block>
+				<block wx:else>
+					<block wx:if="{{item.followeachoher=='true'}}">
+						<text class="btn-follow-eachother">相互关注</text>
+					</block>
+					<block wx:else>
+						<text class="btn-followed">已关注</text>
+					</block>
+				</block>
+			</view>
+		</view>
+	</view>
+</view>

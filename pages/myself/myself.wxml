@@ -1,0 +1,281 @@
+<import src="../../templates/login-popup.wxml" />
+
+<view class='user'>
+  <view class='header bg-color acea-row ' style="align-items: center;">
+    <view class='picTxt acea-row row-between-wrapper'>
+      <view class='pictrue'>
+        <image src='{{userInfo.avatarUrl}}'></image>
+      </view>
+
+      <view class='text'>
+        <view class='acea-row row-middle'>
+          <view class='name line1' bindtap="{{userInfo.isLogin?'':'openLoginPopup'}}">{{userInfo.nickName}}</view>
+        </view>
+
+        <view class="userinfo-rights">
+          <view class="userinfo-member" bindtap="toIntegralDes">
+            <text wx:if="{{memberUserInfo.membername}}">{{memberUserInfo.membername || '角色'}}</text>
+          </view>
+
+          <view class='id' wx:if="{{memberUserInfo.userid}}">ID {{memberUserInfo.userid || 0}}
+          </view>
+        </view>
+      </view>
+    </view>
+    <text class='iconfont icon-shezhi' data-url='/pages/user_info/index' bindtap='goPages'></text>
+    <view class="btn-signin" data-mytype="mysignin" bindtap="redictPage">
+      <image class="icon-signin" src="../../images/icon-jifen-small.png"></image>
+      <text>赚积分</text>
+    </view>
+
+
+  </view>
+  <view class='myinfo'>
+    <view class='item' data-mytype="mytopics" bindtap="redictPage">
+
+      <view class='num'>{{memberUserInfo.topiccount || 0}}</view>
+      <view class="picture">话题</view>
+    </view>
+    <view class='item' data-mytype="myposts" bindtap="redictPage">
+
+      <view class='num'>{{memberUserInfo.postcount || 0}}</view>
+      <view class="picture">文章</view>
+    </view>
+
+    <view class='item' data-mytype="followmeAuthor" bindtap="redictPage">
+
+      <view class='num'>{{memberUserInfo.followmecount || 0}}</view>
+      <view class="picture">粉丝</view>
+    </view>
+    <view class='item' data-mytype="myFollowAuthor" bindtap="redictPage">
+
+      <view class='num'>{{memberUserInfo.myfollowcount || 0}}</view>
+      <view class="picture">关注</view>
+    </view>
+    <view class='item' style="border-left: 1px dashed rgba(255,255,255,0.4);" data-mytype="myIntegral" bindtap="redictPage">
+      <view class="picture">我的积分</view>
+      <view class='num'> {{memberUserInfo.integral || 0}} </view>
+    </view>
+  </view>
+  <view class='wrapper'>
+    <view class='myOrder'>
+      <view class='title acea-row row-between-wrapper'>
+        <view>我的记录</view>
+        <view class='allOrder' data-mytype="myzanimage" bindtap="redictPage" wx:if="{{zan_display==='1'}}">设置{{raw_praise_word}}码
+          <text class="cuIcon-right sm text-gray"></text>
+        </view>
+      </view>
+      <view class='orderState acea-row row-middle'>
+        <view class='item' data-mytype="myreads" bindtap="redictPage">
+          <view class='pictrue'>
+            <text class="cuIcon-attention cuIcon"></text>
+          </view>
+          <view>浏览</view>
+        </view>
+        <view class='item' data-mytype="mycomments" bindtap="redictPage">
+          <view class='pictrue'>
+            <text class="cuIcon-comment cuIcon"></text>
+          </view>
+          <view>评论</view>
+        </view>
+        <view class='item' data-mytype="mylikes" bindtap="redictPage">
+          <view class='pictrue'>
+            <text class="cuIcon-appreciate cuIcon"></text>
+          </view>
+          <view>点赞</view>
+        </view>
+        <view class='item' data-mytype="mypraises" bindtap="redictPage">
+          <view class='pictrue'>
+            <text class="cuIcon-moneybag cuIcon"></text>
+          </view>
+          <view>鼓励</view>
+        </view>
+        <view class='item' data-mytype="myorders" bindtap="redictPage">
+          <view class='pictrue'>
+            <text class="cuIcon-form cuIcon"></text>
+          </view>
+          <view>账单</view>
+        </view>
+      </view>
+
+      <view class='acea-row-notice acea-row row-left'>
+        <view class='item' data-mytype="mynotice" bindtap="redictPage">
+          <view class='picture'>
+            <text class="cuIcon-notice cuIcon"></text>
+            <text class="tag" wx:if="{{messagesCount !='0' && messagesCount !='' }}">{{messagesCount}}</text>
+          </view>
+          <view>消息</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- <view class='myService'>
+      <view class='title acea-row row-middle'>我的小店</view>
+      <view class='serviceList acea-row row-middle'>
+        <view class='item' data-mytype="myshoporders" bindtap="redictPage">
+          <view class='picture'>
+            <text class="cuIcon-text cuIcon"></text>
+          </view>
+          <view>订单</view>
+        </view>
+
+        <view class='item' data-mytype="myshoppingcart" bindtap="redictPage">
+          <view class='picture'>
+            <text class="cuIcon-goodsfavor cuIcon"></text>
+          </view>
+          <view>购物袋</view>
+        </view>
+
+       
+
+        <view wx:if="{{memberUserInfo.member =='00'}}" class='item' data-mytype="orderManage" bindtap="redictPage">
+          <view class='picture'>
+            <text class="cuIcon-shop cuIcon"></text>
+          </view>
+          <view>订单管理</view>
+        </view>
+
+     
+
+        <view wx:if="{{memberUserInfo.member =='00'}}" class='item' data-mytype="kefuMinApp" bindtap="redictPage">
+          <view class='picture'>
+            <text class="cuIcon-notice cuIcon"></text>
+          </view>
+          <view>客服助手</view>
+        </view>
+
+      </view>
+    </view> -->
+
+    <view class='myService' wx:if="{{memberUserInfo.member =='00'}}">
+      <view class='title acea-row row-middle'>管理功能</view>
+      <view class='serviceList acea-row row-middle'>
+        <view class='item' data-mytype="topicspending" bindtap="redictPage">
+          <view class='pictrue'>
+            <text class="cuIcon-news cuIcon"></text>
+            <text wx:if="{{pendingCount.topic_pending_count}}" class="tag">{{pendingCount.topic_pending_count}}</text>
+          </view>
+          <view>审核话题</view>
+        </view>
+        <view class='item' data-mytype="replyspending" bindtap="redictPage">
+          <view class='pictrue'>
+            <text class="cuIcon-message cuIcon"></text>
+            <text wx:if="{{pendingCount.reply_pending_count}}" class="tag">{{pendingCount.reply_pending_count}}</text>
+          </view>
+          <view>审核话题回复</view>
+        </view>
+        <view class='item' data-mytype="postspending" bindtap="redictPage">
+          <view class='pictrue'>
+            <text class="cuIcon-list cuIcon"></text>
+            <text wx:if="{{pendingCount.post_pending_count}}" class="tag">{{pendingCount.post_pending_count}}</text>
+          </view>
+          <view>审核文章</view>
+        </view>
+        <view class='item' data-mytype="commentspending" bindtap="redictPage">
+          <view class='pictrue'>
+            <text class="cuIcon-community cuIcon"></text>
+            <text wx:if="{{pendingCount.comment_pending_count}}" class="tag">{{pendingCount.comment_pending_count}}</text>
+          </view>
+          <view>审核文章评论</view>
+        </view>
+        <view class='item' data-mytype="adminCenter" bindtap="redictPage">
+          <view class='pictrue'>
+            <text class="cuIcon-friendfamous cuIcon"></text>
+          </view>
+          <view>管理中心</view>
+        </view>
+        <view class='item' data-mytype="publishMinApp" bindtap="redictPage">
+          <view class='pictrue'>
+            <text class="cuIcon-pullup cuIcon"></text> </view>
+          <view>发布小程序</view>
+        </view>
+        
+        <view class='item' data-mytype="shujuMinApp" bindtap="redictPage">
+          <view class='pictrue'>
+            <text class="cuIcon-rank cuIcon"></text> </view>
+          <view>数据统计</view>
+        </view>
+      </view>
+    </view>
+
+
+
+
+
+    <view class='myService'>
+      <view class='title acea-row row-middle'>系统服务</view>
+      <view class='serviceList acea-row row-middle'>
+        <view class='item' bindtap="toIntegralDes" hover-class='none'>
+          <view class='pictrue'>
+            <text class="cuIcon-medal cuIcon"></text> </view>
+          <view>等级规则</view>
+        </view>
+        <view class='item' data-mytype="about" bindtap="redictPage" hover-class='none'>
+          <view class='pictrue'>
+            <text class="cuIcon-info cuIcon"></text> </view>
+          <view>关于我们</view>
+        </view>
+
+        <button class='item' open-type='feedback' hover-class='none'>
+          <view class='pictrue'>
+            <text class="cuIcon-mail cuIcon"></text> </view>
+          <view>意见反馈</view>
+        </button>
+
+        <button class='item' open-type='contact' hover-class='none'>
+          <view class='pictrue'>
+            <text class="cuIcon-service cuIcon"></text> </view>
+          <view>联系客服</view>
+        </button>
+
+        <view class='item' data-mytype="logout" bindtap="redictPage" hover-class='none'>
+          <view class='pictrue'>
+            <text class="cuIcon-delete cuIcon"></text> </view>
+          <view>清除缓存</view>
+        </view>
+        <view class='item' bindtap="onPullDownRefresh" hover-class='none'>
+          <view class='pictrue'>
+            <text class="cuIcon-refresh cuIcon"></text> </view>
+          <view>刷新数据</view>
+        </view>
+        <view class='item' data-mytype="myMessages" bindtap="redictPage" hover-class='none'>
+          <view class='pictrue'>
+            <text class="cuIcon-post cuIcon"></text> </view>
+          <view>预约留言</view>
+        </view>
+        <view class='item' catchtap="openSettting" hover-class='none'>
+          <view class='pictrue'>
+            <text class="cuIcon-focus cuIcon"></text> </view>
+          <view>设置</view>
+        </view>
+
+
+      </view>
+    </view>
+
+
+
+    <view class="listBox" wx:if="{{memberUserInfo.raw_new_post_message_id}}">
+
+      <view class='myServicetitle acea-row row-middle'>订阅消息</view>
+
+      <view class="listSubBox subscribe">
+        <view class="listItem-subscribe" wx:if="{{memberUserInfo.raw_new_post_message_id !=''}}">
+          <text>内容更新消息</text>
+          <view class="subscribe-tip">
+            <text>已订阅{{memberUserInfo.newcontentSubscribeCount || 0}}次</text>
+            <view data-subscribetype="newcontent" data-subscribemessagesid="{{memberUserInfo.raw_new_post_message_id}}" bindtap="subscribeMessage" wx:if="{{memberUserInfo.raw_new_post_message_id !=''}}">订阅</view>
+          </view>
+        </view>
+
+
+      </view>
+    </view>
+  </view>
+
+
+</view>
+
+<copyright />
+
+<template is="login-popup" data="{{show:isLoginPopup,userInfo:userInfo}}"></template>
