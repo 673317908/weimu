@@ -12,7 +12,7 @@ Component({
       type: Boolean,
       value: false
     },
-    // 类型 【 alert: 提示框， confrim: 确认框 】
+    // 类型 【 alert: ئەسكەرتىش框， confrim: 确认框 】
     type: {
       type: String,
       value: 'alert'
@@ -20,7 +20,7 @@ Component({
     // 标题文字
     title: {
       type: String,
-      value: '提示'
+      value: 'ئەسكەرتىش'
     },
     // 是否显示标题
     showTitle: {
@@ -37,20 +37,20 @@ Component({
       type: Boolean,
       value: true
     },
-    // 确定按钮的文本
+    // مۇقىملاشتۇرۇش按钮的文本
     confirmText: {
       type: String,
-      value: '确定'
+      value: 'مۇقىملاشتۇرۇش'
     },
-    // 确定按钮的颜色
+    // مۇقىملاشتۇرۇش按钮的颜色
     confirmColor: {
       type: String,
       value: '#3683d6'
     },
-    // 取消按钮的文本
+    // بىكارلاش按钮的文本
     cancelText: {
       type: String,
-      value: '取消'
+      value: 'بولدى قىلىش'
     },
     cancelColor: {
       type: String,
@@ -96,14 +96,14 @@ Component({
       wx.lin.showDialog = (options) => {
         const {
           type = 'alert',
-          title = '提示',
+          title = 'ئەسكەرتىش',
           showTitle = true,
           content = '',
           locked = true,
-          confirmText = '确定',
+          confirmText = 'مۇقىملاشتۇرۇش',
           contentColor = 'rgba(89,108,142,1)',
           cancelColor = '#45526b',
-          cancelText = '取消',
+          cancelText = 'بولدى قىلىش',
           confirmColor = '#3683d6',
           success = null,
           fail = null,
@@ -127,7 +127,7 @@ Component({
       };
     },
 
-    // 确定按钮
+    // مۇقىملاشتۇرۇش按钮
     onConfirmTap() {
       let detail = 'confirm';
       let option = { bubbles: true, composed: true };
@@ -147,7 +147,7 @@ Component({
 
     },
 
-    // 取消按钮
+    // بىكارلاش按钮
     onCancelTap() {
 
       let detail = 'cancel';

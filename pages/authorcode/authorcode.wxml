@@ -12,18 +12,18 @@
 </view>
 <view class="btn-box">
   <view style="display:{{zanImageUrl !=''?'block':'none'}}">
-    <button bindtap="selectImage">更换</button>
+    <button bindtap="selectImage">ئالماشتۇرۇش</button>
   </view>
   <view style="display:{{tempZanImageSrc !=''?'block':'none'}}">
-    <button bindtap="upLoadZanIamge">确认上传</button>
+    <button bindtap="upLoadZanIamge">چىقرىىش</button>
   </view>
   <view style="display:{{(tempZanImageSrc =='' &&  zanImageUrl=='' )?'block':'none'}}">
-    <button bindtap="selectImage">添加</button>
+    <button bindtap="selectImage">قوشۇش</button>
   </view>
 </view>
 
 <view class="tips-box">
-  <view>- {{raw_praise_word}}二维码功能说明 -</view>
-  <view>发布动态时开启"{{raw_praise_word}}"功能，可接收打赏，"{{raw_praise_word}}"二维码可在小程序“我的”页面里设置修改；</view>
-  <view>如何获取自己的"{{raw_praise_word}}"二维码：在微信里点击右上角“+”号，进入收付款页面保存“赞-赏-码”，然后进入小程序中上传即可。</view>
+  <view>- {{raw_praise_word}} ھەققىدە -</view>
+  <view>قوناقلىق يوللىغاندا "{{raw_praise_word}}"نى ئېچىپ قويسىڭىز باشقىلار سىزنى تارتۇقلىيالايدۇ"{{raw_praise_word}}"تارتۇقلاش كودى سىزنىڭ پۇل تاپشۇرۋىلىش كودىڭىز شۇ</view>
+
 </view>

@@ -18,8 +18,8 @@ const appName = app.globalData.appName
 
 const options = {
   data: {
-    shareTitle: appName + '-预约留言',
-    pageTitle: '预约留言',
+    shareTitle: appName + '-مەسلىھەت سوراش',
+    pageTitle: 'مەسلىھەت سوراش',
     userInfo: {},
     userSession: {},
     wxLoginInfo: {},
@@ -73,8 +73,8 @@ const options = {
       };
 
       wx.showModal({
-        title: '留言',
-        content: '是否提交留言？',
+        title: 'مەسلەھەت سوراش',
+        content: 'يوللامسىز؟',
         showCancel: true,
         cancelColor: '#296fd0',
         confirmColor: '#296fd0',

@@ -12,7 +12,9 @@ const Auth = require('../../utils/auth.js')
 const Adapter = require('../../utils/adapter.js')
 const util = require('../../utils/util.js')
 const NC = require('../../utils/notificationcenter.js')
-import { logout } from '../../utils/auth.js'
+import {
+  logout
+} from '../../utils/auth.js'
 import config from '../../utils/config.js'
 const app = getApp()
 const appName = app.globalData.appName
@@ -20,7 +22,7 @@ const pageCount = 10
 
 const options = {
   data: {
-    shareTitle: appName + '关于我',
+    shareTitle: appName + 'بىز ھەققىدە',
     pageTitle: " ",
     userInfo: {},
     userSession: {},
@@ -29,16 +31,16 @@ const options = {
     isLoginPopup: false,
     system: '',
     enterpriseMinapp: '',
-    raw_praise_word: '鼓励',
+    raw_praise_word: 'تارتۇقلاش',
     postMessageId: "",
     scopeSubscribeMessage: '',
     newcontentSubscribeCount: 0,
-    pageName:'myself',
-    zan_display:'0',
-    pendingCount:{},
-    messagesCount:'',
-    tabBarRedDotIndex:config.getTabBarRedDotIndex,
-    redHotCount:0
+    pageName: 'myself',
+    zan_display: '0',
+    pendingCount: {},
+    messagesCount: '',
+    tabBarRedDotIndex: config.getTabBarRedDotIndex,
+    redHotCount: 0
   },
 
   onLoad: function (option) {
@@ -59,22 +61,21 @@ const options = {
   onShow: function () {
     let self = this;
     Auth.setUserMemberInfoData(self);
-     Auth.checkLogin(self);
+    Auth.checkLogin(self);
     wx.setStorageSync('openLinkCount', 0);
 
-    if(self.data.userSession.sessionId)
-    {
+    if (self.data.userSession.sessionId) {
       this.setData({
         isLoginPopup: false
       });
       self.onPullDownRefresh();
       self.getPendingCount();
-     
-     
+
+
 
     }
-    
-   
+
+
   },
   getSettings: function () {
     var self = this;
@@ -87,7 +88,7 @@ const options = {
         enterpriseMinapp: enterpriseMinapp,
         raw_praise_word: raw_praise_word,
         postMessageId: postMessageId,
-        zan_display:zan_display
+        zan_display: zan_display
       });
     })
   },
@@ -96,10 +97,10 @@ const options = {
     wx.setNavigationBarTitle({
       title: this.data.pageTitle
     });
-   
+
   },
-  onHide:function(){   
-   
+  onHide: function () {
+
 
   },
   onPullDownRefresh: function () {
@@ -110,7 +111,7 @@ const options = {
 
     if (this.data.userSession.sessionId) {
       Auth.checkGetMemberUserInfo(this.data.userSession, this, API);
-      
+
     }
     wx.stopPullDownRefresh()
   },
@@ -132,16 +133,14 @@ const options = {
         isLoginPopup: true
       });
 
-      
-    }
-    else
-    {
+
+    } else {
       wx.navigateTo({
         url: `../myinfo/myinfo?integral=${this.data.memberUserInfo.integral}`
       })
 
     }
-    
+
   },
 
   redictPage: function (e) {
@@ -182,34 +181,29 @@ const options = {
           wx.navigateTo({
             url: '../mymessage/mymessage'
           });
-          
-        }else if (mytype == "mynotice") {
+
+        } else if (mytype == "mynotice") {
           wx.navigateTo({
             url: '../notice/notice'
           });
-        }
-        else if (mytype == "myshoporders") {
+        } else if (mytype == "myshoporders") {
           wx.navigateTo({
             url: 'plugin-private://wx34345ae5855f892d/pages/orderList/orderList?tabId=pendingPay'
           });
-          
-        }else if (mytype == "myshoppingcart") {
+
+        } else if (mytype == "myshoppingcart") {
           wx.navigateTo({
             url: 'plugin-private://wx34345ae5855f892d/pages/shoppingCart/shoppingCart'
           });
-        } else if(mytype == "orderManage") {
+        } else if (mytype == "orderManage") {
           wx.navigateTo({
             url: '../shop/order/order'
           });
-        }
-
-        
-         else if (mytype == "mytopics") {
+        } else if (mytype == "mytopics") {
           wx.navigateTo({
             url: '../m-myPublish/m-myPublish?userid=' + this.data.userSession.userId + "&postype=topic"
           });
-        } else if (mytype == "myzanimage") 
-        {
+        } else if (mytype == "myzanimage") {
           wx.navigateTo({
             url: '../authorcode/authorcode'
           });
@@ -263,16 +257,15 @@ const options = {
           wx.navigateToMiniProgram({
             appId: 'wx277c9f1d194fce2f'
           });
-        }else if (mytype == "shujuMinApp") {
+        } else if (mytype == "shujuMinApp") {
           wx.navigateToMiniProgram({
             appId: 'wx95e493619d0ff929'
           });
-        }else if (mytype == "mycoupon") {
+        } else if (mytype == "mycoupon") {
           wx.navigateTo({
             url: '../shop/my-coupon/my-coupon'
           });
-        }
-        else {
+        } else {
           wx.navigateTo({
             url: '../readlog/readlog?mytype=' + mytype
           });
@@ -303,86 +296,89 @@ const options = {
   openSettting: function () {
     var self = this;
     wx.openSetting({
-      success(res) { }
+      success(res) {}
     })
   },
   subscribeMessage: function (e) {
     var self = this;
     var subscribetype = e.currentTarget.dataset.subscribetype;
     var subscribemessagesid = e.currentTarget.dataset.subscribemessagesid;
-    Adapter.subscribeMessage(self, subscribetype, API, subscribemessagesid,0);
+    Adapter.subscribeMessage(self, subscribetype, API, subscribemessagesid, 0);
   },
-  getPendingCount:function(e)
-  {
-    var self=this;
-    var args ={};
+  getPendingCount: function (e) {
+    var self = this;
+    var args = {};
     args.sessionId = self.data.userSession.sessionId;
     args.userId = self.data.userSession.userId;
     API.getPendingCount(args).then(res => {
-      if(res.success)
-      {
-        var  pendingCount=res.pendingcount;
-        var topic_pending_count=parseInt(pendingCount.topic_pending_count);
-        var reply_pending_count=parseInt(pendingCount.reply_pending_count);
-        var post_pending_count=parseInt(pendingCount.post_pending_count);
-        var comment_pending_count=parseInt(pendingCount.comment_pending_count);
-        var count =topic_pending_count+reply_pending_count+post_pending_count+comment_pending_count;
-        var redHotCount =0;
-        redHotCount =redHotCount +count;
-        self.setData({pendingCount:pendingCount,redHotCount:redHotCount});
+      if (res.success) {
+        var pendingCount = res.pendingcount;
+        var topic_pending_count = parseInt(pendingCount.topic_pending_count);
+        var reply_pending_count = parseInt(pendingCount.reply_pending_count);
+        var post_pending_count = parseInt(pendingCount.post_pending_count);
+        var comment_pending_count = parseInt(pendingCount.comment_pending_count);
+        var count = topic_pending_count + reply_pending_count + post_pending_count + comment_pending_count;
+        var redHotCount = 0;
+        redHotCount = redHotCount + count;
+        self.setData({
+          pendingCount: pendingCount,
+          redHotCount: redHotCount
+        });
       }
-      
 
-    }).then(res=>{
+
+    }).then(res => {
 
       self.getMessageCount();
     })
 
-  },  
-  getMessageCount:function () {
-    var self = this;   
-    var args={};
-    args.userId=self.data.userSession.userId;
-    args.sessionId=self.data.userSession.sessionId;
-    args.messagetype="all";
+  },
+  getMessageCount: function () {
+    var self = this;
+    var args = {};
+    args.userId = self.data.userSession.userId;
+    args.sessionId = self.data.userSession.sessionId;
+    args.messagetype = "all";
     API.getMessageCount(args).then(res => {
       if (res.success) {
         var messagesCount = res.messagesCount[0].count;
 
-        var count= parseInt(messagesCount);
-          var redHotCount =self.data.redHotCount;
-          redHotCount =redHotCount +count;
-          self.setData({messagesCount:messagesCount,redHotCount:redHotCount});
-         
-      }
-  }).then(res=>{
+        var count = parseInt(messagesCount);
+        var redHotCount = self.data.redHotCount;
+        redHotCount = redHotCount + count;
+        self.setData({
+          messagesCount: messagesCount,
+          redHotCount: redHotCount
+        });
 
-    var redHotCount = self.data.redHotCount;
+      }
+    }).then(res => {
+
+      var redHotCount = self.data.redHotCount;
       //设置未读消息提示
-      if (redHotCount >0) {
+      if (redHotCount > 0) {
         wx.showTabBarRedDot({
           index: self.data.tabBarRedDotIndex
         })
-      }
-      else {
+      } else {
         wx.hideTabBarRedDot({
           index: self.data.tabBarRedDotIndex
         })
       }
-    
 
-  }) 
-},
 
-logoutTap(e){
-  var  pageName=this.data.pageName;
-  this.closeLoginPopup();     
-  Auth.logout(this);
-      wx.reLaunch({
-        url: '../'+pageName+'/'+pageName
-      })
-}
-  
+    })
+  },
+
+  logoutTap(e) {
+    var pageName = this.data.pageName;
+    this.closeLoginPopup();
+    Auth.logout(this);
+    wx.reLaunch({
+      url: '../' + pageName + '/' + pageName
+    })
+  }
+
 
 }
 //-------------------------------------------------

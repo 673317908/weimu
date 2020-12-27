@@ -13,7 +13,9 @@ function loadArticles(args, appPage, api, isPullDown, isSwitchCate) {
   var pageCount = args.pageCount;
   var pageData = {};
   var listName = args.listName ? args.listName : "articlesList";
-  appPage.setData({ isLoading: true });
+  appPage.setData({
+    isLoading: true
+  });
   api.getPosts(args).then(res => {
     if (res.length && res.length > 0) {
       if (res.length < pageCount) {
@@ -41,7 +43,7 @@ function loadArticles(args, appPage, api, isPullDown, isSwitchCate) {
           if (isSwitchCate) {
             refresh = true;
           }
-          wx.lin.renderWaterFlow(res, refresh, () => { })
+          wx.lin.renderWaterFlow(res, refresh, () => {})
         }
       } else if (listName == "productsList") {
         pageData.productsList = [].concat(appPage.data.productsList, res);
@@ -74,7 +76,7 @@ function loadArticles(args, appPage, api, isPullDown, isSwitchCate) {
         isLastPage: true
       });
       wx.showToast({
-        title: '已达最后一页',
+        title: 'بۇ ئەڭ ئاخىرقى بەت',
         mask: false,
         icon: "none",
         duration: 1e3
@@ -102,95 +104,94 @@ function loadArticles(args, appPage, api, isPullDown, isSwitchCate) {
 function loadArticleDetail(args, appPage, WxParse, api, util, innerAudioContext, ctx) {
   var postType = args.postType;
   api.getPostOrPageById(args).then(res => {
-    if (res.raw_goods_name != '') {
-      appPage.setData({
-        displaygoods: true
-      })
-    }
-
-    if (res.raw_weixinmp_type == '2') {
-      appPage.setData({
-        displaymp: true
-      })
-    }
-
-
-    if (res.title.rendered) {
-      var openAdLogs = wx.getStorageSync('openAdLogs') || [];
-      var openAded = res.excitationAd == 1 ? false : true;
-      if (openAdLogs.length > 19) {
-        openAded = true;
-      } else if (openAdLogs.length > 0 && res.excitationAd == 1) {
-        for (var i = 0; i < openAdLogs.length; i++) {
-          if (openAdLogs[i].id == res.id) {
-            openAded = true;
-            break;
-          }
-
-
-        }
-      }
-      appPage.setData({
-        detail: res,
-        display: true,
-        commentCounts: res.total_comments,
-        detailSummaryHeight: openAded ? '' : '400rpx'
-      });
-      if (res.mylike == "1") {
+      if (res.raw_goods_name != '') {
         appPage.setData({
-          likeIcon: "../../images/entry-like-on.png"
-        });
-      }
-      if (appPage.data.isPull) {
-        wx.stopPullDownRefresh()
-      }
-
-      if (res.category_name) {
-        wx.setNavigationBarTitle({
-          title: res.category_name
-        });
-      }
-      else {
-        wx.setNavigationBarTitle({
-          title: res.title.rendered
-        });
-
-      }
-
-
-      if (res.audios[0] && postType == "post") {
-        InitializationAudio(innerAudioContext, res.audios[0].src, appPage);
-        loadAudio(innerAudioContext, appPage);
-        appPage.setData({
-          displayAudio: "block"
-        });
-      }
-
-      if (res.content.rendered) {
-        WxParse.wxParse('article', 'html', res.content.rendered, appPage, 5)
-
-        let onlyVideo = res.format === 'video'
-        appPage.setData({
-          onlyVideo
+          displaygoods: true
         })
       }
 
-      if (res.excitationAd == 1 && postType == "post") {
-        appPage.loadInterstitialAd(res.excitationAdId);
+      if (res.raw_weixinmp_type == '2') {
+        appPage.setData({
+          displaymp: true
+        })
       }
 
-    }
 
-    // if (postType == "post" && res.post_full_image) {
-    //   wx.getImageInfo({
-    //     src: res.post_full_image,
-    //     success: (rs) => {
-    //       var shareImagePath = util.clipImage(rs.path, rs.width, rs.height, appPage, ctx);
-    //     }
-    //   })
-    // }
-    return res;
-  })
+      if (res.title.rendered) {
+        var openAdLogs = wx.getStorageSync('openAdLogs') || [];
+        var openAded = res.excitationAd == 1 ? false : true;
+        if (openAdLogs.length > 19) {
+          openAded = true;
+        } else if (openAdLogs.length > 0 && res.excitationAd == 1) {
+          for (var i = 0; i < openAdLogs.length; i++) {
+            if (openAdLogs[i].id == res.id) {
+              openAded = true;
+              break;
+            }
+
+
+          }
+        }
+        appPage.setData({
+          detail: res,
+          display: true,
+          commentCounts: res.total_comments,
+          detailSummaryHeight: openAded ? '' : '400rpx'
+        });
+        if (res.mylike == "1") {
+          appPage.setData({
+            likeIcon: "../../images/entry-like-on.png"
+          });
+        }
+        if (appPage.data.isPull) {
+          wx.stopPullDownRefresh()
+        }
+
+        if (res.category_name) {
+          wx.setNavigationBarTitle({
+            title: res.category_name
+          });
+        } else {
+          wx.setNavigationBarTitle({
+            title: res.title.rendered
+          });
+
+        }
+
+
+        if (res.audios[0] && postType == "post") {
+          InitializationAudio(innerAudioContext, res.audios[0].src, appPage);
+          loadAudio(innerAudioContext, appPage);
+          appPage.setData({
+            displayAudio: "block"
+          });
+        }
+
+        if (res.content.rendered) {
+          WxParse.wxParse('article', 'html', res.content.rendered, appPage, 5)
+
+          let onlyVideo = res.format === 'video'
+          appPage.setData({
+            onlyVideo
+          })
+        }
+
+        if (res.excitationAd == 1 && postType == "post") {
+          appPage.loadInterstitialAd(res.excitationAdId);
+        }
+
+      }
+
+      // if (postType == "post" && res.post_full_image) {
+      //   wx.getImageInfo({
+      //     src: res.post_full_image,
+      //     success: (rs) => {
+      //       var shareImagePath = util.clipImage(rs.path, rs.width, rs.height, appPage, ctx);
+      //     }
+      //   })
+      // }
+      return res;
+    })
     .then(res => {
       appPage.fristOpenComment();
       //appPage.onReachBottom();
@@ -299,32 +300,34 @@ function getFormField(args, appPage, api) {
 // 获取特定的页面
 function loadPagesDetail(args, appPage, api, WxParse) {
   api.getPages(args).then(res => {
-    appPage.setData({
-      pageDetail: res,
-      display: 'block'
-    });
-
-    wx.setNavigationBarTitle({ title: res.post_title });
-
-    WxParse.wxParse('article', 'html', res.post_content, appPage, 5);
-    return res;
-
-  }).then(res => {
-
-    if (res.raw_latitude && res.raw_longitude) {
-      var marker = {};
-      var markers = [];
-      marker.latitude = parseFloat(res.raw_latitude);
-      marker.longitude = parseFloat(res.raw_longitude);
-      marker.id = 1
-      marker.title = res.post_title;
-      marker.display = "ALWAYS";
-      markers.push(marker);
       appPage.setData({
-        markers: markers
+        pageDetail: res,
+        display: 'block'
       });
-    }
-  })
+
+      wx.setNavigationBarTitle({
+        title: res.post_title
+      });
+
+      WxParse.wxParse('article', 'html', res.post_content, appPage, 5);
+      return res;
+
+    }).then(res => {
+
+      if (res.raw_latitude && res.raw_longitude) {
+        var marker = {};
+        var markers = [];
+        marker.latitude = parseFloat(res.raw_latitude);
+        marker.longitude = parseFloat(res.raw_longitude);
+        marker.id = 1
+        marker.title = res.post_title;
+        marker.display = "ALWAYS";
+        markers.push(marker);
+        appPage.setData({
+          markers: markers
+        });
+      }
+    })
     .catch(err => {
       wx.stopPullDownRefresh()
     });
@@ -364,7 +367,7 @@ function loadCategories(args, appPage, api, isloadArticles, isPullDown) {
           var column = {};
           column = {
             "id": "0",
-            "name": "最新",
+            "name": "ئەڭ يېڭى",
             "ids": categoryIds
           }
           columns = columns.concat(column);
@@ -377,7 +380,10 @@ function loadCategories(args, appPage, api, isloadArticles, isPullDown) {
           });
 
         } else if (args.cateType == 'subscribe') {
-          appPage.setData({ popupShow: true, columns: res })
+          appPage.setData({
+            popupShow: true,
+            columns: res
+          })
 
           // column = {
           //   "id": "0",
@@ -397,7 +403,10 @@ function loadCategories(args, appPage, api, isloadArticles, isPullDown) {
       if (args.isTree) {
         let list = res.map(item => {
           if (!item.children.length) {
-            item.children[0] = { ...item, children: [] }
+            item.children[0] = {
+              ...item,
+              children: []
+            }
           }
           return item
         })
@@ -424,7 +433,9 @@ function loadTags(args, appPage, api) {
   var pageData = {};
   var pageCount = args.pageCount;
   var page = args.page;
-  appPage.setData({ isLoading: true })
+  appPage.setData({
+    isLoading: true
+  })
   api.getTags(args).then(res => {
     if (res.length && res.length > 0) {
 
@@ -452,7 +463,7 @@ function loadTags(args, appPage, api) {
         isLastPage: true
       });
       wx.showToast({
-        title: '已达最后一页',
+        title: 'ئەڭ ئاخىرقى بەت',
         mask: false,
         icon: "none",
         duration: 1e3
@@ -472,7 +483,9 @@ function loadTags(args, appPage, api) {
 function loadComments(args, appPage, api) {
   var page = args.page;
   var pageData = {};
-  appPage.setData({ isLoading: true })
+  appPage.setData({
+    isLoading: true
+  })
   api.getCommentsReplay(args).then(res => {
     if (res.comments) {
 
@@ -502,7 +515,9 @@ function loadComments(args, appPage, api) {
 }
 
 function loadCommentsPending(args, appPage, api) {
-  appPage.setData({ isLoading: true });
+  appPage.setData({
+    isLoading: true
+  });
   api.commentsPending(args).then(res => {
     if (res.code == 'error') {
       // wx.showToast({
@@ -554,7 +569,7 @@ function getNewComments(appPage, api, util) {
 
     } else {
       wx.showToast({
-        title: '没有最新言论',
+        title: 'يېڭى ئىنكاس يوق',
         mask: false,
         icon: "none",
         duration: 1e3
@@ -575,7 +590,9 @@ function loadBBTopics(args, appPage, api) {
   var page = args.page;
   var pageCount = args.pageCount;
   var pageData = {};
-  appPage.setData({ isLoading: true })
+  appPage.setData({
+    isLoading: true
+  })
   if (args.isCategory && args.forumId == '0') {
     api.getBBTopicsByID(args).then(res => {
       if (res.topics) {
@@ -646,7 +663,9 @@ function loadMyfollowAuthorTopics(args, appPage, api) {
   var authorPage = args.authorPage;
   var pageCount = args.per_page;
   var pageData = {};
-  appPage.setData({ isLoading: true })
+  appPage.setData({
+    isLoading: true
+  })
   api.getMyFollowAuthorTopics(args).then(res => {
     if (res.topics) {
       if (res.topics.length < pageCount) {
@@ -663,7 +682,9 @@ function loadMyfollowAuthorTopics(args, appPage, api) {
 
   }).catch(err => {
     wx.stopPullDownRefresh();
-    appPage.setData({ isLoading: false })
+    appPage.setData({
+      isLoading: false
+    })
   })
 }
 
@@ -671,7 +692,9 @@ function loadAuthorList(args, appPage, api) {
   var authorlistPage = args.authorlistPage;
   var pageCount = args.per_page;
   var pageData = {};
-  appPage.setData({ isLoading: true })
+  appPage.setData({
+    isLoading: true
+  })
   api.getAuthorList(args).then(res => {
     if (res) {
       if (res.length < pageCount) {
@@ -683,7 +706,9 @@ function loadAuthorList(args, appPage, api) {
       appPage.setData(pageData);
     }
   }).catch(err => {
-    appPage.setData({ isLoading: false })
+    appPage.setData({
+      isLoading: false
+    })
   })
   wx.stopPullDownRefresh()
 }
@@ -691,7 +716,9 @@ function loadAuthorList(args, appPage, api) {
 function loadReplayTopic(args, appPage, api) {
   var page = args.page;
   var pageData = {};
-  appPage.setData({ isLoading: true });
+  appPage.setData({
+    isLoading: true
+  });
   api.getReplayTopicById(args).then(res => {
     if (!res.code) {
       if (res.length < args.per_page) {
@@ -711,7 +738,9 @@ function loadReplayTopic(args, appPage, api) {
       appPage.setData(pageData);
     }
   }).catch(err => {
-    appPage.setData({ isLoading: false })
+    appPage.setData({
+      isLoading: false
+    })
   })
 }
 
@@ -803,11 +832,13 @@ function postBBTopic(id, agrs, api, appPage, util) {
       }
 
       var postStatus = res.postStatus
-      appPage.setData({ postStatus: postStatus })
+      appPage.setData({
+        postStatus: postStatus
+      })
       wx.z.showDialog({
-        title: "提示",
-        confirmText: "提交",
-        content: res.message + ",是否订阅话题评论消息?",
+        title: "ئەسكەرتىش",
+        confirmText: "يوللاش",
+        content: res.message + "تەستىقلانغانلىق ئۇچۇرىنى قوبۇل قىلامسىز؟",
         isCoverView: true,
         success: (data) => {
           if (data.confirm) {
@@ -837,9 +868,9 @@ function postBBTopic(id, agrs, api, appPage, util) {
       })
     } else {
 
-      var message = res.message      
+      var message = res.message
       if (res.code == '87014') {
-        message = "内容含有违法违规内容";
+        message = "مەزمۇن قانۇن نىزامغا ماس كەلمەپتۇ،قايتا يېزىڭ";
 
       }
       wx.showToast({
@@ -857,7 +888,7 @@ function postBBTopic(id, agrs, api, appPage, util) {
     }
   }).catch(err => {
     wx.showToast({
-      title: "发表失败",
+      title: "يوللانمىدى",
       icon: "none",
       duration: 2000
     })
@@ -871,27 +902,27 @@ function replyBBTopic(id, args, appPage, WxParse, api, util) {
     if (res.success) {
       wx.lin.showDialog({
         type: "confirm",
-        title: "标题",
+        title: "تېما",
         showTitle: false,
-        confirmText: "提交",
+        confirmText: "يوللاش",
         confirmColor: "#f60",
-        content: res.message + "是否订阅评论回复消息?",
+        content: res.message + "مۇشتەرى بۇلامسىز؟",
         success: (data) => {
           if (data.confirm) {
             var extid = res.replay.id;
             var subscribetype = 'topicReplaySubscribe';
             var subscribemessagesid = new_replay_message_id;
             subscribeMessage(appPage, subscribetype, api, subscribemessagesid, extid, util);
-          } 
+          }
           appPage.setData({
             content: '',
-            placeholder: "说点什么...",
+            placeholder: "ئىككى كەلىمە سۆزلەي",
             parentId: "0",
             focus: false,
           });
 
           if (res.post_status == "publish") {
-            var repliesList = appPage.data.repliesList;           
+            var repliesList = appPage.data.repliesList;
             var reply = {};
             reply.author_avatar = res.replay.author_avatar;
             reply.author_id = res.replay.author_id;
@@ -925,9 +956,9 @@ function replyBBTopic(id, args, appPage, WxParse, api, util) {
       })
     } else {
 
-      var message = res.message 
+      var message = res.message
       if (res.code == '87014') {
-        message = "内容含有违法违规内容";
+        message = "مەزمۇن قانۇن- نىزامغا خىلاپكەن،قايتا يېزىڭ";
 
       }
 
@@ -941,7 +972,7 @@ function replyBBTopic(id, args, appPage, WxParse, api, util) {
     }
   }).catch(err => {
     wx.showToast({
-      title: "回复失败",
+      title: "ئىنكاس قايتۇرۇش مەغلۇپ بولدى",
       icon: "none",
       duration: 2000
     })
@@ -950,7 +981,7 @@ function replyBBTopic(id, args, appPage, WxParse, api, util) {
 
 
 
-//提交评论
+//يوللاش评论
 function submitComment(e, appPage, app, api, util) {
 
   var content = e.detail.value.inputComment;
@@ -970,15 +1001,15 @@ function submitComment(e, appPage, app, api, util) {
   if (content.length === 0) {
     appPage.setData({
       'dialog.hidden': false,
-      'dialog.title': '提示',
-      'dialog.content': '没有填写评论内容。'
+      'dialog.title': 'ئەسكەرتىش',
+      'dialog.content': 'ئىنكاس مەزمۇنىنى يازماپسىز'
 
     });
   } else if (content.length > 1000) {
     appPage.setData({
       'dialog.hidden': false,
-      'dialog.title': '提示',
-      'dialog.content': '评论内容太多了。'
+      'dialog.title': 'ئەسكەرتىش',
+      'dialog.content': 'خەت سانى ئىشىپ كېتىپتۇ'
 
     });
 
@@ -1008,25 +1039,24 @@ function submitComment(e, appPage, app, api, util) {
           appPage.setData({
             content: '',
             parentId: "0",
-            placeholder: "评论...",
+            placeholder: "ئىنكاس...",
             focus: false
           });
 
           wx.lin.showDialog({
             type: "confirm",
-            title: "标题",
+            title: "تېما",
             showTitle: false,
-            confirmText: "提交",
+            confirmText: "يوللاش",
             confirmColor: "#f60",
-            content: res.message + "。是否订阅评论回复消息?",
+            content: res.message + "。تەستىقلانغانلىق ئۇچۇرىنى قوبۇل قىلامسىز؟",
             success: (data) => {
               if (data.confirm) {
                 var extid = res.comment.comment_ID;
                 var subscribetype = 'postReplaySubscribe';
                 var subscribemessagesid = new_replay_message_id;
                 subscribeMessage(appPage, subscribetype, api, subscribemessagesid, extid);
-              } else if (data.cancel) {
-              }
+              } else if (data.cancel) {}
 
               if (res.comment_approved == "1") {
                 var comment = {};
@@ -1060,7 +1090,7 @@ function submitComment(e, appPage, app, api, util) {
           var message = res.message
           var code = res.code;
           if (res.code == '87014') {
-            message = "内容含有违法违规内容";
+            message = "مەزمۇن قانۇن- نىزامغا خىلاپكەن،قايتا يېزىڭ";
 
           }
 
@@ -1212,8 +1242,7 @@ function postLike(id, appPage, app, api, postType) {
                 return item;
               }))
             });
-          }
-          else if (postType == "media-list") {
+          } else if (postType == "media-list") {
             var mediaList = [];
             appPage.setData({
               mediaList: mediaList.concat(appPage.data.mediaList.map(function (item) {
@@ -1226,9 +1255,7 @@ function postLike(id, appPage, app, api, postType) {
                 return item;
               }))
             });
-          }
-
-          else if (postType == "authorTopicsList") {
+          } else if (postType == "authorTopicsList") {
             var authorTopicsList = [];
             appPage.setData({
               authorTopicsList: authorTopicsList.concat(appPage.data.authorTopicsList.map(function (item) {
@@ -1260,7 +1287,7 @@ function postLike(id, appPage, app, api, postType) {
     } else {
       toast(res.message, 2000);
 
-      if (res.message == "已点赞") {
+      if (res.message == "ياقتۇرۇلدى") {
         appPage.setData({
           likeIcon: "../../images/entry-like-on.png"
         });
@@ -1307,7 +1334,7 @@ function gotoWebpage(enterpriseMinapp, url) {
       url: link + '?url=' + url
     })
   } else {
-    copyLink(url, "无法使用此功能,链接已复制,粘贴到浏览器里打开。");
+    copyLink(url, "ئادرىس كۆچۈرۈلدى،تور كۆرگۈچكە چاپلاپ كۆرۈڭ");
 
   }
 
@@ -1367,89 +1394,10 @@ function creatArticlePoster(appPage, app, api, util, modalView, postype, poster)
 
   }
   var blocks = [{
-    width: 690,
-    height: 908,
-    x: 30,
-    y: 183,
-    // borderWidth: 2,
-    // borderColor: '#f0c2a0',
-    // borderRadius: 20,
-  },
-  {
-    width: 634,
-    height: 74,
-    x: 59,
-    y: 680,
-    backgroundColor: '#fff',
-    opacity: 0,
-    zIndex: 100,
-  }
-  ]
-  var texts = [];
-  if (postype == "post") {
-
-    texts = [{
-      x: 160,
-      y: 100,
-      baseLine: 'middle',
-      text: appPage.data.userInfo.nickName,
-      fontSize: 32,
-      color: '#4c4c4c',
-      width: 570,
-      lineNum: 1
-    },
-    {
-      x: 60,
-      y: 170,
-      baseLine: 'top',
-      text: '发现不错的文章推荐给你',
-      fontSize: 33,
-      color: '#959595',
-    },
-    {
-      x: 60,
-      y: 860,
-      baseLine: 'middle',
-      text: title,
-      fontSize: 36,
-      fontWeight: 'bold',
-      color: '#4c4c4c',
-      marginLeft: 30,
-      width: 630,
-      lineNum: 2,
-      lineHeight: 60
-    },
-    {
-      x: 60,
-      y: 960,
-      baseLine: 'middle',
-      // text: excerpt,
-      text: '',
-      fontSize: 28,
-      color: '#929292',
-      width: 630,
-      lineNum: 1,
-      lineHeight: 50
-    },
-    {
-      x: 60,
-      y: 1100,
-      baseLine: 'top',
-      text: '长按识别右侧小程序码，立即阅读',
-      fontSize: 30,
-      color: '#080808',
-      width: 350,
-      lineNum: 2,
-      lineHeight: 50
-    }
-    ];
-  } else if (postype == 'topic') {
-
-    blocks = [{
       width: 690,
       height: 908,
       x: 30,
-      y: 183
+      y: 183,
       // borderWidth: 2,
       // borderColor: '#f0c2a0',
       // borderRadius: 20,
@@ -1463,50 +1411,129 @@ function creatArticlePoster(appPage, app, api, util, modalView, postype, poster)
       opacity: 0,
       zIndex: 100,
     }
+  ]
+  var texts = [];
+  if (postype == "post") {
+
+    texts = [{
+        x: 160,
+        y: 100,
+        baseLine: 'middle',
+        text: appPage.data.userInfo.nickName,
+        fontSize: 32,
+        color: '#4c4c4c',
+        width: 570,
+        lineNum: 1
+      },
+      {
+        x: 60,
+        y: 170,
+        baseLine: 'top',
+        text: 'بۇ يازما يامان ئەمەس تۇرىدۇ،كۆرۈپ باقامسىز؟',
+        fontSize: 33,
+        color: '#959595',
+      },
+      {
+        x: 60,
+        y: 860,
+        baseLine: 'middle',
+        text: title,
+        fontSize: 36,
+        fontWeight: 'bold',
+        color: '#4c4c4c',
+        marginLeft: 30,
+        width: 630,
+        lineNum: 2,
+        lineHeight: 60
+      },
+      {
+        x: 60,
+        y: 960,
+        baseLine: 'middle',
+        // text: excerpt,
+        text: '',
+        fontSize: 28,
+        color: '#929292',
+        width: 630,
+        lineNum: 1,
+        lineHeight: 50
+      },
+      {
+        x: 60,
+        y: 1100,
+        baseLine: 'top',
+        text: 'چىڭ بېسىپ كىرىپ تەپسىلاتىنى كۆرۈڭ',
+        fontSize: 30,
+        color: '#080808',
+        width: 350,
+        lineNum: 2,
+        lineHeight: 50
+      }
+    ];
+  } else if (postype == 'topic') {
+
+    blocks = [{
+        width: 690,
+        height: 908,
+        x: 30,
+        y: 183
+        // borderWidth: 2,
+        // borderColor: '#f0c2a0',
+        // borderRadius: 20,
+      },
+      {
+        width: 634,
+        height: 74,
+        x: 59,
+        y: 680,
+        backgroundColor: '#fff',
+        opacity: 0,
+        zIndex: 100,
+      }
     ];
 
     texts = [{
-      x: 160,
-      y: 100,
-      baseLine: 'middle',
-      text: appPage.data.userInfo.nickName,
-      fontSize: 32,
-      color: '#4c4c4c',
-      width: 570,
-      lineNum: 1
-    },
-    {
-      x: 60,
-      y: 170,
-      baseLine: 'top',
-      text: '发现不错的文章推荐给你',
-      fontSize: 33,
-      color: '#959595',
-    },
-    {
-      x: 60,
-      y: 860,
-      baseLine: 'middle',
-      text: title,
-      fontSize: 36,
-      fontWeight: 'bold',
-      color: '#4c4c4c',
-      marginLeft: 30,
-      width: 630,
-      lineNum: 2,
-      lineHeight: 60
-    },
-    {
-      x: 60,
-      y: 1100,
-      baseLine: 'top',
-      text: '长按识别右侧小程序码，立即阅读',
-      fontSize: 30,
-      color: '#080808',
-      width: 350,
-      lineNum: 2,
-      lineHeight: 50
-    }
+        x: 160,
+        y: 100,
+        baseLine: 'middle',
+        text: appPage.data.userInfo.nickName,
+        fontSize: 32,
+        color: '#4c4c4c',
+        width: 570,
+        lineNum: 1
+      },
+      {
+        x: 60,
+        y: 170,
+        baseLine: 'top',
+        text: 'چىڭ بېسىپ كىرىپ تەپسىلاتىنى كۆرۈڭ',
+        fontSize: 33,
+        color: '#959595',
+      },
+      {
+        x: 60,
+        y: 860,
+        baseLine: 'middle',
+        text: title,
+        fontSize: 36,
+        fontWeight: 'bold',
+        color: '#4c4c4c',
+        marginLeft: 30,
+        width: 630,
+        lineNum: 2,
+        lineHeight: 60
+      },
+      {
+        x: 60,
+        y: 1100,
+        baseLine: 'top',
+        text: 'چىڭ بېسىپ كىرىپ تەپسىلاتىنى كۆرۈڭ',
+        fontSize: 30,
+        color: '#080808',
+        width: 350,
+        lineNum: 2,
+        lineHeight: 50
+      }
     ];
 
   }
@@ -1519,27 +1546,27 @@ function creatArticlePoster(appPage, app, api, util, modalView, postype, poster)
 
 
       var images = [{
-        width: 80,
-        height: 80,
-        x: 60,
-        y: 60,
-        borderRadius: 80,
-        url: appPage.data.userInfo.avatarUrl, //用户头像
-      },
-      {
-        width: 750,
-        height: 562,
-        x: 0,
-        y: 240,
-        url: postImageUrl, //海报主图
-      },
-      {
-        width: 160,
-        height: 160,
-        x: 530,
-        y: 1060,
-        url: qrcodeImagePath, //二维码的图
-      }
+          width: 80,
+          height: 80,
+          x: 60,
+          y: 60,
+          borderRadius: 80,
+          url: appPage.data.userInfo.avatarUrl, //用户头像
+        },
+        {
+          width: 750,
+          height: 562,
+          x: 0,
+          y: 240,
+          url: postImageUrl, //海报主图
+        },
+        {
+          width: 160,
+          height: 160,
+          x: 530,
+          y: 1060,
+          url: qrcodeImagePath, //二维码的图
+        }
       ];
 
       posterConfig.images = images; //海报内的图片
@@ -1622,16 +1649,16 @@ function creatPoster(appPage, app, api, util, modalView, postype) {
                       createPosterLocal(appPage, posterImagePath, qrcodeImagePath, title, excerpt, logo, modalView);
                     } else {
                       wx.hideLoading();
-                      toast("文章或二维码图片下载失败", 2000);
+                      toast("چۈشۈرۈش مەغلوب بولدى", 2000);
 
                     }
                   } else {
                     wx.hideLoading();
-                    toast("下载文章图片失败" + res, 2000);
+                    toast("چۈشۈرۈش مەغلۇپ بولدى" + res, 2000);
                   }
                 }
               });
-              downloadTaskForPostImage.onProgressUpdate((res) => { })
+              downloadTaskForPostImage.onProgressUpdate((res) => {})
             }
           } else {
 
@@ -1641,7 +1668,7 @@ function creatPoster(appPage, app, api, util, modalView, postype) {
 
         }
       });
-      downloadTaskQrcodeImage.onProgressUpdate((res) => { })
+      downloadTaskQrcodeImage.onProgressUpdate((res) => {})
 
 
     } else {
@@ -1656,7 +1683,7 @@ function creatPoster(appPage, app, api, util, modalView, postype) {
 function createPosterLocal(appPage, postImageLocal, qrcodeLoal, title, excerpt, logo, modalView) {
 
   wx.showLoading({
-    title: "正在生成海报",
+    title: "سەل ساقلاڭ",
     mask: true,
   });
   var context = wx.createCanvasContext('mycanvas');
@@ -1672,7 +1699,7 @@ function createPosterLocal(appPage, postImageLocal, qrcodeLoal, title, excerpt, 
   context.setFillStyle("#959595");
   context.setFontSize(20);
   context.setTextAlign('center');
-  context.fillText("长按识别小程序码，立即阅读", 300, 900);
+  context.fillText("چىڭ بېسىپ كىرىپ تەپسىلاتىنى كۆرۈڭ", 300, 900);
   //context.setStrokeStyle(grd)
   context.setFillStyle("#959595");
   //分割线 context.beginPath()
@@ -1680,7 +1707,7 @@ function createPosterLocal(appPage, postImageLocal, qrcodeLoal, title, excerpt, 
   // context.lineTo(570, 690)
   // context.stroke();
   // this.setUserInfo(context);//用户信息        
-  drawTitleExcerpt(context, title, excerpt); //文章标题
+  drawTitleExcerpt(context, title, excerpt); //文章تېما
   context.draw();
   //将生成好的图片保存到本地，需要延迟一会，绘制期间耗时
   setTimeout(function () {
@@ -1758,7 +1785,7 @@ function postPayment(appPage, app, api) {
         'paySign': res.paySign,
         'success': function (res) {
           wx.showToast({
-            title: '谢谢鼓励！',
+            title: 'رىغبەلەندۇرگىنىڭىزگە رەھمەت',
             uration: 3000,
             success: function () {
               var data = {
@@ -1780,7 +1807,7 @@ function postPayment(appPage, app, api) {
         },
         complete: function (res) {
           if (res.errMsg == 'requestPayment:fail cancel') {
-            toast("你取消了支付", 2000);
+            toast("تۆلەش بىكار قىلىندى", 2000);
           }
         }
       });
@@ -1803,6 +1830,7 @@ function prodcutPayment(appPage, app, api, util) {
   args.extype = appPage.data.productype;
   var content = appPage.data.productName;
   api.postPayment(args).then(res => {
+    console.log(res)
     if (res.success) {
       var order = res.order;
       var noncestr = res.nonceStr
@@ -1814,7 +1842,7 @@ function prodcutPayment(appPage, app, api, util) {
         'paySign': res.paySign,
         'success': function (res) {
           wx.lin.showToast({
-            title: '支付成功',
+            title: 'پۇل تۆلەندى',
             icon: 'success',
             duration: 3000,
             mask: true,
@@ -1833,11 +1861,12 @@ function prodcutPayment(appPage, app, api, util) {
                       isPaySuccess: true
                     }
                   })
-                }
-                else if (appPage.data.pageName == "list") {
+                } else if (appPage.data.pageName == "list") {
                   var category = appPage.data.category;
                   category.paypequired = "0";
-                  appPage.setData({ category: category });
+                  appPage.setData({
+                    category: category
+                  });
                 }
               })
             }
@@ -1848,7 +1877,7 @@ function prodcutPayment(appPage, app, api, util) {
         },
         complete: function (res) {
           if (res.errMsg == 'requestPayment:fail cancel') {
-            toast("你取消了支付", 2000);
+            toast("تۆلەش بىكار قىلىندى", 2000);
           }
         }
       });
@@ -1874,7 +1903,7 @@ function upLoadImage(count, callback, nodeIndex, sourceType, app, api, appPage) 
       var tempFileSize = Math.ceil((res.tempFiles[0].size) / 1024);
       if (tempFileSize > 2048) {
         wx.showToast({
-          title: "上传的图片大于2M",
+          title: "رەسىم 2مىگابايىتتىن چوڭكەن",
           mask: false,
           icon: "none",
           duration: 3000
@@ -1884,7 +1913,7 @@ function upLoadImage(count, callback, nodeIndex, sourceType, app, api, appPage) 
       }
       if (filePath.length > count) {
         wx.showToast({
-          title: '选择的图片多于' + count + "张",
+          title: 'رەسىم سانى' + count + "پارچىدىن ئىشىپ كەتكەن",
           icon: "none",
           duration: 1e3,
           success: function () {
@@ -1926,7 +1955,7 @@ function upLoadImageToServer(imgfile, callback, nodeIndex, app, api, appPage) {
   var userId = appPage.data.userSession.userId;
 
   if (!sessionId || !userId) {
-    toast('请先授权登录', 3000);
+    toast('كىرگەندىن كىيىن مەشغۇلات قىلىڭ', 3000);
     return
   }
 
@@ -1999,7 +2028,7 @@ function upLoadFile(filePath, app, appPage, api) {
   var userId = appPage.data.userSession.userId;
   var jsonData = {};
   if (!sessionId || !userId) {
-    toast('请先授权登录', 3000);
+    toast('كىرگەندىن كىيىن مەشغۇلات قىلىڭ', 3000);
     return
   }
 
@@ -2028,7 +2057,7 @@ function upLoadFile(filePath, app, appPage, api) {
 
 function getVideo(agrs, api, appPage) {
   wx.showLoading({
-    title: '正在解析...',
+    title: 'يېشىۋاتىدۇ...',
     mask: true
   });
   api.getVideoInfo(agrs).then(res => {
@@ -2038,7 +2067,7 @@ function getVideo(agrs, api, appPage) {
     } else {
 
       if (res.videourl == "") {
-        toast("解析视频失败", 3000);
+        toast("فىلىم يېشىلمىدى", 3000);
       }
 
       appPage.setData({
@@ -2069,7 +2098,7 @@ function getWeibo(args, api, appPage) {
 
 
   wx.showLoading({
-    title: '正在解析...',
+    title: 'يېشىلىۋاتىدۇ...',
     mask: true
   });
   api.getWeibo(args).then(res => {
@@ -2098,7 +2127,7 @@ function getWeibo(args, api, appPage) {
         linkInfo: ""
       })
       if (res.content == "") {
-        toast("解析微博失败", 3000);
+        toast("يېشىش مەغلۇپ بولدى", 3000);
       }
 
       appPage.setData({
@@ -2124,7 +2153,7 @@ function getWeibo(args, api, appPage) {
 function getToutiao(args, api, appPage) {
 
   wx.showLoading({
-    title: '正在解析...',
+    title: 'يېشىلىۋاتىدۇ...',
     mask: true
   });
   api.getToutiao(args).then(res => {
@@ -2150,7 +2179,7 @@ function getToutiao(args, api, appPage) {
         linkInfo: ""
       })
       if (res.content == "") {
-        toast("解析头条失败", 3000);
+        toast("يېشىىش مەغلۇپ بولدى", 3000);
       }
 
       appPage.setData({
@@ -2303,7 +2332,7 @@ function userFollow(api, appPage, args) {
   args.flag = flag;
   var listType = args.listType;
   wx.showLoading({
-    title: '更新中...',
+    title: 'يېڭىلىنىۋاتىدۇ...',
     mask: true
   })
   api.followAuthor(args).then(res => {
@@ -2387,7 +2416,9 @@ function subscribeMessage(appPage, subscribetype, api, subscribeMesagesId, extid
   args.subscribetype = subscribetype;
 
   if (!sessionId) {
-    appPage.setData({ isLoginPopup: true });
+    appPage.setData({
+      isLoginPopup: true
+    });
   }
   wx.requestSubscribeMessage({
     tmplIds: [subscribeMesagesId],
@@ -2398,13 +2429,11 @@ function subscribeMessage(appPage, subscribetype, api, subscribeMesagesId, extid
           if (res[k] == 'accept') {
             scopeSubscribeMessage = 'accept';
             break;
-          }
-          else if (res[k] == 'reject') {
+          } else if (res[k] == 'reject') {
             scopeSubscribeMessage = 'reject';
 
             break;
-          }
-          else if (res[k] == 'ban') {
+          } else if (res[k] == 'ban') {
             scopeSubscribeMessage = 'ban';
             break;
           }
@@ -2421,33 +2450,34 @@ function subscribeMessage(appPage, subscribetype, api, subscribeMesagesId, extid
               icon: "none",
               duration: 3000
             });
-          }
-          else {
+          } else {
             var subscribeCount = res.subscribeCount;
             var memberUserInfo = appPage.data.memberUserInfo;
             if (subscribetype == "newcontent") {
               memberUserInfo.newcontentSubscribeCount = subscribeCount;
-              appPage.setData({ memberUserInfo: memberUserInfo });
-            }
-            else if (subscribetype == "newreplay") {
+              appPage.setData({
+                memberUserInfo: memberUserInfo
+              });
+            } else if (subscribetype == "newreplay") {
               memberUserInfo.newreplaySubscribeCount = subscribeCount;
-              appPage.setData({ memberUserInfo: memberUserInfo });
-            }
-            else if (pageName == "list") {
+              appPage.setData({
+                memberUserInfo: memberUserInfo
+              });
+            } else if (pageName == "list") {
               var category = appPage.data.category;
               category.categorySubscribeCount = subscribeCount;
-              appPage.setData({ category: category });
+              appPage.setData({
+                category: category
+              });
 
-            }
-            else if (pageName == "cate") {
+            } else if (pageName == "cate") {
               var args = {};
               args.isTree = true;
               args.cateType = 'topic';
               args.userId = appPage.data.userSession.userId
               args.sessionId = appPage.data.userSession.sessionId
               loadCategories(args, appPage, api, false);
-            }
-            else if (pageName == "index" || pageName == "detail") {
+            } else if (pageName == "index" || pageName == "detail") {
               var _columns = appPage.data.columns;
               var columns = [];
               _columns.forEach(column => {
@@ -2456,14 +2486,16 @@ function subscribeMessage(appPage, subscribetype, api, subscribeMesagesId, extid
                 }
                 columns.push(column)
               })
-              appPage.setData({ columns: columns });
-            }
-            else if (pageName == "sociallist") {
+              appPage.setData({
+                columns: columns
+              });
+            } else if (pageName == "sociallist") {
               var category = appPage.data.category;
               category.categorySubscribeCount = subscribeCount;
-              appPage.setData({ category: category });
-            }
-            else if (pageName == "social" || pageName == "socialdetail") {
+              appPage.setData({
+                category: category
+              });
+            } else if (pageName == "social" || pageName == "socialdetail") {
               var _forums = appPage.data.forums;
               var forums = [];
               _forums.forEach(forum => {
@@ -2472,10 +2504,10 @@ function subscribeMessage(appPage, subscribetype, api, subscribeMesagesId, extid
                 }
                 forums.push(forum)
               })
-              appPage.setData({ forums: forums })
-            }
-
-            else if (pageName == "m-myPublish") {
+              appPage.setData({
+                forums: forums
+              })
+            } else if (pageName == "m-myPublish") {
               var _userpostsList = appPage.data.userpostsList;
               var userpostsList = [];
               _userpostsList.forEach(userposts => {
@@ -2484,7 +2516,9 @@ function subscribeMessage(appPage, subscribetype, api, subscribeMesagesId, extid
                 }
                 userpostsList.push(userposts)
               })
-              appPage.setData({ userpostsList: userpostsList });
+              appPage.setData({
+                userpostsList: userpostsList
+              });
             } else if (pageName == "readlog") {
               var _commentsReplays = appPage.data.commentsReplays;
               var commentsReplays = [];
@@ -2494,7 +2528,9 @@ function subscribeMessage(appPage, subscribetype, api, subscribeMesagesId, extid
                 }
                 commentsReplays.push(comment)
               })
-              appPage.setData({ commentsReplays: commentsReplays });
+              appPage.setData({
+                commentsReplays: commentsReplays
+              });
             }
 
             wx.showToast({
@@ -2512,8 +2548,7 @@ function subscribeMessage(appPage, subscribetype, api, subscribeMesagesId, extid
                         }
                       })
                     }, 1000)
-                  }
-                  else {
+                  } else {
                     setTimeout(function () {
                       wx.navigateBack({
                         delta: 1
@@ -2527,7 +2562,7 @@ function subscribeMessage(appPage, subscribetype, api, subscribeMesagesId, extid
         })
       } else if (scopeSubscribeMessage == "ban") {
         wx.showToast({
-          title: "被后台封禁",
+          title: "باشقۇرغۇچى تەرىپىدىن چەكلەندى",
           mask: false,
           icon: "none",
           duration: 3000,
@@ -2541,13 +2576,17 @@ function subscribeMessage(appPage, subscribetype, api, subscribeMesagesId, extid
           }
         });
       }
-      appPage.setData({ scopeSubscribeMessage: scopeSubscribeMessage });
+      appPage.setData({
+        scopeSubscribeMessage: scopeSubscribeMessage
+      });
     },
     fail: function (error) {
-      appPage.setData({ scopeSubscribeMessage: "" });
+      appPage.setData({
+        scopeSubscribeMessage: ""
+      });
       if (error.errorCode == "20004") {
         wx.showToast({
-          title: "请开启订阅消息权限",
+          title: "ئۇچۇر ئۇقۇش ھۇقۇقى ئېچىڭ",
           mask: false,
           icon: "none",
           duration: 3000,
@@ -2607,26 +2646,28 @@ function getMessageCount(appPage, args, api) {
       if (messagetype == "all" && res.messagesCount) {
         var _allUnReadCount = res.messagesCount[0].count;
         var allUnReadCount = parseInt(_allUnReadCount);
-        //设置未读消息提示
-        if(appPage.data.pageName=="index")
-        {
+        //设置未读消息ئەسكەرتىش
+        if (appPage.data.pageName == "index") {
 
           if (_allUnReadCount != "0") {
             wx.showTabBarRedDot({
               index: appPage.data.tabBarRedDotIndex
             })
-          }
-          else {
+          } else {
             wx.hideTabBarRedDot({
               index: appPage.data.tabBarRedDotIndex
             })
           }
 
         }
-        
-        appPage.setData({ allUnReadCount: allUnReadCount })
+
+        appPage.setData({
+          allUnReadCount: allUnReadCount
+        })
       } else if (messagetype == "alloftype") {
-        appPage.setData({ alloftypeMessageList: res.messagesCount })
+        appPage.setData({
+          alloftypeMessageList: res.messagesCount
+        })
       }
     }
   })
@@ -2635,61 +2676,61 @@ function getMessageCount(appPage, args, api) {
 
 function getSettings(appPage, api) {
   api.getSettings().then(res => {
-    appPage.setData({ Settings: res.settings })
+    appPage.setData({
+      Settings: res.settings
+    })
   })
 }
 
 
-function  getPhoneNumber(e,apppage,api,Auth){
+function getPhoneNumber(e, apppage, api, Auth) {
 
   wx.showLoading({
-    title: "正在获取...",
+    title: "سەل ساقلاڭ...",
     mask: true
   });
-  var  result=false;
-  if(e.detail.errMsg=="getPhoneNumber:fail user deny")
-  {
-    apppage.setData({showPopPhone:false});
-    toast("用户拒绝了授权", 2000)
+  var result = false;
+  if (e.detail.errMsg == "getPhoneNumber:fail user deny") {
+    apppage.setData({
+      showPopPhone: false
+    });
+    toast("ھوقۇق بىرىشنى رەت قىلدىڭىز", 2000)
     wx.hideLoading();
     return;
 
   }
-  Auth.getPhoneMumber(apppage,api,e.detail.iv,e.detail.encryptedData).then(res=>
-    {  
-      wx.hideLoading(); 
-      if(res.errcode !='error')
-      {
-        var memberUserInfo= apppage.data.memberUserInfo;
-        if(memberUserInfo.phone =="" )
-        {
-          memberUserInfo.phone=res.phoneinfo.purePhoneNumber;
-          apppage.setData({memberUserInfo:memberUserInfo});
-          result=true;
-          toast("手机号绑定成功"+","+res.message, 2000)
+  Auth.getPhoneMumber(apppage, api, e.detail.iv, e.detail.encryptedData).then(res => {
+    wx.hideLoading();
+    if (res.errcode != 'error') {
+      var memberUserInfo = apppage.data.memberUserInfo;
+      if (memberUserInfo.phone == "") {
+        memberUserInfo.phone = res.phoneinfo.purePhoneNumber;
+        apppage.setData({
+          memberUserInfo: memberUserInfo
+        });
+        result = true;
+        toast("تېلىفۇن نۇمۇرىنى باغلىدىڭىز" + "," + res.message, 2000)
 
-        }
-        else if(memberUserInfo.phone !="" && res.phoneinfo.purePhoneNumber !=memberUserInfo.phone)
-        {
-          memberUserInfo.phone=res.phoneinfo.purePhoneNumber;            
-          apppage.setData({memberUserInfo:memberUserInfo});
-          result=true;
-          toast("手机号更新成功"+","+res.message, 2000)
-          
-        }
-        else if(memberUserInfo.phone !="" && res.phoneinfo.purePhoneNumber ==memberUserInfo.phone)
-        {
-           toast("手机号未更新", 2000)
-        }
+      } else if (memberUserInfo.phone != "" && res.phoneinfo.purePhoneNumber != memberUserInfo.phone) {
+        memberUserInfo.phone = res.phoneinfo.purePhoneNumber;
+        apppage.setData({
+          memberUserInfo: memberUserInfo
+        });
+        result = true;
+        toast("تېلىفۇن نۇمۇرى يىڭلاندى" + "," + res.message, 2000)
+
+      } else if (memberUserInfo.phone != "" && res.phoneinfo.purePhoneNumber == memberUserInfo.phone) {
+        toast("تېلفۇن نۇمۇرى يېڭىلانمىدى", 2000)
       }
-      else
-      {
-     
-        toast("获取手机号失败", 2000)
-      }
-      apppage.setData({showPopPhone:false});
-      return result;
-    })
+    } else {
+
+      toast("نۇمۇرىڭىزغا ئىرىشەلمىدى", 2000)
+    }
+    apppage.setData({
+      showPopPhone: false
+    });
+    return result;
+  })
 
 }
 
@@ -2734,5 +2775,5 @@ module.exports = {
   sendSubscribeMessage: sendSubscribeMessage,
   getMessageCount: getMessageCount,
   getSettings: getSettings,
-  getPhoneNumber:getPhoneNumber
+  getPhoneNumber: getPhoneNumber
 }

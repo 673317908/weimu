@@ -35,12 +35,12 @@ Page({
     if(posttype=="post")
     {
       detailposttype='postPending';
-      wx.setNavigationBarTitle({ title: '待审核的文章' });
+      wx.setNavigationBarTitle({ title: 'تەستىقلىنىۋاتقان ماقالە' });
     }
     else if(posttype="topic")
     {
       detailposttype='topicPending';
-      wx.setNavigationBarTitle({ title: '待审核的话题' });
+      wx.setNavigationBarTitle({ title: 'تەستىقلىنىۋاتقان قوناقلىق' });
     }
 
     self.setData({      
@@ -141,7 +141,7 @@ Page({
     var sessionId =self.data.userSession.sessionId;
     if(!sessionId || !userId)
     {
-        Adapter.toast('请先授权登录',3000);
+        Adapter.toast('تىزىملىتىپ كىرىڭ',3000);
         return;
     }
     data.id=id;
@@ -212,7 +212,7 @@ Page({
     var deletetype='approveStatus';
     if(!sessionId || !userId)
     {
-        Adapter.toast('请先授权登录',3000);
+        Adapter.toast('تىزىملىتىپ كىرىڭ',3000);
         return;
     }
     data.id=id;
@@ -223,11 +223,11 @@ Page({
     
     wx.lin.showDialog({
       type:"confirm",     
-      title:"标题",
+      title:"ماۋزۇ",
       showTitle:false,
-      confirmText:"确认" ,
+      confirmText:"ماقۇل" ,
       confirmColor:"#f60" ,
-      content:"确认删除？",          
+      content:"ئۆچۈرەمسىز؟",          
       success: (res) => {
         if (res.confirm) {
 

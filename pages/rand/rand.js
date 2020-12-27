@@ -19,7 +19,7 @@ const pageCount = 10
 
 Page({
   data: {
-    title: '文章列表',
+    title: 'ماقالىلەر',
     postsList: {},
     pagesList: {},
     categoriesList: {},
@@ -51,13 +51,13 @@ Page({
   // 自定义分享朋友圈
   onShareTimeline:function() { 
     return {
-      title: appName + '-随机文章'
+      title: appName + 'ياقتۇرشىڭىز مۈمكىن'
     }
   },
 
   // 分享
   onShareAppMessage: function() {
-    var title = appName + '的随机文章'
+    var title = appName + 'ياقتۇرشىڭىز مۈمكىن'
     var path = "pages/rand/rand"
     return {
       title,

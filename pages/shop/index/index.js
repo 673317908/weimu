@@ -8,7 +8,7 @@ Page({
     selectedList: [],
     productList: [],
     page: 1,
-    shareTitle: '小店',
+    shareTitle: 'ماگىزىن',
     couponList: [],
     activeTab: 0,
 
@@ -179,7 +179,7 @@ Page({
     })
 
     // wx.showLoading({
-    //   title: '加载中',
+    //   title: 'ئېچىلىۋاتىدۇ',
     // })
     await this.getGoodsCate()
     // wx.hideLoading()

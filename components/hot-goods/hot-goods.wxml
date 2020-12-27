@@ -2,7 +2,7 @@
 <view class="selected-nav">
   <view class='common-subtitle' style="padding: {{ padding }}">
     <view class='common-subtitle-left'>{{ title }}</view>
-    <view class='common-subtitle-right'>滑动查看</view>
+    <view class='common-subtitle-right'>ئوڭ سولغا سىيرىپ كۆرۈڭ</view>
   </view>
 
   <scroll-view scroll-x>

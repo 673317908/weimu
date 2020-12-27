@@ -12,10 +12,10 @@
    <camera device-position="back" flash="off" binderror="error" style="width: 100vw; height: 100vh;">
    <cover-view class="controls">
     <cover-view class="play" bindtap="play">
-     <button type="primary" bindtap="startRecord">开始录像</button>
+     <button type="primary" bindtap="startRecord">سۈرەتكە ئېلىشنى باشلاش</button>
     </cover-view>
     <cover-view class="pause" bindtap="pause">
-     <button type="primary" bindtap="stopRecord">结束录像</button>
+     <button type="primary" bindtap="stopRecord">سۈرەتكە ئېلىشنى ئاخىرلاشتۇرۇش</button>
     </cover-view>
     <cover-view class="time">00:00</cover-view>
   </cover-view>

@@ -18,18 +18,18 @@
           <text>{{item.title.rendered}}
           </text>
           <view class="content-popularity">
-            <text>浏览 {{item.pageviews}}</text>
-            <text>评论 {{item.total_comments}}</text>
-            <text>点赞 {{item.like_count}}</text>
+            <text>ئاۋاتلىقى {{item.pageviews}}</text>
+            <text>ئىنكاس {{item.total_comments}}</text>
+            <text>ياقتۇرغانلار {{item.like_count}}</text>
             <text><block wx:if="{{item.post_status=='pending'}}">
-          审核中</block></text>
+          تەستىقلىنىۋاتىدۇ</block></text>
           </view>
         </view>
 
         <!-- 订阅消息 -->
         <view class="btn-box">
-          <view class="btn" data-posttype="{{item.postType}}" data-subid="{{item.subscribemessagesid}}" id="{{item.id}}" catchtap="postsub">订阅</view>
-          <view class="tips">已订阅 {{item.subscribeCount}} 次评论消息</view>
+          <view class="btn" data-posttype="{{item.postType}}" data-subid="{{item.subscribemessagesid}}" id="{{item.id}}" catchtap="postsub">قوبۇل قىلاي</view>
+          <view class="tips">جەمئىي {{item.subscribeCount}} قېتىم ئىنكاس ئۇقتۇرىشىنى قوبۇل قىلالايسىز</view>
         </view>
       </view>
 

@@ -39,7 +39,7 @@
       <!-- 阅读更多 -->
       <view class="detail-read-more" wx:if="{{detailSummaryHeight !=''}}">
         <view class="detail-readmore-mask">
-          <view class="detail-readmore-btn" bindtap="readMore">观看视频，阅读更多...</view>
+          <view class="detail-readmore-btn" bindtap="readMore">ئىلاننى كۆرۈپ بولغاندىن كىيىن ماقالىنىڭ تولۇق قىسمىنى كۆرەلەيسىز</view>
         </view>
       </view>
     </view>
@@ -82,7 +82,7 @@
           <navigator url="../list/list?categoryIds={{detail.category_id}}" open-type="navigate" hover-class="none">
             <view class="entry-category">{{detail.category_name}}</view>
           </navigator>
-          <view>浏览 {{detail.pageviews}}</view>
+          <view>ئاۋاتلىقى {{detail.pageviews}}</view>
         </view>
       </view>
     </view>
@@ -128,7 +128,7 @@
     <view class="payPost" wx:if="{{ detail.paypequired == '1' }}">
       <view wx:if="{{system=='Android'}}">
         <button class='payPost-btn' bindtap="payment">
-          <text class="paypost_title">购买或使用积分观看完整内容</text>
+          <text class="paypost_title">سېتىۋالغاندىن كىيىن داۋامىنى كۆرەلەيسىز</text>
         </button>
       </view>
       <view wx:if="{{system=='iOS'}}">
@@ -137,22 +137,22 @@
             <text>付费内容,需购买观看完整内容.</text>
           </view> -->
           <view class="paypost_price">
-            <text>由于相关规范，iOS功能暂不可用</text>
+            <text>ئالاقىدار بەلگىلىمىلەرگە ئاساسەن، ئالماش تىلفۇندا ئىشلىتەلمەيسىز由于相关规范，iOS功能暂不可用</text>
           </view>
         </block>
         <block wx:else>
 
           <block wx:if="{{detail.originalprice !='' && detail.originalprice !='0' && detail.catYearIntegral==''}}">
             <button class='payPost-btn' bindtap="postIntegral">
-              <text class="paypost_title">使用积分看完整内容</text>
+              <text class="paypost_title">جۇغلانما نۇمۇر ئىشلىتىپ داۋامىنى كۆرۈڭ</text>
             </button>
             <view class="paypost_price" wx:if="{{detail.originalprice !='' && detail.originalprice !='0'}}">
-              <text>* 单篇使用积分{{detail.originalprice}}</text>
+              <text>* كىتىدىغان جۇغلانما {{detail.originalprice}}</text>
             </view>
           </block>
           <block wx:if="{{detail.catYearIntegral !=''}}">
             <button class='payPost-btn' bindtap="payment">
-              <text class="paypost_title">使用积分观看完整内容</text>
+              <text class="paypost_title">جۇغلانما نۇمۇر ئىشلىتىپ داۋامىنى كۆرۈڭ</text>
             </button>
           </block>
         </block>
@@ -184,7 +184,7 @@
           <navigator url="../list/list?categoryIds={{detail.category_id}}" open-type="navigate" hover-class="none">
             <view class="entry-category">{{detail.category_name}}</view>
           </navigator>
-          <view>浏览 {{detail.pageviews}}</view>
+          <view>ئاۋاتلىقى {{detail.pageviews}}</view>
         </view>
       </view>
 
@@ -238,7 +238,7 @@
         <!-- 阅读更多 -->
         <view class="detail-read-more" wx:if="{{detailSummaryHeight !=''}}">
           <view class="detail-readmore-mask">
-            <view class="detail-readmore-btn" bindtap="readMore">观看视频，阅读更多...</view>
+            <view class="detail-readmore-btn" bindtap="readMore">ئىلاننى كۆرۈپ بولغاندىن كىيىن تولۇق نۇسقىسىنى كۆرەلەيسىز</view>
           </view>
         </view>
       </view>
@@ -300,7 +300,7 @@
     <view class="payPost" wx:if="{{ detail.paypequired == '1' }}">
       <view wx:if="{{system=='Android'}}">
         <button class='payPost-btn' bindtap="payment">
-          <text class="paypost_title">购买或使用积分观看完整内容</text>
+          <text class="paypost_title">سېتىۋىلىپ داۋامىنى كۆرۈش</text>
         </button>
       </view>
       <view wx:if="{{system=='iOS'}}">
@@ -316,7 +316,7 @@
 
           <block wx:if="{{detail.originalprice !='' && detail.originalprice !='0' && detail.catYearIntegral==''}}">
             <button class='payPost-btn' bindtap="postIntegral">
-              <text class="paypost_title">使用积分看完整内容</text>
+              <text class="paypost_title">جۇغلانما نۇمۇر ئىشلىتىپ داۋامىنى كۆرۈڭ</text>
             </button>
             <view class="paypost_price" wx:if="{{detail.originalprice !='' && detail.originalprice !='0'}}">
               <text>* 单篇使用积分{{detail.originalprice}}</text>
@@ -324,7 +324,7 @@
           </block>
           <block wx:if="{{detail.catYearIntegral !=''}}">
             <button class='payPost-btn' bindtap="payment">
-              <text class="paypost_title">使用积分观看完整内容</text>
+              <text class="paypost_title">جۇغلانما نۇمۇر ئىشلىتىپ داۋامىنى كۆرۈڭ</text>
             </button>
           </block>
         </block>
@@ -337,10 +337,10 @@
     <view class="likeBox">
       <view class="likeBtn" catchtap="postLike" id="liketop">
         <image src="{{likeIcon}}" />
-        <text>点个赞</text>
+        <text>ياقتۇردۇم</text>
       </view>
       <view class="likeNum">
-        <text>{{detail.like_count || 0}} 人已赞</text>
+        <text>{{detail.like_count || 0}} ئوقۇرمەن ياقتۇردى</text>
       </view>
       <!-- 点赞头像 -->
       <view class="likeGravatar">
@@ -368,7 +368,7 @@
       <view wx:if="{{detail.previous_post_id}}" class="pre-post">
         <navigator url="../detail/detail?id={{detail.previous_post_id}}" open-type="redirect" hover-class="relatedNavigator">
           <view class="pre-post-title">
-            <text>上一篇</text>
+            <text>ئالدىنقىسى</text>
             <view>{{detail.previous_post_title}}</view>
           </view>
           <image src="{{detail.previous_post_thumbnail_image || '../../images/uploads/default_image.jpg'}}" mode="aspectFill"></image>
@@ -378,7 +378,7 @@
       <view wx:if="{{detail.next_post_id}}" class="next-post">
         <navigator url="../detail/detail?id={{detail.next_post_id}}" open-type="redirect" hover-class="relatedNavigator">
           <view class="next-post-title">
-            <text>下一篇</text>
+            <text>كىيىنكىسى</text>
             <view>{{detail.next_post_title}}</view>
           </view>
           <image src="{{detail.next_post_thumbnail_image || '../../images/uploads/default_image.jpg'}}" mode="aspectFill"></image>
@@ -396,7 +396,7 @@
     <!-- 猜你喜欢 -->
     <view wx:if="{{detail.related_posts.length}}" class="relatedPost">
       <view class="subTitle">
-        猜你喜欢
+        ياقتۇرشىڭىز مۈمكىن
       </view>
       <block wx:key="id" wx:for="{{detail.related_posts}}">
         <navigator url="../detail/detail?id={{item.ID}}" open-type="redirect" hover-class="relatedNavigator">
@@ -411,14 +411,14 @@
     <!-- 评论列表 -->
     <view class="comment-container" wx:if="{{commentCounts}}">
       <view class="subTitle">
-        评论交流
+        پىكىر ئالماشتۇرۇش
       </view>
       <template is="commentsList" data="{{commentsList:commentsList,memberUserInfo:memberUserInfo,detail:detail}}"></template>
       <view style='display:{{isLoading?"block":"none"}}'>
         <template is="threepoint" />
       </view>
       <view hidden="{{!isLastPage}}">
-        <view class="no-more" hidden="{{!isLastPage}}">- 到底啦-</view>
+        <view class="no-more" hidden="{{!isLastPage}}">- تۈگىدى-</view>
       </view>
     </view>
 
@@ -435,7 +435,7 @@
     <!-- 底部固定tab -->
     <view class="comment-fixed">
       <!-- 订阅按钮 -->
-      <view class="btn-subscribe" catchtap="showPupop" style="display:{{ isShowSubscribe ?'block' : 'none' }}">订阅</view>
+      <view class="btn-subscribe" catchtap="showPupop" style="display:{{ isShowSubscribe ?'block' : 'none' }}">يېڭىلىنىش ئۇقتۇرىشى</view>
 
       <!-- 获取积分弹窗 -->
       <view wx:if="{{ showPopPoints }}" class="popup-read-points" style="top:{{isShowSubscribe ? -300 : -180}}rpx">
@@ -446,7 +446,7 @@
           id="count-down"
           bind:finish="getReadPoints"
         />
-        阅读积分
+        جۇغلانما
       </view>
 
       <view class="comment-respond">
@@ -460,8 +460,8 @@
     <view class="comment-textarea-box {{commentInputDialogShow ? '' : 'commentinputdialog-box-hidden'}}">
       <form catchsubmit="formSubmitComment" report-submit="true">
         <view>
-          <text class="comment-button touch-active" bindtap="hiddenBar">取消</text>
-          <button class="comment-button touch-active" formType="submit">发送</button>
+          <text class="comment-button touch-active" bindtap="hiddenBar">ياق</text>
+          <button class="comment-button touch-active" formType="submit">يوللاش</button>
         </view>
         <textarea maxlength="140" name="inputComment" cursor-spacing="80" value="{{content}}" placeholder="{{placeholder}}" focus="{{focus}}" bindblur="onBindBlur" bindfocus="onBindFocus" bindconfirm="formSubmitComment" auto-height="{{false}}" fixed="{{true}}"
           show-confirm-bar="{{false}}" />
@@ -476,7 +476,7 @@
 <l-popup show="{{popupShow}}" locked="{{true}}">
   <view class='pupop-subscribe'>
     <view class="header">
-      <text>新内容订阅</text>
+      <text>مەزمۇن يېڭىلىنىش ئۇقتۇرىشى</text>
       <view class='icon-close' bindtap='onHidePupopTap'></view>
     </view>
     <scroll-view scroll-y="{{true}}" class="pupop-scroll-view">
@@ -484,8 +484,8 @@
         <view class="item" wx:for="{{columns}}" wx:key="index">
           <text>{{item.name}}</text>
           <view class="btn-box">
-            <text>已订阅了{{item.categorySubscribeCount}}篇</text>
-            <view data-subid="{{item.subscribemessagesid}}" data-id="{{item.id}}" catchtap="postsub">订阅</view>
+            <text>سىز {{item.categorySubscribeCount}} قېتىم مەزمۇن يېڭىلىنىش ئۇقتۇرىشى قوبۇل قىلالايسىز</text>
+            <view data-subid="{{item.subscribemessagesid}}" data-id="{{item.id}}" catchtap="postsub">مەزمۇن يېڭىلانسا ئۇقتۇرسۇن</view>
           </view>
         </view>
       </view>
@@ -497,7 +497,7 @@
 <l-popup show="{{insertWxPopupShow}}" locked="{{true}}" content-align="bottom">
   <view class='pupop-insert'>
     <view class="header">
-      <text>嵌入公众号</text>
+      <text>سالونغا ئۇلاش</text>
       <view class='icon-close' catchtap='closeInsertWxPopup'></view>
     </view>
 
@@ -506,9 +506,9 @@
         <view>
           <text>AppID：</text>{{appID}}</view>
         <view>
-          <text>小程序路径：</text>{{pagePath}}</view>
+          <text>ئادرىسى:</text>{{pagePath}}</view>
       </view>
-      <view class="btn-copy" catchtap="copyInsertInfo" data-id="{{appID}}" data-path="{{pagePath}}">复制</view>
+      <view class="btn-copy" catchtap="copyInsertInfo" data-id="{{appID}}" data-path="{{pagePath}}">كۆچۈرۈش</view>
     </view>
   </view>
 </l-popup>
@@ -516,10 +516,10 @@
 <!-- 授权手机号 -->
 <van-dialog
   show="{{ showPopPhone }}"
-  title="提示"
-  message="发布内容需要授权绑定手机号"
+  title="ئەسكەرتىش"
+  message="تىلفۇن نۇمۇرىڭىزنى باغلىغاندىن كىيىن ئاندىن يوللىيالايسىز"
   showCancelButton="{{ true }}"
-  confirmButtonText="确认绑定"
+  confirmButtonText="باغلاش"
   confirm-button-color="#2f80ed"
   confirm-button-open-type="getPhoneNumber"
   bind:getphonenumber="getPhoneNumber"

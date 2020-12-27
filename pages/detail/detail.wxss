@@ -52,7 +52,7 @@
 }
 
 .entry-author-name {
-  margin-left: 20rpx;
+  margin-right: 20rpx;
 }
 
 .entry-author-name text:first-child {
@@ -169,7 +169,7 @@
   align-items: center;
 }
 .comment-user-name {
-  margin-left: 16rpx;
+  margin-right: 16rpx;
   font-size: 14px;
   color: #406599;
   display: flex;
@@ -178,7 +178,7 @@
 
 .comment-author-tag {
  
-  margin-left: 8rpx;
+  margin-right: 8rpx;
   font-size: 10px;
   padding: 0 6rpx;
   border-radius: 4rpx;
@@ -357,6 +357,7 @@
 .comment-textarea-box textarea {
   padding: 20rpx 40rpx;
   width: 670rpx;
+  text-align: right;
 }
 
 .comment-button {
@@ -682,7 +683,7 @@
 .likeBtn image {
   width: 24rpx;
   height: 24rpx;
-  margin-right: 12rpx;
+  margin-left: 12rpx;
 }
 
 /* 点赞数 */
@@ -897,7 +898,7 @@
   border-radius: 3px !important;
   color: #eb2226 !important;
   background-color: #f9f2f4 !important;
-  font-family: Source Code Pro, Consolas, Menlo, Monaco, Courier New, monospace !important;
+  font-family:'UKIJ Ekran',Source Code Pro, Consolas, Menlo, Monaco, Courier New, monospace !important;
 }
 
 .menu-box {

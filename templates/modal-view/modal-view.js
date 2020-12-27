@@ -99,8 +99,8 @@ function ModalViewClass() {
         filePath: img,
         success(result) {
           wx.showModal({
-            title: '提示',
-            content: '二维码海报已存入手机相册，赶快分享给好友吧',
+            title: 'ئەسكەرتىش',
+            content: 'ئالبۇمىڭىزغا ساقلاندى ،تىزدىن دوستلىرىڭىزغا ئەۋەتىڭ',
             showCancel: false,
             success: function (res) {
 
@@ -110,8 +110,8 @@ function ModalViewClass() {
         fail: function (err) {
           if (err.errMsg === "saveImageToPhotosAlbum:fail auth deny") {
             wx.showModal({
-              title: '用户未授权',
-              content: '如需保存海报图片到相册，需获取授权.是否在授权管理中选中“保存到相册”?',
+              title: 'تېخى كىرمىدىڭىز',
+              content: 'رىسىم ساقلاش ئۈچۈن مۇناسىۋەتلىك ھۇقۇق بېرىشىڭىز كىرەك',
               showCancel: true,
               success: function (res) {
                 if (res.confirm) {

@@ -55,7 +55,7 @@ const options = {
       }
 
       wx.setNavigationBarTitle({
-        title: '我的' + raw_praise_word + '二维码'
+        title: 'مىنىڭ ' + raw_praise_word + ' چىپار كودىم'
       })
     })
   },
@@ -71,7 +71,7 @@ const options = {
         var tempFileSize = Math.ceil((tempFiles[0].size) / 1024);
         var tempFilePath = tempFiles[0].path;
         if (tempFileSize > 2048) {
-          Adapter.toast('图片大于2M', 3000);
+          Adapter.toast('رەسىم 2 مىگابايىتتىن يۇقۇرى بولمىسۇن', 3000);
 
         }
         else {
@@ -99,7 +99,7 @@ const options = {
     data.imgfile = tempZanImageSrc;
     data.formData = formData;
     wx.showLoading({
-      title: "正在上传图片...",
+      title: "رەسىم چىقىرىلىۋاتىدۇ...",
       mask: true
     });
     API.uploadFile(data).then(res => {
@@ -123,7 +123,7 @@ const options = {
       wx.hideLoading();
 
     }).catch(err => {
-      wx.showToast({ icon: 'none', title: err.errMsg || '上传失败...' });
+      wx.showToast({ icon: 'none', title: err.errMsg || 'چىقىرىش مەغلۇب بولدى...' });
       wx.hideLoading()
     })
 

@@ -6,7 +6,7 @@
     <view class="item" bindtap="toNotice" data-messagetype="system">
       <text class="iconfont icon-notice-system" />
        <view class="content">
-        <text>系统消息</text>
+        <text>سىستىما ئۇچۇرى</text>
         <block wx:for="{{alloftypeMessageList}}" wx:key="index">
             <text wx:if="{{item.messagetype === 'system' && item.count > 0}}" class="badge">{{item.count}}</text>
           </block>
@@ -17,7 +17,7 @@
     <view class="item" bindtap="toNotice" data-messagetype="comment">
       <text class="iconfont icon-notice-comment" />
        <view class="content">
-        <text>评论消息</text>
+        <text>ئىنكاس ئۇچۇرى</text>
         <block wx:for="{{alloftypeMessageList}}" wx:key="index">
             <text wx:if="{{item.messagetype === 'comment' && item.count > 0}}" class="badge">{{item.count}}</text>
           </block>
@@ -27,7 +27,7 @@
     <view class="item" bindtap="toNotice" data-messagetype="like">
       <text class="iconfont icon-notice-like" />
        <view class="content">
-        <text>点赞消息</text>
+        <text>ياقتۇرغانلىق ئۇچۇرى</text>
         <block wx:for="{{alloftypeMessageList}}" wx:key="index">
             <text wx:if="{{item.messagetype === 'like' && item.count > 0}}" class="badge">{{item.count}}</text>
           </block>
@@ -38,7 +38,7 @@
     <view class="item" bindtap="toNotice" data-messagetype="follow">
       <text class="iconfont icon-notice-fans" />
        <view class="content">
-        <text>关注消息</text>
+        <text>ئەگەشكەنلىك ئۇچۇرى</text>
         <block wx:for="{{alloftypeMessageList}}" wx:key="index">
             <text wx:if="{{item.messagetype === 'follow' && item.count > 0}}" class="badge">{{item.count}}</text>
           </block>

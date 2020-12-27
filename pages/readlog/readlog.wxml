@@ -21,8 +21,8 @@
 
     <!-- 订阅消息 -->
     <view class="btn-box">
-      <view class="tips">已订阅{{item.subscribeCount}}次评论回复通知</view>
-      <view class="btn" data-posttype="{{item.posttype}}" data-subid="{{item.subscribemessagesid}}" id="{{item.id}}" catchtap="postsub">订阅</view>
+      <view class="tips">جەمئي{{item.subscribeCount}} قېتىم ئىنكاس ئۇقتۇرىشىنى قوبۇل قىلالايسىز</view>
+      <view class="btn" data-posttype="{{item.posttype}}" data-subid="{{item.subscribemessagesid}}" id="{{item.id}}" catchtap="postsub">قوبۇل قىلىش</view>
     </view>
 
   </view>
@@ -38,7 +38,7 @@
   <template is="threepoint" />
 </view>
 
-<view class="no-more" style="display:{{isLastPage?'block':'none'}}">-到底啦-</view>
+<view class="no-more" style="display:{{isLastPage?'block':'none'}}">-ھىچنەرسە قالمىدى-</view>
 
 <!-- 版权信息 -->
 <copyright />

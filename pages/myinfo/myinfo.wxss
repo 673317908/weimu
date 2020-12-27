@@ -17,7 +17,7 @@
   width: 100rpx;
   height: 100rpx;
   border-radius: 50%;
-  margin-right: 24rpx;
+  margin-left: 24rpx;
 }
 
 .bottom {
@@ -48,7 +48,7 @@
 .ul {
   position: relative;
   margin: 40rpx 0;
-  margin-left: 230rpx;
+  margin-right: 230rpx;
   line-height: 1;
   text-align: left;
 }
@@ -56,7 +56,7 @@
 .ul .slider {
   position: absolute;
   top: 0;
-  left: 140rpx;
+  right: 140rpx;
   content: '';
   height: 700rpx;
   width: 12rpx;
@@ -67,7 +67,7 @@
 .ul .current-slider {
   position: absolute;
   top: 0;
-  left: 140rpx;
+  right: 140rpx;
   content: '';
   height: 614rpx;
   width: 12rpx;

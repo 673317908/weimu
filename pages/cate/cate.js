@@ -16,7 +16,7 @@ const pageCount = 10
 
 const options = {
   data: {
-    shareTitle: app.globalData.appName + '-分类',
+    shareTitle: app.globalData.appName + ' بارلىق تۈرلەر',
     categoriesList: [],
     cateSubList: [],
     activeIndex: 0,
@@ -33,7 +33,7 @@ const options = {
 
   onLoad: function () {
     // 设置页面标题
-    wx.setNavigationBarTitle({ title: '分类' })
+    wx.setNavigationBarTitle({ title: 'تۈرلەر' })
     var self = this
     Auth.checkSession(app, API, self, 'isLoginLater', util)
     var args = {}

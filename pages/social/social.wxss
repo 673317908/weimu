@@ -72,7 +72,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 130rpx;
+  height: 90rpx;
   padding: 0 40rpx;
   background: #fff;
 }
@@ -103,7 +103,7 @@
 }
 
 .selected-nav-item {
-  margin-right: 16rpx;
+  margin-left: 16rpx;
   text-align: center;
 }
 
@@ -808,7 +808,7 @@
   padding: 20rpx;
   box-sizing: border-box;
   position: absolute;
-  right: 100rpx;
+  left: 100rpx;
   top: -2rpx;
 }
 
@@ -817,7 +817,7 @@
   font-weight: 500;
   color: #999;
   position: absolute;
-  right: 40rpx;
+  left: 10rpx;
   top: 16rpx;
 }
 

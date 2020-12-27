@@ -86,7 +86,7 @@
       <template is="wxParse" data="{{wxParseData:article.nodes}}" />
     </view>
     <!-- 地理位置 -->
-    <view wx:if="{{detail.address !=''}}" bindtap="openmap" data-lat="{{detail.latitude}}" data-address="{{detail.address}}" data-lng="{{detail.longitude}}" class="address">位置：{{detail.address}}</view>
+    <view wx:if="{{detail.address !=''}}" bindtap="openmap" data-lat="{{detail.latitude}}" data-address="{{detail.address}}" data-lng="{{detail.longitude}}" class="address">ئورنىڭىز: {{detail.address}}</view>
 
     <view class="wxParse-video" wx:if="{{vid !=''}}">
       <txv-video vid="{{vid}}" playerid="id{{item.id}}" width="100%" height="100%" autoplay="{{false}}">
@@ -131,7 +131,7 @@
         <view class="file-list-right">
           <view class="file-list-content">{{detail.fileName}}</view>
           <view class="file-list-des">
-            <text catchtap="open_link_doc">打开</text>
+            <text catchtap="open_link_doc">ئېچىش</text>
           </view>
         </view>
       </view>
@@ -142,10 +142,10 @@
     <view class="likeBox" style="display:{{displayLike}}">
       <view class="likeBtn" catchtap="postLike" id="liketop">
         <image src="{{likeIcon}}" />
-        <text>点个赞</text>
+        <text>ياقتۇردۇم</text>
       </view>
       <view class="likeNum">
-        <text>{{detail.like_count || 0}} 人已赞</text>
+        <text>{{detail.like_count || 0}}  ئوقۇرمەن ياقتۇردى</text>
       </view>
       <!-- 点赞头像 -->
       <view class="likeGravatar">
@@ -167,7 +167,7 @@
         <template is="threepoint" />
       </view>
       <view hidden="{{!isLastPage}}">
-        <view class="no-more" hidden="{{!isLastPage}}">- 到底啦-</view>
+        <view class="no-more" hidden="{{!isLastPage}}">- ھىچنەرسە قالمىدى-</view>
       </view>
     </view>
 
@@ -188,7 +188,7 @@
 
     <view class="comment-fixed">
       <!-- 订阅按钮 -->
-      <view class="btn-subscribe" catchtap="showPupop" style="display:{{ isShowSubscribe ?'block' : 'none' }}">免费订阅</view>
+      <view class="btn-subscribe" catchtap="showPupop" style="display:{{ isShowSubscribe ?'block' : 'none' }}">يېڭىلىنىش ئۇقتۇرىشى</view>
 
       <view class="comment-respond">
         <template is="toolbar" data="{{toolbarShow:toolbarShow,commentCounts:total_replies,likeIcon:likeIcon,enableComment:detail.enableComment}}"></template>
@@ -202,8 +202,8 @@
     <view class="comment-textarea-box {{commentInputDialogShow ? '' : 'commentinputdialog-box-hidden'}}">
       <form catchsubmit="replySubmit" report-submit="true">
         <view>
-          <text class="comment-button touch-active" bindtap="hiddenBar">取消</text>
-          <button class="comment-button touch-active" formType="submit">发送</button>
+          <text class="comment-button touch-active" bindtap="hiddenBar">بولدى قىلىش</text>
+          <button class="comment-button touch-active" formType="submit">يوللاش</button>
         </view>
         <textarea maxlength="140" name="inputComment" cursor-spacing="80" value="{{content}}" placeholder="{{placeholder}}" focus="{{focus}}" bindblur="onBindBlur" bindfocus="onBindFocus" bindconfirm="replySubmit" auto-height="{{false}}" fixed="{{true}}" show-confirm-bar="{{false}}"
         />
@@ -218,7 +218,7 @@
 <l-popup show="{{popupShow}}" locked="{{true}}">
   <view class='pupop-subscribe'>
     <view class="header">
-      <text>话题订阅</text>
+      <text>يېڭىلىنىش ئۇقتۇرىشى</text>
       <view class='icon-close' bindtap='onHidePupopTap'></view>
     </view>
     <scroll-view scroll-y="{{true}}" class="pupop-scroll-view">
@@ -226,8 +226,8 @@
         <view class="item" wx:for="{{forums}}" wx:key="index">
           <text>{{item.title}}</text>
           <view class="btn-box">
-            <text>已订阅了{{item.categorySubscribeCount}}篇</text>
-            <view data-subid="{{item.subscribemessagesid}}" data-id="{{item.id}}" catchtap="postsub">订阅</view>
+            <text>جەمئىي{{item.categorySubscribeCount}} قېتىم قوبۇل قىلالايسىز</text>
+            <view data-subid="{{item.subscribemessagesid}}" data-id="{{item.id}}" catchtap="postsub">قوبۇل قىلىش</view>
           </view>
         </view>
       </view>
@@ -239,7 +239,7 @@
 <l-popup show="{{insertWxPopupShow}}" locked="{{true}}" content-align="bottom">
   <view class='pupop-insert'>
     <view class="header">
-      <text>嵌入公众号</text>
+      <text>سالونغا ئۇلاش</text>
       <view class='icon-close' catchtap='closeInsertWxPopup'></view>
     </view>
 
@@ -248,9 +248,9 @@
         <view>
           <text>AppID：</text>{{appID}}</view>
         <view>
-          <text>小程序路径：</text>{{pagePath}}</view>
+          <text>ئەپچاق ئادرىسى:</text>{{pagePath}}</view>
       </view>
-      <view class="btn-copy" catchtap="copyInsertInfo" data-id="{{appID}}" data-path="{{pagePath}}">复制</view>
+      <view class="btn-copy" catchtap="copyInsertInfo" data-id="{{appID}}" data-path="{{pagePath}}">كۆپەيتىش</view>
     </view>
   </view>
 </l-popup>
@@ -258,10 +258,10 @@
 <!-- 授权手机号 -->
 <van-dialog
   show="{{ showPopPhone }}"
-  title="提示"
-  message="发布内容需要授权绑定手机号"
+  title="ئەسكەرتىش"
+  message="تىلفۇن نۇمۇرىڭىزنى باغلاڭ"
   showCancelButton="{{ true }}"
-  confirmButtonText="确认绑定"
+  confirmButtonText="باغلاش"
   confirm-button-color="#2f80ed"
   confirm-button-open-type="getPhoneNumber"
   bind:getphonenumber="getPhoneNumber"

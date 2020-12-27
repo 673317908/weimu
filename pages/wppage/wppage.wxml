@@ -23,9 +23,9 @@
 
         <text class='nexindex_name '>{{detail.raw_qyname}}</text>
 
-        <view class="nexindex_adds li1" bindtap='openMap'>地址：{{detail.raw_address}}</view>
-        <view class="nexindex_tel li1" bindtap='phoneCall'>电话：{{detail.raw_tel}}</view>
-        <view class="nexindex_email li1">邮箱：{{detail.raw_email}}</view>
+        <view class="nexindex_adds li1" bindtap='openMap'>ئادرىس:{{detail.raw_address}}</view>
+        <view class="nexindex_tel li1" bindtap='phoneCall'>تىلفۇن:{{detail.raw_tel}}</view>
+        <view class="nexindex_email li1">ئىلخەت: {{detail.raw_email}}</view>
 
         <view class='contact-container'>
           <view class='contact-item'>

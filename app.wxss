@@ -11,6 +11,8 @@
 @import "images/iconfont/iconfont.wxss";
 @import "templates/member/memberIcon.wxss";
 @import 'vendor/WeUI/style/weui.wxss';
+@import 'images/you.wxss';
+
 
 .wxParse-p {
   margin-bottom: 30rpx;
@@ -68,6 +70,8 @@
   flex-direction: row;
   align-items: center;
   background: #f5f6f7;
+  font-family: 'UKIJ Ekran';
+
 }
 
 .search-input {
@@ -176,6 +180,7 @@
   border-radius: 12rpx;
   overflow: hidden;
   text-align: center;
+  font-family: 'UKIJ Ekran';
 }
 
 .login-phone {
@@ -203,11 +208,12 @@
   font-size: 12px;
   color: #333;
   line-height: 1.6;
+  direction: rtl;
 }
 
 .login-tip .iconfont {
   color: #999;
-  margin-right: 10rpx;
+  margin-left: 10rpx;
 }
 
 .login-footer {
@@ -240,7 +246,7 @@
 }
 
 .login-btn-box .login-btn-cancel:last-child {
-  margin-left: 60rpx;
+  margin-right: 60rpx;
   position: relative;
 }
 
@@ -250,7 +256,7 @@
   width: 1px;
   background: #CCC;
   position: absolute;
-  left: -30rpx;
+  right: -30rpx;
   top: 50%;
   margin-top: -12rpx;
 }

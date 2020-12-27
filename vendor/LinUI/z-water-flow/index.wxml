@@ -6,8 +6,8 @@
     </view>
 
     <view class="water-flow-bottom">
-      <text>评论 {{data.total_comments}}</text>
-      <text>点赞 {{data.like_count}}</text>
+      <text>ئىنكاس {{data.total_comments}}</text>
+      <text>ياقتۇرغانلار {{data.like_count}}</text>
     </view>
 
   </view>
@@ -22,8 +22,8 @@
     </view>
 
     <view class="water-flow-middle">
-      <text>点赞 {{data.like_count}}</text>
-      <text>评论 {{data.total_comments}}</text>
+      <text>ياقتۇردۇم {{data.like_count}}</text>
+      <text>ئىنكاس {{data.total_comments}}</text>
     </view>
 
     <view class='water-flow-bottom'>

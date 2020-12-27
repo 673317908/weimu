@@ -29,7 +29,7 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '你的好友给你分享了一条精彩的视频，赶紧来看看吧！',
+      title: 'دوستىڭىز سىزگە بىر فىلىم ئىۋەتتى',
       path: `/pages/full-video/full-video?src=${this.data.src}&from=share`
     }
   },

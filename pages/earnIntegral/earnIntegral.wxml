@@ -4,7 +4,7 @@
 <view class="mypoints">
   <view class="mypoints-num" wx:if="{{memberUserInfo.integral  && !taskError}}">{{memberUserInfo.integral}}</view>
   <view class="mypoints-title">
-    <text>我的积分</text>
+    <text>جۇغلانما نۇمۇرۇم</text>
     <text class="icon-question" bindtap="toIntegralDes">?</text>
   </view>
 </view>
@@ -13,121 +13,121 @@
 
   <view class="listItem">
     <view class="listItem-left">
-      <text>每日最高可获取积分</text>
+      <text>كۈندە ئېرىشەلەيدىغىنىڭىز</text>
     </view >
     <view class="listItem-text" >
-      <text wx:if="{{settings.raw_user_max_integral !='0'}}" >{{settings.raw_user_max_integral}}分</text>
-       <text wx:if="{{settings.raw_user_max_integral =='0'}}">不限</text>
+      <text wx:if="{{settings.raw_user_max_integral !='0'}}" >{{settings.raw_user_max_integral}} جۇغلانما</text>
+       <text wx:if="{{settings.raw_user_max_integral =='0'}}">چەكسىز</text>
     </view>    
   </view>
 
   <view class="listItem">
     <view class="listItem-left">
-      <text>手机号 </text>{{memberUserInfo.phone}}，+{{settings.raw_phone_integral}}分
+      <text>تىلفۇن نۇمۇرى باغلاش </text>{{memberUserInfo.phone}}，+{{settings.raw_phone_integral}} جۇغلانما
     </view>
      <view class="listItem-btn" wx:if="{{memberUserInfo.phone==''}}">
-      <button class="share-button" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" plain="true">绑定</button>
+      <button class="share-button" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" plain="true">باغلاش</button>
     </view>
     <view wx:if="{{memberUserInfo.phone !=''}}" class="listItem-btn">
-    <button class="share-button" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" plain="true">更新号码</button>
+    <button class="share-button" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" plain="true">ئالماشتۇرۇش</button>
     </view>   
   </view>
 
   <view class="listItem">
     <view class="listItem-left">
-      <text>每日签到</text>+{{settings.raw_sign_integral}}分，今日剩余
-      <block wx:if="{{!task.signined && !taskError}}">1</block>
-      <block wx:if="{{task.signined && !taskError}}">0</block>次
+      <text>يوقلىما </text>+{{settings.raw_sign_integral}} جۇغلانما，بۈگۈن
+      <block wx:if="{{!task.signined && !taskError}}"> يوقلىمىدىن ئۆتمىدىڭىز</block>
+      <block wx:if="{{task.signined && !taskError}}"> يوقلىمىدىن ئۆتتىڭىز</block>
     </view>
 
     <view wx:if="{{!task.signined && !taskError}}" class="listItem-btn" catchtap="signin">
-      <text>去完成</text>
+      <text>يوقلىما</text>
     </view>
     <view wx:if="{{task.signined && !taskError}}" class="listItem-btn">
-      <text>已完成</text>
+      <text>تاماملاندى</text>
     </view>
   </view>
 
   <view class="listItem">
     <view class="listItem-left">
-      <text>分享小程序</text>+{{settings.raw_share_integral}}分，今日分享
-      {{task.shareappedCount}}次
+      <text>تەشۋىق قىلىش</text>+{{settings.raw_share_integral}} جۇغلانما، بۈگۈن
+      {{task.shareappedCount}} قېتىم تەشۋىق قىلدىڭىز
     </view>
     <view class="listItem-btn" wx:if="{{task.canShareApp==true && !taskError}}">
-      <button class="share-button" open-type="share" plain="true">去完成</button>
+      <button class="share-button" open-type="share" plain="true">تەشۋىق قىلىش</button>
     </view>
     <view wx:if="{{task.canShareApp==false && !taskError}}" class="listItem-btn">
-      <text>已完成</text>
+      <text>تاماملاندى</text>
     </view>
     
   </view>
 
   <view class="listItem">
     <view class="listItem-left">
-      <text>观看激励视频</text>+{{settings.raw_openAd_integral}}分，今日观看
-      {{task.openAdVideoedCount}}次</view>
+      <text>فىلىم كۆرۈش</text>+{{settings.raw_openAd_integral}} جۇغلانما، بۈگۈن
+      {{task.openAdVideoedCount}} قېتىم كۆردىڭىز</view>
 
     <view class="listItem-btn" wx:if="{{task.canOpenAdVideo==true && !taskError}}" catchtap="openAdVideo">
-      <text>去完成</text>
+      <text>كۆرۈش</text>
     </view>
       <view class="listItem-btn" wx:if="{{task.canOpenAdVideo==false && !taskError}}">
-      <text>已完成</text>
+      <text>تاماملاندى</text>
     </view>
    
   </view>
 
   <view class="listItem">
     <view class="listItem-left">
-      <text>发表文章</text>
+      <text>ماقالە يوللاش</text>
     </view >
     <view class="listItem-text" >
-      <text>+{{settings.raw_newpost_integral}}/次</text>
+      <text>+{{settings.raw_newpost_integral}}/قېتىم</text>
     </view>    
   </view>
 
   <view class="listItem">
     <view class="listItem-left">
-      <text>文章评论</text>
+      <text>ماقالىگە ئىنكاس يىزىش</text>
     </view >
     <view class="listItem-text" >
-      <text>+{{settings.raw_comment_integral}}/次</text>
+      <text>+{{settings.raw_comment_integral}}/قېتىم</text>
     </view>    
   </view>
 
 
   <view class="listItem">
     <view class="listItem-left">
-      <text>文章点赞</text>
+      <text>ماقالە ياقتۇرۇش</text>
     </view >
     <view class="listItem-text" >
-      <text>+{{settings.raw_like_integral}}/次</text>
+      <text>+{{settings.raw_like_integral}}/قېتىم</text>
     </view>    
   </view>
 
    <view class="listItem">
     <view class="listItem-left">
-      <text>发表话题</text>
+      <text>قوناقلىق يوللاش</text>
     </view >
     <view class="listItem-text" >
-      <text>+{{settings.raw_newtopic_integral}}/次</text>
+      <text>+{{settings.raw_newtopic_integral}}/قېتىم</text>
     </view>    
   </view>
 
   <view class="listItem">
     <view class="listItem-left">
-      <text>话题开启位置</text>
+      <text>قوناقلىقتە ئورۇن بەلگىلەش</text>
     </view >
     <view class="listItem-text" >
-      <text>+{{settings.raw_newtopic_location_integral}}/次</text>
+      <text>+{{settings.raw_newtopic_location_integral}}/قېتىم</text>
     </view>    
   </view>
 
   <view class="listItem">
     <view class="listItem-left">
-      <text>回复话题</text>
+      <text>قوناقلىقكە ئىنكاس يىزىش</text>
     </view >
     <view class="listItem-text" >
-      <text>+{{settings.raw_replaytopic_integral}}/次</text>
+      <text>+{{settings.raw_replaytopic_integral}}/قېتىم</text>
     </view>    
   </view>
 
@@ -142,28 +142,28 @@
 
   <view class="listItem">
     <view class="listItem-left">
-      <text>阅读文章</text>
+      <text>ماقالە ئوقۇش</text>
     </view >
     <view class="listItem-text" >
-      <text>+{{settings.raw_readpost_integral}}/次</text>
+      <text>+{{settings.raw_readpost_integral}}/قېتىم</text>
     </view>    
   </view>
 
   <view class="listItem">
     <view class="listItem-left">
-      <text>付费阅读</text>
+      <text>ماقالە سېتىۋىلىپ ئوقۇش</text>
     </view >
     <view class="listItem-text" >
-      <text>+{{settings.raw_payment_integral}}/次</text>
+      <text>+{{settings.raw_payment_integral}}/قېتىم</text>
     </view>    
   </view>
 
   <view class="listItem">
     <view class="listItem-left">
-      <text>赞-赏</text>
+      <text>تارتۇقلاش</text>
     </view >
     <view class="listItem-text" >
-      <text>+{{settings.raw_praise_integral}}/次</text>
+      <text>+{{settings.raw_praise_integral}}/قېتىم</text>
     </view>    
   </view>
 

@@ -16,8 +16,8 @@
               <text class="date">{{item.messagedate}}</text>
             </view>
 
-            <view wx:if="{{item.messagestatus=='0'}}" class="value">你的评论已通过审核：{{item.messagevalue}}</view>
-            <view wx:if="{{item.messagestatus=='1'}}" class="value readed">你的评论已通过审核：{{item.messagevalue}}</view>
+            <view wx:if="{{item.messagestatus=='0'}}" class="value">ئىنكاسىڭىز تەستىقتىن ئۆتتى: {{item.messagevalue}}</view>
+            <view wx:if="{{item.messagestatus=='1'}}" class="value readed">ئىنكاسىڭىز تەستىقتىن ئۆتتى: {{item.messagevalue}}</view>
           </view>
         </block>
 
@@ -30,8 +30,8 @@
               <text class="date">{{item.messagedate}}</text>
             </view>
 
-            <view wx:if="{{item.messagestatus=='0'}}" class="value">你的文章(话题)已通过审核：{{item.messagevalue}}</view>
-            <view wx:if="{{item.messagestatus=='1'}}" class="value readed">你的文章(话题)已通过审核：{{item.messagevalue}}</view>
+            <view wx:if="{{item.messagestatus=='0'}}" class="value">ماقالىڭىز تەستىقتىن ئۆتتى{{item.messagevalue}}</view>
+            <view wx:if="{{item.messagestatus=='1'}}" class="value readed">ماقالىڭىز تەستىقتىن ئۆتتى{{item.messagevalue}}</view>
           </view>
         </block>
 
@@ -61,13 +61,13 @@
             </view>
 
             <block wx:if="{{item.messagetype=='postlike'}}">
-            <view wx:if="{{item.messagestatus=='0'}}" class="value">Ta赞了你的文章</view>
-            <view wx:if="{{item.messagestatus=='1'}}" class="value readed">Ta赞了你的文章</view>
+            <view wx:if="{{item.messagestatus=='0'}}" class="value">بىرەيلەن ماقالىڭىزنى ياقتۇردى</view>
+            <view wx:if="{{item.messagestatus=='1'}}" class="value readed">بىرەيلەن ماقالىڭىزنى ياقتۇردى</view>
 
             </block>
             <block wx:elif="{{item.messagetype=='commentlike'}}">
-            <view wx:if="{{item.messagestatus=='0'}}" class="value">Ta赞了你的评论</view>
-            <view wx:if="{{item.messagestatus=='1'}}" class="value readed">Ta赞了你的评论</view>
+            <view wx:if="{{item.messagestatus=='0'}}" class="value">بىرەيلەن ئىنكاسىڭىزنى ياقتۇردى</view>
+            <view wx:if="{{item.messagestatus=='1'}}" class="value readed">بىرەيلەن ئىنكاسىڭىزنى ياقتۇردى</view>
             </block>
 
           </view>
@@ -83,8 +83,8 @@
               <text class="date">{{item.messagedate}}</text>
             </view>
 
-            <view wx:if="{{item.messagestatus=='0'}}" class="value">Ta关注了你</view>
-            <view wx:if="{{item.messagestatus=='1'}}" class="value readed">Ta关注了你</view>
+            <view wx:if="{{item.messagestatus=='0'}}" class="value">بىرەيلەن سىزگە ئەگەشتى</view>
+            <view wx:if="{{item.messagestatus=='1'}}" class="value readed">بىرەيلەن سىزگە ئەگەشتى</view>
           </view>
         </block>
       </view>
@@ -102,8 +102,8 @@
 
 
 <!-- 删除确认弹窗 -->
-<mp-dialog title="提示" show="{{showDeleteDialog}}" bindbuttontap="tapDialogButton" buttons="{{ [{text: '取消'}, {text: '确定'}] }}">
-  <view>您确定要删除这条消息吗？</view>
+<mp-dialog title="ئەسكەرتىش" show="{{showDeleteDialog}}" bindbuttontap="tapDialogButton" buttons="{{ [{text: 'بولدى قىلىش'}, {text: 'مۇقىملاشتۇرۇش'}] }}">
+  <view>ئۆچۈرەمسىز؟</view>
 </mp-dialog>
 
 

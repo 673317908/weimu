@@ -10,8 +10,8 @@
       </view>
       <view class="item-right">
         <text>-{{item.totalfee}}</text>
-        <text wx:if="{{item.ordertype == 'catsubscribeIntegral' || item.ordertype == 'postIntegral'}}">积分</text>
-        <text wx:else>元</text>
+        <text wx:if="{{item.ordertype == 'catsubscribeIntegral' || item.ordertype == 'postIntegral'}}"> جۇغلانما</text>
+        <text wx:else> يۈەن</text>
       </view>
     </view>
   </block>

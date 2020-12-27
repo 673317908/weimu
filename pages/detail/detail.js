@@ -41,7 +41,7 @@ Page({
     menuBackgroup: false,
 
     focus: false,
-    placeholder: "说点什么...",
+    placeholder: "مەزمۇننى يىزىڭ...",
     toUserId: "",
     toFormId: "",
     commentdate: "",
@@ -310,7 +310,7 @@ Page({
         // console.log('广告加载成功')
       })
       rewardedVideoAd.onError((err) => {
-        Adapter.toast("广告加载错误,请刷新页面", 3000)
+        Adapter.toast("ئىلان يۈكلەش مەغلۇب بولدى، بەتنى يېڭىلاڭ", 3000)
         // this.setData({
         //   detailSummaryHeight: ''
         // })
@@ -343,7 +343,7 @@ Page({
             detailSummaryHeight: ''
           })
         } else {
-          Adapter.toast("你中途关闭了视频", 3000)
+          Adapter.toast("ئىلاننى تولۇق كۆرۈپ بولمىدىڭىز", 3000)
         }
       })
     }
@@ -385,7 +385,7 @@ Page({
           rewardedVideoAd.load()
             .then(() => rewardedVideoAd.show())
             .catch(err => {
-              Adapter.toast("激励视频广告获取失败！", 2000)
+              Adapter.toast("ئىلانغا ئېرىشىش مەغلۇب بولدى", 2000)
               // self.setData({
               //   detailSummaryHeight: ''
               // })
@@ -468,7 +468,7 @@ Page({
 
     self.setData({
       parentId: parentId,
-      placeholder: "回复" + toUserName + ":",
+      placeholder: "ئىنكاس" + toUserName + ":",
       focus: true,
       toUserId: toUserId,     
       commentdate: commentdate
@@ -533,7 +533,7 @@ Page({
       if (!text) {
         self.setData({
           parentID: '0',
-          placeholder: '说点什么...',
+          placeholder: 'ئىنكاس يوللاڭ',
           userid: '',
           toFromId: '',
           commentdate: ''
@@ -556,11 +556,11 @@ Page({
       if(e !="replay") {
         wx.lin.showDialog({
           type: "confirm",
-          title: "标题",
+          title: "ماۋزۇ",
           showTitle: false,
-          confirmText: "确认",
+          confirmText: "ماقۇل",
           confirmColor: "#f60",
-          content: "权限不足,需"+min_comment_user_memberName+"及以上等级方可发表评论。是否去赚积分提高等级?",
+          content: "ھوقوقىڭىز يەتمىدى "+min_comment_user_memberName+" دىن يۇقۇرى ئەزالار ئىنكاس يوللىيالايدۇ، جۇغلانما تىپىپ دەرىجىڭىزنى ئۆستۈرەمسىز؟",
           success: (res) => {
             if (res.confirm) {
               wx.navigateTo({
@@ -588,7 +588,7 @@ Page({
           // 登录鉴权失败
           if (res.code === 'user_parameter_error') {
             wx: wx.showToast({
-              title: '用户参数错误，请点击我的页面"清除缓存"后再次登录',
+              title: 'مىنىڭ دىگەن بەتتىكى قالدۇق تازلاشنى بىسىپ قالدۇق تازلاڭ',
               icon: 'none',
               duration: 3000
             })
@@ -646,7 +646,7 @@ Page({
   postRefresh() {
     this.onPullDownRefresh()
     this.hiddenBar()
-    Adapter.toast("已刷新", 1500)
+    Adapter.toast("يېڭىلاندى", 1500)
   },
 
   // 嵌入公众号
@@ -673,10 +673,10 @@ Page({
     let data = e.currentTarget.dataset
     let id = data.id
     let path = data.path
-    let info = `AppID：${id}，小程序路径：${path}`
+    let info = `AppID：${id}，ئادرىسى: ${path}`
 
     this.closeInsertWxPopup()
-    Adapter.copyLink(info, "复制成功")
+    Adapter.copyLink(info, "كۆپەيتىلدى")
   },
 
   // 关闭嵌入微信弹出
@@ -690,7 +690,7 @@ Page({
   copyLink() {
     var url = this.data.detail.link
     this.hiddenBar()
-    Adapter.copyLink(url, "复制成功")
+    Adapter.copyLink(url, "كۆپەيتىلدى")
   },
 
   // 去到网页
@@ -734,7 +734,7 @@ Page({
   // 保存海报
   showModal(posterPath) {
     this.modalView.showModal({
-      title: '保存至相册可以分享给好友',
+      title: 'ئالبومغا ساقلىۋىلىپ دوستلىرىڭىزغا ھەمبەھىرلەڭ',
       confirmation: false,
       confirmationText: '',
       inputFields: [{
@@ -795,11 +795,11 @@ Page({
       var _integral =originalprice-userIntegral;
       wx.lin.showDialog({
         type: "confirm",
-        title: "标题",
+        title: "ماۋزۇ",
         showTitle: false,
-        confirmText: "确认",
+        confirmText: "ماقۇل",
         confirmColor: "#f60",
-        content: "积分不足,还需要"+_integral+"积分，是否去赚积分?",
+        content: "جۇغلانما نۇمۇرىڭىز يىتىشمىدى، يەنە "+_integral+" جۇغلانما نۇمۇر كام، جۇغلانما نۇمۇر يىغامسىز؟",
         success: (res) => {
           if (res.confirm) {
             wx.navigateTo({
@@ -823,11 +823,11 @@ Page({
 
     wx.lin.showDialog({
       type: "confirm",
-      title: "标题",
+      title: "ماۋزۇ",
       showTitle: false,
-      confirmText: "确认",
+      confirmText: "ماقۇل",
       confirmColor: "#f60",
-      content: "将使用积分" + originalprice + ",确认使用？",
+      content: "جەمئىي " + originalprice + "جۇغلانما نۇمۇر كىتىدۇ، داۋاملاشتۇرامسىز؟",
       success: (res) => {
         if (res.confirm) {
           API.postIntegral(args).then(res => {
@@ -875,9 +875,9 @@ Page({
             urls: [praiseimgurl]
           })
         } else if (!praiseimgurl && enterpriseMinapp == "1") {
-          Adapter.toast("根据相关规定，该功能暂时只支持在安卓手机上使用", 1500)
+          Adapter.toast("ئالاقىدار بەلگىلىمىلەرگە ئاساسەن، پەقەت ئاندىرويىد تىلفۇنلا بۇ ئىقتىدارنى ئىشلىتەلەيدۇ 根据相关规定，该功能暂时只支持在安卓手机上使用", 1500)
         } else {
-          Adapter.toast("设置错误", 1500)
+          Adapter.toast("تەڭشەكتە خاتالىق بار", 1500)
         }
       } else {
         if (enterpriseMinapp == "1") {
@@ -893,7 +893,7 @@ Page({
             urls: [praiseimgurl]
           })
         } else {
-          Adapter.toast("设置错误", 1500)
+          Adapter.toast("تەڭشەكتە خاتالىق بار", 1500)
         }
       }
     }
@@ -1019,7 +1019,7 @@ Page({
                 url: url + '?url=' + href
               })
             } else {
-              Adapter.copyLink(href, "链接已复制")
+              Adapter.copyLink(href, "ئادرىس كۆپەيتىلدى")
             }
           }
         })
@@ -1083,7 +1083,7 @@ Page({
     var commentsList = self.data.commentsList
 
     if (!sessionId || !userId) {
-      Adapter.toast('请先授权登录', 3000)
+      Adapter.toast('تىزىملىتىپ كىرگەندىن كىيىن داۋاملاشتۇرۇڭ', 3000)
       return
     }
     data.id = id
@@ -1092,11 +1092,11 @@ Page({
     data.deletetype = 'publishStatus'
     wx.lin.showDialog({
       type: "confirm",
-      title: "标题",
+      title: "ماۋزۇ",
       showTitle: false,
-      confirmText: "确认",
+      confirmText: "ماقۇل",
       confirmColor: "#f60",
-      content: "确认删除？",
+      content: "ئۆچۈرەمسىز؟",
       success: (res) => {
         if (res.confirm) {
           API.deleteCommentById(data).then(res => {

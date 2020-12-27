@@ -40,7 +40,7 @@ component_1.VantComponent({
     },
     cancelButtonText: {
       type: String,
-      value: '取消',
+      value: 'بولدى قىلىش',
     },
     confirmButtonColor: {
       type: String,

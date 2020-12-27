@@ -20,19 +20,19 @@
       <view class="user-data">
         <view class="user-data-item">
           <text>{{userInfo.postcount}}</text>
-          <view class="title">文章</view>
+          <view class="title">ماقالە</view>
         </view>
         <view class="user-data-item">
           <text>{{userInfo.topiccount}}</text>
-          <view class="title">帖子</view>
+          <view class="title">قوناقلىق</view>
         </view>
         <view class="user-data-item">
           <text>{{userInfo.followmecount}}</text>
-          <view class="title">粉丝</view>
+          <view class="title">پىنتوزا</view>
         </view>
         <view class="user-data-item">
           <text>{{userInfo.myfollowcount}}</text>
-          <view class="title">关注</view>
+          <view class="title">ئەگەشكىنى</view>
         </view>
       </view>
     </view>
@@ -42,15 +42,15 @@
         <view class="userinfo-role">
           <text>{{userInfo.membername}}</text>
           <text>ID:{{userId}}</text>
-          <text>积分 {{userInfo.integral || 0}}</text>
+          <text>جۇغلانما {{userInfo.integral || 0}}</text>
         </view>
       </view>
       <view wx:if="{{userInfo.id !=userSession.userId}}" class="btn-author-follow" data-follow="{{userInfo.follow}}" data-listType="author" data-authorid="{{userInfo.id}}" catchtap="followAuthor">
         <block wx:if="{{!userInfo.follow}}">
-          <text>关注</text>
+          <text>ئەگىشىش</text>
         </block>
         <block wx:else>
-          <text>{{ (userInfo.followeachoher === 'true') ? '相互关注' : '已关注' }}</text>
+          <text>{{ (userInfo.followeachoher === 'true') ? 'دوستلاشتىڭىز' : 'ئەگەشتىڭىز' }}</text>
         </block>
       </view>
     </view>

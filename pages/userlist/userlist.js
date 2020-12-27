@@ -27,8 +27,8 @@ Page({
     userSession: {},
     wxLoginInfo: {},
     memberUserInfo: {},
-    shareTitle: appName + '-作者列表',
-    pageTitle: '作者列表',
+    shareTitle: appName + 'ئاپتورلار تىزىملىكى',
+    pageTitle: 'ئاپتورلار تىزىملىكى',
     authorType:'myFollow',
     myFollowPage:1,
     followmePage:1,
@@ -48,13 +48,13 @@ Page({
     {
       self.getMyFollowAuthors();
       wx.setNavigationBarTitle({
-        title: "我的关注"
+        title: "ئەگەشكىنىم"
       });
     }
     else if(authorType =='followme'){
       self.getFollowmeAuthors();
       wx.setNavigationBarTitle({
-        title: "我的粉丝"
+        title: "پىنتوزام"
       });
     }
   },

@@ -30,6 +30,7 @@
 
 .swiper {
   height: 180rpx;
+  DIRECTION: rtl;
 }
 
 .swiper-item {
@@ -71,6 +72,7 @@
 .selected-nav-item {
   margin-right: 16rpx;
   text-align: center;
+  font-family: 'UKIJ Ekran';
 }
 
 .selected-nav-item image {

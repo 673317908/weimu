@@ -19,7 +19,7 @@
             </view>
             <view>
               <image class="icon-address" src="../../images/icon-address.png"></image>{{item.address}}
-              <block wx:if="{{item.distance !=null}}"> 距离:{{item.distance}}km</block>
+              <block wx:if="{{item.distance !=null}}"> ئارلىق:{{item.distance}}km</block>
             </view>
           </view>
         </swiper-item>
@@ -30,6 +30,6 @@
 </view>
 
 <block wx:if="{{scopeUserLocation =='false'}}">
-      <button class="btn-open-location" hover-class="none" bindtap="openUserLocationBtn">授权开启用位置信息</button>
+      <button class="btn-open-location" hover-class="none" bindtap="openUserLocationBtn">ئورۇن بەلگىلەش ھوقوقىنى بىرىڭ</button>
     </block>
 <canvas canvasId="myCanvas" style="position:fixed;top:0;left:999rpx;width:120px;height:160px;"></canvas>

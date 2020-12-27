@@ -8,12 +8,12 @@
 		<view class='topic-item-content'>
 			<view class="topic-content-brief">
 				<text>{{category.description}}</text>
-				<text class="topic-content-num">({{category.count}}篇)</text>
+				<text class="topic-content-num">({{category.count}} پارچە)</text>
 			</view>
 
 			<view class="topic-content-btn">
-				<text class="btn-subscribe" data-subid="{{category.subscribemessagesid}}" data-id="{{category.id}}" catchtap="postsub">订阅</text>
-				<text>已订阅了 {{category.categorySubscribeCount || 0}} 篇</text>
+				<text class="btn-subscribe" data-subid="{{category.subscribemessagesid}}" data-id="{{category.id}}" catchtap="postsub">يېڭىلىنىش ئۇقتۇرىشى</text>
+				<text>جەمئىي {{category.categorySubscribeCount || 0}} قېتىم يېڭىلىنىش ئۇقتۇرىشىنى قوبۇل قىلالايسىز</text>
 			</view>
 		</view>
 	</view>
@@ -28,7 +28,7 @@
 				<text>{{tagname}}</text>
 			</view>
 			<view class="topic-content-num">
-				<text>共收录 {{tagPostsCount}} 篇文章</text>
+				<text>جەمئىي {{tagPostsCount}} پارچە ماقالە بار</text>
 			</view>
 
 		</view>
@@ -65,7 +65,7 @@
 	</view>
 	<view class="container">
     <article-item list="{{articlesList}}" />
-		<view class="no-more" style="display:{{isLastPage?'block':'none'}}">- 到底啦 -</view>
+		<view class="no-more" style="display:{{isLastPage?'block':'none'}}">- تۈگىدى -</view>
 		<copyright />
 	</view>
 </view>
@@ -75,20 +75,20 @@
   <!-- 安卓 -->
   <view class="tab-box" wx:if="{{ system === 'Android' && (category.integral || category.price) }}">
     <view bindtap="postIntegral" class="btn-integral" wx:if="{{ category.integral }}">
-      <text>积分购买</text>
-      <view>需 {{category.integral}} 积分</view>
+      <text>جۇغلانما نۇمۇرغا سېتىۋىلىش</text>
+      <view>{{category.integral}} جۇغلانما نۇمۇر</view>
     </view>
     <view bindtap="payment" class="btn-money" wx:if="{{ category.price }}">
-      <text>直接购买</text>
-      <view>需支付 {{category.price}} 元</view>
+      <text>بىۋاستە سېتىۋىلىش</text>
+      <view>{{category.price}} يۈەن</view>
     </view>
   </view>
 
   <!-- 苹果 -->
   <view class="tab-box" wx:elif="{{ system === 'iOS' && category.integral }}">
     <view bindtap="postIntegral" class="btn-money">
-      <text>积分购买</text>
-      <view>需 {{category.integral}} 积分</view>
+      <text>جۇغلانما نۇمۇرغا سېتىۋىلىش</text>
+      <view>{{category.integral}} جۇغلانما نۇمۇر</view>
     </view>
   </view>
 </block>
@@ -98,7 +98,7 @@
 <view class="showerror" style="display:{{isError?'block':'none'}}">
 	<image src="../../images/cry80.png" style="height:100rpx;width:100rpx"></image>
 	<view class="errortext">
-		暂时无法访问网络,下拉重试...
+		توردا مەسلە كۆرۈلدى، ئاستىغا سىيرىپ يېڭىلاڭ
 	</view>
 </view>
 

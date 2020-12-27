@@ -21,7 +21,8 @@
   font-size: 30rpx;
   height: 48rpx;
   width: 80%;
-  text-align: left;
+  text-align: right;
+  padding-right: 10px;
 }
 
 .search-button {

@@ -8,8 +8,8 @@
 
 <!-- 首次进入引导添加到“我的小程序” -->
 <view class="addMyMiniapp" wx:if="{{isFirst}}" catchtap="shutAddMyMiniapp">
-  <view>点击加入我的小程序 ↑</view>
-  <text>了解{{shareTitle}}小程序最新功能</text>
+  <view>ئۈچ چىكىتنى بىسىپ ↑</view>
+  <text>添加到我的小程序 نى بسىىپ ساقلىۋىلىڭ</text>
 </view>
 
 <!-- 顶部Tab菜单 -->
@@ -26,7 +26,7 @@
 </view>
 <!-- 点击下拉图标展示出的设置项 -->
 <view class="columnPannelHeader" wx:if="{{isColumnPannelOpen}}">
-  <text class="columnPannelTitle">所有栏目 </text>
+  <text class="columnPannelTitle">بارلىق تۈرلەر </text>
 </view>
 <view catchtouchmove="consumeTouchmove" class="columnPannel full-height" style="height:{{windowHeight}}px;" wx:if="{{isColumnPannelOpen}}">
   <view class="selected-pannel">
@@ -38,7 +38,7 @@
   </view>
   <view class="me-item-gap"></view>
   <!-- 列表展示方式 -->
-  <text class="columnPannelTitle">列表展示方式
+  <text class="columnPannelTitle">باشبەت شەكلى
   </text>
   <view class="unselected-pannel">
     <view class='settings-container'>
@@ -46,27 +46,27 @@
         <radio-group name="radioGroup" bindchange="changeListStyle">
           <label>
             <radio value="1" checked="{{articleStyle == 1}}" />
-            左图右文
+            ئوڭ رەسىم سول ماۋزۇ
           </label>
           <label>
             <radio value="2" checked="{{articleStyle == 2}}" />
-            右图左文
+            سول رەسىم ئوڭ ماۋزۇ
           </label>
           <label>
             <radio value="3" checked="{{articleStyle == 3}}" />
-            大图列表
+            چوڭ رەسىملىك
           </label>
           <label>
             <radio value="4" checked="{{articleStyle == 4}}" />
-            多图列表
+            كۆپ رەسىملىك
           </label>
           <label>
             <radio value="5" checked="{{articleStyle == 5}}" />
-            瀑布流列表
+            شاقىراتما
           </label>
           <label>
             <radio value="6" checked="{{articleStyle == 6}}" />
-            无图列表
+            رەسىمسىز
           </label>
         </radio-group>
       </view>
@@ -127,12 +127,12 @@
   </view>
 
   <!-- 精选商品 -->
-  <!-- <hot-goods wx:if="{{productsNav.length}}" goods-list="{{productsNav}}" title="精选商品" /> -->
+  <hot-goods wx:if="{{productsNav.length}}" goods-list="{{productsNav}}" title="تەۋسىيە مەھسۇلاتلار" />
 
   <!-- 媒体中心 -->
   <view class="media-center" wx:if="{{homepageMediaDisplay}}">
     <view class='common-subtitle'>
-      <view class='common-subtitle-left'>媒体中心</view>
+      <view class='common-subtitle-left'>مىدىيا مەركىزى</view>
       <view class='common-subtitle-right'>MEDIA</view>
     </view>
 
@@ -140,27 +140,27 @@
 
       <view class="media-item video" bindtap="govideo">
         <text class="iconfont icon-media-video" />
-        <view>视频</view>
+        <view>فىلىم</view>
       </view>
 
       <view class="media-item img-text" bindtap="goimage">
         <text class="iconfont icon-media-img-text" />
-        <view>图文</view>
+        <view>رەسىملىك</view>
       </view>
 
       <view class="media-item album" bindtap="goalbum">
         <text class="iconfont icon-media-album" />
-        <view>相册</view>
+        <view>ئالبوم</view>
       </view>
 
       <view class="media-item audio" bindtap="goaudio">
         <text class="iconfont icon-media-audio" />
-        <view>音频</view>
+        <view>ئۈن</view>
       </view>
 
       <view class="media-item file" bindtap="gofile">
         <text class="iconfont icon-media-file" />
-        <view>文件</view>
+        <view>ھۆججەت</view>
       </view>
 
     </view>
@@ -189,7 +189,7 @@
   <view class="showerror" style="display:{{isError?'block':'none'}}">
     <image src="../../images/cry80.png" style="height:100rpx;width:100rpx;margin-top:200rpx;"></image>
     <view class="errortext">
-      无法访问网络，请下拉刷新...
+      تور يولىدا مەسلە كۆرۈلدى، ئاستىغا سىيرىپ يېڭىلاڭ
     </view>
   </view>
 
@@ -197,8 +197,8 @@
 
   <!-- 订阅 -->
   <view class="subscribe" wx:if="{{currentColumn !=0}}">
-    <text>已订阅了 {{columns[currentColumn].categorySubscribeCount}} 篇</text>
-    <view data-subid="{{columns[currentColumn].subscribemessagesid}}" data-id="{{columns[currentColumn].id}}" catchtap="postsub">订阅</view>
+    <text>{{columns[currentColumn].categorySubscribeCount}} قېتىم يېڭىلاش ئۇقتۇرىشى قوبۇل قىلالايسىز</text>
+    <view data-subid="{{columns[currentColumn].subscribemessagesid}}" data-id="{{columns[currentColumn].id}}" catchtap="postsub">يېڭىلىنىش ئۇقتۇرىشى</view>
   </view>
   </view>
   <!-- 以上内容只在首页显示 -->
@@ -222,7 +222,7 @@
       <view style='display:{{isLoading?"block":"none"}}'>
         <template is="threepoint" />
       </view>
-      <view class="no-more" style="display:{{isLastPage?'block':'none'}}">- 到底啦 -</view>
+      <view class="no-more" style="display:{{isLastPage?'block':'none'}}">- تۈگىدى -</view>
 
       <copyright />
     </view>
@@ -239,10 +239,10 @@
 <!-- 授权手机号 -->
 <van-dialog
   show="{{ showPopPhone }}"
-  title="提示"
-  message="发布内容需要授权绑定手机号"
+  title="ئەسكەرتىش"
+  message="تىلفۇن نۇمۇرى باغلاڭ"
   showCancelButton="{{ true }}"
-  confirmButtonText="确认绑定"
+  confirmButtonText="باغلاش"
   confirm-button-color="#2f80ed"
   confirm-button-open-type="getPhoneNumber"
   bind:getphonenumber="getPhoneNumber"

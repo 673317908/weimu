@@ -99,13 +99,13 @@ Page({
     let title = ''
 
     if (type === 'system') {
-      title = '系统消息'
+      title = 'سىستىما ئۇچۇرى'
     } else if (type === 'comment') {
-      title = '评论消息'
+      title = 'ئىنكاس ئۇچۇرى'
     } else if (type === 'like') {
-      title = '点赞消息'
+      title = 'ياقۇترغانلىق ئۇچۇرى'
     } else if (type === 'follow') {
-      title = '关注消息'
+      title = 'ئەگەشكەنلىك ئۇچۇرى'
     }
 
     wx.setNavigationBarTitle({
@@ -150,7 +150,7 @@ Page({
     let sessionId = self.data.userSession.sessionId
 
     if (!sessionId || !userId) {
-      Adapter.toast('请先授权登录', 3000)
+      Adapter.toast('تىزىملىتىپ كىرىڭ', 3000)
       return
     }
 

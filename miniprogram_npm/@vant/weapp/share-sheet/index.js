@@ -12,7 +12,7 @@ component_1.VantComponent({
     title: String,
     cancelText: {
       type: String,
-      value: '取消',
+      value: 'بولدى قىلىش',
     },
     description: String,
     options: {

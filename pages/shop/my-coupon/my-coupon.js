@@ -3,9 +3,9 @@ const app = getApp()
 Page({
   data: {
     tabList: [
-      { title: '全部', status: '10' },
-      { title: '可使用', status: '20' },
-      { title: '已过期', status: '30' },
+      { title: 'ھەممىسى', status: '10' },
+      { title: 'ئىشلىتەلەيدىغىنىم', status: '20' },
+      { title: 'ۋاقتى ئۆتكىنى', status: '30' },
     ],
     active: '10',
     page: 1,
@@ -44,7 +44,7 @@ Page({
     })
 
     wx.showLoading({
-      title: '加载中',
+      title: 'ئېچىلىۋاتىدۇ',
     })
     await this.getCouponList()
     wx.hideLoading()

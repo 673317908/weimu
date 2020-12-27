@@ -43,12 +43,10 @@ Auth.userLogin = function (args, api) {
       if (res.raw_session) {
         resolve(res.raw_session);
 
-      }
-      else {
+      } else {
         if (res.data.message) {
           reject(res.data.message);
-        }
-        else if (res.message) {
+        } else if (res.message) {
           reject(res.message);
         }
       }
@@ -68,8 +66,7 @@ Auth.scopeUserInfo = function () {
         } else {
           if (authSetting['scope.userInfo'] === false) {
             args.scopeUserInfo = '0';
-          }
-          else {
+          } else {
             args.scopeUserInfo = '1';
           }
         }
@@ -88,17 +85,18 @@ Auth.agreeGetUser = function (e, api, wxLoginInfo, authFlag) {
     args.js_code = wxLoginInfo.js_code;
     if (authFlag == '0' && e.detail.errMsg == 'getUserInfo:fail auth deny') {
       args.errcode = e.detail.errMsg;
-      args.userInfo = { isLogin: false }
+      args.userInfo = {
+        isLogin: false
+      }
       args.userSession = "";
       resolve(args);
       return;
     }
     var userInfoDetail = {};
-    if (authFlag == '0')//未授权过,通过按钮授权
+    if (authFlag == '0') //未授权过,通过按钮授权
     {
       userInfoDetail = e.detail;
-    }
-    else if (authFlag == '1')//已经授权过，直接通过wx.getUserInfo获取
+    } else if (authFlag == '1') //已经授权过，直接通过wx.getUserInfo获取
     {
       userInfoDetail = e;
     }
@@ -115,10 +113,11 @@ Auth.agreeGetUser = function (e, api, wxLoginInfo, authFlag) {
       }).catch(function (error) {
         reject(error);
       })
-    }
-    else {
+    } else {
       args.errcode = "error";
-      args.userInfo = { isLogin: false };
+      args.userInfo = {
+        isLogin: false
+      };
       args.userSession = "";
       resolve(args);
     }
@@ -150,14 +149,18 @@ Auth.checkLogin = function (appPage) {
     success: function () {
       if (!wxLoginInfo.js_code) {
         Auth.wxLogin().then(res => {
-          appPage.setData({ wxLoginInfo: res });
+          appPage.setData({
+            wxLoginInfo: res
+          });
           wx.setStorageSync('wxLoginInfo', res);
         })
       }
     },
     fail: function () {
       Auth.wxLogin().then(res => {
-        appPage.setData({ wxLoginInfo: res });
+        appPage.setData({
+          wxLoginInfo: res
+        });
         wx.setStorageSync('wxLoginInfo', res);
       })
     }
@@ -170,11 +173,17 @@ Auth.checkSession = function (app, api, appPage, flag, util) {
   let userSession = wx.getStorageSync('userSession');
   if (!userSession.sessionId) {
     if ('isLoginNow' == flag) {
-      var userInfo = { avatarUrl: "../../images/gravatar.png", nickName: "立即登录", isLogin: false }
-      appPage.setData({ isLoginPopup: true, userInfo: userInfo });
+      var userInfo = {
+        avatarUrl: "../../images/gravatar.png",
+        nickName: "كىرىش",
+        isLogin: false
+      }
+      appPage.setData({
+        isLoginPopup: true,
+        userInfo: userInfo
+      });
     }
-  }
-  else {
+  } else {
     if (util.checkSessionExpire(userSession.sessionExpire)) {
       var data = {};
       data.userId = userSession.userId;
@@ -182,9 +191,8 @@ Auth.checkSession = function (app, api, appPage, flag, util) {
       api.updateSession(data).then(res => {
         if (res.raw_session) {
           wx.setStorageSync('userSession', res.raw_session);
-          Auth.setUserMemberInfoData(appPage);                    
-        }
-        else if (res.code == 'user_parameter_error') {
+          Auth.setUserMemberInfoData(appPage);
+        } else if (res.code == 'user_parameter_error') {
           Auth.logout(appPage);
           wx.reLaunch({
             url: '../index/index'
@@ -192,8 +200,7 @@ Auth.checkSession = function (app, api, appPage, flag, util) {
 
         }
       })
-    }
-    else {
+    } else {
       Auth.setUserMemberInfoData(appPage);
     }
   }
@@ -208,7 +215,9 @@ Auth.checkGetMumber = function (app, appPage, api) {
   if (userSession.sessionId && !memberUserInfo.membername) {
     Auth.getMemberUserInfo(userSession, api).then(res => {
       if (res.memberUserInfo) {
-        appPage.setData({ memberUserInfo: res.memberUserInfo });
+        appPage.setData({
+          memberUserInfo: res.memberUserInfo
+        });
         wx.setStorageSync('memberUserInfo', res.memberUserInfo);
       }
     })
@@ -221,31 +230,43 @@ Auth.checkAgreeGetUser = function (e, app, appPage, api, authFlag) {
   if (wxLoginInfo.js_code) {
     Auth.agreeGetUser(e, api, wxLoginInfo, authFlag).then(res => {
       if (res.errcode == "") {
-        appPage.setData({ userInfo: res.userInfo });
+        appPage.setData({
+          userInfo: res.userInfo
+        });
         wx.setStorageSync('userInfo', res.userInfo);
         wx.setStorageSync('userSession', res.userSession);
-        appPage.setData({ userSession: res.userSession });
+        appPage.setData({
+          userSession: res.userSession
+        });
         Auth.getMemberUserInfo(res.userSession, api).then(response => {
           if (response.memberUserInfo) {
-            appPage.setData({ memberUserInfo: response.memberUserInfo });
+            appPage.setData({
+              memberUserInfo: response.memberUserInfo
+            });
             wx.setStorageSync('memberUserInfo', response.memberUserInfo);
             if (appPage.data.pageName == "detail" || appPage.data.pageName == "media-list" || appPage.data.pageName == "social") {
               appPage.onPullDownRefresh();
             }
           }
         })
+      } else {
+        var userInfo = {
+          avatarUrl: "../../images/gravatar.png",
+          nickName: "كىرىش",
+          isLogin: false
+        }
+        appPage.setData({
+          userInfo: userInfo
+        })
       }
-      else {
-        var userInfo = { avatarUrl: "../../images/gravatar.png", nickName: "点击登录", isLogin: false }
-        appPage.setData({ userInfo: userInfo })
-      }
-      appPage.setData({ isLoginPopup: false });
+      appPage.setData({
+        isLoginPopup: false
+      });
 
     })
-  }
-  else {
+  } else {
     wx.showToast({
-      title: '登录失败',
+      title: 'كىرىش مەغلۇپ بولدى',
       mask: false,
       duration: 1000
     });
@@ -258,7 +279,22 @@ Auth.checkGetMemberUserInfo = function (userSession, appPage, api) {
   if (userSession.sessionId) {
     Auth.getMemberUserInfo(userSession, api).then(res => {
       if (res.memberUserInfo) {
-        appPage.setData({ memberUserInfo: res.memberUserInfo });
+        // var date = new Date()
+        // var Y = date.getFullYear() + '-'
+        // var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-'
+        // var D = date.getDate() < 9 ? '0' + date.getDate() + ' ' : date.getDate() + ' '
+        // var h = date.getHours() < 9 ? '0' + date.getHours() + ':' : date.getHours() + ':'
+        // var m = date.getMinutes() < 9 ? '0' + date.getMinutes() + ':' : date.getMinutes() + ':'
+        // var s = date.getSeconds() < 9 ? '0' + date.getSeconds() : date.getSeconds()
+        // var time = Y + M + D + h + m + s
+        var startDate = Date.parse(new Date());
+        var endDate = Date.parse(res.memberUserInfo.memberenddate);
+        var days =
+          parseInt((endDate - startDate) / (1 * 24 * 60 * 60 * 1000));
+        res.memberUserInfo.days = days == 0 ? days + 1 : days
+        appPage.setData({
+          memberUserInfo: res.memberUserInfo
+        });
         wx.setStorageSync('memberUserInfo', res.memberUserInfo);
         // if(appPage.data.pageName=='myself')
         // {
@@ -271,8 +307,7 @@ Auth.checkGetMemberUserInfo = function (userSession, appPage, api) {
 
 
 
-      }
-      else {
+      } else {
         if (appPage.data.pageName == 'myself') {
           wx.showToast({
             title: res.message,
@@ -290,13 +325,15 @@ Auth.checkGetMemberUserInfo = function (userSession, appPage, api) {
   }
 }
 Auth.setUserMemberInfoData = function (appPage) {
-  appPage.setData({ listStyle: wx.getStorageSync('listStyle') });
+  appPage.setData({
+    listStyle: wx.getStorageSync('listStyle')
+  });
   if (!appPage.data.userSession.sessionId) {
     let curUserInfo = wx.getStorageSync('userInfo')
     if (!curUserInfo.avatarUrl || !curUserInfo.nickName) {
       curUserInfo = {
         avatarUrl: "../../images/gravatar.png",
-        nickName: "立即登录",
+        nickName: "كىرىش",
         isLogin: false
       }
     }
@@ -313,10 +350,13 @@ Auth.logout = function (appPage) {
   appPage.setData({
     userSession: {},
     memberUserInfo: {},
-    userInfo: { avatarUrl: "../../images/gravatar.png", nickName: "立即登录", isLogin: false },
+    userInfo: {
+      avatarUrl: "../../images/gravatar.png",
+      nickName: "كىرىش",
+      isLogin: false
+    },
     wxLoginInfo: {}
-  }
-  )
+  })
   wx.removeStorageSync('userInfo');
   wx.removeStorageSync('userSession');
   wx.removeStorageSync('memberUserInfo');
@@ -326,7 +366,9 @@ Auth.logout = function (appPage) {
 Auth.getPhoneMumber = function (appPage, api, iv, encryptedData) {
   return new Promise(function (resolve, reject) {
     Auth.wxLogin().then(res => {
-      appPage.setData({ wxLoginInfo: res });
+      appPage.setData({
+        wxLoginInfo: res
+      });
       wx.setStorageSync('wxLoginInfo', res);
       let args = {};
       let data = {};
@@ -340,8 +382,7 @@ Auth.getPhoneMumber = function (appPage, api, iv, encryptedData) {
           data.errcode = "";
           data.message = res.message;
           resolve(data);
-        }
-        else {
+        } else {
           data.errcode = "error";
           data.phoneNumber = "";
           data.message = res.message;

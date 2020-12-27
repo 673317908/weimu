@@ -47,7 +47,7 @@ Page({
     })
 
     wx.showLoading({
-      title: '加载中',
+      title: 'ئېچىلىۋاتىدۇ',
     })
     await this.getOrderList()
     wx.hideLoading()

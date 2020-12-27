@@ -5,4 +5,4 @@
 </view>
 
 <!-- 空态 -->
-<van-empty wx:if="{{empty}}" description="暂无商品" />
+<van-empty wx:if="{{empty}}" description="ھىچقانداق مەھسۇلات يوق" />

@@ -3,14 +3,21 @@
   <view class="menu-box {{iconBarShow ? '' :'menu-box-hidden'}}">
     <view class="iconList">
       <view class="iconLine">
-
+        <view style="width:25%; float:left;" catchtap="postPraise" wx:if="{{zan_display==='1'}}">
+          <view>
+            <image src="../../images/appreciation.png " class="img-menu "></image>
+          </view>
+          <view>
+            <text>تارتۇقلاش</text>
+          </view>
+        </view>
         <!-- 嵌入公众号 -->
         <view style="width:25%; position: relative; float:left; text-align:center" catchtap="insertWxPost">
           <view>
             <image src="../../images/bottom_bar_refresh.png" class="img-menu"></image>
           </view>
           <view>
-            <text>嵌入公众号</text>
+            <text>سالونغا قىستۇرۇش</text>
           </view>
         </view>
 
@@ -19,7 +26,7 @@
             <image src="../../images/bottom_bar_copy.png" class="img-menu"></image>
           </view>
           <view>
-            <text>复制链接</text>
+            <text>ئۇلانما كۆچۈرۈش</text>
           </view>
         </view>
 
@@ -28,7 +35,7 @@
             <image src="../../images/copy.png " class="img-menu "></image>
           </view>
           <view>
-            <text>阅读原文</text>
+            <text>ئەسلى مەنبە</text>
           </view>
         </view>
 

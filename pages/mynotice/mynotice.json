@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "我的消息",
+  "navigationBarTitleText": "ئۇچۇرۇم",
   "enablePullDownRefresh": true,
   "usingComponents": {
     "mp-slideview": "../../vendor/WeUI/slideview/slideview",

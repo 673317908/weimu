@@ -11,11 +11,11 @@
         <view class="comment-user-information">
           <view class="comment-user-name" catchtap="replay" data-id="{{item.id}}" data-name="{{item.author_name}}" data-userid="{{item.userid}}" data-commentdate="{{item.date}}">
             <text>{{item.author_name}}</text>
-            <text wx:if="{{detail.author == item.userid}}" class="comment-author-tag">作者</text>
+            <text wx:if="{{detail.author == item.userid}}" class="comment-author-tag">ئاپتور</text>
 
             <!-- 管理员 -->
             <block wx:if="{{item.member=='00'}}">
-              <text class="comment-author-tag">管理员</text>
+              <text class="comment-author-tag">باشقۇرغۇچى</text>
             </block>
 
             <!-- vip用户昵称后标识 -->
@@ -25,22 +25,22 @@
 
             <!-- 星级会员 -->
             <block wx:if="{{item.member=='10'}}">
-              <text class="comment-author-tag">新手</text>
+              <text class="comment-author-tag">★</text>
             </block>
             <block wx:if="{{item.member=='11'}}">
-              <text class="comment-author-tag">一星会员</text>
+              <text class="comment-author-tag">★★</text>
             </block>
             <block wx:if="{{item.member=='12'}}">
-              <text class="comment-author-tag">二星会员</text>
+              <text class="comment-author-tag">★★★</text>
             </block>
             <block wx:if="{{item.member=='13'}}">
-              <text class="comment-author-tag">三星会员</text>
+              <text class="comment-author-tag">★★★★</text>
             </block>
             <block wx:if="{{item.member=='14'}}">
-              <text class="comment-author-tag">四星会员</text>
+              <text class="comment-author-tag">★★★★★</text>
             </block>
             <block wx:if="{{item.member=='15'}}">
-              <text class="comment-author-tag">五星会员</text>
+              <text class="comment-author-tag">★★★★★★</text>
             </block>
 
           </view>
@@ -71,7 +71,7 @@
             <view class='comment-reply-name'>
               <image class="reply-gravatar" src="{{item1.author_url}}" catchtap="goUserDetail" data-id="{{item1.userid}}" />
               <text class="reply-author-name">{{item1.author_name}}</text>
-              <text wx:if="{{detail.author==item1.userid}}" class="reply-author-tag">作者</text> 回复 {{item.author_name}}
+              <text wx:if="{{detail.author==item1.userid}}" class="reply-author-tag">ئاپتورى</text> @ {{item.author_name}}
             </view>{{item1.content}}</view>
 
           <!-- 二级回复-->
@@ -80,7 +80,7 @@
               <view class='comment-reply-name'>
                 <image class="reply-gravatar" src="{{item2.author_url}}" catchtap="goUserDetail" data-id="{{item2.userid}}" />
                 <text class="reply-author-name">{{item2.author_name}}</text>
-                <text wx:if="{{detail.author==item2.userid}}" class="reply-author-tag">作者</text> 回复 {{item1.author_name}}</view>{{item2.content}}</view>
+                <text wx:if="{{detail.author==item2.userid}}" class="reply-author-tag">ئاپتور</text> @ {{item1.author_name}}</view>{{item2.content}}</view>
 
             <!-- 三级回复-->
             <view wx:for="{{item2.child}}" wx:key="itemid3" wx:for-index="idx" wx:for-item="item3">
@@ -88,7 +88,7 @@
                 <view class='comment-reply-name'>
                   <image class="reply-gravatar" src="{{item3.author_url}}" catchtap="goUserDetail" data-id="{{item3.userid}}" />
                   <text class="reply-author-name">{{item3.author_name}}</text>
-                  <text wx:if="{{detail.author==item3.userid}}" class="reply-author-tag">作者</text>回复 {{item2.author_name}}</view>{{item3.content}}
+                  <text wx:if="{{detail.author==item3.userid}}" class="reply-author-tag">ئاپتور</text>@ {{item2.author_name}}</view>{{item3.content}}
               </view>
 
               <!-- 四级回复-->
@@ -97,7 +97,7 @@
                   <view class='comment-reply-name'>
                     <image class="reply-gravatar" src="{{item4.author_url}}" catchtap="goUserDetail" data-id="{{item4.userid}}" />
                     <text class="reply-author-name">{{item4.author_name}}</text>
-                    <text wx:if="{{detail.author==item4.userid}}" class="reply-author-tag">作者</text> 回复 {{item3.author_name}}</view>{{item4.content}}</view>
+                    <text wx:if="{{detail.author==item4.userid}}" class="reply-author-tag">ئاپتور</text> @ {{item3.author_name}}</view>{{item4.content}}</view>
               </view>
 
             </view>
@@ -111,7 +111,7 @@
         </view>
 
         <!-- 删除评论 -->
-        <view wx:if="{{memberUserInfo.member =='00'}}" class="btn-del" catchtap="deleteComment" data-id="{{item.id}}">删除</view>
+        <view wx:if="{{memberUserInfo.member =='00'}}" class="btn-del" catchtap="deleteComment" data-id="{{item.id}}">ئۆچۈرۈش</view>
       </view>
 
     </view>

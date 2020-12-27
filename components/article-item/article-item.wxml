@@ -41,9 +41,9 @@
         </view>
 
         <view class='left-img-des'>
-          <text class="txt">浏览 {{item.pageviews}}</text>
-          <text class="txt">评论 {{item.total_comments}}</text>
-          <text class="txt">点赞 {{item.like_count}}</text>
+          <text class="txt">ئاۋاتلىقى {{item.pageviews}}</text>
+          <text class="txt">ئىنكاس {{item.total_comments}}</text>
+          <text class="txt">ياقتۇرغانلار {{item.like_count}}</text>
         </view>
       </view>
     </view>
@@ -91,9 +91,9 @@
         </view>
 
         <view class="right-img-des">
-          <text class="txt">浏览 {{item.pageviews}}</text>
-          <text class="txt">评论 {{item.total_comments}}</text>
-          <text class="txt">点赞 {{item.like_count}}</text>
+          <text class="txt">ئاۋاتلىقى {{item.pageviews}}</text>
+          <text class="txt">ئىنكاس {{item.total_comments}}</text>
+          <text class="txt">ياقتۇرغانلار {{item.like_count}}</text>
         </view>
       </view>
       <image src="{{item.post_medium_image}}" mode="aspectFill" class="right-img-cover" />
@@ -141,9 +141,9 @@
 
       <view class="big-img-info">
         <view class="big-img-des">
-          <text class="txt">浏览 {{item.pageviews}}</text>
-          <text class="txt">评论 {{item.total_comments}}</text>
-          <text class="txt">点赞 {{item.like_count}}</text>
+          <text class="txt">ئاۋاتلىقى {{item.pageviews}}</text>
+          <text class="txt">ئىنكاس {{item.total_comments}}</text>
+          <text class="txt">ياقتۇرغانلار {{item.like_count}}</text>
         </view>
         <text>{{item.post_date}}</text>
       </view>
@@ -197,9 +197,9 @@
       />
       <view class='multi-bigone-des'>
         <view>
-          <text class="txt">浏览 {{item.pageviews}}</text>
-          <text class="txt">评论 {{item.total_comments}}</text>
-          <text class="txt">点赞 {{item.like_count}}</text>
+          <text class="txt">ئاۋاتلىقى {{item.pageviews}}</text>
+          <text class="txt">ئىنكاس {{item.total_comments}}</text>
+          <text class="txt">ياقتۇرغانلار {{item.like_count}}</text>
         </view>
         <text>{{item.post_date}}</text>
       </view>
@@ -226,9 +226,9 @@
       </view>
       <view class='multi-three-des'>
         <view>
-          <text class="txt">浏览 {{item.pageviews}}</text>
-          <text class="txt">评论 {{item.total_comments}}</text>
-          <text class="txt">点赞 {{item.like_count}}</text>
+          <text class="txt">ئاۋاتلىقى {{item.pageviews}}</text>
+          <text class="txt">ئىنكاس {{item.total_comments}}</text>
+          <text class="txt">ياقتۇرغانلار {{item.like_count}}</text>
         </view>
         <text>{{item.post_date}}</text>
       </view>
@@ -250,9 +250,9 @@
           <text class="txt">{{item.title.rendered}}</text>
         </view>
         <view class="multi-one-des">
-          <text class="txt">浏览 {{item.pageviews}}</text>
-          <text class="txt">评论 {{item.total_comments}}</text>
-          <text>点赞 {{item.like_count}}</text>
+          <text class="txt">ئاۋاتلىقى {{item.pageviews}}</text>
+          <text class="txt">ئىنكاس {{item.total_comments}}</text>
+          <text>ياقتۇرغانلار {{item.like_count}}</text>
         </view>
       </view>
       <image src="{{item.post_medium_image}}" mode="aspectFill" class="multi-one-cover" />
@@ -355,9 +355,9 @@
 
       <view class="noimg-des">
         <view>
-          <text class="txt">浏览 {{item.pageviews}}</text>
-          <text class="txt">评论 {{item.total_comments}}</text>
-          <text class="txt">点赞 {{item.like_count}}</text>
+          <text class="txt">ئاۋاتلىقى {{item.pageviews}}</text>
+          <text class="txt">ئىنكاس {{item.total_comments}}</text>
+          <text class="txt">ياقتۇرغانلار {{item.like_count}}</text>
         </view>
         <text>{{item.post_date}}</text>
       </view>

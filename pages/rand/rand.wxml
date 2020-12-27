@@ -5,9 +5,9 @@
         <image mode="aspectFill" src="{{item.post_large_image}}" class="{{swiperIndex == index ? 'active' : ''}}" />
         <view class="swiper-desc">
           <view class="swiper-desc-data">
-            <text>浏览 {{item.pageviews}}</text>
-            <text>喜欢 {{item.like_count}}</text>
-            <text>评论 {{item.total_comments}}</text>
+            <text>ئاۋاتلىقى {{item.pageviews}}</text>
+            <text>ياقتۇرغانلار {{item.like_count}}</text>
+            <text>ئىنكاس {{item.total_comments}}</text>
           </view>
           <text>{{item.title.rendered}}</text>
         </view>
@@ -16,4 +16,4 @@
   </swiper>
 </view>
 
-<view class="btn-change" bindtap="refresh">换一波</view>
+<view class="btn-change" bindtap="refresh">ئالماشتۇرۇش</view>

@@ -1,6 +1,6 @@
 {
     "enablePullDownRefresh": true,
-    "navigationBarTitleText": "搜索",
+    "navigationBarTitleText": "ئىزدەش",
     "backgroundTextStyle": "dark",
     "usingComponents": {
       "mp-dialog": "../../vendor/WeUI/dialog/dialog"

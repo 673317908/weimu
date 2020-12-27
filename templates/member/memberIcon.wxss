@@ -23,11 +23,9 @@
   padding: 0 6rpx;
   border-radius: 4rpx;
   font-size: 20rpx;
-
-
   background-color: #2f80ed;
   vertical-align: middle;
-  margin-left: 10rpx;
+  margin-right: 10rpx;
   color: #fff;
 
   box-sizing: border-box;

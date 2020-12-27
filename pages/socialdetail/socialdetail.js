@@ -48,7 +48,7 @@ const options = {
     menuBackgroup: false,
 
     focus: false,
-    placeholder: "说点什么...",
+    placeholder: "مەزمۇننى يىزىڭ",
     toUserId: "",
     toFormId: "",
     commentdate: "",
@@ -268,7 +268,7 @@ const options = {
       menuBackgroup: false,
 
       focus: false,
-      placeholder: "说点什么...",
+      placeholder: "مەزمۇننى يىزىڭ",
       toUserId: "",
       toFormId: "",
       commentdate: "",
@@ -350,8 +350,8 @@ const options = {
       if (replycontent.length === 0) {
         self.setData({
           "dialog.hidden": false,
-          "dialog.title": "提示",
-          "dialog.content": "回复内容为空"
+          "dialog.title": "ئەسكەرتىش",
+          "dialog.content": "ھىچنەرسە كىرگۈزمىدىڭىز"
         });
 
         return;
@@ -383,7 +383,7 @@ const options = {
     self.showToolBar("replay");
     self.setData({
       parentId: parentId,
-      placeholder: "回复" + toUserName + ":",
+      placeholder: toUserName + "غا ئىنكاس",
       focus: true,
       toUserId: toUserId,
       commentdate: commentdate
@@ -411,7 +411,7 @@ const options = {
         if (text === "") {
           self.setData({
             parentID: "0",
-            placeholder: "说点什么...",
+            placeholder: "مەزمۇن يىزىڭ",
             userid: "",
             toFromId: "",
             commentdate: ""
@@ -443,11 +443,11 @@ const options = {
 
         wx.lin.showDialog({
           type: "confirm",
-          title: "标题",
+          title: "ماۋزۇ",
           showTitle: false,
-          confirmText: "确认",
+          confirmText: "ماقۇل",
           confirmColor: "#f60",
-          content: "权限不足,需"+min_comment_user_memberName+"及以上等级方可发表评论。是否去赚积分提高等级?",
+          content: "ھوقوقىڭىز يىتىشمىدى، "+min_comment_user_memberName+" دىن يۇقۇرى ئەزالارلار يوللىيالايدۇ، جۇغلانما يىغىپ دەرىجىڭىزنى ئۆستۈرەمسىز؟",
           success: (res) => {
             if (res.confirm) {
               wx.navigateTo({
@@ -483,7 +483,7 @@ const options = {
           // 登录鉴权失败
           if (res.code === 'user_parameter_error') {
             wx: wx.showToast({
-              title: '用户参数错误，请点击我的页面"清除缓存"后再次登录',
+              title: 'مىنىڭ دىگەن بەتتىكى قالدۇق تازلاشنى بىسىپ قالدۇق تازلاڭ',
               icon: 'none',
               duration: 3000
             })
@@ -544,7 +544,7 @@ const options = {
   postRefresh: function() {
     this.onPullDownRefresh();
     this.hiddenBar();
-    Adapter.toast("已刷新", 1500);
+    Adapter.toast("يېڭىلاندى", 1500);
   },
 
   // 嵌入公众号
@@ -571,10 +571,10 @@ const options = {
     let data = e.currentTarget.dataset;
     let id = data.id;
     let path = data.path;
-    let info = `AppID：${id}，小程序路径：${path}`;
+    let info = `AppID：${id}，ئادرىس: ${path}`;
 
     this.closeInsertWxPopup();
-    Adapter.copyLink(info, "复制成功");
+    Adapter.copyLink(info, "كۆپەيتىلدى");
   },
 
   // 关闭嵌入微信弹出
@@ -587,7 +587,7 @@ const options = {
   copyLink: function() {
     var url = this.data.detail.permalink;
     this.hiddenBar();
-    Adapter.copyLink(url, "复制成功");
+    Adapter.copyLink(url, "كۆپەيتىلدى");
   },
   gotoWebpage: function() {
     var url = this.data.detail.permalink;
@@ -630,7 +630,7 @@ const options = {
   },
   showModal: function(posterPath) {
     this.modalView.showModal({
-      title: "保存至相册可以分享给好友",
+      title: "ئالبومغا ساقلىۋىلىپ دوستلىرىڭىزغا ھەمبەھىرلىيەلەيسىز",
       confirmation: false,
       confirmationText: "",
       inputFields: [
@@ -684,7 +684,7 @@ const options = {
         } else if (praiseimgurl == "" && enterpriseMinapp == "1") {
           Adapter.toast("根据相关规定，该功能暂时只支持在安卓手机上使用", 1500);
         } else {
-          Adapter.toast("设置错误", 1500);
+          Adapter.toast("تەڭشەكتە خاتالىق بار", 1500);
         }
       } else {
         if (enterpriseMinapp == "1") {
@@ -705,7 +705,7 @@ const options = {
             urls: [praiseimgurl]
           });
         } else {
-          Adapter.toast("设置错误", 1500);
+          Adapter.toast("تەڭشەكتە خاتالىق بار", 1500);
         }
       }
     }
@@ -716,7 +716,7 @@ const options = {
     var self = this;
     var audioUrl = self.data.detail.audioUrl;
     backgroundAudioManager.src = audioUrl;
-    backgroundAudioManager.title = "录音";
+    backgroundAudioManager.title = "ئۈنگە ئىلىش";
     self.setData({
       isPlaying: 1
     });
@@ -737,7 +737,7 @@ const options = {
     var repliesList = self.data.repliesList;
 
     if (!sessionId || !userId) {
-      Adapter.toast("请先授权登录", 3000);
+      Adapter.toast("تىزىملىتىپ كىرىڭ", 3000);
       return;
     }
     data.id = id;
@@ -747,11 +747,11 @@ const options = {
     data.deletetype = "publishStatus";
     wx.lin.showDialog({
       type: "confirm",
-      title: "标题",
+      title: "ماۋزۇ",
       showTitle: false,
-      confirmText: "确认",
+      confirmText: "ماقۇل",
       confirmColor: "#f60",
-      content: "确认删除？",
+      content: "ئۆچۈرەمسىز؟",
       success: res => {
         if (res.confirm) {
           API.deleteReplyById(data).then(res => {
@@ -921,7 +921,7 @@ const options = {
                 url: url + '?url=' + href
               })
             } else {
-              Adapter.copyLink(href, "链接已复制")
+              Adapter.copyLink(href, "كۆپەيتىلدى")
             }
           }
         })

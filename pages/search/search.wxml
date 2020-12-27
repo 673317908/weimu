@@ -1,7 +1,7 @@
 <view class="search}">
   <form catchsubmit="formSubmit" catchreset="formReset" id="search-form">
     <view class="search-pancel">
-      <input value="{{searchKey}}" class="search-input" placeholder="搜索你感兴趣的内容..." confirm-type="search" bindinput="handleInput" bindconfirm="formSubmit" />
+      <input value="{{searchKey}}" class="search-input" placeholder="ھالقىلىق سۆزنى كىرگۈزۈپ ئىزدەتكۈزۈڭ" confirm-type="search" bindinput="handleInput" bindconfirm="formSubmit" />
       <button class="search-button" form-type="submit" size="mini" plain="true">
         <icon type="search" color="#959595" size="16" />
       </button>
@@ -13,7 +13,7 @@
 <!-- 搜索历史 -->
 <view class="search-history" wx:if="{{isShowHistory && searchHistory.length && !isShowList}}">
   <view class="history-header">
-    <text class='subtitle'>· 搜索历史</text>
+    <text class='subtitle'>· ئىزدەش خاتىرىسى</text>
     <text class="iconfont icon-clear-search" bindtap="clearSearch" />
   </view>
 
@@ -36,11 +36,11 @@
 
   <!-- 加载动画/到底和版权信息 -->
   <!-- <template wx:if="{{isLoading}}" is="threepoint" /> -->
-  <view class="no-more" wx:if="{{isLastPage}}">- 到底啦 -</view>
+  <view class="no-more" wx:if="{{isLastPage}}">- ھىچنەرسە قالمىدى -</view>
   <copyright />
 </view>
 
-<van-empty wx:if="{{isEmpty && !isShowList}}" description="没有搜索到相关内容哟！" />
+<van-empty wx:if="{{isEmpty && !isShowList}}" description="سىز ئىزدىگەن ئالاقىدار ئۇچۇر تىپىلمىدى" />
 
 
 <!-- 删除确认弹窗 -->

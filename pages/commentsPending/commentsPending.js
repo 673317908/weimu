@@ -18,7 +18,7 @@ const appName = app.globalData.appName
 
 Page({
     data: {
-        title: '最新评论列表',
+        title: 'ئەڭ يېڭى ئىنكاسلار',
         showerror: "none",
         showallDisplay: "block",
         readLogs: [],
@@ -32,7 +32,7 @@ Page({
     },
 
     onShareAppMessage: function () {
-      var title = appName + "的最新评论";
+      var title = appName + " يېڭى ئىنكاسلار";
       var path = "pages/comments/comments";
       return {
         title,
@@ -181,9 +181,9 @@ Page({
         data.deletetype='approveStatus';
         wx.lin.showDialog({
             type:"confirm",     
-            title:"标题",
+            title:"ماۋزۇ",
             showTitle:false,
-            confirmText:"确认" ,
+            confirmText:"ماقۇل" ,
             confirmColor:"#f60" ,
             content:"确认删除？",          
             success: (res) => {

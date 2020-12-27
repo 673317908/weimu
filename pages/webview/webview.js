@@ -61,7 +61,7 @@ Page({
     }
     url = 'pages/webview/webview?url=' + url;
     return {
-      title: '"'+appName + '"的文章' + self.data.title,
+      title: '"'+appName + '"دىكى ماقالە' + self.data.title,
       path: url
     }
   }

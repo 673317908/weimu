@@ -32,6 +32,7 @@
 
 .selected-nav-list {
   display: flex;
+  direction: rtl;
 }
 
 .selected-nav-item {

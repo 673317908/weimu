@@ -73,8 +73,8 @@ Page({
         isSearch: true,
         isCategory: false,
         istag: false,
-        pageTitle: appName + "-搜索",
-        shareTitle: appName + "-搜索",
+        pageTitle: appName + " ئىزدەش",
+        shareTitle: appName + " ئىزدەش",
       });
     }
     if (options.categoryIds && options.categoryIds != '') {
@@ -104,7 +104,7 @@ Page({
         tagname: options.tagname,
         tagPostsCount: options.tagPostsCount,
         pageTitle: "#" + options.tagname,
-        shareTitle: appName+"-标签'"+options.tagname + "'相关的文章"
+        shareTitle: appName+" خەتكۈچ'"+options.tagname + "'ئالاقىدار ماقالىلەر"
       });
     }
     Adapter.loadArticles(args, this, API);
@@ -314,8 +314,8 @@ Page({
       })
     } else {
       wx.showModal({
-        title: '提示',
-        content: '请输入搜索内容',
+        title: 'ئەسكەرتىش',
+        content: 'ئىزدىمەكچى بولغان مەزمۇننى كىرگۈزۈڭ',
         showCancel: false,
       })
     }
@@ -334,7 +334,7 @@ Page({
       this.setData({
         category: cateInfo,
         productId: res.id,
-        productname: '专题付费订阅：' + res.name,
+        productname: 'ھەقلىق توپلام: ' + res.name,
         shareTitle:res.description,
         totalfee: res.catyearprice,
         pageTitle: res.name,
@@ -386,11 +386,11 @@ Page({
 
       wx.lin.showDialog({
         type: "confirm",
-        title: "标题",
+        title: "ماۋزۇ",
         showTitle: false,
-        confirmText: "确认",
+        confirmText: "ماقۇل",
         confirmColor: "#f60",
-        content: "积分不足，是否去赚积分",
+        content: "جۇغلانما نۇمۇر يىتىشمىدى، جۇغلانما نۇمۇر يىغىڭ",
         success: (res) => {
           if (res.confirm) {
             wx.navigateTo({
@@ -407,11 +407,11 @@ Page({
 
     wx.lin.showDialog({
       type: "confirm",
-      title: "标题",
+      title: "ماۋزۇ",
       showTitle: false,
-      confirmText: "确认",
+      confirmText: "ماقۇل",
       confirmColor: "#f60",
-      content: "将使用积分" + originalprice + ",确认使用？",
+      content: "جەمئىي " + originalprice + " جۇغلانما نۇمۇر كىتىدۇ",
       success: (res) => {
         if (res.confirm) {
           API.postIntegral(args).then(res => {
@@ -425,7 +425,7 @@ Page({
             }
             else {
               wx.lin.showToast({
-                title: '积分支付成功',
+                title: 'جۇغلانما نۇمۇرغا سېتىۋالدىڭىز',
                 icon: 'success',
                 duration: 2000,
                 mask: true,

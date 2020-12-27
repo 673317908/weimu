@@ -50,7 +50,7 @@ Page({
   },
 
   onShareAppMessage: function () {
-    var title = appName + "的页面列表";
+    var title = appName + "دىكى بەتلەر";
     var path = "pages/wppagelist/wppagelist";
     return {
       title,

@@ -25,7 +25,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    title: '动态',
+    title: 'قوناقلىق',
     authorTopicsList: [],
     isLastPage: false,
     isError: false,
@@ -45,13 +45,13 @@ Component({
     userSession: {},
     wxLoginInfo: {},
     memberUserInfo: {},
-    shareTitle: appName + '-动态',
-    pageTitle: '动态',
+    shareTitle: appName + '-قوناقلىق',
+    pageTitle: 'قوناقلىق',
     showAddbtn: false,
     displayPostimage: true,
     displayInputContent: false,
     focus: false,
-    placeholder: "说点什么...",
+    placeholder: "مەزمۇننى يىزىڭ...",
     toUserId: "",
     toFormId: "",
     commentdate: "",
@@ -134,9 +134,9 @@ Component({
           //Adapter.toast("权限不足,需"+min_posttopic_user_memberName+"及以上等级方可发表回复。", 5000)
           wx.lin.showDialog({
             type: "confirm",
-            title: "标题",
+            title: "ماۋزۇ",
             showTitle: false,
-            confirmText: "确认",
+            confirmText: "ماقۇل",
             confirmColor: "#f60",
             content: "权限不足,需" + min_posttopic_user_memberName + "及以上等级方可发表回复。是否去赚积分提高等级?",
             success: (res) => {
@@ -175,7 +175,7 @@ Component({
             // 登录鉴权失败
             if (res.code === 'user_parameter_error') {
               wx: wx.showToast({
-                title: '用户参数错误，请点击我的页面"清除缓存"后再次登录',
+                title: 'مىنىڭ دىگەن بەتتىكى قالدۇق تازلاشنى بىسىپ قالدۇق تازلاڭ',
                 icon: 'none',
                 duration: 3000
               })
@@ -360,7 +360,7 @@ Component({
       var sessionId = self.data.userSession.sessionId
       var deletetype = 'publishStatus'
       if (!sessionId || !userId) {
-        Adapter.toast('请先授权登录', 3000)
+        Adapter.toast('تىزىملىتىپ كىرگەندىن كىيىن داۋاملاشتۇرۇڭ', 3000)
         return
       }
 
@@ -371,9 +371,9 @@ Component({
       var posttype = 'topic'
       wx.z.showDialog({
         type: "confirm",
-        title: "提示",
-        confirmText: "确认",
-        content: "确认删除？",
+        title: "ئەسكەرتىش",
+        confirmText: "ماقۇل",
+        content: "ئۆچۈرەمسىز؟",
         success: (res) => {
           if (res.confirm) {
             API.deleteTopicById(data).then(res => {
@@ -415,7 +415,7 @@ Component({
       var sessionId = self.data.userSession.sessionId
 
       if (!sessionId || !userId) {
-        Adapter.toast('请先授权登录', 3000)
+        Adapter.toast('تىزىملىتىپ كىرگەندىن كىيىن داۋاملاشتۇرۇڭ', 3000)
         return
       }
 
@@ -423,7 +423,7 @@ Component({
         type: "confirm",
         title: "发送新内容订阅消息",
         showTitle: true,
-        confirmText: "确认",
+        confirmText: "ماقۇل",
         confirmColor: "#f60",
         content: "确认发送？",
         success: (res) => {
@@ -491,7 +491,7 @@ Component({
       var sessionId = self.data.userSession.sessionId;
       var posttype = 'topic';
       if (!sessionId || !userId) {
-        Adapter.toast('请先授权登录', 3000);
+        Adapter.toast('تىزىملىتىپ كىرىڭ', 3000);
         return;
       }
       data.id = id;
@@ -501,9 +501,9 @@ Component({
 
       wx.lin.showDialog({
         type: "confirm",
-        title: "标题",
+        title: "ماۋزۇ",
         showTitle: false,
-        confirmText: "确认",
+        confirmText: "ماقۇل",
         confirmColor: "#f60",
         content: "确认提交？",
         success: (res) => {

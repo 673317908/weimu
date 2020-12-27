@@ -42,7 +42,7 @@
   border: 1px solid #999;
   text-align: center;
   line-height: 1;
-  margin-left: 10rpx;
+  margin-right: 10rpx;
 }
 
 /* 列表样式 */

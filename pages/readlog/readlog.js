@@ -109,7 +109,7 @@ Page({
   },
 
   onShareAppMessage: function() {
-    var title = '分享小程序：' + appName + '，快来看看吧！'
+    var title = '' + appName + 'بۇ ئەپچاقنى سىزگە تەۋسىيە قىلىمەن'
     var path = 'pages/index/index'
     return {
       title: title,
@@ -155,13 +155,13 @@ Page({
           count++;
           return log;
         }),
-        navigationBarTitle: '我的浏览'
+        navigationBarTitle: 'كۆرگەنلىرىم'
       });
       wx.stopPullDownRefresh()
       if (count == 0) {
         self.setData({
           shownodata: 'block',
-          navigationBarTitle: '我的浏览'
+          navigationBarTitle: 'كۆرگەنلىرىم'
         });
       }
 
@@ -169,7 +169,7 @@ Page({
     } else if (mytype == 'mycomments') {
       self.setData({
         articlesList: [],
-        navigationBarTitle: '我的评论'
+        navigationBarTitle: 'ئىنكاسىم'
       });
 
       var data = {};
@@ -184,7 +184,7 @@ Page({
 
       self.setData({
         articlesList: [],
-        navigationBarTitle: '我的点赞'
+        navigationBarTitle: 'ياقتۇرغىنىم'
       });
       var data = {};
       
@@ -197,7 +197,7 @@ Page({
     } else if (mytype == 'mypraises') {
       self.setData({
         articlesList: [],
-        navigationBarTitle: '我的鼓励'
+        navigationBarTitle: 'تارتۇقلىغىنىم'
       });
       var data = {};      
       data.userId = self.data.userSession.userId;

@@ -19,8 +19,8 @@ const pageCount = 10
 
 const options = {
   data: {
-    shareTitle: '我的订单',
-    pageTitle: appName + '-我的订单',
+    shareTitle: 'ئالغانلىرىم',
+    pageTitle: appName + 'ئالغانلىرىم',
     orders: [],
     userInfo: {},
     userSession: {},
@@ -54,17 +54,17 @@ const options = {
 
             // 格式化订单类型文字
             if (item.ordertype == 'postpraise') {
-              item.ordertypename = "鼓励文章"
+              item.ordertypename = "تارتۇقلاش"
             } else if (item.ordertype == 'postsubscribe') {
-              item.ordertypename = "文章付费阅读"
+              item.ordertypename = "ھەقلىق ماقالە"
             } else if (item.ordertype == 'catsubscribe') {
-              item.ordertypename = "专题付费订阅"
+              item.ordertypename = "ھەقلىق توپلام"
             } else if (item.ordertype == 'catsubscribeIntegral') {
-              item.ordertypename = "专题积分订阅"
+              item.ordertypename = "جۇغلانمىلىق توپلام"
             } else if (item.ordertype == 'postpayment') {
-              item.ordertypename = "文章付费阅读"
+              item.ordertypename = "ھەقلىق ماقالە"
             } else if (item.ordertype == 'postIntegral') {
-              item.ordertypename = "文章积分阅读"
+              item.ordertypename = "جۇغلانمىلىق ماقالە"
             }
 
             return item;

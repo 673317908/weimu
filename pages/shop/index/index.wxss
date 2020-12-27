@@ -112,7 +112,7 @@ page {
 
 /* tab样式 */
 .vant-tab-nav {
-  width: 40%;
+  width: 90%;
   margin: 0 auto;
 }
 
@@ -125,7 +125,7 @@ page {
 .float-box {
   position: fixed;
   bottom: 2%;
-  right: 20rpx;
+  left: 20rpx;
   z-index: 999;
 }
 

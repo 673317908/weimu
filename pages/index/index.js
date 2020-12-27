@@ -31,7 +31,7 @@ const options = {
     billboardList: [],
     page: 1,
 
-    pageTitle: '首页',
+    pageTitle: 'باشبەت',
     articleStyle: '',
     userInfo: {},
     userSession: {},
@@ -464,7 +464,7 @@ const options = {
         // 登录鉴权失败
         if (res.code === 'user_parameter_error') {
           wx: wx.showToast({
-            title: '用户参数错误，请点击我的页面"清除缓存"后再次登录',
+            title: 'مىنىڭ دىگەن بەتتىكى قالدۇق تازلاشنى بىسىپ قالدۇق تازلاڭ',
             icon: 'none',
             duration: 3000
           })
@@ -773,7 +773,7 @@ const options = {
     var sessionId = self.data.userSession.sessionId;
     var deletetype = 'publishStatus';
     if (!sessionId || !userId) {
-      Adapter.toast('请先授权登录', 3000);
+      Adapter.toast('تىزىملىتىپ كىرىڭ', 3000);
       return;
     }
     data.id = id;
@@ -783,11 +783,11 @@ const options = {
     var posttype = 'topic'
     wx.lin.showDialog({
       type: "confirm",
-      title: "标题",
+      title: "ماۋزۇ",
       showTitle: false,
-      confirmText: "确认",
+      confirmText: "ماقۇل",
       confirmColor: "#f60",
-      content: "确认删除？",
+      content: "ئۆچۈرەمسىز؟",
       success: (res) => {
         if (res.confirm) {
           API.deletePostById(data).then(res => {
@@ -871,17 +871,17 @@ const options = {
     var sessionId = self.data.userSession.sessionId
 
     if (!sessionId || !userId) {
-      Adapter.toast('请先授权登录', 3000)
+      Adapter.toast('تىزىملىتىپ كىرگەندىن كىيىن داۋاملاشتۇرۇڭ', 3000)
       return
     }
 
     wx.lin.showDialog({
       type: "confirm",
-      title: "发送新内容订阅消息",
+      title: "يېڭىلىنىش ئۇقتۇرىشى",
       showTitle: true,
-      confirmText: "确认",
+      confirmText: "ماقۇل",
       confirmColor: "#f60",
-      content: "确认发送？",
+      content: "مۇقىملاشتۇرامسىز؟",
       success: (res) => {
         if (res.confirm) {
           var res = Adapter.sendSubscribeMessage(self, id, author, title, 'post', API).then(res => {
@@ -925,7 +925,7 @@ const options = {
     var sessionId = self.data.userSession.sessionId;
     var posttype = 'post';
     if (!sessionId || !userId) {
-      Adapter.toast('请先授权登录', 3000);
+      Adapter.toast('تىزىملىتىپ كىرىڭ', 3000);
       return;
     }
     data.id = id;
@@ -935,11 +935,11 @@ const options = {
 
     wx.lin.showDialog({
       type: "confirm",
-      title: "标题",
+      title: "ماۋزۇ",
       showTitle: false,
-      confirmText: "确认",
+      confirmText: "ماقۇل",
       confirmColor: "#f60",
-      content: "确认提交？",
+      content: "يوللامسىز؟",
       success: (res) => {
         if (res.confirm) {
           API.submitPageById(data).then(res => {

@@ -121,21 +121,21 @@ function getDateDiff(dateStr) {
     d_seconds = parseInt(d);
 
     if (d_days > 0 && d_days < 3) {
-        return d_days + '天前';
+        return d_days + 'كۈن بۇرۇن';
     } else if (d_days <= 0 && d_hours > 0) {
-        return d_hours + '小时前';
+        return d_hours + 'سائەت بۇرۇن';
     } else if (d_hours <= 0 && d_minutes > 0) {
-        return d_minutes + '分钟前';
+        return d_minutes + 'مېنۇت بۇرۇن';
     } else if (d_seconds < 60) {
         if (d_seconds <= 0) {
-            return '刚刚发表';
+            return '';
         } else {
-            return d_seconds + '秒前';
+            return d_seconds + 'سېكونىت بۇرۇن';
         }
     } else if (d_days >= 3 && d_days < 30) {
-        return M + '月' + D +'日';
+        return M + '-ئاينىڭ' + D +'-كۈنى';
     } else if (d_days >= 30) {
-        return Y + '年' + M + '月' + D + '日';
+        return Y + '-يىلى' + M + '-ئاينىڭ' + D + '-كۈنى';
     }
 }
 

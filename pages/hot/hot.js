@@ -20,7 +20,7 @@ const pageCount = 10
 
 Page({
   data: {
-    title: '文章列表',
+    title: 'ئاۋات ماقالىلەر',
     postsList: {},
     pagesList: {},
     categoriesList: {},
@@ -40,16 +40,15 @@ Page({
     searchKey:"",
     topBarItems: [
         // id name selected 选中状态
-        { id: '1', name: '浏览数', selected: true ,'type':'pageviewsthisyear' },        
-        { id: '2', name: '点赞数', selected: false,'type':'likethisyear'  },
-        { id: '3', name: '评论数', selected: false,'type':'hotpostthisyear' },
-        { id: '4', name: '鼓励数', selected: false,'type':'praisethisyear'  }
+        { id: '1', name: 'كۆرۈلىشى', selected: true ,'type':'pageviewsthisyear' },        
+        { id: '2', name: 'ياقتۇرلىشى', selected: false,'type':'likethisyear'  },
+        { id: '3', name: 'ئىنكاس', selected: false,'type':'hotpostthisyear' },
     ],
     tab: '1',
   },
 
   onShareAppMessage: function () {
-    var title =  appName + "”的文章排行。";
+    var title =  appName + " ئاۋات ماقالىلەر";
     var path = "pages/hot/hot";
     return {
       title,
@@ -95,7 +94,7 @@ Page({
   onLoad: function (options) {
     var self = this;
     wx.setNavigationBarTitle({
-      title: '文章排行'
+      title: 'ئاۋات ماقالىلەر'
     })
 
     // 设置系统分享菜单
@@ -108,7 +107,7 @@ Page({
   // 自定义分享朋友圈
   onShareTimeline: function() { 
     return {
-      title: appName + '-热点文章排行'
+      title: appName + ' ئاۋات ماقالىلەر'
     }
   },
 

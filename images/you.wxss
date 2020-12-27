@@ -1,16 +1,15 @@
  /*
  * 维语字体及从右到左
- font-family: NUR Tor;
+ font-family: UKIJ Ekran;
  */
- @import "/images/uyghurfont.wxss";
  view,text,input{
-  font-family: NUR Tor;
+  font-family: UKIJ Ekran;
   direction: rtl;
  }
 .uyghurche{
 direction: rtl;
 text-align: justify;
-font-family: NUR Tor;
+font-family: UKIJ Ekran;
 }
 .pinglunziti{
 font-size: 8px;

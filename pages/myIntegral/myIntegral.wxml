@@ -3,7 +3,7 @@
 <view class="mypoints">
   <view class="mypoints-num">{{memberUserInfo.integral || 0}}</view>
   <view class="mypoints-title">
-    <text>我的积分</text>
+    <text>جۇغلانما نۇمۇرۇم</text>
     <text class="icon-question" bindtap="toIntegralDes">?</text>
   </view>
 </view>
@@ -16,8 +16,8 @@
         <view class="time">{{item.integralDate}} </view>
       </view>
       <view class="right">
-        <text class="add-points" wx:if="{{item.flag=='add'}}">+{{item.integral}}分</text>
-         <text class="deduct-points" wx:else>-{{item.integral}}分</text>
+        <text class="add-points" wx:if="{{item.flag=='add'}}">+{{item.integral}} جۇغلانما</text>
+         <text class="deduct-points" wx:else>-{{item.integral}} جۇغلانما</text>
       </view>
   </view>
       </block>

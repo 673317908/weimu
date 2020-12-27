@@ -83,6 +83,7 @@ label,
 navigator,
 image {
 	box-sizing: border-box;
+	font-family: 'UKIJ Ekran';
 }
 
 .round {
@@ -805,7 +806,7 @@ button.icon.lg {
 	box-sizing: border-box;
 	padding: 0rpx 16rpx;
 	height: 48rpx;
-	font-family: Helvetica Neue, Helvetica, sans-serif;
+	font-family: UKIJ Ekran;
 	white-space: nowrap;
 }
 

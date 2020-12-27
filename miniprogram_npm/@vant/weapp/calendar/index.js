@@ -38,7 +38,7 @@ component_1.VantComponent({
     formatter: null,
     confirmText: {
       type: String,
-      value: '确定',
+      value: 'مۇقىملاشتۇرۇش',
     },
     rangePrompt: String,
     defaultDate: {

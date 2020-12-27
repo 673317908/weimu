@@ -13,7 +13,7 @@
     <form catchsubmit="formSubmit" catchreset="formReset" id="search-form">
       <view class="search-pancel">
         <view>
-          <input value="" id="search-input" value="{{searchKey}}" name="input" confirm-type="search" class="search-input" placeholder="搜索你感兴趣的内容..." bindconfirm="formSubmit" bindblur="handleBlur"></input>
+          <input value="" id="search-input" value="{{searchKey}}" name="input" confirm-type="search" class="search-input" placeholder="نىمە لازىم بولسا شۇنى ئىزدەڭ..." bindconfirm="formSubmit" bindblur="handleBlur"></input>
           <button class="search-button" form-type="submit" size="mini" plain="true">
             <icon type="search" color="#959595" size="16" />
           </button>

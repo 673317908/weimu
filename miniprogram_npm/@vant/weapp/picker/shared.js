@@ -7,7 +7,7 @@ exports.pickerProps = {
   showToolbar: Boolean,
   cancelButtonText: {
     type: String,
-    value: '取消',
+    value: 'بولدى قىلىش',
   },
   confirmButtonText: {
     type: String,

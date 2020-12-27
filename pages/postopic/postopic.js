@@ -151,7 +151,7 @@ Page({
     recorderManager.onError(res => {
       if (res.errMsg && (res.errMsg == 'operateRecorder:fail:auth denied' || res.errMsg == 'operateRecorder:fail auth deny')) {
         wx.showToast({
-          title: "用户未授权使用录音",
+          title: "مىكروفىن ھوقوقىنى بىرىڭ",
           mask: false,
           icon: "none",
           duration: 3000
@@ -259,12 +259,12 @@ Page({
     var userId = self.data.userSession.userId;
 
     if (!sessionId || !userId) {
-      Adapter.toast('请先授权登录', 3000);
+      Adapter.toast('تىزىملىتىپ كىرىڭ', 3000);
       return;
     }
 
     if (self.data.pics_array.length > 9) {
-      Adapter.toast('限定上传9张图片', 3000);
+      Adapter.toast('پەقەت 9 پارچە رەسىم چىقىرالايسىز', 3000);
       return;
 
     }
@@ -286,7 +286,7 @@ Page({
         var bigFileCount = 0;
         var upLoadFileCount = 0;
         // wx.showLoading({
-        //   title: "正在上传图片...",
+        //   title: "رەسىم چىقىرىلىۋاتىدۇ...",
         //   mask:true
         // });
         var pics_array = self.data.pics_array;
@@ -328,7 +328,7 @@ Page({
             }).catch(err => {
               wx.showToast({
                 icon: 'none',
-                title: err.errMsg || '上传失败...'
+                title: err.errMsg || 'چىقىرىش مەغلۇب بولدى...'
               });
               wx.hideLoading()
             })
@@ -345,7 +345,7 @@ Page({
     var userId = self.data.userSession.userId;
 
     if (!sessionId || !userId) {
-      Adapter.toast('请先授权登录', 3000);
+      Adapter.toast('تىزىملىتىپ كىرىڭ', 3000);
       return;
     }
 
@@ -365,7 +365,7 @@ Page({
         var bigFileCount = 0;
         var upLoadFileCount = 0;
         // wx.showLoading({
-        //   title: "正在上传图片...",
+        //   title: "رەسىم چىقىرىلىۋاتىدۇ...",
         //   mask:true
         // });
         var pics_array = new Array()
@@ -374,7 +374,7 @@ Page({
           var tempFilePath = tempFiles[i].path;
           if (tempFileSize > 2048) {
             bigFileCount++;
-            Adapter.toast('图片大于2M', 3000);
+            Adapter.toast('رەسىم 2 مىگابايىتتىن يۇقۇرى بولمىسۇن', 3000);
             continue;
 
           } else {
@@ -405,7 +405,7 @@ Page({
             }).catch(err => {
               wx.showToast({
                 icon: 'none',
-                title: err.errMsg || '上传失败...'
+                title: err.errMsg || 'چىقىرىش مەغلۇب بولدى...'
               });
               wx.hideLoading()
             })
@@ -422,7 +422,7 @@ Page({
     var userId = self.data.userSession.userId;
 
     if (!sessionId || !userId) {
-      Adapter.toast('请先授权登录', 3000);
+      Adapter.toast('تىزىملىتىپ كىرىڭ', 3000);
       return;
     }
 
@@ -448,7 +448,7 @@ Page({
               } else {
 
                 wx.showToast({
-                  title: "用户未授权使用录音",
+                  title: "مىكروفىن ھوقوقىنى بىرىڭ",
                   mask: false,
                   icon: "none",
                   duration: 3000
@@ -484,13 +484,13 @@ Page({
     var userId = self.data.userSession.userId;
     var videoposter = self.data.videoposter;
     if (!sessionId || !userId) {
-      Adapter.toast('请先授权登录', 3000);
+      Adapter.toast('تىزىملىتىپ كىرىڭ', 3000);
       return;
     }
     var videoSrc = self.data.videoSrc;
     var vid = self.data.vid;
     if (videoSrc != "" || vid != "") {
-      Adapter.toast('只能添加一个视频', 3000);
+      Adapter.toast('پەقەت بىرلا فىلىم قوشقىلى بولىدۇ', 3000);
       return;
     }
     var data = {};
@@ -508,14 +508,14 @@ Page({
         var duration = Math.round(res.duration);
 
         if (size > 2048) {
-          Adapter.toast('上传的视频不能大于2M', 3000);
+          Adapter.toast('فىلىم 2 مىگابايىتتىن ئىشىپ كەتمىسۇن', 3000);
           return;
         }
         data.imgfile = res.tempFilePath;
         formData.fileName = "";
         data.formData = formData;
         wx.showLoading({
-          title: "正在上传视频...",
+          title: "فىلىم چىقىرىلىۋاتىدۇ...",
           mask: true
         });
         API.uploadFile(data).then(res => {
@@ -541,7 +541,7 @@ Page({
         }).catch(err => {
           wx.showToast({
             icon: 'none',
-            title: err.errMsg || '上传失败...'
+            title: err.errMsg || 'چىقىرىش مەغلۇب بولدى...'
           });
           wx.hideLoading()
         })
@@ -567,7 +567,7 @@ Page({
         self.setData({
           linkInfo: ''
         })
-        Adapter.toast('无法解析此链接', 1000);
+        Adapter.toast('ئۇلانما ئادرىسى خاتا', 1000);
       }
       
 
@@ -657,7 +657,7 @@ Page({
         })
       } else {
         //  e.detail.value="";
-        Adapter.toast('解析腾讯的视频链接错误', 3000);
+        Adapter.toast('ئۇلانما ئادرىسى خاتا', 3000);
       }
 
 
@@ -693,7 +693,7 @@ Page({
       var id = e.currentTarget.dataset.id;
       var pics_array = self.data.pics_array;
       wx.showActionSheet({
-        itemList: ['删除'],
+        itemList: ['ئۆچۈرۈش'],
         success: (res) => {
           if (res.tapIndex == 0) {
             var args = {
@@ -730,7 +730,7 @@ Page({
     if (touchTime > 350) {
       let item = e.currentTarget.dataset.src;
       wx.showActionSheet({
-        itemList: ['删除'],
+        itemList: ['ئۆچۈرۈش'],
         success: (res) => {
           if (res.tapIndex == 0) {
             self.data.link_pics.remove(item);
@@ -758,7 +758,7 @@ Page({
     var touchTime = self.data.v_touch_end - self.data.v_touch_start;
     if (touchTime > 350) {
       wx.showActionSheet({
-        itemList: ['删除'],
+        itemList: ['ئۆچۈرۈش'],
         success: (res) => {
           if (e.target.id == "qqvideo") {
             self.setData({
@@ -768,7 +768,7 @@ Page({
             var sessionId = self.data.userSession.sessionId;
             var userId = self.data.userSession.userId;
             if (!sessionId || !userId) {
-              Adapter.toast('请先授权登录', 3000);
+              Adapter.toast('تىزىملىتىپ كىرىڭ', 3000);
               return;
             }
             var id = self.data.videoPostId;
@@ -807,7 +807,7 @@ Page({
     var touchTime = self.data.v_link_touch_end - self.data.v_link_touch_start;
     if (touchTime > 350) {
       wx.showActionSheet({
-        itemList: ['删除'],
+        itemList: ['ئۆچۈرۈش'],
         success: (res) => {
           if (e.target.id == "qqvideo") {
             self.setData({
@@ -861,7 +861,7 @@ Page({
     var touchTime = self.data.video_touch_end - self.data.video_touch_start;
     if (touchTime > 350) {
       wx.showActionSheet({
-        itemList: ['删除'],
+        itemList: ['ئۆچۈرۈش'],
         success: (res) => {
           self.setData({
             video_poster: ''
@@ -914,7 +914,7 @@ Page({
     var sessionId = self.data.userSession.sessionId;
     var userId = self.data.userSession.userId;
     if (!sessionId || !userId) {
-      Adapter.toast('请先授权登录', 3000);
+      Adapter.toast('تىزىملىتىپ كىرىڭ', 3000);
       return;
     }
 
@@ -937,13 +937,13 @@ Page({
         var fileType = util.getExtname(messageFile.name);
         var tempFileSize = Math.ceil(fileSize / 1024);
         if (tempFileSize > 2048) {
-          Adapter.toast('选择的文件不能大于2M', 3000);
+          Adapter.toast('ھۆججەت 2 مىگابايىتتىن ئىشىپ كەتمىسۇن', 3000);
           return;
 
         }
         if (fileType == "doc" || fileType == "docx" || fileType == "ppt" || fileType == "pptx" || fileType == "xls" || fileType == "xlsx" || fileType == "pdf") {
           wx.showLoading({
-            title: "正在上传文件...",
+            title: "ھۆججەت چىقىرىلىۋاتىدۇ...",
             mask: true
           });
           var data = {};
@@ -974,13 +974,13 @@ Page({
           }).catch(err => {
             wx.showToast({
               icon: 'none',
-              title: err.errMsg || '上传失败...'
+              title: err.errMsg || 'چىقىرىش مەغلۇب بولدى...'
             });
             wx.hideLoading()
           })
 
         } else {
-          Adapter.toast('只能选择的文件类型：doc、docx、ppt、pptx、xls、xlsx和pdf', 3000);
+          Adapter.toast('ھۆججەت چەكلىمىسى: doc、docx、ppt、pptx、xls、xlsx、pdf', 3000);
         }
       }
     })
@@ -990,11 +990,11 @@ Page({
     var sessionId = self.data.userSession.sessionId;
     var userId = self.data.userSession.userId;
     if (!sessionId || !userId) {
-      Adapter.toast('请先授权登录', 3000);
+      Adapter.toast('تىزىملىتىپ كىرىڭ', 3000);
       return;
     }
     wx.showActionSheet({
-      itemList: ['删除'],
+      itemList: ['ئۆچۈرۈش'],
       success: (res) => {
         var filePostId = self.data.filePostId;
         if (filePostId != "") {
@@ -1017,7 +1017,7 @@ Page({
           }).catch(err => {
             wx.showToast({
               icon: 'none',
-              title: err.errMsg || '删除失败...'
+              title: err.errMsg || 'ئۆچۈرۈش مەغلۇب بولدى...'
             })
           })
         }
@@ -1119,7 +1119,7 @@ Page({
     var sessionId = self.data.userSession.sessionId;
     var userId = self.data.userSession.userId;
     if (!sessionId || !userId) {
-      Adapter.toast('请先授权登录', 3000);
+      Adapter.toast('تىزىملىتىپ كىرىڭ', 3000);
       return;
     }
     var bbcontent = e.detail.value.inputContent;
@@ -1130,7 +1130,7 @@ Page({
       //   'dialog.title': '提示',
       //   'dialog.content': '请输入内容'
       // });
-      Adapter.toast('请输入内容', 3000);
+      Adapter.toast('مەزمۇنىنى كىرگۈزۈڭ', 3000);
       return false;
     }
 
@@ -1142,7 +1142,7 @@ Page({
       //   'dialog.title': '提示',
       //   'dialog.content': '请选择一个话题标签'
       // });
-      Adapter.toast('请选择一个话题标签', 3000);
+      Adapter.toast('خەتكۈچ تاللاڭ', 3000);
       return false;
 
     }
@@ -1167,7 +1167,7 @@ Page({
       //   'dialog.title': '提示',
       //   'dialog.content': '标题多于100字'
       // });
-      Adapter.toast('标题多于100字', 3000);
+      Adapter.toast('ماۋۇزۇ 100 خەت ئېچىدە بولسۇن', 3000);
       return false;
     }
     if (bbcontent.length > 10000) {
@@ -1176,7 +1176,7 @@ Page({
       //   'dialog.title': '提示',
       //   'dialog.content': '内容多于10000字'
       // });
-      Adapter.toast('内容多于10000字', 3000);
+      Adapter.toast('مەزمۇن 10000 خەت ئېچىدە بولسۇن', 3000);
       return false;
     }
 
@@ -1259,7 +1259,7 @@ Page({
       //   'dialog.title': '提示',
       //   'dialog.content': '请填写文章内容并至少上传一张图片,或一个视频,或一段音频'
       // });
-      Adapter.toast('请填写文章内容并至少上传一张图片,或一个视频,或一段音频', 3000);
+      Adapter.toast('ماقالە مەزمۇنىنى تولدۇرۇپ، رەسىم ياكى ئۈن قوشۇڭ', 3000);
       return false;
     }
 
@@ -1316,9 +1316,9 @@ Page({
 
     wx.z.showDialog({
       type: "confirm",
-      title: "提示",
-      content: "是否提交话题？",
-      confirmText: "提交",
+      title: "ئەسكەرتىش",
+      content: "قوناقلىق يوللامسىز؟",
+      confirmText: "يوللاش",
       isCoverView: true,
       success: (res) => {
         if (res.confirm) {
@@ -1395,7 +1395,7 @@ Page({
     clearInterval(intervalDeg);
     if (self.data.audioTime < 5) {
 
-      Adapter.toast('录音时长不能少于5秒', 2000);
+      Adapter.toast('ئۈن 5 سىكۇنتتىن تۆۋەن بولمىسۇن', 2000);
       recorderManager.stop()
       recorderManager.onStop((res) => {
         self.setData({
@@ -1450,7 +1450,7 @@ Page({
     };
 
     wx.showLoading({
-      title: "正在上传录音...",
+      title: "ئۈن چىقىرىلىۋاتىدۇ...",
       mask: true
     });
     data.imgfile = self.data.audioSrc;
@@ -1482,7 +1482,7 @@ Page({
     }).catch(err => {
       wx.showToast({
         icon: 'none',
-        title: err.errMsg || '上传失败...'
+        title: err.errMsg || 'چىقىرىش مەغلۇب بولدى...'
       });
       wx.hideLoading()
     })
@@ -1494,7 +1494,7 @@ Page({
       playStatus: 'pause'
     });
     backgroundAudioManager.src = self.data.audioSrc;
-    backgroundAudioManager.title = "我的录音";
+    backgroundAudioManager.title = "ئۈنلىرىم";
     intervalAudioTime = setInterval(function() {
       var audioTime = self.data.audioTime + 1;
       var showAudioTime = self.getShowAudioTime(audioTime);
@@ -1547,11 +1547,11 @@ Page({
     var sessionId = self.data.userSession.sessionId;
     var userId = self.data.userSession.userId;
     if (!sessionId || !userId) {
-      Adapter.toast('请先授权登录', 3000);
+      Adapter.toast('تىزىملىتىپ كىرىڭ', 3000);
       return;
     }
     wx.showActionSheet({
-      itemList: ['删除'],
+      itemList: ['ئۆچۈرۈش'],
       success: (res) => {
         var filePostId = self.data.audioPostId;
         if (filePostId != "") {
@@ -1570,12 +1570,12 @@ Page({
               audioDuration: 0
 
             });
-            Adapter.toast('删除成功', 3000);
+            Adapter.toast('ئۆچۈردىڭىز', 3000);
 
           }).catch(err => {
             wx.showToast({
               icon: 'none',
-              title: err.errMsg || '删除失败...'
+              title: err.errMsg || 'ئۆچۈرۈش مەغلۇب بولدى...'
             })
           })
         }
@@ -1621,7 +1621,7 @@ Page({
       fail: function(err) {
         if (err.errMsg == 'chooseLocation:fail:auth denied' || err.errMsg == 'chooseLocation:fail auth deny') {
           wx.showToast({
-            title: "请开启微信定位服务和小程序位置授权",
+            title: "ئورۇن بەلگىلەش ھوقوقىنى بىرىڭ",
             mask: false,
             icon: "none",
             duration: 3000
@@ -1676,7 +1676,7 @@ Page({
           })
         } else {
           wx.showToast({
-            title: "用户未授权使用位置信息",
+            title: "ئورۇن بەلگىلەش ھوقوقىنى بىرىڭ",
             mask: false,
             icon: "none",
             duration: 3000,
@@ -1700,13 +1700,13 @@ Page({
     var data = {};
     data.userId = self.data.userSession.userId;
     data.sessionId = self.data.userSession.sessionId;
-    var  content ="尚未设置"+self.data.settings.raw_praise_word+"二维码，是否设置？";
+    var  content ="تېخى "+self.data.settings.raw_praise_word+"كودىنى بىكىتمەپسىز، ھازىرلا بىكىتەمسىز؟";
     API.getMyzanImage(data).then(res => {
       if (res.code) {
         wx.z.showDialog({
           type: "confirm",
-          title: "提示",
-          confirmText: "去设置",
+          title: "ئەسكەرتىش",
+          confirmText: "بىكىتىش",
           content: content,
           isCoverView: true,
           success: (res) => {

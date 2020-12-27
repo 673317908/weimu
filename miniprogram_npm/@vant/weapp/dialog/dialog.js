@@ -58,7 +58,7 @@ Dialog.defaultOptions = {
   messageAlign: '',
   overlayStyle: '',
   confirmButtonText: '确认',
-  cancelButtonText: '取消',
+  cancelButtonText: 'بولدى قىلىش',
   showConfirmButton: true,
   showCancelButton: false,
   closeOnClickOverlay: false,

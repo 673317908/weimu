@@ -9,7 +9,7 @@ import * as api from 'utils/new/api.js'
 import * as util from 'utils/new/util.js'
 import config from 'utils/config.js'
 const Api = require('./utils/api.js')
-
+const miniShopPlugin = requirePlugin('mini-shop-plugin');
 
 App({
   onLaunch: function (options) {
@@ -20,7 +20,7 @@ App({
 
     this.updateManager()
     this.getConfigData()
-
+    miniShopPlugin.initHomePath('/pages/shop/index/index');
   },
 
   // 获取配置数据
@@ -71,8 +71,8 @@ App({
     const updateManager = wx.getUpdateManager();
     updateManager.onUpdateReady(function () {
       wx.showModal({
-        title: '新版本提示',
-        content: '小程序新版本已经准备好，即将重启',
+        title: 'يىڭىلاش ئەسكەرىتمىسى',
+        content: 'ئەپچە يېڭىلاندى،قايتىدىن قوزغىتىڭ',
         showCancel: false,
         success(res) {
           if (res.confirm) {
@@ -83,8 +83,8 @@ App({
     });
     updateManager.onUpdateFailed(function () {
       wx.showModal({
-        title: '更新提示',
-        content: '新版本下载失败',
+        title: 'يېڭىلاش ئەسكەرىتمىسى',
+        content: 'يېڭىلاش مەغلۇپ بولدى',
         showCancel: false
       })
     });

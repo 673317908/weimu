@@ -62,13 +62,13 @@ Page({
 
   onShareTimeline: function() {
     return {
-      title: appName + "-地图找贴,随时随地打卡"
+      title: appName + "-ئەتراپىڭىزدىكى ئوقۇرمەن"
     };
   },
 
   onShareAppMessage: function() {
     return {
-      title: appName + "-地图找贴,随时随地打卡",
+      title: appName + "-ئەتراپىڭىزدىكى ئوقۇرمەن",
       path: '/pages/socialmap/socialmap'
     }
 
@@ -191,7 +191,7 @@ Page({
             distanceHide: !0
           });
           wx.showToast({
-            title: "获取位置失败",
+            title: "ئورۇن بەلگىلەش مەغلۇب بولدى",
             icon: "none"
           });
         } else {
@@ -208,7 +208,7 @@ Page({
           error.errMsg == "getLocation:fail auth deny"
         ) {
           wx.showToast({
-            title: "请开启微信定位服务和小程序位置授权",
+            title: "ئۈندىدار ۋە ئەپچاقنىڭ ئورۇن بەلگىلەش ھوقوقىنى بىرىڭ",
             mask: false,
             icon: "none",
             duration: 3000
@@ -230,7 +230,7 @@ Page({
           self.getLocation();
         } else {
           wx.showToast({
-            title: "请开启小程序位置授权",
+            title: "ئەپچاققا ئورۇن بەلگىلەش ھوقوقىنى بىرىڭ",
             mask: false,
             icon: "none",
             duration: 3000,
@@ -258,7 +258,7 @@ Page({
       e.length > 0 ? self.getDistance(e[1], e[0], t.latitude, t.longitude) : -1;
     if (i > 3 || -1 == i) {
       wx.showToast({
-        title: "正在搜索中...",
+        title: "ئىزدەۋاتىمىز...",
         icon: "none"
       });
       self.resetDiscoveryData();
@@ -434,22 +434,10 @@ Page({
   getMarkerTip: function() {
     this.data.screenRatio;
     var t = [
-        "hi",
-        "Here",
-        "Hello",
-        "咦？",
-        "嗨",
-        "啊",
-        "唔~",
-        "你好呀",
-        "你也在？",
-        "恩？",
-        "你在偷看我？",
-        "哇！",
-        "被你发现了",
-        "yeah~",
-        "哟！",
-        "skr~skr~"
+        "ياخشىمۇسىز",
+        "ياخشىمۇ؟",
+        "بارمۇ سىز؟",
+        "ۋەەەەت ۋەەەەت"
       ],
       a = t.length;
     return {

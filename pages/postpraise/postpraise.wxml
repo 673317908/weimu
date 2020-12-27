@@ -8,18 +8,18 @@
     </view>
   </view>
 
-  <view class='title'>请选择鼓励的金额</view>
+  <view class='title'>قانچە پۇل تارتۇقلايسىز؟</view>
 
   <view class="price-list">
     <view class="item" wx:for="{{praiseMoney}}" wx:key="item" data-item="{{item}}" bindtap="selectItem">
       <view class="price-box {{selected==item?'active':''}}">
-        <em><text class="price">{{item}}</text>  元</em> 
+        <em><text class="price">{{item}}</text>  يۈەن</em> 
       </view>
     </view>
   </view>
 
  <view style="text-align: center">
-  <button class="cancel-button" formType="submit" bindtap="cancel">取消</button>
+  <button class="cancel-button" formType="submit" bindtap="cancel">بولدى قىلىش</button>
  </view>
 
  <copyright padding-bottom="140rpx" />

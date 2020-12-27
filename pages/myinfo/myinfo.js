@@ -77,17 +77,17 @@ Page({
     let integral = this.data.integral
 
     if (integral >= e.fifth_level_integral) {
-      return '五星会员'
+      return '★★★★★★'
     } else if (integral >= e.fourth_level_integral) {
-      return '四星会员'
+      return '★★★★★'
     } else if (integral >= e.third_level_integral) {
-      return '三星会员'
+      return '★★★★'
     } else if (integral >= e.second_level_integral) {
-      return '二星会员'
+      return '★★★'
     } else if (integral >= e.first_level_integral) {
-      return '一星会员'
+      return '★★'
     } else {
-      return '新手'
+      return '★'
     }  
   },
 
@@ -95,14 +95,14 @@ Page({
   formateGrade(num) {
     num = Number(num)
 
-    if (num === 10) num = '新手'
-    if (num === 11) num = '一星会员'
-    if (num === 12) num = '二星会员'
-    if (num === 13) num = '三星会员'
-    if (num === 14) num = '四星会员'
-    if (num === 15) num = '五星会员'
-    if (num === 1) num = 'vip'
-    if (num === 0) num = '管理员'
+    if (num === 10) num = '★'
+    if (num === 11) num = '★★'
+    if (num === 12) num = '★★★'
+    if (num === 13) num = '★★★★'
+    if (num === 14) num = '★★★★★'
+    if (num === 15) num = '★★★★★★'
+    if (num === 1) num = 'VIP'
+    if (num === 0) num = 'باشقۇرغۇچى'
 
     return num
   }

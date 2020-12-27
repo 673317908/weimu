@@ -18,21 +18,21 @@
           <text>{{item.fieldname}}</text>
         </view>
         <view class='profile-content'>
-          <input placeholder="请输入{{item.fieldname}}" name="{{item.fieldkey}}" id="{{item.fieldkey}}" maxlength="40" type="{{item.datatype}}">
+          <input placeholder="{{item.fieldname}}" name="{{item.fieldkey}}" id="{{item.fieldkey}}" maxlength="40" type="{{item.datatype}}">
           </input>
         </view>
       </view>
     </block>
 
     <view class='container-title'>
-      <text>留言</text>
+      <text>مەسلىھەت مەزمۇنى</text>
     </view>
     <view class="messeges">
-      <textarea auto-height="{{true}}" placeholder="请输入您的留言内容（200字以内）" placeholder-style="color:#959595;" maxlength="2000" name="content" id="message"></textarea>
+      <textarea auto-height="{{true}}" placeholder="مەسلىھەت مەزمۇنىنى كىرگۈزۈڭ" placeholder-style="color:#959595;" maxlength="2000" name="content" id="message"></textarea>
     </view>
 
     <view class='button-container'>
-      <button disabled="{{pubDisabled}}" formType="submit">立即提交</button>
+      <button disabled="{{pubDisabled}}" formType="submit">مەسلىھەت سوراش</button>
     </view>
 
 

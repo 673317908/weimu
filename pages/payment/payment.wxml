@@ -1,107 +1,112 @@
 <view class="container">
-  <view class="payment-container">
+	<view class="payment-container">
 
-    <view class="products-items">
-      <view catchtap="changeSelectedProduct" class="product-item items{{itemCount}} {{'1'===selectedProductId?'item-selected':''}}" data-tabid="1" data-price="{{postProduct.price}}" data-originalprice="{{postProduct.originalprice}}" data-productname="{{postProduct.productname}}"
-        data-productype="{{postProduct.productype}}" data-itemid="{{postProduct.productid}}">
-        <view class="subheading">{{postProduct.productname}}</view>
-        <view class="subheading2" wx:if="{{postProduct.price !='' && system !='iOS'}}">￥{{postProduct.price}}</view>
-      </view>
-
-
-      <view style="display:{{catYearProduct==null?'none':'block'}}">
-        <view catchtap="changeSelectedProduct" class="product-item items{{itemCount}} {{'2'===selectedProductId?'item-selected':''}}" data-tabid="2" data-price="{{catYearProduct.price}}" data-originalprice="{{catYearProduct.originalprice}}" data-productname="{{catYearProduct.productname}}"
-          data-productype="{{catYearProduct.productype}}" data-itemid="{{catYearProduct.productid}}">
-          <view class="subheading">{{catYearProduct.productname}}</view>
-          <view class="subheading2" wx:if="{{catYearProduct.price !=''}}">￥{{catYearProduct.price}}</view>
-        </view>
-      </view>
-
-    </view>
-
-    <view class="card order-items">
-      <view class="order-item">
-        <view class="name">商品名：
-          <text style='font-weight: 300'>{{productName}}</text>
-        </view>
-      </view>
-    </view>
+		<view class="products-items">
+			<view catchtap="changeSelectedProduct" class="product-item items{{itemCount}} {{'1'===selectedProductId?'item-selected':''}}" data-tabid="1" data-price="{{postProduct.price}}" data-originalprice="{{postProduct.originalprice}}" data-productname="{{postProduct.productname}}" data-productype="{{postProduct.productype}}" data-itemid="{{postProduct.productid}}">
+				<view class="subheading">{{postProduct.productname}}</view>
+				<view class="subheading2" wx:if="{{postProduct.price !='' && system !='iOS'}}">￥{{postProduct.price}}</view>
+			</view>
 
 
-    <view class="card order-items" wx:if="{{productPrice !=''  && system !='iOS'}}">
-      <view class="order-item">
-        <view class="name">价格</view>
-        <view class="price">
-          <text style='font-weight: 300'>￥{{productPrice}}</text>
-        </view>
-      </view>
-    </view>
+			<view style="display:{{catYearProduct==null?'none':'block'}}">
+				<view catchtap="changeSelectedProduct" class="product-item items{{itemCount}} {{'2'===selectedProductId?'item-selected':''}}" data-tabid="2" data-price="{{catYearProduct.price}}" data-originalprice="{{catYearProduct.originalprice}}" data-productname="{{catYearProduct.productname}}" data-productype="{{catYearProduct.productype}}" data-itemid="{{catYearProduct.productid}}">
+					<view class="subheading">{{catYearProduct.productname}}</view>
+					<view class="subheading2" wx:if="{{catYearProduct.price !=''}}">￥{{catYearProduct.price}}</view>
+				</view>
+			</view>
 
-    <view class="card order-items" wx:if="{{originalprice !=''}}">
-      <view class="order-item">
-        <view class="name">使用积分</view>
-        <view class="price">
-          <text style='font-weight: 300'>{{originalprice}}</text>
-        </view>
-      </view>
-    </view>
+		</view>
 
-    <view class="page-name-detail">
-      <view class="title">
-        <view class="name">商品介绍：
-          <text style='font-weight: 300'>{{catYearProduct.description}}</text>
-        </view>
-      </view>
-    </view>
+		<view class="vip">
+			<view class="vip-item {{activeIndex===index?'active-css':''}}" wx:for="{{vipArr}}" wx:key="index" bindtap="handlVip" data-index="{{index}}" data-item="{{item}}" data-id="{{item.productid}}">
+				<view class="vip-title">{{item.productname}}</view>
+				<view class="vip-price">{{item.price}}￥</view>
+			</view>
+		</view>
 
-    <view class="page-name">
-      <view class="title">
-        <view class="name">* 特别申明：您所购买的产品为数字产品，在购买成功后不可退回</view>
-      </view>
-    </view>
+		<view class="card order-items">
+			<view class="order-item">
+				<view class="name">
+					<text style='font-weight: 300'>{{productName}}</text>
+				</view>
+			</view>
+		</view>
 
-  </view>
 
-  <view class="switch-item" wx:if="{{originalprice !=''}}">
-    <view>使用积分</view>
-    <view>
-      <switch checked="{{isUseIntegral}}" bindchange="userIntegral" />
-    </view>
-  </view>
+		<view class="card order-items" wx:if="{{productPrice !=''  && system !='iOS'}}">
+			<view class="order-item">
+				<view class="name">باھاسى</view>
+				<view class="price">
+					<text style='font-weight: 300'>￥{{productPrice}}</text>
+				</view>
+			</view>
+		</view>
 
-  <view class="pay-ctn" wx:if="{{!isUseIntegral  && system !='iOS'}}">
-    <view class="pay-ctn-order-item">
-      <text style='color: #333; font-size: 32rpx'>需要支付</text>
-      <text style='color: #f44e4e; font-size: 24rpx'> ￥</text>
-      <text style='color: #f44e4e; font-size: 32rpx; font-weight: 800'>{{productPrice}}</text>
-    </view>
-    <view>
-      <button bindtap="payment" class="button">
-        确定支付
-      </button>
-    </view>
-  </view>
+		<view class="card order-items" wx:if="{{originalprice !=''}}">
+			<view class="order-item">
+				<view class="name">كىتەرلىك جۇغلانما</view>
+				<view class="price">
+					<text style='font-weight: 300'>{{originalprice}}</text>
+				</view>
+			</view>
+		</view>
 
-  <view class="pay-ctn" wx:else>
+		<view class="page-name-detail">
+			<view class="title">
+				<view class="name">چۈشەندۈرلىشى:
+					<text style='font-weight: 300'>{{catYearProduct.description}}</text>
+				</view>
+			</view>
+		</view>
 
-    <block wx:if="{{originalprice !=''}}">
+		<view class="page-name">
+			<view class="title">
+				<view class="name">* سېتىۋالغاندىن كىيىن مەڭگۈ ھەقسىز كۆرەلەيسىز، 【ئەزا مەركىزى】 دىگەن بەتتىكى 【ئالغانلىرىم】 دىگەننىڭ ئېچىدىن كۆرۈڭ</view>
+			</view>
+		</view>
 
-      <view class="pay-ctn-order-item">
-        <text style='color: #333; font-size: 32rpx'>需要使用</text>
-        <text style='color: #f44e4e; font-size: 24rpx'> 积分</text>
-        <text style='color: #f44e4e; font-size: 32rpx; font-weight: 800'>{{originalprice}}</text>
-      </view>
-      <view>
-        <button bindtap="postIntegral" class="button">
-          确定使用积分
-        </button>
-      </view>
+	</view>
 
-    </block>
+	<view class="switch-item" wx:if="{{originalprice !=''}}">
+		<view>جۇغلانما نۇمۇرغا سېتىۋىلىش</view>
+		<view>
+			<switch checked="{{isUseIntegral}}" bindchange="userIntegral" />
+		</view>
+	</view>
 
-  </view>
+	<view class="pay-ctn" wx:if="{{!isUseIntegral  && system !='iOS'}}">
+		<view class="pay-ctn-order-item">
+			<text style='color: #333; font-size: 32rpx'>باھاسى </text>
+			<text style='color: #f44e4e; font-size: 24rpx'> ￥</text>
+			<text style='color: #f44e4e; font-size: 32rpx; font-weight: 800'>{{productPrice}}</text>
+		</view>
+		<view>
+			<button bindtap="payment" class="button">
+				سېتىۋىلىش
+			</button>
+		</view>
+	</view>
 
-  <copyright padding-bottom="140rpx" />
+	<view class="pay-ctn" wx:else>
+
+		<block wx:if="{{originalprice !=''}}">
+
+			<view class="pay-ctn-order-item">
+				<text style='color: #333; font-size: 32rpx'>كىتىدىغىنى</text>
+				<text style='color: #f44e4e; font-size: 24rpx'> جۇغلانما</text>
+				<text style='color: #f44e4e; font-size: 32rpx; font-weight: 800'>{{originalprice}}</text>
+			</view>
+			<view>
+				<button bindtap="postIntegral" class="button">
+					سېتىۋىلىش
+				</button>
+			</view>
+
+		</block>
+
+	</view>
+
+	<copyright padding-bottom="140rpx" />
 
 </view>
 

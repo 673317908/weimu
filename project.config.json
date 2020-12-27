@@ -4,7 +4,7 @@
     "ignore": []
   },
   "setting": {
-    "urlCheck": true,
+    "urlCheck": false,
     "es6": true,
     "enhance": true,
     "postcss": true,
@@ -12,7 +12,7 @@
     "minified": true,
     "newFeature": true,
     "coverView": true,
-    "nodeModules": true,
+    "nodeModules": false,
     "autoAudits": false,
     "showShadowRootInWxmlPanel": true,
     "scopeDataCheck": false,
@@ -28,19 +28,19 @@
       "disablePlugins": [],
       "outputPath": ""
     },
-    "enableEngineNative": false,
-    "bundle": true,
+    "bundle": false,
     "useIsolateContext": true,
-    "useCompilerModule": true,
+    "useCompilerModule": false,
     "userConfirmedUseCompilerModuleSwitch": false,
+    "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
     "minifyWXSS": true
   },
   "compileType": "miniprogram",
   "libVersion": "2.12.2",
-  "appid": "wx4a2a44750cb03317",
-  "projectname": "%E5%BE%AE%E6%85%95(noshop)",
+  "appid": "wx6334a5c374dc27f6",
+  "projectname": "%E5%BE%AE%E5%B9%95%E5%AE%98%E7%BD%91%E7%BB%B4%E8%AF%AD%E7%89%88",
   "cloudfunctionTemplateRoot": "",
   "watchOptions": {
     "ignore": []

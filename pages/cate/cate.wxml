@@ -37,7 +37,7 @@
           <!-- 分类名、描述 -->
           <view class="content-title" data-item="{{item.name}}" data-id="{{item.id}}" bindtap="redictIndex">
               <text class="{{ ((item.catYearIntegral || item.catyearprice) && system=='Android')? 'pay-tip' : ''}}">{{item.name}}</text>
-              <text class="count">{{item.count}}篇文章</text>
+              <text class="count">{{item.count}} پارچە</text>
           </view>
           <view class="content-brief" data-item="{{item.name}}" data-id="{{item.id}}" bindtap="redictIndex">
             <text>{{item.description}}</text>
@@ -45,7 +45,7 @@
 
           <!-- 订阅 -->
           <view class="content-subscribe">
-            <text>已订阅了 {{item.categorySubscribeCount || 0}} 篇</text>
+            <text>يېڭىلانغاندا ئەسكەرتىدىنى {{item.categorySubscribeCount || 0}} پارچە</text>
             <image src="../../images/topic-btn-subscribe.png" data-subid="{{item.subscribemessagesid}}" data-id="{{item.id}}" catchtap="postsub" mode="aspectFill"></image>
           </view>
 

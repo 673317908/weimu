@@ -38,7 +38,7 @@ page {
   justify-content: center;
   box-sizing: border-box;
   height: 160rpx;
-  width: 333rpx;
+  width: 100%;
   padding: 8rpx 16rpx;
   color: #959595;
   border: 1rpx #c4c4c4 solid;
@@ -72,7 +72,7 @@ page {
   font-size: 28rpx;
   /* width: 600rpx; */
   line-height: 42rpx;
-  text-align: left;
+  text-align: right;
   color: #959595;
   margin-top: 60rpx;
   font-weight: 200;
@@ -113,7 +113,9 @@ page {
   margin-bottom: 0;
 }
 
-.order-item .action, .order-item .name, .order-item .price {
+.order-item .action,
+.order-item .name,
+.order-item .price {
   display: inline-block;
   font-size: 30rpx;
   font-weight: 500;
@@ -152,7 +154,7 @@ page {
 }
 
 .pay-ctn-order-item {
-  margin-left: 40rpx;
+  margin-right: 40rpx;
 }
 
 .pay-ctn .order-item {
@@ -183,4 +185,33 @@ page {
   background: #fff;
   padding: 0 40rpx;
   margin-top: 16rpx;
+}
+
+.vip {
+  margin-bottom: 40rpx;
+  display: flex;
+  background: white !important;
+}
+
+.vip-item {
+  margin-right: 20rpx;
+  padding: 15rpx;
+  box-sizing: border-box;
+  width: 235rpx;
+  text-align: center;
+  background: white;
+  border: 1rpx solid #eee;
+}
+
+.vip-item .vip-title {
+  margin-bottom: 20rpx;
+}
+
+.vip-item .vip-price {
+  font-weight: 700;
+}
+
+.active-css {
+  color: #118fff;
+  outline: 4rpx #118fff solid;
 }

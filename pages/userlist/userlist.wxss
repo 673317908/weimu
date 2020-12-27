@@ -56,7 +56,7 @@
 
 .userlist-data text {
   font-size: 12px;
-  margin-right: 24rpx;
+  margin-left: 24rpx;
 }
 
 .userlist-btn {

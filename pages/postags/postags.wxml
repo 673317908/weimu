@@ -23,7 +23,7 @@
         <text>{{item.description}}</text>
       </view>
       <view class='tags-num'>
-        <text>{{item.count}}篇文章</text>
+        <text>{{item.count}} پارچە ماقالە</text>
       </view>
     </view>
   </view>
@@ -34,6 +34,6 @@
 <view style='display:{{isLoading?"block":"none"}}'>
   <template is="threepoint" />
 </view>
-<view class="no-more" style="display:{{isLastPage?'block':'none'}}">- 到底啦 -</view>
+<view class="no-more" style="display:{{isLastPage?'block':'none'}}">- ھىچنەرسە قالمىدى -</view>
 
 <copyright />

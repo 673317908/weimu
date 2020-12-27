@@ -17,11 +17,11 @@
   font-size: 24rpx;
   color: #fff;
   line-height: 60rpx;
-  border-top-left-radius: 30rpx;
-  border-bottom-left-radius: 30rpx;
+  border-top-right-radius: 30rpx;
+  border-bottom-right-radius: 30rpx;
   background-color: rgba(0, 0, 0, 0.2);
   position: absolute;
-  right: 0;
+  left: 0;
   top: 80rpx;
 }
 
@@ -46,7 +46,7 @@
 }
 
 .userinfo-member {
-  margin-right: 40rpx;
+  margin-left: 40rpx;
   font-size: 24rpx;
 
 }
@@ -79,7 +79,7 @@
 .user .header .picTxt .text {
 
   color: rgba(255, 255, 255, 1);
-  margin-left: 35rpx;
+  margin-right: 35rpx;
 
 }
 
@@ -297,14 +297,14 @@
 }
 
 .cuIcon {
-  font-size: 40rpx;
+  font-size: 60rpx;
   color: #666;
 }
 
 .user .wrapper .myService .serviceList .item .pictrue {
   width: 60rpx;
   height: 60rpx;
-  margin: 0 auto 20rpx auto;
+  margin: 0 auto 5rpx auto;
   position: relative;
 }
 
@@ -433,7 +433,7 @@
 }
 
 .subscribe::after {
-  content: "* 订阅1次可收到1条消息推送";
+  content: "* 1قېتىم قوشسىڭىز 1 قېتىم قوبۇل قىلىسىز";
   position: absolute;
   bottom: -4rpx;
   color: #999;
@@ -468,7 +468,7 @@
 .subscribe-tip>view {
   height: 48rpx;
   padding: 0 30rpx;
-  margin-left: 20rpx;
+  margin-right: 20rpx;
   font-size: 13px;
   font-weight: 500;
   color: #959595;

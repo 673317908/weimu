@@ -21,12 +21,12 @@
           wx:key="index"
           class="coupon-item"
         >
-          <coupon-item item="{{item}}" btn-text="立即使用" />
+          <coupon-item item="{{item}}" btn-text="ئىشلىتىش" />
         </view>
     </view>
 
     <!-- 空态 -->
-    <van-empty wx:if="{{empty}}" description="暂无优惠券" />
+    <van-empty wx:if="{{empty}}" description="ئىتىبار چىكىڭىز يوق" />
   </van-tab>
 </van-tabs>
 

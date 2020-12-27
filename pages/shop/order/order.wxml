@@ -19,18 +19,18 @@
       <van-card
         num=""
         price="{{item.order_detail.price_info.order_price/100}}"
-        desc="{{'收货地址：' + item.order_detail.delivery_info.address_info.city_name + item.order_detail.delivery_info.address_info.county_name + item.order_detail.delivery_info.address_info.detail_info + '，顾客留言：' + item.ext_info.customer_notes}}"
+        desc="{{'ئادرىس:' + item.order_detail.delivery_info.address_info.city_name + item.order_detail.delivery_info.address_info.county_name + item.order_detail.delivery_info.address_info.detail_info + '，قوشۇمچە:' + item.ext_info.customer_notes}}"
         title="{{ item.order_detail.product_infos[0].title }}"
         thumb="{{ item.order_detail.product_infos[0].thumb_img }}"
         thumb-mode="aspectFill"
       >
         <view slot="footer">
-          <van-button size="small" round data-info="{{item}}" bind:click="goto">查看订单</van-button>
+          <van-button size="small" round data-info="{{item}}" bind:click="goto">زاكاسنى كۆرۈش</van-button>
         </view>
       </van-card>
     </view>
 
     <!-- 空态 -->
-    <van-empty wx:if="{{empty}}" description="暂无订单" />
+    <van-empty wx:if="{{empty}}" description="زاكاس يوق" />
   </van-tab>
 </van-tabs>

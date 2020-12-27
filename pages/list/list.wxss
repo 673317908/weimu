@@ -64,7 +64,7 @@
 
 .topic-content-btn .btn-subscribe {
   display: block;
-  width: 140rpx;
+  width: 240rpx;
   height: 52rpx;
   font-size: 26rpx;
   line-height: 52rpx;

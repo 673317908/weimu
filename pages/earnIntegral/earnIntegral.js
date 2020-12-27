@@ -182,7 +182,7 @@ Page({
     } else {
       rewardedVideoAd.show().catch(() => {
         rewardedVideoAd.load().then(() => rewardedVideoAd.show()).catch(err => {
-          Adapter.toast("激励视频广告获取失败！", 2000)
+          Adapter.toast("ئىلانغا ئېرىشىش مەغلۇب بولدى", 2000)
         })
       })
     }
@@ -237,7 +237,7 @@ Page({
             }
           })
         } else {
-          Adapter.toast("你中途关闭了视频", 3000)
+          Adapter.toast("ئىلاننى تولۇق كۆرۈپ بولمىدىڭىز", 3000)
         }
       })
     }

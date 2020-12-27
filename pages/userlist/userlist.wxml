@@ -15,23 +15,23 @@
 					<template wx:else is="memberIcon" data="{{member:item.member,isIcon: false}}" />
 				</view>
 				<view class="userlist-data">
-					<text>文章{{item.postcount}}</text>
-					<text>话题{{item.topiccount}}</text>
-					<text>粉丝{{item.followmecount}}</text>
-					<text>关注{{item.myfollowcount}}</text>
+					<text>ماقالە{{item.postcount}}</text>
+					<text>قوناقلىق{{item.topiccount}}</text>
+					<text>پىنتوزا{{item.followmecount}}</text>
+					<text>ئەگەشكىنى{{item.myfollowcount}}</text>
 				</view>
 			</view>
 
 			<view class="userlist-btn" data-listType="authorList" data-follow="{{item.follow}}" data-authorid="{{item.post_author}}" catchtap="followAuthor">
 				<block wx:if="{{item.follow=='false'}}">
-					<text class="btn-follow">关注</text>
+					<text class="btn-follow">ئەگىشىش</text>
 				</block>
 				<block wx:else>
 					<block wx:if="{{item.followeachoher=='true'}}">
-						<text class="btn-follow-eachother">相互关注</text>
+						<text class="btn-follow-eachother">دوست</text>
 					</block>
 					<block wx:else>
-						<text class="btn-followed">已关注</text>
+						<text class="btn-followed">ئەگەشتىڭىز</text>
 					</block>
 				</block>
 			</view>

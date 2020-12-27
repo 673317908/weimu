@@ -5,11 +5,11 @@
  * 技术支持微信号：Jianbo
  * Copyright (c) 2018 https://www.minapper.com All rights reserved.-->
 
-<template name="toolbar">
+ <template name="toolbar">
   <view class="comment-box {{toolbarShow?'':'comment-box-hidden'}} {{enableComment=='1' ? '' : 'comment-box-flex'}}">
 
     <!-- 点击跳转输入框 -->
-    <view class='comment-btn-input' catchtap="showToolBar" hidden="{{enableComment=='1'?false:true}}">说点什么...</view>
+    <view class='comment-btn-input' catchtap="showToolBar" hidden="{{enableComment=='1'?false:true}}">ئىنكاس قالدۇرۇش...</view>
 
     <!-- 分享给好友 -->
     <view class="icon-item">

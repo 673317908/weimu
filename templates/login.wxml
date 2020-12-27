@@ -42,22 +42,22 @@
     <view class="login-phone">
       <text class="iconfont icon-login-phone" />
     </view>
-    <view class="login-title">- 授权体验更多功能 -</view>
+    <view class="login-title">تىزىملىتىپ كىرگەندىن كىيىن داۋاملىق ئىشلىتەلەيسىز!</view>
     <view class="login-tip">
-      <text class="iconfont icon-login-like" />评论点赞，参与文章动态互动</view>
+      <text class="iconfont icon-login-like" />ئىنكاس يىزىش، ياقتۇرۇش</view>
     <view class="login-tip">
-      <text class="iconfont icon-login-social" />发布动态，吸引粉丝关注好友</view>
+      <text class="iconfont icon-login-social" />ماقالە يوللاش، دوستلىشىش</view>
     <view class="login-tip">
-      <text class="iconfont icon-login-buy" />购买商品，签到获取积分奖励</view>
-    <view class="login-tip">...</view>
-
-
+      <text class="iconfont icon-login-buy" />جۇغلانما يىغىش، ماقالە سېتىۋىلىش</view>
+    <view class="login-tip">تىزىملىتىپ كىرىشنى باسسىڭىز ئىشلىمىسە</view>
+    <view class="login-tip">ئاستىدىكى قالدۇق تازلاشنى بىسىپ قايتا سىناڭ</view>
+    
     <!-- 按钮 -->
     <view class="login-footer">
-      <button class="login-btn-ok" open-type="getUserInfo" bindgetuserinfo="agreeGetUser">立即登录</button>
+      <button class="login-btn-ok" open-type="getUserInfo" bindgetuserinfo="agreeGetUser">تىزىملىتىپ كىرىش</button>
       <view class="login-btn-box">
-        <view class="login-btn-cancel" catchtap="closeLoginPopup">暂不登录</view>
-        <view class="login-btn-cancel" catchtap="logoutTap">清除缓存</view>
+        <view class="login-btn-cancel" catchtap="closeLoginPopup">كىرمەيمەن</view>
+        <view class="login-btn-cancel" catchtap="logoutTap">قالدۇق تازلاش</view>
       </view>
     
     </view>

@@ -11,7 +11,7 @@
   bind:change="onTabChange"
 >
   <van-tab
-    title="最新"
+    title="يېڭى مەھسۇلاتلار"
   >
     <!-- 轮播图 -->
     <swiper
@@ -43,8 +43,8 @@
     <!-- 领取优惠券 -->
     <view class="selected-nav selected-nav-coupon" wx:if="{{couponList.length}}">
       <view class='common-subtitle'>
-        <view class='common-subtitle-left'>优惠券</view>
-        <view class='common-subtitle-right'>滑动查看</view>
+        <view class='common-subtitle-left'>ئىتىبار چىكى</view>
+        <view class='common-subtitle-right'>ئوڭ سولغا سىيرىڭ</view>
       </view>
 
       <scroll-view scroll-x>
@@ -54,7 +54,7 @@
               wx:key="index"
               class="coupon-item"
             >
-              <coupon-item item="{{item}}" bind:login="onLogin" btn-text="立即领取" />
+              <coupon-item item="{{item}}" bind:login="onLogin" btn-text="ئېلىش" />
             </view>
         </view>
       </scroll-view>
@@ -68,13 +68,13 @@
     </view>
   </van-tab>
 
-  <van-tab
-    title="分类"
+  <!-- <van-tab
+    title="مەھسۇلات تۈرى"
   >
     <view class="tab-content">
       <goods-cate listData="{{cateList}}" />
     </view>
-  </van-tab>
+  </van-tab> -->
 
 </van-tabs>
 

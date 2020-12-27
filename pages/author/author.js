@@ -27,8 +27,8 @@ Page({
     floatDisplay: true,
     userpostsList: [],
     topBarItems: [
-      { id: '1', name: '话题', selected: false, posttype: 'topic' },
-      { id: '2', name: '文章', selected: false, posttype: 'post'}          
+      { id: '1', name: 'قوناقلىق', selected: false, posttype: 'topic' },
+      { id: '2', name: 'ماقالە', selected: false, posttype: 'post'}          
     ],    
     page: 1,
     postype: '',
@@ -80,7 +80,7 @@ Page({
   // 自定义分享朋友圈
   onShareTimeline: function() {   
     return {
-      title: this.data.userInfo.user_nicename + ' 的个人主页',
+      title: this.data.userInfo.user_nicename + ' نىڭ باشبىتى',
       query: {
         userid: this.data.userId,
         postype: 'topic'
@@ -92,7 +92,7 @@ Page({
   // 分享
   onShareAppMessage: function () {
     return {
-      title: this.data.userInfo.user_nicename + ' 的个人主页',
+      title: this.data.userInfo.user_nicename + ' نىڭ باشبىتى',
       path: `/pages/author/author?userid=${this.data.userId}&postype=topic`
     }
   },

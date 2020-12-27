@@ -17,7 +17,7 @@ const appName = app.globalData.appName
 
 Page({
   data: {
-    title: "最新评论列表",
+    title: "يېڭى ئىنكاسلار",
     showerror: "none",
     showallDisplay: "block",
     readLogs: [],
@@ -38,14 +38,14 @@ Page({
 
   // 自定义分享朋友圈
   onShareTimeline: function() {
-    let title = appName + '的最新评论'
+    let title = appName + ' يېڭى ئىنكاسلار'
     return {
       title
     }
   },
 
   onShareAppMessage: function() {
-    let title = appName + '的最新评论'
+    let title = appName + ' يېڭى ئىنكاسلار'
     let path = 'pages/comments/comments'
     return {
       title,

@@ -52,9 +52,9 @@
                             <image src="../../images/topic/record.png"></image>
                         </view>
                     </view> -->
-          <view class="record-desc" wx:if="{{recordStatus=='recordReady'}}">点击录音</view>
-          <view class="record-desc" wx:if="{{recordStatus=='recording'}}">录制中</view>
-          <!-- <view class="record-desc" wx:if="{{playStatus=='pause'}}">播放中</view> -->
+          <view class="record-desc" wx:if="{{recordStatus=='recordReady'}}">بۇ يەرنى بىسىپ ئۈن ئىلىڭ</view>
+          <view class="record-desc" wx:if="{{recordStatus=='recording'}}">ئېلىنىۋاتىدۇ</view>
+          <!-- <view class="record-desc" wx:if="{{playStatus=='pause'}}">قۇيىلىۋاتىدۇ</view> -->
         </view>
       </view>
     </view>

@@ -29,6 +29,7 @@
   color: #999;
   padding: 0 20rpx;
   box-sizing: border-box;
+  font-family: 'UKIJ Ekran';
 }
 
 .tab-menu .tab-menu-item:last-child {
@@ -144,7 +145,7 @@
 .column-item-selected, .column-item-unselected {
   display: inline-block;
   position: relative;
-  width: 150rpx;
+  width: 250rpx;
   margin: 15rpx;
   border: 1rpx solid #ddd;
   text-align: center;
@@ -174,7 +175,7 @@
 }
 
 .section-choice radio-group {
-  display: flex;
+  
   flex-direction: row;
   flex-wrap: wrap;
 }
@@ -191,8 +192,8 @@
   height: 100rpx;
   font-size: 28rpx;
   color: #333;
-  margin-right: 80rpx;
-  padding-left: 15rpx;
+  margin-left: 80rpx;
+  padding-right: 15rpx;
 }
 
 /* 首页内容区 */
@@ -237,6 +238,8 @@ swiper .swiper-desc {
   box-sizing: border-box;
   padding: 0 28rpx;
   background: #f8f8f8;
+  font-family: 'UKIJ Ekran';
+  DIRECTION: rtl;
 }
 
 /* 模块标题样式 */
@@ -649,10 +652,12 @@ swiper .swiper-desc {
 
 .notice-swiper {
   display: flex;
-  margin-left: 5rpx;
+  margin-right: 15rpx;
   flex: 1;
   height: 72rpx;
   overflow: hidden;
+  font-family: 'UKIJ Ekran';
+  DIRECTION: rtl;
 }
 
 .notice-swiper-item {

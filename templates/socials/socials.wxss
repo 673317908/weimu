@@ -63,7 +63,7 @@
 .social-author-container {
   display: flex;
   flex-direction: column;
-  margin-left: 24rpx;
+  margin-right: 24rpx;
   width: 420rpx;
 }
 
@@ -105,6 +105,7 @@
   font-size: 32rpx;
   line-height: 1.5;
   color: #333;  
+  text-align: justify;
 }
 
 .desc-img-container {
@@ -200,7 +201,7 @@
 .content-bottom image {
   width: 32rpx;
   height: 32rpx;
-  margin-right: 4rpx;
+  margin-left: 4rpx;
   vertical-align: middle;
 }
 
@@ -229,7 +230,7 @@
   transform: rotate(45deg);
   position: absolute;
   top: -10rpx;
-  left: 40rpx;
+  right: 40rpx;
 }
 
 .like-portrait {
@@ -439,7 +440,7 @@
   border-radius: 50%;
   background: #fff;
   position: relative;
-  margin-left: 20rpx;
+  margin-right: 20rpx;
   margin-top: 20rpx;
 }
 

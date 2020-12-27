@@ -86,8 +86,8 @@ Page({
         isSearch: true,
         isCategory: false,
         istag: false,
-        pageTitle: "动态搜索",
-        shareTitle: getApp().globalData.appName + "-动态搜索"
+        pageTitle: "قوناقلىق ئىزدەش",
+        shareTitle: getApp().globalData.appName + "-قوناقلىق ئىزدەش"
       });
     }
     if (options.forumId && options.forumId != '') {
@@ -100,8 +100,8 @@ Page({
         isCategory: true,
         isTag: false,
         forumId: options.forumId,
-        pageTitle: "动态圈子",
-        shareTitle: "动态圈子"
+        pageTitle: "ئاكتىپ قوناقلىق",
+        shareTitle: "ئاكتىپ قوناقلىق"
       });
     }
 
@@ -117,7 +117,7 @@ Page({
         tag: options.tag,
         tagname: options.tagname,
         pageTitle: "#" + options.tagname,
-        shareTitle: options.tagname + "标签的话题"
+        shareTitle: options.tagname + " دىكى قوناقلىقلەر"
       });
       //this.loadArticles(args,);
     }
@@ -176,7 +176,7 @@ Page({
     var sessionId = self.data.userSession.sessionId;
     var deletetype = 'publishStatus';
     if (!sessionId || !userId) {
-      Adapter.toast('请先授权登录', 3000);
+      Adapter.toast('تىزىملىتىپ كىرىڭ', 3000);
       return;
     }
     data.id = id;
@@ -186,11 +186,11 @@ Page({
     var posttype = 'topic'
     wx.lin.showDialog({
       type: "confirm",
-      title: "标题",
+      title: "ماۋزۇ",
       showTitle: false,
-      confirmText: "确认",
+      confirmText: "ماقۇل",
       confirmColor: "#f60",
-      content: "确认删除？",
+      content: "ئۆچۈرەمسىز؟",
       success: (res) => {
         if (res.confirm) {
           API.deleteTopicById(data).then(res => {
@@ -240,11 +240,11 @@ Page({
 
         wx.lin.showDialog({
           type: "confirm",
-          title: "标题",
+          title: "ماۋزۇ",
           showTitle: false,
-          confirmText: "确认",
+          confirmText: "ماقۇل",
           confirmColor: "#f60",
-          content: "权限不足,需"+min_posttopic_user_memberName+"及以上等级方可发表回复。是否去赚积分提高等级?",
+          content: "ھوقوقىڭىز يىتىشمىدى، "+min_posttopic_user_memberName+"دىن يۇقۇرى ئەزالارلا يوللىيالايدۇ، جۇغلانما يىغىپ دەرىجىڭىزنى ئۆستۈرەمسىز؟",
           success: (res) => {
             if (res.confirm) {
               wx.navigateTo({
@@ -359,8 +359,8 @@ Page({
 
     if (this.data.isSearch && !this.data.searchKey) {
       wx.showModal({
-        title: '提示',
-        content: '请输入搜索内容',
+        title: 'ئەسكەرتىش',
+        content: 'ئىزدەيدىغان ھالقىلىق سۆزنى كىرگۈزۈڭ',
         showCancel: false,
       });
       wx.stopPullDownRefresh()
@@ -425,11 +425,11 @@ Page({
     }
     if (this.data.isCategory) {
       path += "?forumId=" + this.data.forumId;
-      shareTitle = this.data.category.name + "类的话题";
+      shareTitle = this.data.category.name + "تۈرىدىكى قوناقلىق";
 
     }
     if (this.data.isTag) {
-      shareTitle = this.data.tagname + "标签的话题";
+      shareTitle = this.data.tagname + " خەتكۈزچتىكى قوناقلىق";
       path += "?tag=" + this.data.tag + "&tagname=" + this.data.tagname;
 
     }
@@ -464,8 +464,8 @@ Page({
       })
     } else {
       wx.showModal({
-        title: '提示',
-        content: '请输入搜索内容',
+        title: 'ئەسكەرتىش',
+        content: 'ئىزىمەكچى بولغان ھالقىلىق سۆزنى كىرگۈزۈڭ',
         showCancel: false,
       });
 
@@ -578,7 +578,7 @@ Page({
     var audioUrl = e.currentTarget.dataset.audiourl;
     var dataId = e.currentTarget.dataset.id;
     backgroundAudioManager.src = audioUrl;
-    backgroundAudioManager.title = "录音";
+    backgroundAudioManager.title = "ئۈنگە ئىلىش";
     self.setData({
       isPlaying: 1,
       dataId: dataId
@@ -651,17 +651,17 @@ Page({
     var sessionId = self.data.userSession.sessionId
 
     if (!sessionId || !userId) {
-      Adapter.toast('请先授权登录', 3000)
+      Adapter.toast('تىزىملىتىپ كىرىڭ', 3000)
       return
     }
 
     wx.lin.showDialog({
       type: "confirm",
-      title: "发送新内容订阅消息",
+      title: "يېڭىكىنىش ئۇقتۇرىشى",
       showTitle: true,
-      confirmText: "确认",
+      confirmText: "ماقۇل",
       confirmColor: "#f60",
-      content: "确认发送？",
+      content: "يېڭىلىنىش ئۇقتۇرىشى تاپشۇرۇپ ئالامسىز؟",
       success: (res) => {
         if (res.confirm) {
           var res = Adapter.sendSubscribeMessage(self, id, author, title, 'topic', API).then(res => {

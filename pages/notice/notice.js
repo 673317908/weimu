@@ -12,7 +12,7 @@ const pageCount = 10
 Page({
   // 初始数据
   data: {
-    pageTitle: '我的消息',
+    pageTitle: 'ئۇچۇرلىرىم',
     userInfo: {},
     userSession: {},
     wxLoginInfo: {},

@@ -25,7 +25,7 @@ API.request = function (url, method = "GET", data = {}, args = { showLoading: fa
         return new Promise(function (resolve, reject) {
             if (args.showLoading) {
                 wx.showLoading({
-                    title: '加载中',
+                    title: 'يۈكلىنىۋاتىدۇ...',
                 });
             }
             wx.showNavigationBarLoading()
@@ -35,7 +35,7 @@ API.request = function (url, method = "GET", data = {}, args = { showLoading: fa
                 data: data,
                 method: method,
                 success: function (res) {
-                  if (res.data.code === 'user_parameter_error' || res.code === 'user_parameter_error' || res.message === "用户参数错误,请在'我的'页面清除缓存") {
+                  if (res.data.code === 'user_parameter_error' || res.code === 'user_parameter_error' || res.message === "ئەزا ئۇچۇرى خاتا،ئەزا مەركىزىدىن قالدۇق تازىلاشنى بىسىڭ") {
                     wx.removeStorageSync('userInfo');
                     wx.removeStorageSync('userSession');
                     wx.removeStorageSync('memberUserInfo');

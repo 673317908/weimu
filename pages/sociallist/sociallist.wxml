@@ -12,12 +12,12 @@
 		<view class='topic-item-content'>
 			<view class="topic-content-brief">
 				<text>{{category.name}}</text>
-				<text class="topic-content-num">({{category.count}}条动态)</text>
+				<text class="topic-content-num">({{category.count}} پارچە قوناقلىق)</text>
 			</view>
 
 			<view class="topic-content-btn">
-				<text class="btn-subscribe" data-subid="{{category.subscribemessagesid}}" data-id="{{category.id}}" catchtap="postsub">订阅</text>
-				<text>已订阅了 {{category.categorySubscribeCount || 0}} 篇</text>
+				<text class="btn-subscribe" data-subid="{{category.subscribemessagesid}}" data-id="{{category.id}}" catchtap="postsub">يېڭىلىنىش ئۇقتۇرىشى</text>
+				<text>جەمئىي {{category.categorySubscribeCount || 0}} قېتىم يېڭىلىنىش ئۇقتۇرىشىنى قوبۇل قىلالايسىز</text>
 			</view>
 		</view>
 	</view>
@@ -33,7 +33,7 @@
 				<text>{{tagname}}</text>
 			</view>
 			<view class="topic-content-num">
-				<text>共有 {{topicsList.length}} 条动态</text>
+				<text>جەمئىي {{topicsList.length}} پارچە قوناقلىق</text>
 			</view>
 
 
@@ -48,10 +48,10 @@
 		</image>
 		<view class='topic-item-content'>
 			<view class="topic-content-brief">
-				<text>搜索“{{searchKey}}”的结果</text>
+				<text>“{{searchKey}}”نىڭ ئىزدەش نەىجىسى</text>
 			</view>
 			<view class="topic-content-num">
-				<text>共有 {{topicsList.length }} 条动态</text>
+				<text>جەمئىي {{topicsList.length }} پارچە قوناقلىق</text>
 			</view>
 
 
@@ -73,7 +73,7 @@
   <image mode="aspectFill" src="{{banner.image}}" />
 </view>
 
-<van-empty wx:if="{{topicsList.length==0&&isSearch==true }}" description="没有搜索到相关内容哟！" />
+<van-empty wx:if="{{topicsList.length==0&&isSearch==true }}" description="ئالاقىدار مەزمۇن تىپىلمىدى" />
 <block wx:else>
 	<template is="socials" data="{{topicsList:topicsList,isPlaying:isPlaying,dataId:dataId,userSession:userSession,memberUserInfo:memberUserInfo,topiclistAdId:topiclistAdId,topiclistAd:topiclistAd,topiclistAdEvery:topiclistAdEvery,topicListAdsuccess:topicListAdsuccess,listType:'topicList'}}" />
 	<template is="login-popup" data="{{show:isLoginPopup,userInfo:userInfo}}"></template>

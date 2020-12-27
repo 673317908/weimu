@@ -31,7 +31,7 @@ Page({
         var self = this;
         
         wx.setNavigationBarTitle({
-            title: '海报',
+            title: 'ئاترىتكا',
             success: function (res) {
                 // success
             }
@@ -52,8 +52,8 @@ Page({
                     filePath: res.tempFilePath,
                     success(result) {
                         wx.showModal({
-                            title: '提示',
-                            content: '二维码海报已存入手机相册，赶快分享到朋友圈吧',
+                            title: 'ئەسكەرتىش',
+                            content: 'رەسىم تىلفۇنىڭىزغا ساقلاندى، تىلفۇنىڭىزدىن ھەمبەھىرلەڭ',
                             showCancel: false,
                             success: function (res) {
                                 if (res.confirm) {

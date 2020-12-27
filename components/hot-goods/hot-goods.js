@@ -8,7 +8,7 @@ Component({
     goodsList: Array,
     title: {
       type: String,
-      value: '热销商品'
+      value: 'ئاۋات ماللار'
     },
     padding: {
       type: String,

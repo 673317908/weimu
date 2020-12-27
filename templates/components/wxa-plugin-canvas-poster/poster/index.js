@@ -76,7 +76,7 @@ Component({
                     console.error("需要加入downloadFile合法域名（3类）：wx.qlogo.cn,首图地址的域名，特色图片地址的域名");
                 }
                 else{
-                    wx.showToast({ icon: 'none', title: err.errMsg || '生成失败' });
+                    wx.showToast({ icon: 'none', title: err.errMsg || 'يېڭىلانمىدى' });
                     console.error(err);
                 }
                 this.triggerEvent('fail', err);

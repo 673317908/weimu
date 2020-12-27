@@ -15,7 +15,7 @@ export function refreshtPrevPage(data = {}) {
         prevPage.onLoad && prevPage.onLoad(data)
         resolve(data)
       } catch (r) {
-        console.warn('刷新上一页面数据出错：' + r)
+        console.warn('بەتنى يېڭىلاڭ：' + r)
         reject(r)
       }
     }, 500)

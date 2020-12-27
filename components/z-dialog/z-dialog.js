@@ -41,12 +41,12 @@ Component({
     // 确定按钮的文本
     confirmText: {
       type: String,
-      value: '确定'
+      value: 'مۇقىملاشتۇرۇش'
     },
     // 取消按钮的文本
     cancelText: {
       type: String,
-      value: '取消'
+      value: 'بولدى قىلىش'
     },
     isCoverView: { // 是否用 cover-view 标签：解决textarea层级覆盖弹窗问题）
       type: Boolean,
@@ -77,11 +77,11 @@ Component({
         type: 'confirm',
         showMask: true,
         maskClosable: true,
-        title: '提示',
+        title: 'ئەسكەرتىش',
         showTitle: true,
         content: '',
-        confirmText: '确定',
-        cancelText: '取消',
+        confirmText: 'مۇقىملاشتۇرۇش',
+        cancelText: 'بولدى قىلىش',
         isCoverView: false,
         success: null
       }

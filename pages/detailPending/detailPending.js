@@ -15,7 +15,7 @@ var WxParse = require('../../vendor/wxParse/wxParse.js');
 
 Page({
   data: {
-    title: '内容',
+    title: 'مەزمۇن',
     pageData: {},
     pagesList: {},
     hidden: false,

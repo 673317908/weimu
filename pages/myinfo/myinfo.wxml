@@ -7,39 +7,39 @@
       <text>{{userInfo.nickName}}</text>
     </view>
     <view class="bottom">
-      <text>当前积分 {{integral}}</text>
-      <text>{{memberUserInfo.membername}}</text>
+      <text>جۇغلانما نۇمۇرىڭىز {{integral}}</text>
+      <text> {{memberUserInfo.membername}} </text>
     </view>
   </view>
 
   <!-- 等级积分定义 -->
   <view class="integral">
     <text class="cuIcon-selectionfill lg text-blue" />
-    <text class="title">等级定义</text>
+    <text class="title">دەرىجە ئۆرلەش</text>
     <view class="ul" wx:if="{{info.first_level_integral}}">
       <view class="li">
-        <text class="label">新手上路</text>
-        <text class="val">0 积分</text>
+        <text class="label">★</text>
+        <text class="val">0 جۇغلانما</text>
       </view>
       <view class="li">
-        <text class="label">一星会员</text>
-        <text class="val">{{info.first_level_integral}} 积分</text>
+        <text class="label">★★</text>
+        <text class="val">{{info.first_level_integral}} جۇغلانما</text>
       </view>
       <view class="li">
-        <text class="label">二星会员</text>
-        <text class="val">{{info.second_level_integral}} 积分</text>
+        <text class="label">★★★</text>
+        <text class="val">{{info.second_level_integral}} جۇغلانما</text>
       </view>
       <view class="li">
-        <text class="label">三星会员</text>
-        <text class="val">{{info.third_level_integral}} 积分</text>
+        <text class="label">★★★★</text>
+        <text class="val">{{info.third_level_integral}} جۇغلانما</text>
       </view>
       <view class="li">
-        <text class="label">四星会员</text>
-        <text class="val">{{info.fourth_level_integral}} 积分</text>
+        <text class="label">★★★★★</text>
+        <text class="val">{{info.fourth_level_integral}} جۇغلانما</text>
       </view>
       <view class="li">
-        <text class="label">五星会员</text>
-        <text class="val">{{info.fifth_level_integral}} 积分</text>
+        <text class="label">★★★★★★</text>
+        <text class="val">{{info.fifth_level_integral}} جۇغلانما</text>
       </view>
 
       <view class="slider" />
@@ -49,26 +49,26 @@
 
   <!-- 等级权益 -->
   <view class="grade">
-    <text class="title">等级权益</text>
+    <text class="title">دەرىجە ئىمتىيازى</text>
     <view class="grade-list">
       <view class="grade-item">
-        <text class="lab">发表评论</text>
+        <text class="lab">ئىنكاس يوللاش</text>
         <text class="val">{{comment}}</text>
       </view>
       <view class="grade-item">
-        <text class="lab">评论免审</text>
+        <text class="lab">تەستىقسىز ئىنكاس يوللاش</text>
         <text class="val">{{commentPass}}</text>
       </view>
       <view class="grade-item">
-        <text class="lab">发表话题</text>
+        <text class="lab">قوناقلىق يوللاش</text>
         <text class="val">{{postTopic}}</text>
       </view>
       <view class="grade-item">
-        <text class="lab">话题免审</text>
+        <text class="lab">تەستىقسىز قوناقلىق يوللاش</text>
         <text class="val">{{topicPass}}</text>
       </view>
       <view class="grade-item">
-        <text class="lab">文章免审</text>
+        <text class="lab">تەستىقسىز ماقالە يوللاش</text>
         <text class="val">{{articlePass}}</text>
       </view>
     </view>

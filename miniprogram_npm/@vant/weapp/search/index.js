@@ -25,7 +25,7 @@ component_1.VantComponent({
     placeholderStyle: String,
     actionText: {
       type: String,
-      value: '取消',
+      value: 'بولدى قىلىش',
     },
     background: {
       type: String,

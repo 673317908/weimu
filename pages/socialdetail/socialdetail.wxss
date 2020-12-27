@@ -56,7 +56,7 @@
 }
 
 .topic-author-container {
-  margin-left: 24rpx;
+  margin-right: 24rpx;
   display: flex;
   flex-direction: column;
 }
@@ -118,7 +118,7 @@ entry-author-text {
   align-items: center;
 }
 .comment-user-name {
-  margin-left: 16rpx;
+  margin-right: 16rpx;
   font-size: 14px;
   color: #406599;
   display: flex;
@@ -127,7 +127,7 @@ entry-author-text {
 
 .comment-author-tag {
  
-  margin-left: 8rpx;
+  margin-right: 8rpx;
   font-size: 10px;
   padding: 0 6rpx;
   border-radius: 4rpx;
@@ -161,6 +161,7 @@ entry-author-text {
   font-size: 32rpx;
   line-height: 1.4;
   margin: 20rpx 0;
+  text-align: justify;
 }
 
 .replay-box {
@@ -515,7 +516,7 @@ entry-author-text {
 .likeBtn image {
   width: 24rpx;
   height: 24rpx;
-  margin-right: 12rpx;
+  margin-left: 12rpx;
 }
 
 /* 点赞数 */

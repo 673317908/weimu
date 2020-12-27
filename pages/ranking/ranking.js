@@ -18,8 +18,8 @@ const pageCount = 10
 
 const options = {
   data: {
-    shareTitle: "排行",
-    pageTitle: "排行",
+    shareTitle: "تاختا",
+    pageTitle: "تاختا",
     ranking: [],
     userInfo: {},
     userSession: {},
@@ -41,9 +41,9 @@ const options = {
     if (rankingType == "integral") {
       // 设置页面标题
       wx.setNavigationBarTitle({
-        title: "积分排行"
+        title: "جۇغلانما تاختىسى"
       });
-      self.setData({ shareTitle: "积分排行" });
+      self.setData({ shareTitle: "جۇغلانما تاختىسى" });
       API.integralRanking().then(res => {
         self.setData({
           ranking: self.data.ranking.concat(
@@ -57,9 +57,9 @@ const options = {
 
     if (rankingType == "follow") {
       wx.setNavigationBarTitle({
-        title: "粉丝排行"
+        title: "پىنتوزا تاختىسى"
       });
-      self.setData({ shareTitle: "粉丝排行" });
+      self.setData({ shareTitle: "پىنتوزا تاختىسى" });
       API.followRanking().then(res => {
         self.setData({
           ranking: self.data.ranking.concat(

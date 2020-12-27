@@ -34,7 +34,7 @@
             <view class='comment-reply-name'>
               <view class="comment-style-line">
               </view>
-              {{item2.author_name}} 回复 {{item1.author_name}}</view>{{item2.content}}</view>
+              {{item2.author_name}}@ {{item1.author_name}}</view>{{item2.content}}</view>
 
           <!-- 三级回复-->
           <view wx:for="{{item2.child}}" wx:key="itemid3" wx:for-index="idx" wx:for-item="item3">
@@ -42,7 +42,7 @@
               <view class='comment-reply-name'>
                 <view class="comment-style-line">
                 </view>
-                {{item3.author_name}} 回复 {{item2.author_name}}</view>{{item3.content}}
+                {{item3.author_name}} @ {{item2.author_name}}</view>{{item3.content}}
             </view>
 
             <!-- 四级回复-->
@@ -51,7 +51,7 @@
                 <view class='comment-reply-name'>
                   <view class="comment-style-line">
                   </view>
-                  {{item4.author_name}} 回复 {{item3.author_name}}</view>{{item4.content}}</view>
+                  {{item4.author_name}} @ {{item3.author_name}}</view>{{item4.content}}</view>
             </view>
             <!-- 四级回复-->
 

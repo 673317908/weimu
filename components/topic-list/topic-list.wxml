@@ -150,12 +150,12 @@
     <view class="content-bottom">
       <view class="content-bottom-item" id="{{item.id}}" data-listType="{{listType}}" bindtap="postLike">
         <image src="../../images/social_icon_like.png"></image>
-        <text class="comment-num">点赞 {{item.like_count}}</text>
+        <text class="comment-num">ياقتۇرغانلار {{item.like_count}}</text>
       </view>
 
       <view class="content-bottom-item" id="{{item.id}}" bindtap="TopicDetail">
         <image src="../../images/social_icon_comment.png"></image>
-        <text class="comment-num">评论 {{item.total_replies}}</text>
+        <text class="comment-num">ئىنكاس {{item.total_replies}}</text>
       </view>
 
       <view wx:if="{{item.author_zan_image !='' && item.zan_display==='1' }}" class="content-bottom-item" data-zanimage="{{item.author_zan_image}}" catchtap="zanAuthor">

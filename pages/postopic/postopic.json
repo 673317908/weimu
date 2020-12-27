@@ -1,7 +1,7 @@
 {
     "enablePullDownRefresh": false,
     "backgroundTextStyle": "dark",
-    "navigationBarTitleText": "发布动态",
+    "navigationBarTitleText": "قوناقلىق يوللاش",
     "usingComponents": {        
         "txv-video": "plugin://tencentvideo/video",
         "l-dialog": "../../vendor/LinUI/dialog/index",

@@ -20,11 +20,11 @@
           <view class="comment-user-date"  data-id="{{item.id}}" data-postid="{{item.postid}}"  data-name="{{item.author_name}}" data-userid="{{item.userid}}"  data-commentdate="{{item.date}}">{{item.date}}</view>
         </view>
       </view>
-      <view class="comment-summary"  data-postid="{{item.postid}}" data-id="{{item.id}}" data-name="{{item.author_name}}" data-userid="{{item.userid}}"  data-commentdate="{{item.date}}">评论内容：<rich-text nodes="{{item.content}}"></rich-text></view>
-      <view class="comment-summary"  data-postid="{{item.postid}}" data-id="{{item.id}}" data-name="{{item.author_name}}" data-userid="{{item.userid}}"  data-commentdate="{{item.date}}">文章标题：{{item.post_title}}</view>
+      <view class="comment-summary"  data-postid="{{item.postid}}" data-id="{{item.id}}" data-name="{{item.author_name}}" data-userid="{{item.userid}}"  data-commentdate="{{item.date}}">ئىنكاس مەزمۇنى：<rich-text nodes="{{item.content}}"></rich-text></view>
+      <view class="comment-summary"  data-postid="{{item.postid}}" data-id="{{item.id}}" data-name="{{item.author_name}}" data-userid="{{item.userid}}"  data-commentdate="{{item.date}}">يازما تېمىسى：{{item.post_title}}</view>
       <view>
-      <text class="pendingtext" catchtap="approveComment" data-postid="{{item.postid}}" data-author="{{item.author_name}}" data-title="{{item.nohtmlcontent}}" data-id="{{item.id}}" data-author="{{item.author_name}}" data-posttype="{{item.posttype}}">审核通过</text>
-        <text class="pendingtext" catchtap="deleteComment" data-postid="{{item.postid}}" data-id="{{item.id}}" data-posttype="{{item.posttype}}">删除</text>
+      <text class="pendingtext" catchtap="approveComment" data-postid="{{item.postid}}" data-author="{{item.author_name}}" data-title="{{item.nohtmlcontent}}" data-id="{{item.id}}" data-author="{{item.author_name}}" data-posttype="{{item.posttype}}">تەستىقتىن ئۆتتى</text>
+        <text class="pendingtext" catchtap="deleteComment" data-postid="{{item.postid}}" data-id="{{item.id}}" data-posttype="{{item.posttype}}">ئۆچۈرۈش</text>
       </view>
     </view>
   </block>

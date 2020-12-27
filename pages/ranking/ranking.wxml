@@ -1,8 +1,8 @@
 <import src="../../templates/login-popup.wxml" />
 
 <view class="rank-type" wx:if="{{ranking.length}}">
-  <text wx:if="{{rankingType == 'follow'}}">粉丝</text>
-  <text wx:if="{{rankingType == 'integral'}}">积分</text>
+  <text wx:if="{{rankingType == 'follow'}}">پىنتوزا</text>
+  <text wx:if="{{rankingType == 'integral'}}">جۇغلانما</text>
 </view>
 <!-- 排行列表 -->
 <view class="container">
@@ -22,7 +22,7 @@
         <navigator url="../author/author?userid={{item.userid}}&postype=post" open-type="navigate" hover-class="none">
           <text class="rank-username">{{item.username}}</text>
         </navigator>
-        <view class="rank-points">{{item.count}}<text wx:if="{{rankingType == 'integral'}}">分</text></view>
+        <view class="rank-points">{{item.count}}<text wx:if="{{rankingType == 'integral'}}"> جۇغلانما</text></view>
       </view>
     </view>
   </block>

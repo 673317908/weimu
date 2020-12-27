@@ -40,8 +40,8 @@
         </view>
 
         <view wx:if="{{item.author_id != userSession.userId && listType !='authorTopicsList'}}" class="social-author-follow" data-listType="{{listType}}" data-authorid="{{item.author_id}}" data-follow="{{item.follow}}" catchtap="followAuthor">
-          <text wx:if="{{!item.follow}}" class="btn-follow">关注</text>
-          <text wx:if="{{item.follow}}" class="btn-followed">已关注</text>
+          <text wx:if="{{!item.follow}}" class="btn-follow">ئەگىشىش</text>
+          <text wx:if="{{item.follow}}" class="btn-followed">ئەگەشتىڭىز</text>
         </view>
 
 
@@ -65,7 +65,7 @@
         </view>
       </view>
       <!-- 视频封面 -->
-      <view wx:if="{{item.videoList.length || item.qqvideoList.length}}" class="videoBox" bindtap="toFullVideo" id="{{item.id}}" data-src="{{item.videoList[0].src}}">
+      <view wx:if="{{item.videoList.length || item.qqvideoList.length}}" class="videoBox" bindtap="TopicDetail" id="{{item.id}}">
         <image src='../../images/play.png' class='icon-play' />
         <block wx:if="{{item.videoList.length ==0}}">
           <image src='{{item.raw_default_videoposter_image}}' class='cover' mode="aspectFill" />
@@ -142,19 +142,19 @@
         </view>
       </view>
       <!-- 地理位置 -->
-      <view wx:if="{{item.address !=''}}" bindtap="openmap" data-lat="{{item.latitude}}" data-address="{{item.address}}" data-lng="{{item.longitude}}" class="address">位置：{{item.address}}</view>
+      <view wx:if="{{item.address !=''}}" bindtap="openmap" data-lat="{{item.latitude}}" data-address="{{item.address}}" data-lng="{{item.longitude}}" class="address">ئورنى：{{item.address}}</view>
 
       <!-- 底部帖子互动数据 -->
       <view class="content-bottom">
         <view class="content-bottom-item" id="{{item.id}}" data-listType="{{listType}}" bindtap="postLike">
           <image src="../../images/social_icon_like.png"></image>
-          <text class="comment-num">点赞 {{item.like_count}}</text>
+          <text class="comment-num">ياقتۇرغانلار {{item.like_count}}</text>
         </view>
 
-        <view class="content-bottom-item" id="{{item.id}}" bindtap="TopicDetail">
+        <!-- <view class="content-bottom-item" id="{{item.id}}" bindtap="TopicDetail">
           <image src="../../images/social_icon_comment.png"></image>
-          <text class="comment-num">评论 {{item.total_replies}}</text>
-        </view>
+          <text class="comment-num">ئىنكاس {{item.total_replies}}</text>
+        </view> -->
 
         <view wx:if="{{item.author_zan_image !='' && item.zan_display==='1' }}" class="content-bottom-item" data-zanimage="{{item.author_zan_image}}" catchtap="zanAuthor">
           <image src="../../images/social_icon_zan.png"></image>
@@ -165,15 +165,15 @@
       <view class="content-bottom" wx:if="{{memberUserInfo.member =='00'}}">
 
         <view  id="{{item.id}}" class="content-bottom-item" catchtap="deleteTopic">
-          <text>删除</text>
+          <text>ئۆچۈرۈش</text>
         </view>
 
         <view id="{{item.id}}" data-title="{{item.excerpt}}" data-author="{{item.author_name}}" class="content-bottom-item" catchtap="sendSubscribeMessage">
-          <text>更新提醒</text>
+          <text>يېڭىلاش ئەسكەرتىمىسى</text>
         </view>
 
         <view wx:if="{{listType=='topicList'}}" id="{{item.id}}" data-title="{{item.excerpt}}" data-author="{{item.author_name}}" class="content-bottom-item" catchtap="submitPage">
-          <text>提交搜索({{item.searhDataPostCount}})</text>
+          <text>({{item.searhDataPostCount}})ئىزدەشكە يوللاش</text>
         </view>
 
       </view>

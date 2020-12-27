@@ -29,7 +29,7 @@
 }
 
 .l-tabs .l-tabs-header .l-tabs-unequal-width {
-  padding: 0 20rpx;
+  padding: 0 30rpx;
 }
 
 .l-tabs .l-tabs-header .l-icon-active, .l-tabs .l-tabs-header .l-tabs-active {

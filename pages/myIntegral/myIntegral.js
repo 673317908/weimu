@@ -19,8 +19,8 @@ const pageCount = 10
 
 Page({
   data: {
-    shareTitle: '我的积分',
-    pageTitle: appName + '-我的积分',
+    shareTitle: 'جۇغلانما نۇمۇرۇم',
+    pageTitle: appName + ' جۇغلانما نۇمۇرۇم',
     integral: [],
     userInfo: {},
     userSession: {},
@@ -81,7 +81,7 @@ Page({
       args.sessionId = self.data.userSession.sessionId;
       args.per_page = self.data.pageCount;
       wx.showLoading({
-        title: '加载中',
+        title: 'ئېچىلىۋاتىدۇ',
       });
       API.myIntegral(args).then(res => {
         if (!res.code) {

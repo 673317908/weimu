@@ -81,7 +81,7 @@ Component({
       {
 
         wx.showToast({
-          title: '没有选择快递公司或填写快递单号',
+          title: 'پوچتا شىركىتى ياكى پوچتا نۇمۇرىنى كىرگۈزۈڭ',
           mask: true,
           icon: "none",
           duration: 2000
@@ -105,7 +105,7 @@ Component({
 
       if (res.errcode === 0) {
         wx.showToast({
-          title: '发货成功'
+          title: 'مال سىلىندى'
         })
 
         // 刷新数据
@@ -115,7 +115,7 @@ Component({
         app.$util.refreshtPrevPage({ isRefresh: true })
       } else {
         wx.showToast({
-          title: res.errmsg || res.message || '出错了，请稍后重试！',
+          title: res.errmsg || res.message || 'خاتالىق كۆرۈلدى، بىرئازدىن كىيىن قايتا سىناڭ',
           icon: 'none'
         })
       }

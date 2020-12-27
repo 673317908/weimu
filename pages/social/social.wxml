@@ -4,18 +4,18 @@
 <import src="../../templates/socials/socials.wxml" />
 <import src="../../templates/member/memberIcon.wxml" />
 <l-tabs bind:linchange="changeTabs" animated="{{true}}" equal-width="{{false}}" swipeable="{{false}}">
-  <l-tabpanel tab="最新" key="one" slot="one">
+  <l-tabpanel tab="قوناقلىق" key="one" slot="one">
     <view class="tab-content">
       <view class="container">
         <!-- 进入地图 -->
-        <view class="map" catchtap="toSocialMap">
+        <!-- <view class="map" catchtap="toSocialMap">
           <image src="../../images/uploads/social-map.jpg" mode="aspectFill"></image>
-        </view>
+        </view> -->
         <!-- 精选圈子 -->
         <view class="selected-nav" wx:if="{{forums.length !== 0}}">
           <view class='common-subtitle'>
-            <view class='common-subtitle-left'>精选圈子</view>
-            <view class='common-subtitle-right'>滑动查看</view>
+            <view class='common-subtitle-left'>تۈرلەر</view>
+            <view class='common-subtitle-right'>ئوڭ سولغا سىيرىڭ</view>
           </view>
           <scroll-view scroll-x="true">
             <view class="selected-nav-list">
@@ -36,7 +36,7 @@
           <view class="showerror" style="display:{{isError?'block':'none'}}">
             <image src="../../images/cry80.png" style="height:100rpx;width:100rpx"></image>
             <view class="errortext">
-              暂时无法访问网络,下拉重试...
+              توردا مەسلە كۆرۈلدى، ئاستىغا سىيرىپ يېڭىلاڭ
             </view>
           </view>
 
@@ -48,7 +48,7 @@
             <template is="threepoint" />
           </view>
 
-          <view class="no-more" style="display:{{isLastPage?'block':'none'}}">-到底啦-</view>
+          <view class="no-more" style="display:{{isLastPage?'block':'none'}}">-ھىچنەرسە قالمىدى-</view>
           <copyright />
         </view>
 
@@ -56,14 +56,14 @@
     </view>
   </l-tabpanel>
   <block wx:if="{{userSession !='' && userSession.sessionId !=''}}">
-    <l-tabpanel tab="关注" key="two" slot="two">
+    <l-tabpanel tab="ئەگەشكىنىم" key="two" slot="two">
       <view class="tab-content">
         <template is="socials" data="{{topicsList:authorTopicsList,isPlaying:isPlaying,dataId:dataId,userSession:userSession,memberUserInfo:memberUserInfo,topiclistAdId:topiclistAdId,topiclistAd:topiclistAd,topiclistAdEvery:topiclistAdEvery,topicListAdsuccess:topicListAdsuccess,listType:'authorTopicsList'}}"
         />
       </view>
     </l-tabpanel>
   </block>
-  <l-tabpanel tab="朋友" key="four" slot="four">
+  <l-tabpanel tab="ئەلشىفاداش" key="four" slot="four">
     <view class="userlist">
       <view wx:for="{{authorList}}" wx:key="index" class="userlist-item">
         <view class="userlist-item-name">
@@ -79,23 +79,23 @@
             </view>
      
             <view class="userlist-data">
-              <text>文章{{item.postcount}}</text>
-              <text>话题{{item.topiccount}}</text>
-              <text>粉丝 {{item.followmecount}}</text>
-              <text>关注 {{item.myfollowcount}}</text>
+              <text>ماقالە{{item.postcount}}</text>
+              <text>قوناقلىق{{item.topiccount}}</text>
+              <text>پىنتوزا {{item.followmecount}}</text>
+              <text>ئەگەشكىنى {{item.myfollowcount}}</text>
             </view>
           </view>
 
           <view wx:if="{{item.post_author !=userSession.userId}}" class="userlist-btn" data-listType="authorList" data-follow="{{item.follow}}" data-authorid="{{item.post_author}}" catchtap="followAuthor">
             <block wx:if="{{item.follow=='false'}}">
-              <text class="btn-follow">关注</text>
+              <text class="btn-follow">ئەگىشىش</text>
             </block>
             <block wx:else>
               <block wx:if="{{item.followeachoher=='true'}}">
-                <text class="btn-follow-eachother">相互关注</text>
+                <text class="btn-follow-eachother">دوست</text>
               </block>
               <block wx:else>
-                <text class="btn-followed">已关注</text>
+                <text class="btn-followed">ئەگەشتىڭىز</text>
               </block>
             </block>
           </view>
@@ -107,7 +107,7 @@
 
 <!-- <image class="tab-sub-btn" bindtap="showPupop" src="../../images/icon-subscribe.png"></image> -->
 <image class="tab-search-btn" bindtap="openSearch" src="../../images/tab-search-btn.png"></image>
-<view class="tab-sub-btn" bindtap="showPupop">订阅</view>
+<view class="tab-sub-btn" bindtap="showPupop">يېڭىلىق</view>
 
 <!-- 发布按钮 -->
 <view style="display:{{showAddbtn?'block':'none'}}">
@@ -120,7 +120,7 @@
 <l-popup show="{{popupShow}}" locked="{{true}}">
   <view class='pupop-subscribe'>
     <view class="pupop-header">
-      <text>话题订阅</text>
+      <text>يېڭىلانغانلىق ئۇقتۇرىشى</text>
       <view class='icon-close' bindtap='onHidePupopTap'></view>
     </view>
     <scroll-view scroll-y="{{true}}" class="pupop-scroll-view">
@@ -128,8 +128,8 @@
         <view class="item" wx:for="{{forums}}" wx:key="index">
           <text>{{item.title}}</text>
           <view class="btn-box">
-            <text>已订阅了{{item.categorySubscribeCount}}篇</text>
-            <view data-subid="{{item.subscribemessagesid}}" data-id="{{item.id}}" catchtap="postsub">订阅</view>
+            <text>{{item.categorySubscribeCount}}قېتىم قوبۇل قىلالايسىز</text>
+            <view data-subid="{{item.subscribemessagesid}}" data-id="{{item.id}}" catchtap="postsub">قوبۇل قىلىش</view>
           </view>
         </view>
       </view>
@@ -146,10 +146,10 @@
 <!-- 授权手机号 -->
 <van-dialog
   show="{{ showPopPhone }}"
-  title="提示"
-  message="发布内容需要授权绑定手机号"
+  title="ئەسكەرتىش"
+  message="تىلفۇن نۇمۇرىڭىزنى باغلاڭ"
   showCancelButton="{{ true }}"
-  confirmButtonText="确认绑定"
+  confirmButtonText="باغلاش"
   confirm-button-color="#2f80ed"
   confirm-button-open-type="getPhoneNumber"
   bind:getphonenumber="getPhoneNumber"

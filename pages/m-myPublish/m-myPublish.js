@@ -30,8 +30,8 @@ Page({
     userpostsList: [],
     topBarItems: [
       // id name selected 选中状态
-      { id: '1', name: '话题', selected: false, 'posttype': 'topic' },
-      { id: '2', name: '文章', selected: false, 'posttype': 'post' }
+      { id: '1', name: 'قوناقلىق', selected: false, 'posttype': 'topic' },
+      { id: '2', name: 'ماقالە', selected: false, 'posttype': 'post' }
 
     ],
     page: 1,
@@ -80,7 +80,7 @@ Page({
     var postype = this.data.postype;
     var poststatus = e.currentTarget.dataset.poststatus;
     if (poststatus == "pending") {
-      Adapter.toast('审核中的文章不能查看', 3000);
+      Adapter.toast('ماقالە تەستىقلىنىۋاتىدۇ', 3000);
       return;
 
     }
@@ -185,7 +185,7 @@ Page({
   onShareAppMessage: function () {
     var userId = this.data.userSession.userId;
     return {
-      title: this.data.userInfo.user_nicename + ' 的个人主页',
+      title: this.data.userInfo.user_nicename + ' نىڭ باشبىتى',
       path: '/pages/author/author?userid=' + userId + '&postype=topic',
       //imageUrl: this.data.detail.content_first_image,
     }

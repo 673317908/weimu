@@ -24,7 +24,7 @@ Page({
     isLastPage: false,
     isLoading: false,
     shareTitle: appName,
-    pageTitle: appName + "-热门标签"
+    pageTitle: appName + " ئاۋات خەتكۈچ"
   },
 
   onLoad: function(options) {
@@ -35,7 +35,7 @@ Page({
 
     Adapter.loadTags(args, self, API);
     wx.setNavigationBarTitle({
-      title: "热门标签"
+      title: "ئاۋات خەتكۈچ"
     });
 
     // 设置系统分享菜单

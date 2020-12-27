@@ -37,9 +37,9 @@ Page({
 
 
     // 页面标题
-    let title = '搜索'
-    if (this.data.postype === 'article') title = '文章搜索'
-    if (this.data.postype === 'topic') title = '动态搜索'
+    let title = 'ئىزدەش'
+    if (this.data.postype === 'article') title = 'ماقالە ئىزدەش'
+    if (this.data.postype === 'topic') title = 'قوناقلىق ئىزدەش'
     wx.setNavigationBarTitle({
       title: title
     })
@@ -65,7 +65,7 @@ Page({
     // 输入内容为空
     if (!this.data.searchKey) {
       wx.showToast({
-        title: '请输入搜索关键字！',
+        title: 'ئىزدىمەكچى بولغان ھالقىلىق سۆزنى كىرگۈزۈڭ',
         icon: 'none',
         duration: 1500
       })
@@ -132,7 +132,7 @@ Page({
           isLastPage: true
         })
         wx.showToast({
-          title: '已达最后一页',
+          title: 'ئەڭ ئاخىرقى بەت',
           icon: "none",
           duration: 1500
         })
@@ -199,7 +199,7 @@ Page({
   formSubmit() {
     if (!this.data.searchKey) {
       wx.showToast({
-        title: '请输入搜索关键字！',
+        title: 'ئىزدىمەكچى بولغان ھالقىلىق سۆزنى كىرگۈزۈڭ',
         icon: "none",
         duration: 1500
       })
@@ -254,7 +254,7 @@ Page({
    onShareAppMessage: function () {  
     let name = getApp().globalData.appName
     var self=this;
-    var title =name + '-搜索'
+    var title =name + '-ئىزدەش'
     if(self.data.searchKey) {
       title += ':'+self.data.searchKey
     }
@@ -332,7 +332,7 @@ Page({
   // 清空搜索记录
   clearSearch() {
     wx.z.showDialog({
-      content: '您确定要清空搜索历史吗？',
+      content: 'ئىزدەش خاتىرىسىنى ئۆچۈرەمسىز؟',
       success: (res) => {
         if (res.confirm) { // 确定
           let type = this.data.postype

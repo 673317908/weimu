@@ -7,13 +7,13 @@
 				<view class="left-content-right">
 					<view class="left-content-title">
 						<text>{{item.title.rendered}}</text>
-						<text>作者：{{item.author_name}}</text>
+						<text>ئاپتور: {{item.author_name}}</text>
 					</view>
 
 					<view class='left-content-popularity'>
 
-						<text catchtap="approvePost" id="{{item.id}}">审核通过</text>
-						<text catchtap="deletePost" id="{{item.id}}">删除</text>
+						<text catchtap="approvePost" id="{{item.id}}">تەستىقلاندى</text>
+						<text catchtap="deletePost" id="{{item.id}}">ئۆچۈرۈش</text>
 
 					</view>
 				</view>
